@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE phrases SYSTEM "entities.dtd">
+<epp:phrases xmlns="http://www.w3.org/1999/xhtml" xmlns:epp="http://eprints.org/ep3/phrase" xmlns:epc="http://eprints.org/ep3/control">
+</epp:phrase>
+
+<!-- the policy document used to derive these phrases -->
+<epp:phrase id="hefce_oa:policy_ref">
+<a href="http://www.hefce.ac.uk/media/HEFCE,2014/Content/Pubs/2014/201407/HEFCE2014_07_updated%20July%202015.pdf">Policy for open access in the post-2014 Research Excellence Framework (Updated July 2015)</a>
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:1">
+1. This document sets out the details of a requirement that certain research outputs
+should be made open-access to be eligible for submission to the next Research
+Excellence Framework (REF). This requirement will apply to journal articles and
+conference proceedings accepted for publication after 1 April 2016.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:2">
+2. The policy states that, to be eligible for submission to the post-2014 REF, authors’
+outputs must have been deposited in an institutional or subject repository. Deposited
+material should be discoverable, and free to read and download, for anyone with an
+internet connection. The requirement applies only to journal articles and conference
+proceedings with an International Standard Serial Number. It will not apply to
+monographs, book chapters, other long-form publications, working papers, creative or
+practice-based research outputs, or data. The policy applies to research outputs
+accepted for publication after 1 April 2016, but we would strongly urge institutions to
+implement it now.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:3">
+3. The policy allows repositories to respect embargo periods set by publications.
+Where a publication specifies an embargo period, authors can comply with the policy by
+making a ‘closed’ deposit. Closed deposits must be discoverable to anyone with an
+Internet connection before the full text becomes available for read and download (which
+will occur after the embargo period has elapsed). If still under embargo at the submission
+date of the next REF, closed deposits will be admissible to the REF.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:4">
+4. There are a number of exceptions to the various requirements that will be allowed
+by the policy. These exceptions cover circumstances where deposit was not possible, or
+where open access to deposited material could not be achieved within the policy 2
+requirements. These exceptions will allow institutions to achieve near-total compliance,
+but the post-2014 REF will also include a mechanism for considering any other
+exceptional cases where an output could not otherwise meet the requirements.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:5">
+5. Higher education institutions are now advised to implement processes and
+procedures to comply with this policy, which may include using a combination of the
+‘green’ and ‘gold’ routes to open access. Institutions can achieve full compliance without
+incurring any additional publication costs through article processing charges. 3
+This document was updated in July 2015 to include a number of amendments to
+the policy, following constructive feedback from the sector, as set out in a circular
+letter to HEIs in July 2015 at www.hefce.ac.uk/pubs/year/2015/CL,202015/.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:6">
+6. The four UK higher education funding bodies believe that research arising from our
+funding should be as widely and freely accessible as the available channels for
+dissemination allow. Open access to research enables the prompt and widespread
+dissemination of research findings. It benefits the efficiency of the research process and
+allows publicly funded research to drive economic growth. It delivers social benefits
+through increased public understanding of research.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:7">
+7. This document sets out the details of an open access policy relating to the
+successor to the 2014 Research Excellence Framework (REF). We formulated this policy
+following an extensive period of consultation with the higher education sector and other
+stakeholders during 2013. In February 2013, we wrote to all higher education institutions
+to ask for advice on how we might implement an open access requirement in the post-
+<epp:phrase id="hefce_oa:policy:para:2014">
+2014 REF1
+. Following advice received in reply to that letter, the four UK higher education
+funding bodies formally consulted on an updated set of policy proposals in July 20132
+.
+The outcomes of the formal consultation and a summary of responses can be found
+respectively at Annexes B and C, published at the following link:
+www.hefce.ac.uk/pubs/year/2014/201407/.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:8">
+8. This policy makes a number of assumptions about aspects of the next REF that
+have not yet been formally decided. This has been necessary to provide due notice to the
+sector of the policy requirement. The main assumption is that there will be a post-2014
+REF that operates on substantially the same basis as the 2014 REF. For example, we
+assume that there will be four main panels with disciplinary remits broadly similar to
+those of the REF 2014 main panels.
+Details of the policy
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:9">
+9. To fulfil our aim of increasing substantially the proportion of research that is made
+available by open access in the UK, the four UK higher education funding bodies are
+introducing a requirement that outputs submitted to the post-2014 REF be made
+available in an open-access form3
+. This policy document sets out the details of this
+requirement.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:10">
+10. The requirement will apply at the level of the individual research output. Set out
+below are the definition of the outputs within the scope of this policy, the criteria that
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:11">
+11. The requirement to comply with the open access policy applies only to particular
+outputs, as defined below.
+a. The type of output is a journal article or the type of output is a conference
+proceeding with an International Standard Serial Number (ISSN).
+b. The output is accepted for publication after 1 April 2016.
+Any output that fits both aspects of this definition will need to meet the open access
+criteria outlined in paragraphs 16 to 36, unless an exception applies.
+</epp:phrase>
+
+
+<epp:phrase id="hefce_oa:policy:para:12">
+12. Conference proceedings published with an International Standard Book Number
+(ISBN) or as part of a book series with an ISSN do not meet this definition.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:13">
+13. The criteria will apply to outputs that are accepted for publication after 1 April 2016.
+We strongly encourage institutions to work towards full compliance by the start date.
+Outputs not meeting the definition
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:14">
+14. Outputs that sit outside the above definition will still be eligible for submission to
+the post-2014 REF without needing to meet the open access criteria. Specifically, this
+policy does not apply to monographs and other long-form publications, or to non-text
+outputs, or to the data which underpin some research. Further, this policy does not apply
+to those particular output types that are delivered confidentially for security or commercial
+reasons.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:15">
+15. Where a higher education institution (HEI) can demonstrate that it has taken steps
+towards enabling open access for outputs outside the scope of this definition, credit will
+be given in the research environment component of the post-2014 REF. It is reasonable
+for institutions to take a proportionate view of the costs and benefits of making other
+types of outputs (including monographs) available as open access.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:16">
+16. Outputs that meet the definition at paragraphs 11 to 13, and thus fall within the
+scope of this policy, must fulfil all of the following criteria to be treated as open-access,
+except where there is an allowable exception. The criteria consist of deposit
+requirements, discovery requirements and access requirements.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:17">
+17. The output must have been deposited in an institutional repository, a repository
+service shared between multiple institutions, or a subject repository.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:18">
+18. The output must have been deposited as soon after the point of acceptance as
+possible, and no later than three months after this date (as given in the acceptance letter
+or e-mail from the publication to the author).
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:19">
+19. To take account of the need for systems to be developed to support deposit-onacceptance,
+during the first year of the policy (1 April 2016 – 1 April 2017), outputs can
+be deposited up to three months after the date of publication.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:20">
+20. The output must have been deposited as the author’s accepted and final peerreviewed
+text (which may otherwise be known as the ‘author manuscript’ or ‘final author
+version’ or ‘post-print’), though this may be replaced or augmented with an updated peerreviewed
+manuscript or the final published version of record at a later date.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:21">
+21. Outputs that are published by a journal or conference that does not require peer
+review are within the scope of this policy; in this instance, we would require the author’s
+final accepted version.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:22">
+22. Outputs that have been provisionally accepted for publication, under the condition
+that the author makes revisions to the manuscript that result from peer review, are not
+considered as the final text.
+Discovery requirements
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:23">
+23. The output must be presented in a way that allows it to be discovered by readers
+and by automated tools such as search engines.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:24">
+24. The discovery requirements should typically be fulfilled through the storage and
+open presentation of a bibliographic or metadata record in the repository.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:25">
+25. Once discoverable, the output should remain so.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:26">
+26. Where a deposited output is later replaced or augmented with an updated peerreviewed
+manuscript or the version of record, this must also meet the discovery
+requirements.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:27">
+27. The output must be presented in a form that allows anyone with internet access to
+search electronically within the text, read it and download it without charge, while
+respecting any constraints on timing (as detailed in paragraphs 29 to 35)
+<epp:phrase id="hefce_oa:policy:para:7">
+7
+. While we do
+not request that outputs are made available under any particular licence, we advise that
+outputs licensed under a Creative Commons Attribution Non-Commercial Non-Derivative
+(CC BY-NC-ND) licence would meet this requirement.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:28">
+28. Once accessible, the output should remain so.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:29">
+29. The required timing of compliance with the access requirements depends on
+whether an embargo is specified. Two routes are given below.
+</epp:phrase>
+
+
+<epp:phrase id="hefce_oa:policy:para:30">
+30. The output must meet the access requirements as soon as possible and no later
+than one month after deposit.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:31">
+31. The output must meet the access requirements as soon as possible and no later
+than one month after the end of the embargo period. The embargo period typically begins
+at the point of first publication (including online publication).
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:32">
+32. Embargo periods should not exceed the following maxima:
+ 12 months for REF Main Panel A and REF Main Panel B
+ 24 months for REF Main Panel C and REF Main Panel D8
+.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:33">
+33. Outputs deposited under embargo must fulfil all of the deposit and discovery
+requirements above.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:34">
+34. Outputs still under embargo will be admissible to the post-2014 REF, provided that
+the date of their first publication is within the REF publication period.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:35">
+35. Where a deposited output is later replaced or augmented with an updated peerreviewed
+manuscript or the version of record, this must also meet the access
+requirements. Embargo periods may not re-start with subsequent deposits: they are
+always linked to the date of first publication.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:36">
+36. Outputs do not need to allow automated tools to perform in-text search and
+download (those activities commonly known as text-mining) to meet the access
+requirement. However, where an HEI can demonstrate that outputs are presented in a
+form that allows re-use of the work, including via text-mining, credit will be given in the
+research environment component of the post-2014 REF. We further recommend that
+institutions fully consider the extent to which they currently retain or transfer the copyright
+of works published by their researchers, as part of creating a healthy research
+environment. For further information on text-mining, see Annex A.
+Exceptions
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:37">
+37. All outputs that meet the definition in paragraphs 11 to 13 must fulfil the open
+access criteria in paragraphs 16 to 36, except where the following exceptions apply.
+Where one of the following exceptions applies to an output, this exception should be
+indicated in the submission to the REF.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:38">
+38. The following exceptions deal with cases where the output is unable to meet the
+deposit requirements, or where the output is being made open access via another route.
+In the following cases, the output will not be required to meet any of the open access
+criteria, and should be considered beyond the scope of this policy, though we recognise
+that in some cases open access to the output may be achievable at a later date or by
+another route.
+</epp:phrase>
+<epp:phrase id="hefce_oa:policy:para:38:a">
+a. The individual whose output is being submitted to the REF was unable to
+secure the use of a repository at the point of acceptance.
+</epp:phrase>
+<epp:phrase id="hefce_oa:policy:para:38:b">
+b. The individual whose output is being submitted to the REF experienced a
+delay in securing the final peer-reviewed text (for instance, where a paper has
+multiple authors).
+</epp:phrase>
+<epp:phrase id="hefce_oa:policy:para:38:c">
+c. The individual whose output is being submitted to the REF was not employed
+by a UK HEI at the time of submission for publication.
+</epp:phrase>
+<epp:phrase id="hefce_oa:policy:para:38:d">
+d. It would be unlawful to deposit, or request the deposit of, the output.
+</epp:phrase>
+<epp:phrase id="hefce_oa:policy:para:38:e">
+e. Depositing the output would present a security risk.
+</epp:phrase>
+<epp:phrase id="hefce_oa:policy:para:38:f">
+f. The output was published as ‘gold’ open access (for example, RCUK-funded
+projects where an open access article processing charge has been paid).
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:39">
+39. The following exceptions deal with cases where deposit of the output is possible,
+but there are issues to do with meeting the access requirements. In the following cases,
+the output will still be required to meet the deposit and discovery requirements, but not
+the access requirements. A closed-access deposit will be required, and the open access
+requirements should be met as soon as possible.
+a. The output depends on the reproduction of third party content for which open
+access rights could not be granted (either within the specified timescales, or at all).
+b. The publication concerned requires an embargo period that exceeds the
+stated maxima, and was the most appropriate publication for the output.
+c. The publication concerned actively disallows open-access deposit in a
+repository, and was the most appropriate publication for the output.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:40">
+40. The following exceptions deal with cases where an output is unable to meet the
+criteria due to a technical issue. In the following cases, the output will not be required to
+meet the open access criteria. We would strongly urge HEIs to ensure the criteria are
+met retroactively, as soon as possible and no later than the REF submission point.
+a. At the point of acceptance, the individual whose output is being submitted to
+the REF was at a different UK HEI which failed to comply with the criteria.
+b. The repository experienced a short-term or transient technical failure that
+prevented compliance with the criteria (this should not apply to systemic issues).
+c. An external service provider failure prevented compliance (for instance, a
+subject repository did not enable open access at the end of the embargo period, or
+a subject repository ceased to operate).
+Other exceptions
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:41">
+41. In very exceptional cases, it may not be possible for an output to meet the open
+access requirements set out by this policy for a reason not covered by the exceptions
+listed above. We will require a short written explanation for why the output could not meet
+the open access requirements at the point of submission to the REF. We expect that
+such cases should be extremely rare. We will establish the process for considering them
+as part of our more detailed work to develop the post-2014 REF.
+Compliance with these requirements
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:42">
+42. Evidence for outputs meeting the criteria, the definition, or any of the allowed
+exceptions will not be required to be submitted to the post-2014 REF.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:43">
+43. We will establish the detailed verification and audit process as part of the
+implementation of the next REF, but we initially intend that compliance will be measured
+by verifying the data provided in the REF submission. Any audit will require institutions to
+provide assurance about their processes and systems for recording open-access
+information, as well as taking a light-touch approach to verifying supporting information.
+Further details of the information and audit requirements are given on our web-site.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:44">
+44. Any output submitted to the next REF that falls within the scope of this policy but
+does not meet its requirements or exceptions will be treated as non-compliant. Noncompliant
+outputs will be given an unclassified score and will not be assessed in the
+REF. However, we will be tolerant of occasional failures where institutions have made
+best endeavours towards achieving full compliance. Audits by the REF will allow for
+legitimate human error or oversight, and will take account of how the varied mix of
+disciplines across institutions can affect progress. The number of exceptions claimed
+within a submission will not affect the REF results.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:45">
+45. When a researcher moves between two HEIs, it will be acceptable for their
+deposited outputs to move to the new institution’s repository, as long as there is no
+interruption to discovery or access during the transition. We recognise that the use of
+unique researcher identifiers, such as Open Researcher and Contributor ID (ORCID),
+can facilitate this process.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:46">
+46. We will not require the submitting institution to seek and retain evidence of the
+previous HEI’s compliance with the deposit requirements, but it is our aim that the
+submitting institution provides information on accessibility levels for these outputs where
+information is readily available. Further information about this will follow in due course.
+Repositories and research information systems
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:47">
+47. Institutions’ research information management systems that can support the open
+access requirements through repository-like functionality can be thought of as
+institutional repositories for the purposes of this policy.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:48">
+48. We recognise that information on deposit permissions, licences and embargoes
+can sometimes be unclear, complex, or hard to find. Until significant progress has been
+made to address this issue (including developing machine-readable licences and
+permissions), it is reasonable for the sector to rely on shared services, including those
+offered by SHERPA. Authors and institutions should feel comfortable acting on the
+information provided by SHERPA in meeting our open access requirements, and should
+not undertake additional work to verify this information.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:49">
+49. Frequently asked questions (FAQ) on the HEFCE web-site have been updated to
+reflect the adjusted policy and can be accessed at www.hefce.ac.uk/rsrch/oa/faqs
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:50">
+50. For further information, please contact Ben Johnson (tel 0117 931 7038) or
+openaccess@hefce.ac.uk
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:footnote:1">
+1 The letter is available on request from openaccess@hefce.ac.uk
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:footnote:2">
+2 ‘Consultation on open access in the post-2014 Research Excellence Framework’ (HEFCE 2013/16),
+available online at www.hefce.ac.uk/pubs/year/2013/201316/
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:footnote:3">
+3 The policy only applies to research submitted to the ‘outputs’ component of the REF. It does not apply
+to material forming part of the case studies submitted to the ‘impact’ component. 
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:footnote:4">
+4 Individuals depositing their outputs in a subject repository are advised to ensure that their chosen
+repository meets the requirements set out in this policy. 
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:footnote:5">
+5 ‘Date of publication’ means the earliest date that the final version-of-record is made available on the
+publisher’s web-site. This generally means that the ‘early online’ date, rather than the print publication
+date, should be taken as the date of publication.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:footnote:7">
+7 Outputs whose text is encoded only as a scanned image do not meet the requirement that the text be
+searchable electronically. 
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:footnote:8">
+8 Interdisciplinary research being submitted to Main Panel A or B that would be also admissible to Main
+Panel C or D may respect the longer of the two embargo periods.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:footnote:9">
+9 We would strongly encourage these outputs to be deposited in a repository to facilitate
+preservation, aggregation and text-mining.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:footnote:10">
+10 The information and audit requirements document can be found under ‘Technical resources’ at
+www.hefce.ac.uk/rsrch/oa/Policy/
+</epp:phrase>
+
+</epp:phrases>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<workflow xmlns="http://eprints.org/ep3/workflow" xmlns:epc="http://eprints.org/ep3/control">
+
+<flow>
+    <epc:if test="( type = 'article' or type = 'conference_item' ) and $STAFF_ONLY = 'TRUE'">
+        <stage ref="hefce_oa"/>
+    </epc:if>
+</flow>
+
+<stage name="hefce_oa">
+    <component><field ref="hoa_emb_len"/></component>
+    <component><field ref="hoa_ref_pan"/></component>
+    <component type="Field::Multi">
+        <title>Dates</title>
+        <field ref="hoa_date_acc"/>
+        <field ref="hoa_date_pub"/>
+    </component>
+    <component type="Field::Multi">
+        <title>Deposit Exceptions</title>
+        <field ref="hoa_ex_dep"/>
+        <field ref="hoa_ex_dep_txt"/>
+    </component>
+    <component type="Field::Multi">
+        <title>Access Exceptions</title>
+        <field ref="hoa_ex_acc"/>
+        <field ref="hoa_ex_acc_txt"/>
+    </component>
+    <component type="Field::Multi">
+        <title>Technical Exceptions</title>
+        <field ref="hoa_ex_tec"/>
+        <field ref="hoa_ex_tec_txt"/>
+    </component>
+    <component type="Field::Multi">
+        <title>Other Exceptions</title>
+        <field ref="hoa_ex_oth"/>
+        <epc:choose>
+            <epc:when test="hoa_ex_oth and hoa_ex_oth = 'TRUE'">
+                <field ref="hoa_ex_oth_txt" required="yes"/>
+            </epc:if>
+            <epc:otherwise>
+                <field ref="hoa_ex_oth_txt"/>
+            </epc:otherwise>
+        </epc:choose>
+    </component>
+</stage>
+
+</workflow>
+

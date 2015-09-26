@@ -2,6 +2,7 @@ package EPrints::Plugin::Screen::EPrint::HefceOA;
 
 our @ISA = ( 'EPrints::Plugin::Screen::EPrint' );
 
+use HefceOA::Const;
 use strict;
 
 sub new
@@ -56,10 +57,10 @@ sub render
     ))
     {
         my $h = $repo->xml->create_element( "h2" );
-        $h->appendChild( $repo->call( [qw( hefce_oa render_test_title )], $repo, $_ );
+        $h->appendChild( $repo->call( [qw( hefce_oa render_test_title )], $repo, $_ ) );
         $page->appendChild( $h );
 
-        if( $flag & HefceOA::Const::$_ )
+        if( $flag & HefceOA::Const->$_ )
         {
             $page->appendChild( $repo->render_message( "message", $self->html_phrase( "test:compliant" ) ) );
         }
@@ -68,11 +69,11 @@ sub render
             $page->appendChild( $repo->render_message( "warning", $self->html_phrase( "test:not_compliant" ) ) );
         }
 
-        $page->appenChild( $repo->xml->create_element( "br" );
-        $page->appendChild( $repo->call( [qw( hefce_oa render_test_details )], $repo, $test, $eprint ) );
+        $page->appenChild( $repo->xml->create_element( "br" ) );
+        $page->appendChild( $repo->call( [qw( hefce_oa render_test_details )], $repo, $_, $eprint ) );
 
-        $page->appenChild( $repo->xml->create_element( "br" );
-        $page->appendChild( $repo->call( [qw( hefce_oa render_test_policy )], $repo, $test, $eprint ) );
+        $page->appenChild( $repo->xml->create_element( "br" ) );
+        $page->appendChild( $repo->call( [qw( hefce_oa render_test_policy )], $repo, $_, $eprint ) );
     }
 
     return $page;

@@ -22,7 +22,7 @@
 <epp:phrase id="eprint_fieldname_hoa_date_acc">Date of acceptance</epp:phrase>
 <epp:phrase id="eprint_fieldhelp_hoa_date_acc"></epp:phrase>
 <epp:phrase id="eprint_fieldname_hoa_date_pub">Date of publication</epp:phrase>
-<epp:phrase id="eprint_fieldhelp_hoa_date_pub"><epc:phrase ref="hefce_oa:policy:footnote:5".></epp:phrase>
+<epp:phrase id="eprint_fieldhelp_hoa_date_pub"><epc:phrase ref="hefce_oa:policy:footnote:5"/></epp:phrase>
 <epp:phrase id="eprint_fieldname_hoa_date_dep">Date of deposit</epp:phrase>
 <epp:phrase id="eprint_fieldhelp_hoa_date_dep"></epp:phrase>
 

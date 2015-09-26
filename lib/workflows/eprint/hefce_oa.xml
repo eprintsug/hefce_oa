@@ -37,7 +37,7 @@
         <epc:choose>
             <epc:when test="hoa_ex_oth and hoa_ex_oth = 'TRUE'">
                 <field ref="hoa_ex_oth_txt" required="yes"/>
-            </epc:if>
+            </epc:when>
             <epc:otherwise>
                 <field ref="hoa_ex_oth_txt"/>
             </epc:otherwise>

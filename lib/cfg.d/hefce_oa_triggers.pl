@@ -2,7 +2,7 @@
 $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_STATUS_CHANGE, sub
 {
     my( %args ) = @_; 
-    my( $repo, $eprint, $old_status, $mew_status ) = @args{qw( repository eprint old_status new_status )};
+    my( $repo, $eprint, $old_status, $new_status ) = @args{qw( repository eprint old_status new_status )};
 
     return unless $old_status eq "inbox" && $new_status eq "review";
     return unless !$eprint->is_set( "hoa_date_dep" );
@@ -41,7 +41,7 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
         COMPLIANT
     ))
     {
-        $flag |= HefceOA::Const::$_ if $repo->run( [qw( hefce_oa run_test $_ )], $repo, $eprint, $flag );
+        $flag |= HefceOA::Const->$_ if $repo->run( [qw( hefce_oa run_test $_ )], $repo, $eprint, $flag );
     }
 
     $eprint->set_value( "oa_compliant", $flag );

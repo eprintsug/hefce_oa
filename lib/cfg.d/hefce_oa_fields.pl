@@ -17,7 +17,7 @@ push @{ $c->{hefce_oa}->{profile} },
     type => "set",
     options => [qw( AB CD )],
     input_style => "medium",
-}
+},
 
 # dates
 {

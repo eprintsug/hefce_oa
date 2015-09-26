@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!DOCTYPE phrases SYSTEM "entities.dtd">
 <epp:phrases xmlns="http://www.w3.org/1999/xhtml" xmlns:epp="http://eprints.org/ep3/phrase" xmlns:epc="http://eprints.org/ep3/control">
-</epp:phrase>
 
 <!-- the policy document used to derive these phrases -->
 <epp:phrase id="hefce_oa:policy_ref">
@@ -70,11 +69,8 @@ successor to the 2014 Research Excellence Framework (REF). We formulated this po
 following an extensive period of consultation with the higher education sector and other
 stakeholders during 2013. In February 2013, we wrote to all higher education institutions
 to ask for advice on how we might implement an open access requirement in the post-
-<epp:phrase id="hefce_oa:policy:para:2014">
-2014 REF1
-. Following advice received in reply to that letter, the four UK higher education
-funding bodies formally consulted on an updated set of policy proposals in July 20132
-.
+2014 REF1. Following advice received in reply to that letter, the four UK higher education
+funding bodies formally consulted on an updated set of policy proposals in July 2013.
 The outcomes of the formal consultation and a summary of responses can be found
 respectively at Annexes B and C, published at the following link:
 www.hefce.ac.uk/pubs/year/2014/201407/.
@@ -210,10 +206,7 @@ requirements.
 <epp:phrase id="hefce_oa:policy:para:27">
 27. The output must be presented in a form that allows anyone with internet access to
 search electronically within the text, read it and download it without charge, while
-respecting any constraints on timing (as detailed in paragraphs 29 to 35)
-<epp:phrase id="hefce_oa:policy:para:7">
-7
-. While we do
+respecting any constraints on timing (as detailed in paragraphs 29 to 35). While we do
 not request that outputs are made available under any particular licence, we advise that
 outputs licensed under a Creative Commons Attribution Non-Commercial Non-Derivative
 (CC BY-NC-ND) licence would meet this requirement.

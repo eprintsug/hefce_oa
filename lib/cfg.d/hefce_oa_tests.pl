@@ -1,5 +1,7 @@
 my $hoa = $c->{hefce_oa};
 
+use HefceOA::Const;
+
 $hoa->{render_test_title} = sub {
     my( $repo, $test ) = @_;
 
@@ -9,7 +11,7 @@ $hoa->{render_test_title} = sub {
 $hoa->{render_test_details} = sub {
     my( $repo, $test, $eprint ) = @_;
 
-    if( $repo->can_call( qw( hefce_oa render_test_details ), $test )
+    if( $repo->can_call( qw( hefce_oa render_test_details ), $test ) )
     {
         return $repo->call( [qw( hefce_oa render_test_details $test )], $repo, $eprint );
     }

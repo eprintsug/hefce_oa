@@ -15,7 +15,7 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_STATUS_CHANGE, sub
 $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 {
     my( %args ) = @_;
-    my( $repo, $eprint, $changed ) = @args{qw( repository eprint changed )};
+    my( $repo, $eprint, $changed ) = @args{qw( repository dataobj changed )};
 
     my $type = $eprint->value( "type" );
     unless( $type eq "article" || $type eq "conference_item" )
@@ -41,7 +41,7 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
         COMPLIANT
     ))
     {
-        $flag |= HefceOA::Const->$_ if $repo->run( [qw( hefce_oa run_test $_ )], $repo, $eprint, $flag );
+        $flag |= HefceOA::Const->$_ if $repo->call( [qw( hefce_oa run_test ), $_ ], $repo, $eprint, $flag );
     }
 
     $eprint->set_value( "oa_compliant", $flag );

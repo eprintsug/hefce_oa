@@ -21,13 +21,13 @@
 <!-- dates -->
 <epp:phrase id="eprint_fieldname_hoa_date_acc">Date of acceptance</epp:phrase>
 <epp:phrase id="eprint_fieldhelp_hoa_date_acc"></epp:phrase>
-<epp:phrase id="eprint_fieldname_hoa_date_pub">Date of publication</epp:phrase>
+<epp:phrase id="eprint_fieldname_hoa_date_pub">Date of first online publication</epp:phrase>
 <epp:phrase id="eprint_fieldhelp_hoa_date_pub"><epc:phrase ref="hefce_oa:policy:footnote:5"/></epp:phrase>
 <epp:phrase id="eprint_fieldname_hoa_date_dep">Date of deposit</epp:phrase>
 <epp:phrase id="eprint_fieldhelp_hoa_date_dep"></epp:phrase>
 
 <!-- deposit exceptions -->
-<epp:phrase id="eprint_fieldname_hoa_ex_dep">Exception</epp:phrase>
+<epp:phrase id="eprint_fieldname_hoa_ex_dep">Deposit exception</epp:phrase>
 <epp:phrase id="eprint_fieldhelp_hoa_ex_dep">
 <p><epc:phrase ref="hefce_oa:policy:para:38"/></p>
 <p><epc:phrase ref="hefce_oa:policy_ref"/></p>
@@ -42,7 +42,7 @@
 <epp:phrase id="eprint_fieldhelp_hoa_ex_dep_txt"></epp:phrase>
 
 <!-- access exceptions -->
-<epp:phrase id="eprint_fieldname_hoa_ex_acc">Exception</epp:phrase>
+<epp:phrase id="eprint_fieldname_hoa_ex_acc">Access exception</epp:phrase>
 <epp:phrase id="eprint_fieldhelp_hoa_ex_acc">
 39. The following exceptions deal with cases where deposit of the output is possible,
 but there are issues to do with meeting the access requirements. In the following cases,
@@ -67,7 +67,7 @@ repository, and was the most appropriate publication for the output.
 <epp:phrase id="eprint_fieldhelp_hoa_ex_acc_txt"></epp:phrase>
 
 <!-- technical exceptions -->
-<epp:phrase id="eprint_fieldname_hoa_ex_tec">Exception</epp:phrase>
+<epp:phrase id="eprint_fieldname_hoa_ex_tec">Technical exception</epp:phrase>
 <epp:phrase id="eprint_fieldhelp_hoa_ex_tec">
 40. The following exceptions deal with cases where an output is unable to meet the
 criteria due to a technical issue. In the following cases, the output will not be required to
@@ -92,7 +92,7 @@ a subject repository ceased to operate).
 <epp:phrase id="eprint_fieldhelp_hoa_ex_tec_txt"></epp:phrase>
 
 <!-- other exceptions -->
-<epp:phrase id="eprint_fieldname_hoa_ex_oth">Exception</epp:phrase>
+<epp:phrase id="eprint_fieldname_hoa_ex_oth">Other exception</epp:phrase>
 <epp:phrase id="eprint_fieldhelp_hoa_ex_oth">
 41. In very exceptional cases, it may not be possible for an output to meet the open
 access requirements set out by this policy for a reason not covered by the exceptions
@@ -106,7 +106,19 @@ as part of our more detailed work to develop the post-2014 REF.
 <epp:phrase id="eprint_fieldname_hoa_ex_oth_txt">Explanation</epp:phrase>
 <epp:phrase id="eprint_fieldhelp_hoa_ex_oth_txt"></epp:phrase>
 
-<epp:phrase id="metapage_title_hefce_oa"><span class="hefce_oa_title"><epc:phrase ref="hefce"/></span></epp:phrase>
-<epp:phrase id="Plugin/Screen/EPrint/HefceOA:title"><span id="hefce_oa_tab_title"><epc:phrase ref="metapage_title_hefce_oa"/></span></epp:phrase>
+<epp:phrase id="metapage_title_hefce_oa"><span class="hoa_title"><epc:phrase ref="hefce"/></span></epp:phrase>
+
+<!-- compliance screen -->
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:title"><span id="hoa_tab_title"><epc:phrase ref="metapage_title_hefce_oa"/></span></epp:phrase>
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:compliant"><span id="hoa_status" data-status="compliant">Congratulations, this item complies with the <epc:phrase ref="hefce"/> Open Access policy</span></epp:phrase>
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:non_compliant"><span id="hoa_status" data-status="non_compliant">Sorry, this item <strong>does not</strong> comply with the <epc:phrase ref="hefce"/> Open Access policy</span></epp:phrase>
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_tab_title"><span class="{$pindata{inserts}{class}}"><epc:pin name="title"/></span></epp:phrase>
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_exception_tab_title">Exceptions (<epc:pin name="count"/>)</epp:phrase>
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_test"><li class="{$pindata{inserts}{class}}"><epc:pin name="title"/><p><strong>How we test:</strong></p><p><epc:pin name="description"/></p></li></epp:phrase>
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_tests"><ul><epc:pin name="tests"/></ul></epp:phrase>
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_test_description"><p><strong>How we test:</strong></p><p><epc:pin name="description"/></p></epp:phrase>
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_exception"><li><strong><epc:pin name="title"/></strong><br/><epc:pin name="exception"/></li></epp:phrase>
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_exceptions"><ul><epc:pin name="exceptions"/></ul></epp:phrase>
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_no_exceptions">No exceptions.</epp:phrase>
 
 </epp:phrases>

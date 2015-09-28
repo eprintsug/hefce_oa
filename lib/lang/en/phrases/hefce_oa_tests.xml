@@ -2,19 +2,39 @@
 <!DOCTYPE phrases SYSTEM "entities.dtd">
 <epp:phrases xmlns="http://www.w3.org/1999/xhtml" xmlns:epp="http://eprints.org/ep3/phrase" xmlns:epc="http://eprints.org/ep3/control">
 
-<epp:phrase id="hefce_oa:test_title:COMPLIANT">Overall compliance</epp:phrase>
-<epp:phrase id="hefce_oa:test_details:COMPLIANT">
-<p>We found at least one of the following conditions:</p>
+<epp:phrase id="hefce_oa:test_title:COMPLIANT"><epc:phrase ref="hefce"/> Open Access compliance</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:COMPLIANT">Item meets at least one of the following conditions:
 <ul>
-<li>The deposit, discovery and access requirements are met.</li>
-<li>There is a deposit exception.</li>
-<li>There is an access exception but the deposit and discovery requirements are met.</li>
-<li>There is a technical exception.</li>
-<li>There is an 'other' exception.</li>
+	<li>the deposit, discovery <strong>and</strong> access requirements are met.</li>
+	<li>there is a deposit exception.</li>
+	<li>there is an access exception <strong>and</strong> the deposit <strong>and</strong> discovery requirements are met.</li>
+	<li>there is a technical exception.</li>
+	<li>there is an 'other' exception.</li>
 </ul>
 </epp:phrase>
-<epp:phrase id="hefce_oa:test_policy:COMPLIANT">
-<p>Paragraph from hefce policy document.</p>
-</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_title:DEP">Deposit requirements</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DEP">Item meets all of the deposit requirements.</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_title:DEP_TIMING">Item deposited within 3 months of acceptance</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DEP_TIMING">The item was deposited (moved from user work area to review buffer) for the first time within 3 months of being accepted for publication - or, for items accepted before April 2017, within 3 months of first online publication.</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_title:DEP_AAM">Item deposited with an Author Accepted Manuscript (AAM)</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DEP_AAM">The item currently has at least an Author Accepted Manuscript (AAM) attached.</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_title:DIS">Discovery requirements</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DIS">Item meets all of the discovery requirements.</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_title:DIS_DISCOVERABLE">Item is discoverable</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DIS_DISCOVERABLE">The item is currently in the live archive.</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_title:ACC">Access requirements</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:ACC">Item meets all of the access requirements.</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_title:ACC_TIMING">AAM accessible within 1 month of deposit/embargo end date</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:ACC_TIMING"></epp:phrase>
+
+<epp:phrase id="hefce_oa:test_title:ACC_EMBARGO">Embargo does not exceed maximum length</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:ACC_EMBARGO"></epp:phrase>
 
 </epp:phrases>

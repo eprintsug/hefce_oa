@@ -17,6 +17,7 @@ use constant {
     EX_ACC              => 1024,
     EX_TEC              => 2048,
     EX_OTH              => 4096,
+    EX			=> 8192,
 };
 
 @EXPORT = qw(

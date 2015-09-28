@@ -4,7 +4,7 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_STATUS_CHANGE, sub
     my( %args ) = @_; 
     my( $repo, $eprint, $old_status, $new_status ) = @args{qw( repository eprint old_status new_status )};
 
-    return unless $old_status eq "inbox" && $new_status eq "review";
+    return unless $old_status eq "inbox" && $new_status eq "buffer";
     return unless !$eprint->is_set( "hoa_date_dep" );
 
     $eprint->set_value( "hoa_date_dep", EPrints::Time::get_iso_date() );

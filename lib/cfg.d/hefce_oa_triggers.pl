@@ -38,12 +38,13 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
         EX_ACC
         EX_TEC
         EX_OTH
+	EX
         COMPLIANT
     ))
     {
-        $flag |= HefceOA::Const->$_ if $repo->call( [qw( hefce_oa run_test ), $_ ], $repo, $eprint, $flag );
+        $flag |= HefceOA::Const->$_ if $repo->call( [qw( hefce_oa run_test )], $repo, $_, $eprint, $flag );
     }
 
-    $eprint->set_value( "oa_compliant", $flag );
+    $eprint->set_value( "hoa_compliant", $flag );
 
 }, priority => 100 );

@@ -96,19 +96,48 @@ $hoa->{run_test_EX_OTH} = sub {
 };
 
 $hoa->{run_test_DEP_TIMING} = sub {
-    my( $repo, $eprint, $flag ) = @_;
+	my( $repo, $eprint, $flag ) = @_;
 
-    return 1;
+	# can't do anything without an acceptance date
+	return 0 unless $eprint->is_set( "hoa_date_acc" );
+	
+	# TODO check YYYY-MM-DD
+	my $acc = str2time( $eprint->get_value( "hoa_date_acc" ) );
 
-    return 0;
+	my $APR17 = str2time( "2017-04-01" );
+	my $WINDOW = 3 * 30 * 24 * 60 * 60; # 3 months
+
+	if( $eprint->is_set( "hoa_date_dep" ) )
+	{
+		# TODO check YYYY-MM-DD
+		my $dep = str2time( $eprint->get_value( "hoa_date_dep" ) );
+		# deposited after accepted: $dep > $acc, check difference is <= $WINDOW
+		# deposited before accepted: $dep < $acc, difference will be < 0 
+		return 1 if ( $dep - $acc ) <= $WINDOW;
+
+		if( $acc < $APR17 && $eprint->is_set( "hoa_date_pub" ) )
+		{
+			# TODO check YYYY-MM-DD
+			my $pub = str2time( $eprint->get_value( "hoa_date_pub" ) );
+			# deposited after published: $dep > $pub, check differene is <= $WINDOW
+			# deposited before published: $dep < $pub, difference will be < 0
+			return 1 if ( $dep - $pub ) <= $WINDOW;
+		}
+	}
+
+	return 0;
 };
 
 $hoa->{run_test_DEP_AAM} = sub {
-    my( $repo, $eprint, $flag ) = @_;
+	my( $repo, $eprint, $flag ) = @_;
 
-    return 1;
+	for( $eprint->get_all_documents )
+	{
+		return 1 if $_->value( "content" ) eq "accepted";
+		return 1 if $_->value( "content" ) eq "published";
+	}
 
-    return 0;
+	return 0;
 };
 
 $hoa->{run_test_DIS_DISCOVERABLE} = sub {
@@ -128,11 +157,14 @@ $hoa->{run_test_ACC_TIMING} = sub {
 };
 
 $hoa->{run_test_ACC_EMBARGO} = sub {
-    my( $repo, $eprint, $flag ) = @_;
+	my( $repo, $eprint, $flag ) = @_;
 
-    return 1;
+	my $len = $eprint->value( "hoa_emb_len" ) || 0;
+	my $max = ( $eprint->value( "hoa_ref_pan" ) || "CD" ) eq "AB" ? 12 : 24;
 
-    return 0;
+	return 1 unless $len > $max;
+
+	return 0;
 };
 
 $hoa->{run_test_EX} = sub {

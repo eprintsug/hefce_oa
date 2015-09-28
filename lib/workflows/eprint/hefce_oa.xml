@@ -9,13 +9,13 @@
 </flow>
 
 <stage name="hefce_oa">
-    <component><field ref="hoa_emb_len"/></component>
-    <component><field ref="hoa_ref_pan"/></component>
     <component type="Field::Multi">
         <title>Dates</title>
         <field ref="hoa_date_acc"/>
         <field ref="hoa_date_pub"/>
     </component>
+    <component><field ref="hoa_emb_len"/></component>
+    <component><field ref="hoa_ref_pan"/></component>
     <component type="Field::Multi">
         <title>Deposit Exceptions</title>
         <field ref="hoa_ex_dep"/>

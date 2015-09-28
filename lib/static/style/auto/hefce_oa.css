@@ -1,0 +1,50 @@
+
+li.hoa_compliant
+{
+	list-style-image: url(/style/images/hoa_message-icon.png);
+}
+
+li.hoa_non_compliant
+{
+	list-style-image: url(/style/images/warning-icon.png);
+}
+
+span.hoa_compliant
+{
+	padding-left: 18px;
+	background: url('/style/images/hoa_message-icon.png') no-repeat;
+}
+span.hoa_non_compliant
+{
+	padding-left: 18px;
+	background: url('/style/images/warning-icon.png') no-repeat;
+}
+
+#hoa_tab_title
+{
+	padding-left: 18px;
+}
+#hoa_tab_title.hoa_compliant
+{
+    background: url('/style/images/hoa_message-icon.png') no-repeat;
+}
+#hoa_tab_title.hoa_non_compliant
+{
+    background: url('/style/images/warning-icon.png') no-repeat;
+}
+
+div.hoa_help
+{
+    padding-left: 1em;
+    padding-right: 1em;
+    background: #fff;
+    border: 1px solid #ccc;
+    margin: 2px;
+}
+
+.hoa_hidden
+{
+    display: none;
+    visibility: hidden;
+}
+

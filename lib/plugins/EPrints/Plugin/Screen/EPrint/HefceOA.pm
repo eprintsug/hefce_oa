@@ -53,6 +53,17 @@ sub render
 		description => $repo->html_phrase( "hefce_oa:test_description:COMPLIANT" )
 	) );
 
+	# data used to check compliance
+	my $box = $repo->make_element( "div", style=>"text-align: left" );
+	$box->appendChild( EPrints::Box::render(
+		id => "hoa_data",
+		title => $self->html_phrase( "data:title" ),
+		content => $self->render_data,
+		collapsed => 1,
+		session => $repo,
+	) );
+	$page->appendChild( $box );
+
 	# tabs for individual requirements and exceptions
 	my @labels;
 	my @tabs;
@@ -76,6 +87,31 @@ sub render
 	return $page;
 }
 
+sub render_data
+{
+	my( $self ) = @_;
+
+	my $repo = $self->{repository};
+	my $eprint = $self->{processor}->{eprint};
+
+	my $table = $repo->xml->create_element( "table", border => 0, cellpadding => 3 );
+
+	foreach my $field ( qw( hoa_date_acc hoa_date_pub hoa_date_fcd eprint_status hoa_date_foa hoa_emb_len hoa_ref_pan ) )
+	{
+		my $tr = $repo->xml->create_element( "tr" );
+		$table->appendChild( $tr );
+
+		my $th = $repo->xml->create_element( "th", class => "ep_row" );
+		$th->appendChild( $repo->html_phrase( "eprint_fieldname_$field" ) );
+		$tr->appendChild( $th );
+
+		my $td = $repo->xml->create_element( "td", class => "ep_row" );
+		$td->appendChild( $eprint->is_set( $field ) ? $eprint->render_value( $field ) : $self->html_phrase( "data:unknown" ) );
+		$tr->appendChild( $td );
+	}
+
+	return $table;
+}
 
 sub render_tab
 {

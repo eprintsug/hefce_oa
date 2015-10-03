@@ -23,8 +23,10 @@
 <epp:phrase id="eprint_fieldhelp_hoa_date_acc"></epp:phrase>
 <epp:phrase id="eprint_fieldname_hoa_date_pub">Date of first online publication</epp:phrase>
 <epp:phrase id="eprint_fieldhelp_hoa_date_pub"><epc:phrase ref="hefce_oa:policy:footnote:5"/></epp:phrase>
-<epp:phrase id="eprint_fieldname_hoa_date_dep">Date of deposit</epp:phrase>
-<epp:phrase id="eprint_fieldhelp_hoa_date_dep"></epp:phrase>
+<epp:phrase id="eprint_fieldname_hoa_date_fcd">Date of first compliant deposit</epp:phrase>
+<epp:phrase id="eprint_fieldhelp_hoa_date_fcd"></epp:phrase>
+<epp:phrase id="eprint_fieldname_hoa_date_foa">Date of first compliant Open Access</epp:phrase>
+<epp:phrase id="eprint_fieldhelp_hoa_date_foa"></epp:phrase>
 
 <!-- deposit exceptions -->
 <epp:phrase id="eprint_fieldname_hoa_ex_dep">Deposit exception</epp:phrase>
@@ -137,5 +139,8 @@ as part of our more detailed work to develop the post-2014 REF.
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_exception"><li><strong><epc:pin name="title"/></strong><br/><epc:pin name="exception"/></li></epp:phrase>
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_exceptions"><ul><epc:pin name="exceptions"/></ul></epp:phrase>
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_no_exceptions">No exceptions.</epp:phrase>
+
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:data:title">Show data used to check compliance</epp:phrase>
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:data:unknown">Unknown</epp:phrase>
 
 </epp:phrases>

@@ -1,15 +1,49 @@
-# date of first deposit
-$c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_STATUS_CHANGE, sub
+# date of first compliant deposit
+$c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 {
-    my( %args ) = @_; 
-    my( $repo, $eprint, $old_status, $new_status ) = @args{qw( repository eprint old_status new_status )};
+	my( %args ) = @_; 
+	my( $repo, $eprint, $changed ) = @args{qw( repository dataobj changed )};
 
-    return unless $old_status eq "inbox" && $new_status eq "buffer";
-    return unless !$eprint->is_set( "hoa_date_dep" );
+	return if $eprint->is_set( "hoa_date_fcd" );
+	return if $eprint->value( "status" ) eq "inbox";
 
-    $eprint->set_value( "hoa_date_dep", EPrints::Time::get_iso_date() );
-
+	for( $eprint->get_all_documents )
+	{
+		next unless $_->value( "content" ) eq "accepted" || $_->value( "content" ) eq "published";
+    		$eprint->set_value( "hoa_date_fcd", EPrints::Time::get_iso_date() );
+    		$eprint->set_value( "hoa_version_fcd", $_->value( "content" ) eq "accepted" ? "AM" : "VoR" );
+	}
 }, priority => 100 );
+
+# date of first compliant open access
+$c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
+{
+	my( %args ) = @_; 
+	my( $repo, $eprint, $changed ) = @args{qw( repository dataobj changed )};
+
+	return unless $eprint->is_set( "hoa_date_fcd" );
+	return if $eprint->is_set( "hoa_date_foa" );
+
+	for( $eprint->get_all_documents )
+	{
+		next unless $_->value( "content" ) eq "accepted" || $_->value( "content" ) eq "published";
+		next unless $_->is_public;
+    		$eprint->set_value( "hoa_date_foa", EPrints::Time::get_iso_date() );
+	}
+}, priority => 200 );
+
+$c->add_dataset_trigger( 'document', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
+{
+	my( %args ) = @_; 
+	my( $repo, $doc, $changed ) = @args{qw( repository dataobj changed )};
+
+	return unless $doc->is_public;
+	return if $doc->parent->is_set( "hoa_date_foa" );
+
+	# make sure eprint->commit calls triggers..
+	$doc->parent->{changed}->{_poke}++;
+}, priority => 100 );
+
 
 # set compliance flag
 $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
@@ -47,4 +81,4 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 
     $eprint->set_value( "hoa_compliant", $flag );
 
-}, priority => 100 );
+}, priority => 300 );

@@ -29,8 +29,19 @@ push @{ $c->{hefce_oa}->{profile} },
     type => "date",
 },
 {
-    name => "hoa_date_dep",
+    name => "hoa_date_fcd", # first compliant deposit
     type => "date",
+},
+{
+    name => "hoa_date_foa", # first compliant open access
+    type => "date",
+},
+
+# version of first compliant deposit
+{
+    name => "hoa_version_fcd",
+    type => "set",
+    options => [qw( AM VoR )],
 },
 
 # deposit exceptions

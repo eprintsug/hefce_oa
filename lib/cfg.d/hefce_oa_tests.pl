@@ -107,10 +107,10 @@ $hoa->{run_test_DEP_TIMING} = sub {
 	my $APR17 = str2time( "2017-04-01" );
 	my $WINDOW = 3 * 30 * 24 * 60 * 60; # 3 months
 
-	if( $eprint->is_set( "hoa_date_dep" ) )
+	if( $eprint->is_set( "hoa_date_fcd" ) )
 	{
 		# TODO check YYYY-MM-DD
-		my $dep = str2time( $eprint->get_value( "hoa_date_dep" ) );
+		my $dep = str2time( $eprint->get_value( "hoa_date_fcd" ) );
 		# deposited after accepted: $dep > $acc, check difference is <= $WINDOW
 		# deposited before accepted: $dep < $acc, difference will be < 0 
 		return 1 if ( $dep - $acc ) <= $WINDOW;
@@ -131,13 +131,7 @@ $hoa->{run_test_DEP_TIMING} = sub {
 $hoa->{run_test_DEP_AAM} = sub {
 	my( $repo, $eprint, $flag ) = @_;
 
-	for( $eprint->get_all_documents )
-	{
-		return 1 if $_->value( "content" ) eq "accepted";
-		return 1 if $_->value( "content" ) eq "published";
-	}
-
-	return 0;
+	return $eprint->is_set( "hoa_date_fcd" );
 };
 
 $hoa->{run_test_DIS_DISCOVERABLE} = sub {
@@ -151,6 +145,7 @@ $hoa->{run_test_DIS_DISCOVERABLE} = sub {
 $hoa->{run_test_ACC_TIMING} = sub {
     my( $repo, $eprint, $flag ) = @_;
 
+    # TODO
     return 1;
 
     return 0;

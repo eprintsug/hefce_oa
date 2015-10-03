@@ -1,5 +1,6 @@
 my $hoa = $c->{hefce_oa};
 
+use Date::Parse;
 use HefceOA::Const;
 
 $hoa->{run_test} = sub {

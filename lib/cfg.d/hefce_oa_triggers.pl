@@ -5,7 +5,7 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 	my( $repo, $eprint, $changed ) = @args{qw( repository dataobj changed )};
 
 	return if $eprint->is_set( "hoa_date_fcd" );
-	return if $eprint->value( "status" ) eq "inbox";
+	return if $eprint->value( "eprint_status" ) eq "inbox";
 
 	for( $eprint->get_all_documents )
 	{

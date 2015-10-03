@@ -48,3 +48,11 @@ div.hoa_help
     visibility: hidden;
 }
 
+.hoa_test_description
+{
+	padding-left: 1em;
+	padding-right: 1em;
+	background: #fff;
+	border: 1px solid #ccc;
+	margin: 2px;
+}

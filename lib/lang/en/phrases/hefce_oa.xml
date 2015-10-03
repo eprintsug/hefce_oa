@@ -114,9 +114,26 @@ as part of our more detailed work to develop the post-2014 REF.
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:non_compliant"><span id="hoa_status" data-status="non_compliant">Sorry, this item <strong>does not</strong> comply with the <epc:phrase ref="hefce"/> Open Access policy</span></epp:phrase>
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_tab_title"><span class="{$pindata{inserts}{class}}"><epc:pin name="title"/></span></epp:phrase>
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_exception_tab_title">Exceptions (<epc:pin name="count"/>)</epp:phrase>
-<epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_test"><li class="{$pindata{inserts}{class}}"><epc:pin name="title"/><p><strong>How we test:</strong></p><p><epc:pin name="description"/></p></li></epp:phrase>
+
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_test">
+<li class="{$pindata{inserts}{class}}">
+<epc:pin name="title"/> <a class="hoa_show_description"><epc:phrase ref="Plugin/Screen/EPrint/HefceOA:more"/></a>
+<div class="hoa_test_description hoa_hidden">
+<p><epc:pin name="description"/></p>
+</div>
+</li>
+</epp:phrase>
+
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:more">Show compliance criteria</epp:phrase>
+
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_tests"><ul><epc:pin name="tests"/></ul></epp:phrase>
-<epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_test_description"><p><strong>How we test:</strong></p><p><epc:pin name="description"/></p></epp:phrase>
+
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_test_description">
+<p/>
+<a class="hoa_show_description"><epc:phrase ref="Plugin/Screen/EPrint/HefceOA:more"/></a><div class="hoa_test_description hoa_hidden"><p><epc:pin name="description"/></p></div>
+<p/>
+</epp:phrase>
+
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_exception"><li><strong><epc:pin name="title"/></strong><br/><epc:pin name="exception"/></li></epp:phrase>
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_exceptions"><ul><epc:pin name="exceptions"/></ul></epp:phrase>
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_no_exceptions">No exceptions.</epp:phrase>

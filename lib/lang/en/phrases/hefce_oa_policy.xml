@@ -223,11 +223,15 @@ whether an embargo is specified. Two routes are given below.
 
 
 <epp:phrase id="hefce_oa:policy:para:30">
+<u>Route 1: For outputs deposited with no embargo</u>
+<br/>
 30. The output must meet the access requirements as soon as possible and no later
 than one month after deposit.
 </epp:phrase>
 
 <epp:phrase id="hefce_oa:policy:para:31">
+<u>Route 2: For outputs deposited under embargo</u>
+<br/>
 31. The output must meet the access requirements as soon as possible and no later
 than one month after the end of the embargo period. The embargo period typically begins
 at the point of first publication (including online publication).
@@ -235,9 +239,10 @@ at the point of first publication (including online publication).
 
 <epp:phrase id="hefce_oa:policy:para:32">
 32. Embargo periods should not exceed the following maxima:
- 12 months for REF Main Panel A and REF Main Panel B
- 24 months for REF Main Panel C and REF Main Panel D8
-.
+<ul>
+<li>12 months for REF Main Panel A and REF Main Panel B</li>
+<li>24 months for REF Main Panel C and REF Main Panel D</li>
+</ul>
 </epp:phrase>
 
 <epp:phrase id="hefce_oa:policy:para:33">

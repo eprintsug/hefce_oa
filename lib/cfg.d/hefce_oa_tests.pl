@@ -146,10 +146,34 @@ $hoa->{run_test_DIS_DISCOVERABLE} = sub {
 $hoa->{run_test_ACC_TIMING} = sub {
     my( $repo, $eprint, $flag ) = @_;
 
-    # TODO
-    return 1;
+	my $len = $eprint->value( "hoa_emb_len" ) || 0;
 
-    return 0;
+	if( $len > 0  )
+	{
+		return 0 unless $eprint->is_set( "hoa_date_pub" ) && $eprint->is_set( "hoa_date_foa" );
+		
+		my $end = str2time( $eprint->get_value( "hoa_date_pub" ) );
+		$end += ( $len + 1 ) * 30 * 24 * 60 * 60; # N + 1 months
+		if( str2time( $eprint->value( "hoa_date_foa" ) ) < $end )
+		{
+			return 1;
+		}
+	}
+	else
+	{
+		# no embargo
+		return 0 unless $eprint->is_set( "hoa_date_fcd" ) && $eprint->is_set( "hoa_date_foa" );
+		my $fcd = str2time( $eprint->get_value( "hoa_date_fcd" ) );
+		my $foa = str2time( $eprint->get_value( "hoa_date_foa" ) );
+		my $WINDOW = 1 * 30 * 24 * 60 * 60; # 1 months
+		if( ( $foa - $fcd ) <= $WINDOW )
+		{
+			return 1;
+		}
+		
+	}
+
+	return 0;
 };
 
 $hoa->{run_test_ACC_EMBARGO} = sub {

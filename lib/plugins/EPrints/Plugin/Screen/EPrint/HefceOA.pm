@@ -57,7 +57,7 @@ sub render
 	my @labels;
 	my @tabs;
 	for(
-		[ "DEP", [qw( DEP_TIMING DEP_AAM )] ],
+		[ "DEP", [qw( DEP_COMPLIANT DEP_TIMING )] ],
 		[ "DIS", [qw( DIS_DISCOVERABLE )] ],
 		[ "ACC", [qw( ACC_TIMING ACC_EMBARGO )] ],
 		[ "EX", [qw( EX_DEP EX_ACC EX_TEC EX_OTH )] ],

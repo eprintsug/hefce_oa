@@ -60,8 +60,8 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 
     my $flag = 0;
     for(qw(
+	DEP_COMPLIANT
         DEP_TIMING
-        DEP_AAM
         DEP
         DIS_DISCOVERABLE
         DIS

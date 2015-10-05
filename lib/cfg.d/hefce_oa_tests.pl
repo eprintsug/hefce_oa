@@ -40,8 +40,8 @@ $hoa->{run_test_DEP} = sub {
     my( $repo, $eprint, $flag ) = @_;
 
     return 1 if
-        $flag & HefceOA::Const::DEP_TIMING &&
-        $flag & HefceOA::Const::DEP_AAM;
+        $flag & HefceOA::Const::DEP_COMPLIANT &&
+        $flag & HefceOA::Const::DEP_TIMING;
 
     return 0;
 };
@@ -129,7 +129,7 @@ $hoa->{run_test_DEP_TIMING} = sub {
 	return 0;
 };
 
-$hoa->{run_test_DEP_AAM} = sub {
+$hoa->{run_test_DEP_COMPLIANT} = sub {
 	my( $repo, $eprint, $flag ) = @_;
 
 	return $eprint->is_set( "hoa_date_fcd" );

@@ -6,8 +6,8 @@ use Exporter;
 use constant {
     COMPLIANT           => 1,
     DEP                 => 2,
-    DEP_TIMING          => 4,
-    DEP_AAM             => 8,
+    DEP_COMPLIANT       => 4,
+    DEP_TIMING          => 8,
     DIS                 => 16,
     DIS_DISCOVERABLE    => 32,
     ACC                 => 64,
@@ -23,8 +23,8 @@ use constant {
 @EXPORT = qw(
     COMPLIANT
     DEP
+    DEP_COMPLIANT
     DEP_TIMING
-    DEP_AAM
     DIS
     DIS_DISCOVERABLE
     ACC

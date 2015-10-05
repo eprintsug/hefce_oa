@@ -126,7 +126,7 @@ as part of our more detailed work to develop the post-2014 REF.
 </li>
 </epp:phrase>
 
-<epp:phrase id="Plugin/Screen/EPrint/HefceOA:more">Show compliance criteria</epp:phrase>
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:more">More..</epp:phrase>
 
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_tests"><ul><epc:pin name="tests"/></ul></epp:phrase>
 
@@ -140,7 +140,7 @@ as part of our more detailed work to develop the post-2014 REF.
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_exceptions"><ul><epc:pin name="exceptions"/></ul></epp:phrase>
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_no_exceptions">No exceptions.</epp:phrase>
 
-<epp:phrase id="Plugin/Screen/EPrint/HefceOA:data:title">Show data used to check compliance</epp:phrase>
-<epp:phrase id="Plugin/Screen/EPrint/HefceOA:data:unknown">Unknown</epp:phrase>
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:data:title">Data used to check compliance</epp:phrase>
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:data:unknown">?</epp:phrase>
 
 </epp:phrases>

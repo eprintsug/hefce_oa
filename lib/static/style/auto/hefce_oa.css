@@ -9,6 +9,11 @@ li.hoa_non_compliant
 	list-style-image: url(/style/images/warning-icon.png);
 }
 
+div.hoa_test_description li
+{
+	list-style-image: none;
+}
+
 span.hoa_compliant
 {
 	padding-left: 18px;

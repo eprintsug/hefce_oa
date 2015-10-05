@@ -53,17 +53,6 @@ sub render
 		description => $repo->html_phrase( "hefce_oa:test_description:COMPLIANT" )
 	) );
 
-	# data used to check compliance
-	my $box = $repo->make_element( "div", style=>"text-align: left" );
-	$box->appendChild( EPrints::Box::render(
-		id => "hoa_data",
-		title => $self->html_phrase( "data:title" ),
-		content => $self->render_data,
-		collapsed => 1,
-		session => $repo,
-	) );
-	$page->appendChild( $box );
-
 	# tabs for individual requirements and exceptions
 	my @labels;
 	my @tabs;
@@ -83,6 +72,19 @@ sub render
 		\@tabs,
 		basename => "hoa_tabs",
 	) );
+
+	$page->appendChild( $repo->xml->create_element( "br" ) );
+
+	# data used to check compliance
+	my $box = $repo->make_element( "div", style=>"text-align: left" );
+	$box->appendChild( EPrints::Box::render(
+		id => "hoa_data",
+		title => $self->html_phrase( "data:title" ),
+		content => $self->render_data,
+		collapsed => 1,
+		session => $repo,
+	) );
+	$page->appendChild( $box );
 
 	return $page;
 }

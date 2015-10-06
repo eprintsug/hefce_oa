@@ -39,6 +39,14 @@
         </file>
         <file>
           <datasetid>document</datasetid>
+          <filename>lang/en/static/hefce_oa/index.xpage</filename>
+          <mime_type>application/xml</mime_type>
+          <hash>7d0e7bbb0233918fa133463af0912816</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>6129</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
           <filename>lang/en/phrases/hefce_oa.xml</filename>
           <mime_type>application/xml</mime_type>
           <hash>6d24607490ca0c6a8c97db28786d6b46</hash>
@@ -57,9 +65,9 @@
           <datasetid>document</datasetid>
           <filename>lang/en/phrases/hefce_oa_tests.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>51f3aff51aa8b022d7b9a1ea8442012a</hash>
+          <hash>77c58d49fcf473b9d37fb027b93b2309</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4689</filesize>
+          <filesize>6111</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -137,17 +145,17 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/.git/COMMIT_EDITMSG</filename>
           <mime_type>text/plain</mime_type>
-          <hash>1bf0fa4900e6baf9c05cf3f5f34e83fe</hash>
+          <hash>70475d659abd83a3ef62a7e936109eaf</hash>
           <hash_type>MD5</hash_type>
-          <filesize>82</filesize>
+          <filesize>29</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/.git/index</filename>
           <mime_type>application/octet-stream</mime_type>
-          <hash>cba82ad40d16a795386a68d618b6173d</hash>
+          <hash>85fb311d410d030ef33854f99db672d1</hash>
           <hash_type>MD5</hash_type>
-          <filesize>2395</filesize>
+          <filesize>2482</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -231,11 +239,27 @@
         </file>
         <file>
           <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/.git/objects/6d/96a6a29812e407ee65aabeb710eba96d161fae</filename>
+          <mime_type>application/octet-stream</mime_type>
+          <hash>f8bf432e1180f5ead36d6e315ba0f876</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>180</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
           <filename>epm/hefce_oa/.git/objects/c1/79c8de0cb142d463056eb837f03b91afb1c3ee</filename>
           <mime_type>application/octet-stream</mime_type>
           <hash>45c2074a654a3f14b8fcf01d7a80b86e</hash>
           <hash_type>MD5</hash_type>
           <filesize>45</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/.git/objects/f5/045a4cdb0c651a0a691aeda79d2f690a485b07</filename>
+          <mime_type>application/octet-stream</mime_type>
+          <hash>6d81d4e4da3219858500d4d5e659ad74</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>14003</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -252,6 +276,14 @@
           <hash>6dd1159d0e8b89fe1ce6a127e19efe08</hash>
           <hash_type>MD5</hash_type>
           <filesize>150</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/.git/objects/20/655d71e3a845071aec46f325b2ddd76456b8a5</filename>
+          <mime_type>application/octet-stream</mime_type>
+          <hash>dc0bf47cbaa820300db42b676cec9d41</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>171</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -679,6 +711,14 @@
         </file>
         <file>
           <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/.git/objects/b3/3e557883c05bbc1c65d1fa990dd6763ef1485c</filename>
+          <mime_type>application/octet-stream</mime_type>
+          <hash>9bd975c059da146dbb37b1127c4dcc9c</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>44</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
           <filename>epm/hefce_oa/.git/objects/75/8851e5d3768c5604efd5d80ce1f8bd1d3fce56</filename>
           <mime_type>application/octet-stream</mime_type>
           <hash>0e025326337d4b5a7f8811ab4e6fcad7</hash>
@@ -727,11 +767,27 @@
         </file>
         <file>
           <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/.git/objects/94/9ead3770379aca1996b11d7984a65a2f21df32</filename>
+          <mime_type>application/octet-stream</mime_type>
+          <hash>2867a336b208fa7e11207c4bf55c9e21</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>171</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
           <filename>epm/hefce_oa/.git/objects/02/efdf4e4245cb04d8f8f4c6adf9d3e532d45f54</filename>
           <mime_type>application/octet-stream</mime_type>
           <hash>82c1cee5099a70e54f46b5f7e4e30631</hash>
           <hash_type>MD5</hash_type>
           <filesize>120</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/.git/objects/14/3ca0adb14f747eef19973cda70b653be728fa2</filename>
+          <mime_type>application/octet-stream</mime_type>
+          <hash>9de42dbb15aa973bf1bfa0bf3ee8b295</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>179</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -820,6 +876,14 @@
           <hash>bce192914483e96d96d661b7b47d6c71</hash>
           <hash_type>MD5</hash_type>
           <filesize>178</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/.git/objects/41/d3b03a06101bdb1a28932705033cf779dacdfb</filename>
+          <mime_type>application/octet-stream</mime_type>
+          <hash>32753e16d390c4a618d7a233c99e2fc3</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>204</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -951,6 +1015,14 @@
         </file>
         <file>
           <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/.git/objects/5c/b52afa13307d4711a588c677e9ab5aa99233fe</filename>
+          <mime_type>application/octet-stream</mime_type>
+          <hash>06f14759fa73db4b318fce3d2d51c795</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>1362</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
           <filename>epm/hefce_oa/.git/objects/90/09a92703da78af93c8b5be8000016bfc3c6e56</filename>
           <mime_type>application/octet-stream</mime_type>
           <hash>5a88cb8fe588fb5d0b38456e19e7052a</hash>
@@ -1047,6 +1119,14 @@
         </file>
         <file>
           <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/.git/objects/a2/482b4f39a161ab44e80b0a6c65b24f5a0abc0b</filename>
+          <mime_type>application/octet-stream</mime_type>
+          <hash>86e2eaefff389d2fffb00c8d11cb003a</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>49</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
           <filename>epm/hefce_oa/.git/objects/d9/7061a00ac4829ccfc5674a7fb8e3b86e1b8270</filename>
           <mime_type>application/octet-stream</mime_type>
           <hash>227c6154945b7aa8a023ca02b8eb8f90</hash>
@@ -1084,6 +1164,14 @@
           <hash>f2ab7caf72c039988411d671a618d5da</hash>
           <hash_type>MD5</hash_type>
           <filesize>310</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/.git/objects/1f/99baff01a414c2c4ae5e93646588fb89762f90</filename>
+          <mime_type>application/octet-stream</mime_type>
+          <hash>4abc5b49b9ad117924b1702cc9efbd2e</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>166</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -1199,6 +1287,14 @@
         </file>
         <file>
           <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/.git/objects/06/5b4af981fb9342ee5bf872b497738a2766cbc0</filename>
+          <mime_type>application/octet-stream</mime_type>
+          <hash>9916214a471c1d2c7b6ec6cceda35424</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>50</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
           <filename>epm/hefce_oa/.git/objects/06/9e1e460db1e5d3587a37e7227da56eeb312545</filename>
           <mime_type>application/octet-stream</mime_type>
           <hash>f1892d65d3747b8e1dd63d196fc38a42</hash>
@@ -1212,6 +1308,22 @@
           <hash>79ccfa6e89eebc45a84ce2d2abe40709</hash>
           <hash_type>MD5</hash_type>
           <filesize>142</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/.git/objects/17/f243410084c57b9ee2360138aee116b7570233</filename>
+          <mime_type>application/octet-stream</mime_type>
+          <hash>10c9e449b03ff1565448260cbdb266b8</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>120</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/.git/objects/17/8bf42a9944a26e985b8933dfa91aa884c3aa93</filename>
+          <mime_type>application/octet-stream</mime_type>
+          <hash>2bd960109d92b17445e6f70de0d41494</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>179</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -1359,6 +1471,14 @@
         </file>
         <file>
           <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/.git/objects/85/22474dc41472edee0bffa92696fe0ce99a68fa</filename>
+          <mime_type>application/octet-stream</mime_type>
+          <hash>8fffd805c57bb6f7e7c8e18133a2a3fb</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>2148</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
           <filename>epm/hefce_oa/.git/objects/85/73c2b6ea39e9a4b8fce889fc8c98310135087b</filename>
           <mime_type>application/octet-stream</mime_type>
           <hash>b4448c428fe515be185efccfb0bb51d7</hash>
@@ -1503,6 +1623,14 @@
         </file>
         <file>
           <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/.git/objects/96/bc1c769e17275860bd090b69386fdc68671d39</filename>
+          <mime_type>application/octet-stream</mime_type>
+          <hash>cd95b0a315f737cfc0e367a72d3481af</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>56</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
           <filename>epm/hefce_oa/.git/objects/79/b7a51a83630782d21844e7cfafd7b89f7a1fdd</filename>
           <mime_type>application/octet-stream</mime_type>
           <hash>7db66d259c58486fae9243adf5cc280b</hash>
@@ -1639,6 +1767,14 @@
         </file>
         <file>
           <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/.git/objects/45/a95c9f650ad5c21c90945f024b99779293c7cf</filename>
+          <mime_type>application/octet-stream</mime_type>
+          <hash>75fde18291c1246630387cd8fcaf5b37</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>180</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
           <filename>epm/hefce_oa/.git/objects/f1/4c60fc4bb215acec20bc9ce3387a99cd6ba23b</filename>
           <mime_type>application/octet-stream</mime_type>
           <hash>c7f07c954c1044f596db9ca56d46ffaf</hash>
@@ -1676,6 +1812,22 @@
           <hash>319e3c79e5e27da1adf7d104234145d7</hash>
           <hash_type>MD5</hash_type>
           <filesize>50</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/.git/objects/bd/badca4ce180e0441ca21bba40709cb178e3540</filename>
+          <mime_type>application/octet-stream</mime_type>
+          <hash>a8c10050d3c71589207a3a547998f336</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>44</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/.git/objects/df/145dc668d4ca2b454e1a9f25a3eea0bf4fea75</filename>
+          <mime_type>application/octet-stream</mime_type>
+          <hash>7608fc32d603c9e7cf18facc07f09a30</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>79</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -1745,7 +1897,7 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/.git/refs/remotes/origin/master</filename>
           <mime_type>text/plain</mime_type>
-          <hash>c290d6e00619f743e7125b8a60795724</hash>
+          <hash>354b2de2143d3874b7c3f7e073e3ad6d</hash>
           <hash_type>MD5</hash_type>
           <filesize>41</filesize>
         </file>
@@ -1761,7 +1913,7 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/.git/refs/heads/master</filename>
           <mime_type>text/plain</mime_type>
-          <hash>4d1d4975b6cf696a188989f907c45f8e</hash>
+          <hash>354b2de2143d3874b7c3f7e073e3ad6d</hash>
           <hash_type>MD5</hash_type>
           <filesize>41</filesize>
         </file>
@@ -1769,17 +1921,17 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/.git/logs/HEAD</filename>
           <mime_type>text/plain</mime_type>
-          <hash>896129ac0d0d7d542c9ca926df3c7279</hash>
+          <hash>2458fd915249c89ac40c6c4494f52742</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4624</filesize>
+          <filesize>5183</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/.git/logs/refs/remotes/origin/master</filename>
           <mime_type>text/plain</mime_type>
-          <hash>0d498368e0b79186e3b82b223dc532c7</hash>
+          <hash>0de64eaf0cb400c638a86758b78dac78</hash>
           <hash_type>MD5</hash_type>
-          <filesize>942</filesize>
+          <filesize>1256</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -1793,9 +1945,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/.git/logs/refs/heads/master</filename>
           <mime_type>text/plain</mime_type>
-          <hash>896129ac0d0d7d542c9ca926df3c7279</hash>
+          <hash>2458fd915249c89ac40c6c4494f52742</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4624</filesize>
+          <filesize>5183</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -1887,7 +2039,7 @@
       <id>you@email.address</id>
     </item>
   </creators>
-  <datestamp>2015-10-05 22:30:57</datestamp>
+  <datestamp>2015-10-06 21:00:10</datestamp>
   <title>he⨍ce OA</title>
   <description>This is the description.</description>
   <requirements>The following modules are required: X, Y, Z</requirements>

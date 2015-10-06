@@ -1,0 +1,140 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE page SYSTEM "entities.dtd" >
+<xpage:page xmlns="http://www.w3.org/1999/xhtml" xmlns:xpage="http://eprints.org/ep3/xpage" xmlns:epc="http://eprints.org/ep3/control">
+<xpage:title><epc:phrase ref="archive_name" /> <epc:phrase ref="hefce"/> Open Access policy compliance</xpage:title>
+<xpage:body>
+
+<h2>Overview</h2>
+
+<p>This plugin is designed to help you comply with the HEFCE policy for Open Access in the post-2014 Research Excellence Framework.</p>
+
+<blockquote>The policy states that, to be eligible for submission to the next REF, authors’ final peer-reviewed manuscripts must have been deposited in an institutional or subject repository. Deposited material should be discoverable, and free to read and download, for anyone with an internet connection.
+<br/>
+<a href="http://www.hefce.ac.uk/rsrch/oa/Policy/">http://www.hefce.ac.uk/rsrch/oa/Policy/</a>
+</blockquote>
+
+<h2>How it works - Metadata</h2>
+
+<p>In order to check compliance the plugin needs to capture additional data about items in the repository.</p>
+
+<h3>Date of first compliant deposit (FCD)</h3>
+
+<p>An item will be considered a compliant deposit if (a) it is in the Review or the Live Archive area of the repository and (b) it has the Accepted or Published version of the full text manuscript attached. The Date of first compliant deposit automatically records the date that the item first met this criteria - for example when the item was submitted for Review by the researcher, or when the Accepted version of the full text was subsequently uploaded by an editor.</p>
+
+<p>Once the Date of FCD is set, subsequent changes to the item will not affect it. The Date of FCD will be copied to any new versions created using the "New Version" option - the new version will effectively "inherit" the same Date of FCD as the previous version. The behaviour of the Date of FCD field in different circumstances is outlined in the table below.</p>
+
+<table>
+	<tr>
+		<td>Researcher makes compliant deposit</td>
+		<td>Date of FCD set when researcher clicks "Deposit Now"</td>
+	</tr>
+	<tr>
+		<td>Researcher makes non-compliant deposit; editor subsequently uploads Accepted version of full text during review to make deposit compliant</td>
+		<td>Date of FCD set when editor uploads Accepted version</td>
+	</tr>
+	<tr>
+		<td>Compliant deposit in Live Archive - editor augments item by attaching the Published version</td>
+		<td>Date of FCD unchanged</td>
+	</tr>
+	<tr>
+		<td>Compliant deposit in Live Archive - editor replaces Accepted version of full text with Published version</td>
+		<td>Date of FCD unchanged</td>
+	</tr>
+	<tr>
+		<td>Compliant deposit in Live Archive - researcher selects "New Version" option, attaches the Published version of the full text to the new version and deposits it</td>
+		<td>Date of FCD copied to new version</td>
+	</tr>
+</table>
+
+<h3>Version of first compliant deposit</h3>
+
+<p>The Version of FCD automatically records the version of the full text that was present when the Date of FCD was recorded.</p>
+
+<table>
+	<tr>
+		<th>Version(s) present</th>
+		<th>Version of FCD</th>
+	</tr>
+	<tr>
+		<td>Accepted only</td>
+		<td>AM</td>
+	</tr>
+	<tr>
+		<td>Published only</td>
+		<td>VoR</td>
+	</tr>
+	<tr>
+		<td>Accepted and Published</td>
+		<td>VoR</td>
+	</tr>
+</table>
+
+<p>These terms are adopted from the <a href="http://rioxx.net/v2-0-final/">RIOXX V2 Application Profile</a>.</p>
+
+<p>Once the Version of FCD is set, subsequent changes to the item will not affect it. The Version of FCD will be copied to any new versions created using the "New Version" option - the new version will effectively "inherit" the same Version of FCD as the previous version.</p>
+
+<h3>Date of first compliant Open Access (FOA)</h3>
+
+<p>The Date of FOA automatically records the date that a compliant deposit was first made Open Access - that is, the date that the Accepted or Published version of the full text attached to the deposit was first made publicly available. For example this could be the date that the item was made live (discoverable) or when an embargo period expired.</p>
+
+<p>Once the Date of FOA is set, subsequent changes to the item will not affect it. The Date of FOA will be copied to any new versions created using the "New Version" option - the new version will effectively "inherit" the same Date of FOA as the previous version.</p>
+
+<h3>Date of acceptance</h3>
+
+<p>The date that the item was first accepted for publication.</p>
+
+<h3>Date of first online publication</h3>
+
+<p>The date that the item was first published online.</p>
+
+<h3>Embargo length</h3>
+
+<p>The length (in months) of any embargo affecting access to the Accepted or Published version.</p>
+
+<h3>Target REF panel</h3>
+
+<p>The panel that the item is likely to be submitted to in the post-2014 Research Excellence Framework.</p>
+
+<h3>Exceptions</h3>
+
+<p>Any deposit, access, technical or other exceptions that apply to the item.</p>
+
+<h2>How it works - Compliance tests</h2>
+
+<p>Using the metadata described above, the plugin carries out a number of tests to determine compliance. These tests are carried out whenever the item is changed, so the updated compliance status is immediately reflected.</p>
+
+<h3>Overall compliance</h3>
+
+<p><epc:phrase ref="hefce_oa:test_description:COMPLIANT"/></p>
+
+<h3>Deposit requirements</h3>
+
+<p><epc:phrase ref="hefce_oa:test_description:DEP"/></p>
+
+<ul>
+	<li><epc:phrase ref="hefce_oa:test_description:DEP_COMPLIANT:eprints"/></li>
+	<li><epc:phrase ref="hefce_oa:test_description:DEP_TIMING:eprints"/></li>
+</ul>
+
+<h3>Discovery requirements</h3>
+
+<p><epc:phrase ref="hefce_oa:test_description:DIS"/></p>
+
+<ul>
+	<li><epc:phrase ref="hefce_oa:test_description:DIS_DISCOVERABLE:eprints"/></li>
+</ul>
+
+<h3>Access requirements</h3>
+
+<p><epc:phrase ref="hefce_oa:test_description:ACC"/></p>
+
+<ul>
+	<li><epc:phrase ref="hefce_oa:test_description:ACC_TIMING:eprints"/></li>
+	<li><epc:phrase ref="hefce_oa:test_description:ACC_EMBARGO:eprints"/></li>
+</ul>
+
+
+<p>All other criteria are determined to be already met or not necessary to explicitly check at the software level.</p>
+
+</xpage:body>
+</xpage:page>

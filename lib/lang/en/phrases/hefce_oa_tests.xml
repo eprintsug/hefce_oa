@@ -15,19 +15,26 @@
 
 <epp:phrase id="hefce_oa:test_title:DEP">Deposit</epp:phrase>
 <epp:phrase id="hefce_oa:test_description:DEP">To be deposit compliant, all of the following conditions must be met.</epp:phrase>
-
 <epp:phrase id="hefce_oa:test_title:DEP_COMPLIANT">The output must have been deposited as the author’s accepted and final peer reviewed text...</epp:phrase>
 <epp:phrase id="hefce_oa:test_description:DEP_COMPLIANT">
-<blockquote><epc:phrase ref="hefce_oa:policy:para:20"/></blockquote>
-<p><em>The <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong> must be set (ie. the item is a compliant deposit).</em></p>
+<blockquote><epc:phrase ref="hefce_oa:test_description:DEP_COMPLIANT:policy"/></blockquote>
+<p><em><epc:phrase ref="hefce_oa:test_description:DEP_COMPLIANT:eprints"/></em></p>
 </epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DEP_COMPLIANT:policy"><epc:phrase ref="hefce_oa:policy:para:20"/></epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DEP_COMPLIANT:eprints">The <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong> must be set (ie. the item is a compliant deposit).</epp:phrase>
 
 <epp:phrase id="hefce_oa:test_title:DEP_TIMING">The output must have been deposited as soon after the point of acceptance as possible..</epp:phrase>
 <epp:phrase id="hefce_oa:test_description:DEP_TIMING">
-<blockquote><epc:phrase ref="hefce_oa:policy:para:18"/></blockquote>
-<p><em>The <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong> must be no later than three months after the <strong><epc:phrase ref="eprint_fieldname_hoa_date_acc"/></strong>.</em></p>
-<blockquote><epc:phrase ref="hefce_oa:policy:para:19"/></blockquote>
-<p><em>If the <strong><epc:phrase ref="eprint_fieldname_hoa_date_acc"/></strong> is before 1st April 2017, <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong> must be no later than three months after the <strong><epc:phrase ref="eprint_fieldname_hoa_date_pub"/></strong>.</em></p>
+<blockquote><epc:phrase ref="hefce_oa:test_description:DEP_TIMING:policy"/></blockquote>
+<p><em><epc:phrase ref="hefce_oa:test_description:DEP_TIMING:eprints"/></em></p>
+</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DEP_TIMING:policy">
+<epc:phrase ref="hefce_oa:policy:para:18"/>
+<br/>
+<epc:phrase ref="hefce_oa:policy:para:19"/>
+</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DEP_TIMING:eprints">
+The <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong> must be no later than three months after the <strong><epc:phrase ref="eprint_fieldname_hoa_date_acc"/></strong>. If the <strong><epc:phrase ref="eprint_fieldname_hoa_date_acc"/></strong> is before 1st April 2017, <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong> must be no later than three months after the <strong><epc:phrase ref="eprint_fieldname_hoa_date_pub"/></strong>.
 </epp:phrase>
 
 <epp:phrase id="hefce_oa:test_title:DIS">Discovery</epp:phrase>
@@ -35,10 +42,20 @@
 
 <epp:phrase id="hefce_oa:test_title:DIS_DISCOVERABLE">The output must be presented in a way that allows it to be discovered by readers...</epp:phrase>
 <epp:phrase id="hefce_oa:test_description:DIS_DISCOVERABLE">
-<blockquote><epc:phrase ref="hefce_oa:policy:para:23"/></blockquote>
-<blockquote><epc:phrase ref="hefce_oa:policy:para:24"/></blockquote>
-<blockquote><epc:phrase ref="hefce_oa:policy:para:25"/></blockquote>
-<p><em>The item must be in the <epc:phrase ref="eprint_fieldopt_eprint_status_archive"/>.</em></p>
+<blockquote><epc:phrase ref="hefce_oa:test_description:DIS_DISCOVERABLE:policy"/></blockquote>
+<p><em><epc:phrase ref="hefce_oa:test_description:DIS_DISCOVERABLE:eprints"/></em></p>
+</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DIS_DISCOVERABLE:policy">
+<epc:phrase ref="hefce_oa:policy:para:23"/>
+<br/>
+<epc:phrase ref="hefce_oa:policy:para:24"/>
+<br/>
+<epc:phrase ref="hefce_oa:policy:para:24"/>
+<br/>
+<epc:phrase ref="hefce_oa:policy:para:25"/>
+</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DIS_DISCOVERABLE:eprints">
+The item must be in the <epc:phrase ref="eprint_fieldopt_eprint_status_archive"/>.
 </epp:phrase>
 
 <epp:phrase id="hefce_oa:test_title:ACC">Access</epp:phrase>
@@ -46,16 +63,28 @@
 
 <epp:phrase id="hefce_oa:test_title:ACC_TIMING">The output must meet the access requirements as soon as possible...</epp:phrase>
 <epp:phrase id="hefce_oa:test_description:ACC_TIMING">
-<blockquote><epc:phrase ref="hefce_oa:policy:para:30"/></blockquote>
-<p><em>The <strong><epc:phrase ref="eprint_fieldname_hoa_date_foa"/></strong> must be less than one month after the <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong>.</em></p>
-<blockquote><epc:phrase ref="hefce_oa:policy:para:31"/></blockquote>
-<p><em>The <strong><epc:phrase ref="eprint_fieldname_hoa_date_foa"/></strong> must be less than one month after the embargo expiry date (<strong><epc:phrase ref="eprint_fieldname_hoa_date_pub"/></strong> + <strong><epc:phrase ref="eprint_fieldname_hoa_emb_len"/></strong>.</em></p>
+<blockquote><epc:phrase ref="hefce_oa:test_description:ACC_TIMING:policy"/></blockquote>
+<p><em><epc:phrase ref="hefce_oa:test_description:ACC_TIMING:eprints"/></em></p>
+</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:ACC_TIMING:policy">
+<epc:phrase ref="hefce_oa:policy:para:30"/>
+<br/>
+<epc:phrase ref="hefce_oa:policy:para:31"/>
+</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:ACC_TIMING:eprints">
+If no embargo applies, the <strong><epc:phrase ref="eprint_fieldname_hoa_date_foa"/></strong> must be less than one month after the <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong>. Otherwise, the <strong><epc:phrase ref="eprint_fieldname_hoa_date_foa"/></strong> must be less than one month after the embargo expiry date (<strong><epc:phrase ref="eprint_fieldname_hoa_date_pub"/></strong> + <strong><epc:phrase ref="eprint_fieldname_hoa_emb_len"/>)</strong>.
 </epp:phrase>
 
 <epp:phrase id="hefce_oa:test_title:ACC_EMBARGO">Embargo periods should not exceed the following maxima</epp:phrase>
 <epp:phrase id="hefce_oa:test_description:ACC_EMBARGO">
-<blockquote><epc:phrase ref="hefce_oa:policy:para:32"/></blockquote>
-<p><em>The <strong><epc:phrase ref="eprint_fieldname_hoa_emb_len"/></strong> must not exceed the stated maxima for the target <strong><epc:phrase ref="eprint_fieldname_hoa_ref_pan"/></strong>.</em></p>
+<blockquote><epc:phrase ref="hefce_oa:test_description:ACC_EMBARGO:policy"/></blockquote>
+<p><em><epc:phrase ref="hefce_oa:test_description:ACC_EMBARGO:eprints"/></em></p>
+</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:ACC_EMBARGO:policy">
+<epc:phrase ref="hefce_oa:policy:para:32"/>
+</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:ACC_EMBARGO:eprints">
+The <strong><epc:phrase ref="eprint_fieldname_hoa_emb_len"/></strong> must not exceed the stated maxima for the target <strong><epc:phrase ref="eprint_fieldname_hoa_ref_pan"/></strong>.
 </epp:phrase>
 
 <epp:phrase id="hefce_oa:test_data:UNKNOWN">Unknown</epp:phrase>

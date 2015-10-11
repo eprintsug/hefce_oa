@@ -25,6 +25,10 @@
 <epp:phrase id="eprint_fieldhelp_hoa_date_pub"><epc:phrase ref="hefce_oa:policy:footnote:5"/></epp:phrase>
 <epp:phrase id="eprint_fieldname_hoa_date_fcd">Date of first compliant deposit</epp:phrase>
 <epp:phrase id="eprint_fieldhelp_hoa_date_fcd"></epp:phrase>
+<epp:phrase id="eprint_fieldname_hoa_version_fcd">Version of first compliant deposit</epp:phrase>
+<epp:phrase id="eprint_fieldhelp_hoa_version_fcd"></epp:phrase>
+<epp:phrase id="eprint_fieldopt_hoa_version_fcd_AM">Author Accepted Manuscript</epp:phrase>
+<epp:phrase id="eprint_fieldopt_hoa_version_fcd_VoR">Version of Record</epp:phrase>
 <epp:phrase id="eprint_fieldname_hoa_date_foa">Date of first compliant Open Access</epp:phrase>
 <epp:phrase id="eprint_fieldhelp_hoa_date_foa"></epp:phrase>
 

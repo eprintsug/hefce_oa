@@ -1,0 +1,23 @@
+#!/usr/bin/perl -w
+
+use FindBin;
+use lib "$FindBin::Bin/../../../../perl_lib";
+
+use Test::Harness;
+use strict;
+
+my %todo = map { $_ => 1 } @ARGV;
+
+my $test_path = "$FindBin::Bin/../tests";
+
+opendir( DIR, $test_path ) or die "Unable to open unit test path $test_path: $!";
+my @test_files = grep { -f "$test_path/$_" && $_ !~ /^\./ && $_ =~ /\.t$/ } readdir( DIR );
+closedir( DIR );
+
+@test_files = sort { $a cmp $b } @test_files;
+if( scalar(keys %todo) )
+{
+	@test_files = grep { $todo{$_} or $todo{substr($_,0,-2)} } @test_files;
+}
+
+exit(0) if runtests(map { "$test_path/$_" } @test_files);

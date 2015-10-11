@@ -32,7 +32,7 @@ foreach my $state ( @states )
 			my $doc = $eprint->create_subdataobj( "documents", $epdata );
 			BAIL_OUT( "Failed to create doc object" ) if !defined $doc;
 
-			my $flag = $eprint->value( "hoa_compliant" );
+			my $flag = $eprint->value( "hoa_compliant" ) || 0;
 
 			if( $state ne "inbox" && $type ne "book" && $content ne "submitted" )
 			{

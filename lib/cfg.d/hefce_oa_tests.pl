@@ -2,6 +2,7 @@ my $hoa = $c->{hefce_oa};
 
 use Date::Parse;
 use HefceOA::Const;
+use Time::Piece;
 
 $hoa->{run_test} = sub {
     my( $repo, $test, $eprint, $flag ) = @_;
@@ -101,28 +102,19 @@ $hoa->{run_test_DEP_TIMING} = sub {
 
 	# can't do anything without an acceptance date
 	return 0 unless $eprint->is_set( "hoa_date_acc" );
+
+	my $acc = Time::Piece->strptime( $eprint->get_value( "hoa_date_acc" ), "%Y-%m-%d" );
 	
-	# TODO check YYYY-MM-DD
-	my $acc = str2time( $eprint->get_value( "hoa_date_acc" ) );
-
-	my $APR17 = str2time( "2017-04-01" );
-	my $WINDOW = 3 * 30 * 24 * 60 * 60; # 3 months
-
 	if( $eprint->is_set( "hoa_date_fcd" ) )
 	{
-		# TODO check YYYY-MM-DD
-		my $dep = str2time( $eprint->get_value( "hoa_date_fcd" ) );
-		# deposited after accepted: $dep > $acc, check difference is <= $WINDOW
-		# deposited before accepted: $dep < $acc, difference will be < 0 
-		return 1 if ( $dep - $acc ) <= $WINDOW;
+		my $dep = Time::Piece->strptime( $eprint->get_value( "hoa_date_fcd" ), "%Y-%m-%d" );
+		return 1 if $dep <= $acc->add_months(3); 
 
+		my $APR17 = Time::Piece->strptime( "2017-04-01", "%Y-%m-%d" );
 		if( $acc < $APR17 && $eprint->is_set( "hoa_date_pub" ) )
 		{
-			# TODO check YYYY-MM-DD
-			my $pub = str2time( $eprint->get_value( "hoa_date_pub" ) );
-			# deposited after published: $dep > $pub, check differene is <= $WINDOW
-			# deposited before published: $dep < $pub, difference will be < 0
-			return 1 if ( $dep - $pub ) <= $WINDOW;
+			my $pub = Time::Piece->strptime( $eprint->get_value( "hoa_date_pub" ), "%Y-%m-%d" );
+			return 1 if $dep <= $pub->add_months(3); 
 		}
 	}
 

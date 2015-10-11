@@ -103,17 +103,17 @@ $hoa->{run_test_DEP_TIMING} = sub {
 	# can't do anything without an acceptance date
 	return 0 unless $eprint->is_set( "hoa_date_acc" );
 
-	my $acc = Time::Piece->strptime( $eprint->get_value( "hoa_date_acc" ), "%Y-%m-%d" );
+	my $acc = Time::Piece->strptime( $eprint->value( "hoa_date_acc" ), "%Y-%m-%d" );
 	
 	if( $eprint->is_set( "hoa_date_fcd" ) )
 	{
-		my $dep = Time::Piece->strptime( $eprint->get_value( "hoa_date_fcd" ), "%Y-%m-%d" );
+		my $dep = Time::Piece->strptime( $eprint->value( "hoa_date_fcd" ), "%Y-%m-%d" );
 		return 1 if $dep <= $acc->add_months(3); 
 
 		my $APR17 = Time::Piece->strptime( "2017-04-01", "%Y-%m-%d" );
 		if( $acc < $APR17 && $eprint->is_set( "hoa_date_pub" ) )
 		{
-			my $pub = Time::Piece->strptime( $eprint->get_value( "hoa_date_pub" ), "%Y-%m-%d" );
+			my $pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
 			return 1 if $dep <= $pub->add_months(3); 
 		}
 	}
@@ -143,26 +143,23 @@ $hoa->{run_test_ACC_TIMING} = sub {
 	if( $len > 0  )
 	{
 		return 0 unless $eprint->is_set( "hoa_date_pub" ) && $eprint->is_set( "hoa_date_foa" );
-		
-		my $end = str2time( $eprint->get_value( "hoa_date_pub" ) );
-		$end += ( $len + 1 ) * 30 * 24 * 60 * 60; # N + 1 months
-		if( str2time( $eprint->value( "hoa_date_foa" ) ) < $end )
-		{
-			return 1;
-		}
+
+		my $pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
+		my $end = $pub->add_months( $len ); # embargo end
+		my $foa = Time::Piece->strptime( $eprint->value( "hoa_date_foa" ), "%Y-%m-%d" );
+
+		# oa within one month of embargo end
+		return 1 if $foa <= $end->add_months( 1 );
 	}
-	else
+	else # no embargo
 	{
-		# no embargo
 		return 0 unless $eprint->is_set( "hoa_date_fcd" ) && $eprint->is_set( "hoa_date_foa" );
-		my $fcd = str2time( $eprint->get_value( "hoa_date_fcd" ) );
-		my $foa = str2time( $eprint->get_value( "hoa_date_foa" ) );
-		my $WINDOW = 1 * 30 * 24 * 60 * 60; # 1 months
-		if( ( $foa - $fcd ) <= $WINDOW )
-		{
-			return 1;
-		}
-		
+
+		my $fcd = Time::Piece->strptime( $eprint->value( "hoa_date_fcd" ), "%Y-%m-%d" );
+		my $foa = Time::Piece->strptime( $eprint->value( "hoa_date_foa" ), "%Y-%m-%d" );
+
+		# oa with one month of deposit
+		return 1 if $foa <= $fcd->add_months( 1 );
 	}
 
 	return 0;

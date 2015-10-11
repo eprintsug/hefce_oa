@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 
 use FindBin;
-use lib "$FindBin::Bin/../../../../perl_lib";
+use lib "$FindBin::Bin/../../../../perl_lib", "$FindBin::Bin/../../../perl_lib";
 
 use Test::Harness;
 use strict;

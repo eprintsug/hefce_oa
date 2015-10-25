@@ -1,7 +1,7 @@
 $c->{plugins}{"Screen::EPrint::HefceOA"}{params}{disable} = 0;
 $c->{plugins}{"Screen::Report::REF_CC"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC::2014"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC::EX_2014"}{params}{disable} = 0;
+$c->{plugins}{"Screen::Report::REF_CC::2015"}{params}{disable} = 0;
+$c->{plugins}{"Screen::Report::REF_CC::EX_2015"}{params}{disable} = 0;
 $c->{plugins}{"Export::Report::CSV::REF_CC"}{params}{disable} = 0;
 
 

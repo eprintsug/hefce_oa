@@ -4,6 +4,9 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 	my( %args ) = @_; 
 	my( $repo, $eprint, $changed ) = @args{qw( repository dataobj changed )};
 
+	# trigger only applies to repos with hefce_oa plugin enabled
+	return unless $eprint->dataset->has_field( "hoa_compliant" );
+
 	return if $eprint->is_set( "hoa_date_fcd" );
 	return if $eprint->value( "eprint_status" ) eq "inbox";
 
@@ -21,6 +24,9 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 	my( %args ) = @_; 
 	my( $repo, $eprint, $changed ) = @args{qw( repository dataobj changed )};
 
+	# trigger only applies to repos with hefce_oa plugin enabled
+	return unless $eprint->dataset->has_field( "hoa_compliant" );
+
 	return unless $eprint->is_set( "hoa_date_fcd" );
 	return if $eprint->is_set( "hoa_date_foa" );
 
@@ -37,6 +43,9 @@ $c->add_dataset_trigger( 'document', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, s
 	my( %args ) = @_; 
 	my( $repo, $doc, $changed ) = @args{qw( repository dataobj changed )};
 
+	# trigger only applies to repos with hefce_oa plugin enabled
+	return unless $eprint->dataset->has_field( "hoa_compliant" );
+
 	return unless $doc->is_public;
 	return if $doc->parent->is_set( "hoa_date_foa" );
 
@@ -48,37 +57,40 @@ $c->add_dataset_trigger( 'document', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, s
 # set compliance flag
 $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 {
-    my( %args ) = @_;
-    my( $repo, $eprint, $changed ) = @args{qw( repository dataobj changed )};
+	my( %args ) = @_;
+	my( $repo, $eprint, $changed ) = @args{qw( repository dataobj changed )};
 
-    my $type = $eprint->value( "type" );
-    unless( $type eq "article" || $type eq "conference_item" )
-    {
-        $eprint->set_value( "hoa_compliant", undef );
-        return;
-    }
+	# trigger only applies to repos with hefce_oa plugin enabled
+	return unless $eprint->dataset->has_field( "hoa_compliant" );
 
-    my $flag = 0;
-    for(qw(
-	DEP_COMPLIANT
-        DEP_TIMING
-        DEP
-        DIS_DISCOVERABLE
-        DIS
-        ACC_TIMING
-        ACC_EMBARGO
-        ACC
-        EX_DEP
-        EX_ACC
-        EX_TEC
-        EX_OTH
-	EX
-        COMPLIANT
-    ))
-    {
-        $flag |= HefceOA::Const->$_ if $repo->call( [qw( hefce_oa run_test )], $repo, $_, $eprint, $flag );
-    }
+	my $type = $eprint->value( "type" );
+	unless( $type eq "article" || $type eq "conference_item" )
+	{
+		$eprint->set_value( "hoa_compliant", undef );
+		return;
+	}
 
-    $eprint->set_value( "hoa_compliant", $flag );
+	my $flag = 0;
+	for(qw(
+		DEP_COMPLIANT
+		DEP_TIMING
+		DEP
+		DIS_DISCOVERABLE
+		DIS
+		ACC_TIMING
+		ACC_EMBARGO
+		ACC
+		EX_DEP
+		EX_ACC
+		EX_TEC
+		EX_OTH
+		EX
+		COMPLIANT
+	))
+	{
+		$flag |= HefceOA::Const->$_ if $repo->call( [qw( hefce_oa run_test )], $repo, $_, $eprint, $flag );
+	}
+
+	$eprint->set_value( "hoa_compliant", $flag );
 
 }, priority => 300 );

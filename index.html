@@ -1,1 +1,235 @@
-REF Compliance Checker for EPrints
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>REF Compliance Checker for EPrints by eprintsug</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>REF Compliance Checker for EPrints</h1>
+        <h2></h2>
+        <a href="https://github.com/eprintsug/hefce_oa" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="ref-compliance-checker-for-eprints" class="anchor" href="#ref-compliance-checker-for-eprints" aria-hidden="true"><span class="octicon octicon-link"></span></a>REF Compliance Checker for EPrints</h1>
+
+<h2>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
+
+<p>The REF Compliance Checker plugin for EPrints has been developed to help your institution comply with the Open Access policy of the UK HE Funding Bodies.  The key points of the policy are shown below; the full details may be accessed <a href="http://www.hefce.ac.uk/pubs/year/2014/201407/">here</a>.</p>
+
+<ul>
+<li>The policy states that, to be eligible for submission to the post-2014 REF, authors’ outputs must have been deposited in an institutional or subject repository. Deposited material should be discoverable, and free to read and download, for anyone with an internet connection. The requirement applies only to journal articles and conference proceedings with an International Standard Serial Number. It will not apply to monographs, book chapters, other long-form publications, working papers, creative or practice-based research outputs, or data. The policy applies to research outputs accepted for publication after 1 April 2016, but we would strongly urge institutions to implement it now.</li>
+<li>The policy allows repositories to respect embargo periods set by publications. Where a publication specifies an embargo period, authors can comply with the policy by making a ‘closed’ deposit. Closed deposits must be discoverable to anyone with an Internet connection before the full text becomes available for read and download (which will occur after the embargo period has elapsed). If still under embargo at the submission date of the next REF, closed deposits will be admissible to the REF.</li>
+<li>The output must have been deposited as soon after the point of acceptance as possible, and no later than three months after this date (as given in the acceptance letter or e-mail from the publication to the author). </li>
+<li>There are a number of exceptions to the various requirements that will be allowed by the policy. These exceptions cover circumstances where deposit was not possible, or where open access to deposited material could not be achieved within the policy requirements. These exceptions will allow institutions to achieve near-total compliance, but the post-2014 REF will also include a mechanism for considering any other exceptional cases where an output could not otherwise meet the requirements.</li>
+</ul>
+
+<h2>
+<a id="the-ref-compliance-checker-for-eprints" class="anchor" href="#the-ref-compliance-checker-for-eprints" aria-hidden="true"><span class="octicon octicon-link"></span></a>The REF Compliance Checker for EPrints</h2>
+
+<p>The purpose of the REF Compliance Checker is to smooth the process by which EPrints-using institutions can establish in a straightforward fashion whether an article or conference proceeding with an ISSN produced by a member of their organisation is eligible for the post-2014 REF.  To do this effectively, the checker requires some metadata describing key facts such as the date of acceptance and the version type.  The relevant metadata need to be checked against a set of logical rules that faithfully represent the requirements laid down in the Open Access policy of the UK Higher Education Funding Bodies.  To enable this process some new terminology has been devised including “date of first compliant deposit”, “version of first compliant deposit” and “date of first compliant Open Access”.  These, together with the other metadata required to ascertain eligibility, are described in more detail below.</p>
+
+<h2>
+<a id="metadata-and-terminology" class="anchor" href="#metadata-and-terminology" aria-hidden="true"><span class="octicon octicon-link"></span></a>Metadata and terminology</h2>
+
+<h3>
+<a id="date-of-first-compliant-deposit-fcd" class="anchor" href="#date-of-first-compliant-deposit-fcd" aria-hidden="true"><span class="octicon octicon-link"></span></a>Date of first compliant deposit (FCD)</h3>
+
+<p>An item will be considered a compliant deposit if (a) it is in the Review or the Live Archive area of the repository and (b) it has the Accepted or Published version of the full text manuscript attached. The FCD metadata reflects the date that the item first met this criteria - for example when the item was submitted to the review section of the repository by the researcher, or when the accepted version of the full text was subsequently uploaded by an editor to the live side of the repository.</p>
+
+<p>Once the Date of FCD is set, subsequent changes to the item will not affect it. The Date of FCD will be copied to any new versions created using the "New Version" option.  The new version will effectively "inherit" the same Date of FCD as the previous version. The behaviour of the Date of FCD field in different circumstances is outlined in the table below.</p>
+
+<p>Researcher makes compliant deposit<br>
+Date of FCD set when researcher clicks "Deposit Now"</p>
+
+<p>Researcher makes non-compliant deposit; editor subsequently uploads Accepted version of full text during review to make deposit compliant
+Date of FCD set when editor uploads Accepted version</p>
+
+<p>Compliant deposit in Live Archive - editor augments item by attaching the Published version
+Date of FCD unchanged
+Compliant deposit in Live Archive - editor replaces Accepted version of full text with Published version<br>
+Date of FCD unchanged</p>
+
+<p>Compliant deposit in Live Archive - researcher selects "New Version" option, attaches the Published version of the full text to the new version and deposits it
+Date of FCD copied to new version</p>
+
+<h3>
+<a id="version-of-first-compliant-deposit-fcd" class="anchor" href="#version-of-first-compliant-deposit-fcd" aria-hidden="true"><span class="octicon octicon-link"></span></a>Version of first compliant deposit (FCD)</h3>
+
+<p>The Version of FCD automatically records the version of the full text that was present when the Date of FCD was recorded.</p>
+
+<p>Version(s) present      Version of FCD
+Accepted only           AM
+Published only          VoR
+Accepted and published  VoR</p>
+
+<p>These version terms are adopted from the <a href="http://rioxx.net/v2-0-final/">RIOXX V2 Application Profile</a>.</p>
+
+<p>Once the Version of FCD is set, subsequent changes to the item will not affect it. The Version of FCD will be copied to any new versions created using the "New Version" option - the new version will effectively "inherit" the same Version of FCD as the previous version.</p>
+
+<h3>
+<a id="date-of-first-compliant-open-access-foa" class="anchor" href="#date-of-first-compliant-open-access-foa" aria-hidden="true"><span class="octicon octicon-link"></span></a>Date of first compliant Open Access (FOA)</h3>
+
+<p>The Date of FOA automatically records the date that a compliant deposit was first made Open Access - that is, the date that the Accepted or Published version of the full text attached to the deposit was first made publicly available. For example this could be the date that the item was made live (discoverable) or when an embargo period expired.</p>
+
+<p>Once the Date of FOA is set, subsequent changes to the item will not affect it. The Date of FOA will be copied to any new versions created using the "New Version" option - the new version will effectively "inherit" the same Date of FOA as the previous version.</p>
+
+<h3>
+<a id="date-of-acceptance" class="anchor" href="#date-of-acceptance" aria-hidden="true"><span class="octicon octicon-link"></span></a>Date of acceptance</h3>
+
+<p>The date that the item was first accepted for publication.</p>
+
+<h3>
+<a id="date-of-first-online-publication" class="anchor" href="#date-of-first-online-publication" aria-hidden="true"><span class="octicon octicon-link"></span></a>Date of first online publication</h3>
+
+<p>The date that the item was first published online
+Embargo length</p>
+
+<p>The length (in months) of any embargo affecting access to the Accepted or Published version.  Note that the Open Access policy stipulates acceptable embargo lengths.</p>
+
+<h3>
+<a id="target-ref-panel" class="anchor" href="#target-ref-panel" aria-hidden="true"><span class="octicon octicon-link"></span></a>Target REF panel</h3>
+
+<p>The panel that the item is likely to be submitted to in the post-2014 Research Excellence Framework.</p>
+
+<h3>
+<a id="exceptions" class="anchor" href="#exceptions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Exceptions</h3>
+
+<p>Any deposit, access, technical or other exceptions that apply to the item.</p>
+
+<h2>
+<a id="how-the-oa-compliance-checker-works" class="anchor" href="#how-the-oa-compliance-checker-works" aria-hidden="true"><span class="octicon octicon-link"></span></a>How the OA Compliance Checker works</h2>
+
+<p>Using the metadata described above, the OA Compliance Checker plugin carries out a number of tests to determine compliance. These tests are carried out whenever the item is changed, so the updated compliance status is immediately reflected.</p>
+
+<h3>
+<a id="overall-compliance" class="anchor" href="#overall-compliance" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overall compliance</h3>
+
+<p>To be compliant, an item must meet at least one of the following conditions:</p>
+
+<ul>
+<li>The deposit, discovery and access requirements are met.</li>
+<li>There is a deposit exception.</li>
+<li>There is an access exception and the deposit and discovery requirements are met.</li>
+<li>There is a technical exception.</li>
+<li>There is an 'other' exception.</li>
+</ul>
+
+<h3>
+<a id="deposit-requirements" class="anchor" href="#deposit-requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deposit requirements</h3>
+
+<p>To be deposit compliant, all of the following conditions must be met.</p>
+
+<ul>
+<li>The Date of first compliant deposit must be set (i.e. the item is a compliant deposit).</li>
+<li>The Date of first compliant deposit must be no later than three months after the Date of acceptance. If the Date of acceptance is before 1st April 2017, Date of first compliant deposit must be no later than three months after the Date of first online publication.</li>
+</ul>
+
+<h3>
+<a id="discovery-requirements" class="anchor" href="#discovery-requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Discovery requirements</h3>
+
+<p>To be discovery compliant, all of the following conditions must be met:</p>
+
+<ul>
+<li>The item must be in the Live Archive.</li>
+</ul>
+
+<h3>
+<a id="access-requirements" class="anchor" href="#access-requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Access requirements</h3>
+
+<p>To be access compliant, all of the following conditions must be met.</p>
+
+<ul>
+<li>If no embargo applies, the Date of first compliant Open Access must be less than one month after the Date of first compliant deposit. Otherwise, the Date of first compliant Open Access must be less than one month after the embargo expiry date (Date of first online publication + Embargo length (months).</li>
+<li>The Embargo length (months) must not exceed the stated maxima for the target REF panel.</li>
+</ul>
+
+<h3>
+<a id="other-criteria" class="anchor" href="#other-criteria" aria-hidden="true"><span class="octicon octicon-link"></span></a>Other criteria</h3>
+
+<p>All other criteria are determined to be already met or not necessary to explicitly check at the software level.</p>
+
+<h2>
+<a id="using-the-ref-compliance-checker-plugin" class="anchor" href="#using-the-ref-compliance-checker-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using the REF Compliance Checker plugin</h2>
+
+<p>The test (beta) version of the REF Compliance Checker is designed to be self-contained and should not, therefore, affect the operation of your existing repository.  The next version will be adapted to integrate with the Dates and RIOXX plugins.  At a later point in time there will be further integration between the REF Compliance Checker and the established REF plugin, but further details are required from the Funding Bodies before that can be done.</p>
+
+<p>The REF Compliance Checker will be able to produce reports showing by year which items are eligible for the REF. In order to enable this feature, the Generic Reporting Framework will need to be installed from the Bazaar (Generic Reporting Framework version 1.0.0).  This same package is also required for the RIOXX plugin.</p>
+
+<h3>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<p>The REF Compliance Checker plugin is available via the EPrints Bazaar.  This is accessed from the “System Tools” tab on the Admin screen.  A Bazaar package is normally installed by clicking the “Install” button next to a package displayed on the “Available” tab.</p>
+
+<h3>
+<a id="changes-to-the-workflow" class="anchor" href="#changes-to-the-workflow" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changes to the workflow</h3>
+
+<p><img src="pictures/workflow.png" alt=""></p>
+
+<p>In the workflow (the boxes along the top of the screen) there is a new stage here denoted “hefce” (though the final version will probably say REF CC in recognition of the fact that all the UK’s Higher Education Funding Bodies have adopted the Open Access policy for which this plugin is designed.</p>
+
+<h3>
+<a id="working-with-the-ref-compliance-checker-plugin" class="anchor" href="#working-with-the-ref-compliance-checker-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Working with the REF Compliance Checker plugin</h3>
+
+<p>It is important when depositing an item that the content is correctly specified: the drop down list associated with the Content field, found in the optional section of the Upload stage of the workflow, enables the depositor to identify an item as being Accepted or Published.  The REF Compliance Checker plugin refers to this information to help establish whether an item is eligible for the REF.  In view of that, the repository administrator may choose to consider whether the Content field should become mandatory.</p>
+
+<p><img src="pictures/doc_content_field.png" alt=""></p>
+
+<p>The REF Compliance Checker metadata entry page is relatively straightforward.  For the test version only there is the facility to enter date of acceptance and date of first online publication.  This is to enable the test version to be self-contained and not reliant on certain key metadata being entered elsewhere. In the final version this box will probably disappear since the dates metadata will be picked up automatically from earlier points in the workflow.  The same may also hold true for the Embargo field.</p>
+
+<p>The depositor may select a REF panel if appropriate; this is important because the maximum allowable embargo period differs according to the REF panel selected.</p>
+
+<p>A number of deposit, access, technical and other exceptions are permitted and the plugin enables one or more of these to be selected as appropriate.  Note that there is no way in EPrints to deselect a radio button once it has been selected.  If a depositor selects an exception in error, this can be corrected by selecting the UNSPECIFIED radio button.</p>
+
+<p><img src="images/hefce_stage.png" alt=""></p>
+
+<p>Once a record has been deposited, the REF Compliance Checker plugin will then perform its logic-based tests on the metadata that has been supplied.  The next screen provides an example of a record that is compliant with the Open Access policy.  The plugin clearly indicates which data have been used to check compliance with the various different aspects of the policy: deposit; discovery; access or whether any exceptions have been claimed.</p>
+
+<p><img src="images/hefce_tab.png" alt=""></p>
+
+<p>Where a record is ineligible, the plugin will indicate where the deficiency lies.  In some cases it may be, for instance, that a key date is missing, the embargo length exceeds the maximum allowed under the policy or the status of the item has not been established.</p>
+
+<p>In the case depicted by the screen shot below, the deposited does not comply with the Open Access policy because it does not fully comply with the deposit rules.  Clicking the “More” link provides a detailed account of what the rules are with regard to achieving compliance and by expanding the area under the heading “Data used to check compliance” it is clear that the Date of acceptance is missing.</p>
+
+<p><img src="images/hefce_tab_non_compliant.png" alt=""></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/eprintsug/hefce_oa/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/eprintsug/hefce_oa/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/eprintsug/hefce_oa"></a> is maintained by <a href="https://github.com/eprintsug">eprintsug</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>

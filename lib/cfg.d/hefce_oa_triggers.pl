@@ -44,7 +44,7 @@ $c->add_dataset_trigger( 'document', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, s
 	my( $repo, $doc, $changed ) = @args{qw( repository dataobj changed )};
 
 	# trigger only applies to repos with hefce_oa plugin enabled
-	return unless $eprint->dataset->has_field( "hoa_compliant" );
+	return unless $doc->parent->dataset->has_field( "hoa_compliant" );
 
 	return unless $doc->is_public;
 	return if $doc->parent->is_set( "hoa_date_foa" );

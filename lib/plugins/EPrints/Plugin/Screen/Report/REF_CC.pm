@@ -34,6 +34,7 @@ sub filters
 
 	my @filters = @{ $self->SUPER::filters || [] };
 
+	push @filters, { meta_fields => [ 'type' ], value => 'article conference_item', match => 'EQ', merge => 'ANY' };
 	push @filters, { meta_fields => [ 'eprint_status' ], value => 'archive', match => 'EX' };
 
 	return \@filters;

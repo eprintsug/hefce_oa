@@ -1,10 +1,8 @@
-my $hoa = $c->{hefce_oa};
-
 use Date::Parse;
 use HefceOA::Const;
 use Time::Piece;
 
-$hoa->{run_test} = sub {
+$c->{hefce_oa}->{run_test} = sub {
     my( $repo, $test, $eprint, $flag ) = @_;
 
     if( $repo->can_call( "hefce_oa", "run_test_$test" ) )
@@ -15,7 +13,7 @@ $hoa->{run_test} = sub {
     return 0;
 };
 
-$hoa->{run_test_COMPLIANT} = sub {
+$c->{hefce_oa}->{run_test_COMPLIANT} = sub {
     my( $repo, $eprint, $flag ) = @_;
 
     return 1 if $flag & HefceOA::Const::EX_DEP;
@@ -37,7 +35,7 @@ $hoa->{run_test_COMPLIANT} = sub {
     return 0;
 };
 
-$hoa->{run_test_DEP} = sub {
+$c->{hefce_oa}->{run_test_DEP} = sub {
     my( $repo, $eprint, $flag ) = @_;
 
     return 1 if
@@ -47,7 +45,7 @@ $hoa->{run_test_DEP} = sub {
     return 0;
 };
 
-$hoa->{run_test_DIS} = sub {
+$c->{hefce_oa}->{run_test_DIS} = sub {
     my( $repo, $eprint, $flag ) = @_;
 
     return 1 if $flag & HefceOA::Const::DIS_DISCOVERABLE;
@@ -55,7 +53,7 @@ $hoa->{run_test_DIS} = sub {
     return 0;
 };
 
-$hoa->{run_test_ACC} = sub {
+$c->{hefce_oa}->{run_test_ACC} = sub {
     my( $repo, $eprint, $flag ) = @_;
 
     return 1 if
@@ -65,7 +63,7 @@ $hoa->{run_test_ACC} = sub {
     return 0;
 };
 
-$hoa->{run_test_EX_DEP} = sub {
+$c->{hefce_oa}->{run_test_EX_DEP} = sub {
     my( $repo, $eprint, $flag ) = @_;
 
     return 1 if $eprint->is_set( "hoa_ex_dep" );
@@ -73,7 +71,7 @@ $hoa->{run_test_EX_DEP} = sub {
     return 0;
 };
 
-$hoa->{run_test_EX_ACC} = sub {
+$c->{hefce_oa}->{run_test_EX_ACC} = sub {
     my( $repo, $eprint, $flag ) = @_;
 
     return 1 if $eprint->is_set( "hoa_ex_acc" );
@@ -81,7 +79,7 @@ $hoa->{run_test_EX_ACC} = sub {
     return 0;
 };
 
-$hoa->{run_test_EX_TEC} = sub {
+$c->{hefce_oa}->{run_test_EX_TEC} = sub {
     my( $repo, $eprint, $flag ) = @_;
 
     return 1 if $eprint->is_set( "hoa_ex_tec" );
@@ -89,7 +87,7 @@ $hoa->{run_test_EX_TEC} = sub {
     return 0;
 };
 
-$hoa->{run_test_EX_OTH} = sub {
+$c->{hefce_oa}->{run_test_EX_OTH} = sub {
     my( $repo, $eprint, $flag ) = @_;
 
     return 1 if $eprint->is_set( "hoa_ex_oth" );
@@ -97,7 +95,7 @@ $hoa->{run_test_EX_OTH} = sub {
     return 0;
 };
 
-$hoa->{run_test_DEP_TIMING} = sub {
+$c->{hefce_oa}->{run_test_DEP_TIMING} = sub {
 	my( $repo, $eprint, $flag ) = @_;
 
 	# can't do anything without an acceptance date
@@ -121,13 +119,13 @@ $hoa->{run_test_DEP_TIMING} = sub {
 	return 0;
 };
 
-$hoa->{run_test_DEP_COMPLIANT} = sub {
+$c->{hefce_oa}->{run_test_DEP_COMPLIANT} = sub {
 	my( $repo, $eprint, $flag ) = @_;
 
 	return $eprint->is_set( "hoa_date_fcd" );
 };
 
-$hoa->{run_test_DIS_DISCOVERABLE} = sub {
+$c->{hefce_oa}->{run_test_DIS_DISCOVERABLE} = sub {
     my( $repo, $eprint, $flag ) = @_;
 
     return 1 if $eprint->value( "eprint_status" ) eq "archive";
@@ -135,7 +133,7 @@ $hoa->{run_test_DIS_DISCOVERABLE} = sub {
     return 0;
 };
 
-$hoa->{run_test_ACC_TIMING} = sub {
+$c->{hefce_oa}->{run_test_ACC_TIMING} = sub {
     my( $repo, $eprint, $flag ) = @_;
 
 	my $len = $eprint->value( "hoa_emb_len" ) || 0;
@@ -165,7 +163,7 @@ $hoa->{run_test_ACC_TIMING} = sub {
 	return 0;
 };
 
-$hoa->{run_test_ACC_EMBARGO} = sub {
+$c->{hefce_oa}->{run_test_ACC_EMBARGO} = sub {
 	my( $repo, $eprint, $flag ) = @_;
 
 	my $len = $eprint->value( "hoa_emb_len" ) || 0;
@@ -176,7 +174,7 @@ $hoa->{run_test_ACC_EMBARGO} = sub {
 	return 0;
 };
 
-$hoa->{run_test_EX} = sub {
+$c->{hefce_oa}->{run_test_EX} = sub {
     my( $repo, $eprint, $flag ) = @_;
 
     return 1 if

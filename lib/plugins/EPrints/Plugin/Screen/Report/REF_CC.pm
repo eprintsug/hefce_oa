@@ -15,6 +15,7 @@ sub new
 	$self->{custom_order} = '-title/creators_name';
 	$self->{appears} = [];
 	$self->{report} = 'ref_cc';
+	$self->{disable} = 1;
 
 	return $self;
 }

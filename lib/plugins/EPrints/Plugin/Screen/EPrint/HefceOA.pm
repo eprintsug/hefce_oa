@@ -17,7 +17,9 @@ sub new
 			position => 3000,
 		},
 	];
-
+	#avoid issues with multiple archives under <v3.3.13
+	$self->{disable} = 1;
+	
 	return $self;
 }
 

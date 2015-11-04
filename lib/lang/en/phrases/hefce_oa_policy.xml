@@ -83,28 +83,28 @@ sector of the policy requirement. The main assumption is that there will be a po
 REF that operates on substantially the same basis as the 2014 REF. For example, we
 assume that there will be four main panels with disciplinary remits broadly similar to
 those of the REF 2014 main panels.
-Details of the policy
 </epp:phrase>
 
 <epp:phrase id="hefce_oa:policy:para:9">
 9. To fulfil our aim of increasing substantially the proportion of research that is made
 available by open access in the UK, the four UK higher education funding bodies are
 introducing a requirement that outputs submitted to the post-2014 REF be made
-available in an open-access form3
-. This policy document sets out the details of this
+available in an open-access form. This policy document sets out the details of this
 requirement.
 </epp:phrase>
 
 <epp:phrase id="hefce_oa:policy:para:10">
 10. The requirement will apply at the level of the individual research output. Set out
 below are the definition of the outputs within the scope of this policy, the criteria that
+these outputs must fulfil to be considered open-access, and a list of exceptions to the 
+requirements.
 </epp:phrase>
 
 <epp:phrase id="hefce_oa:policy:para:11">
 11. The requirement to comply with the open access policy applies only to particular
-outputs, as defined below.
+outputs, as defined below.<br />
 a. The type of output is a journal article or the type of output is a conference
-proceeding with an International Standard Serial Number (ISSN).
+proceeding with an International Standard Serial Number (ISSN).<br />
 b. The output is accepted for publication after 1 April 2016.
 Any output that fits both aspects of this definition will need to meet the open access
 criteria outlined in paragraphs 16 to 36, unless an exception applies.
@@ -119,7 +119,6 @@ criteria outlined in paragraphs 16 to 36, unless an exception applies.
 <epp:phrase id="hefce_oa:policy:para:13">
 13. The criteria will apply to outputs that are accepted for publication after 1 April 2016.
 We strongly encourage institutions to work towards full compliance by the start date.
-Outputs not meeting the definition
 </epp:phrase>
 
 <epp:phrase id="hefce_oa:policy:para:14">
@@ -180,7 +179,6 @@ final accepted version.
 22. Outputs that have been provisionally accepted for publication, under the condition
 that the author makes revisions to the manuscript that result from peer review, are not
 considered as the final text.
-Discovery requirements
 </epp:phrase>
 
 <epp:phrase id="hefce_oa:policy:para:23">
@@ -271,7 +269,6 @@ research environment component of the post-2014 REF. We further recommend that
 institutions fully consider the extent to which they currently retain or transfer the copyright
 of works published by their researchers, as part of creating a healthy research
 environment. For further information on text-mining, see Annex A.
-Exceptions
 </epp:phrase>
 
 <epp:phrase id="hefce_oa:policy:para:37">
@@ -318,11 +315,11 @@ projects where an open access article processing charge has been paid).
 but there are issues to do with meeting the access requirements. In the following cases,
 the output will still be required to meet the deposit and discovery requirements, but not
 the access requirements. A closed-access deposit will be required, and the open access
-requirements should be met as soon as possible.
+requirements should be met as soon as possible.<br />
 a. The output depends on the reproduction of third party content for which open
-access rights could not be granted (either within the specified timescales, or at all).
+access rights could not be granted (either within the specified timescales, or at all).<br />
 b. The publication concerned requires an embargo period that exceeds the
-stated maxima, and was the most appropriate publication for the output.
+stated maxima, and was the most appropriate publication for the output.<br />
 c. The publication concerned actively disallows open-access deposit in a
 repository, and was the most appropriate publication for the output.
 </epp:phrase>
@@ -331,15 +328,14 @@ repository, and was the most appropriate publication for the output.
 40. The following exceptions deal with cases where an output is unable to meet the
 criteria due to a technical issue. In the following cases, the output will not be required to
 meet the open access criteria. We would strongly urge HEIs to ensure the criteria are
-met retroactively, as soon as possible and no later than the REF submission point.
+met retroactively, as soon as possible and no later than the REF submission point.<br />
 a. At the point of acceptance, the individual whose output is being submitted to
-the REF was at a different UK HEI which failed to comply with the criteria.
+the REF was at a different UK HEI which failed to comply with the criteria.<br />
 b. The repository experienced a short-term or transient technical failure that
-prevented compliance with the criteria (this should not apply to systemic issues).
+prevented compliance with the criteria (this should not apply to systemic issues).<br />
 c. An external service provider failure prevented compliance (for instance, a
 subject repository did not enable open access at the end of the embargo period, or
 a subject repository ceased to operate).
-Other exceptions
 </epp:phrase>
 
 <epp:phrase id="hefce_oa:policy:para:41">
@@ -349,7 +345,6 @@ listed above. We will require a short written explanation for why the output cou
 the open access requirements at the point of submission to the REF. We expect that
 such cases should be extremely rare. We will establish the process for considering them
 as part of our more detailed work to develop the post-2014 REF.
-Compliance with these requirements
 </epp:phrase>
 
 <epp:phrase id="hefce_oa:policy:para:42">
@@ -390,7 +385,6 @@ can facilitate this process.
 previous HEI’s compliance with the deposit requirements, but it is our aim that the
 submitting institution provides information on accessibility levels for these outputs where
 information is readily available. Further information about this will follow in due course.
-Repositories and research information systems
 </epp:phrase>
 
 <epp:phrase id="hefce_oa:policy:para:47">

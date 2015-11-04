@@ -2,13 +2,16 @@
 
 use Test::More tests => 52;
 use Time::Piece;
+use Cwd 'abs_path';
 use strict;
 
 BEGIN { use_ok( "EPrints" ); }
 BEGIN { use_ok( "EPrints::Test" ); }
 BEGIN { use_ok( "HefceOA::Const" ); }
 
-my $repo = EPrints::Test::get_test_repository();
+my $repoid = abs_path(__FILE__);
+$repoid =~ s/^.*?\/archives\/([^\/]+)\/tests\/.*?$/$1/;
+my $repo = EPrints::Repository->new( $repoid );
 
 # no embargo
 foreach my $delta ( -3..3 )

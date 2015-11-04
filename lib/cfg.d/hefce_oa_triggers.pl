@@ -12,6 +12,7 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 
 	for( $eprint->get_all_documents )
 	{
+		next unless $_->is_set( "content" );
 		next unless $_->value( "content" ) eq "accepted" || $_->value( "content" ) eq "published";
     		$eprint->set_value( "hoa_date_fcd", EPrints::Time::get_iso_date() );
     		$eprint->set_value( "hoa_version_fcd", $_->value( "content" ) eq "accepted" ? "AM" : "VoR" );
@@ -32,6 +33,7 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 
 	for( $eprint->get_all_documents )
 	{
+		next unless $_->is_set( "content" );
 		next unless $_->value( "content" ) eq "accepted" || $_->value( "content" ) eq "published";
 		next unless $_->is_public;
     		$eprint->set_value( "hoa_date_foa", EPrints::Time::get_iso_date() );

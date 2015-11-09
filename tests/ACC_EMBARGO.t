@@ -1,16 +1,15 @@
 #!/usr/bin/perl
 
 use Test::More tests => 27;
-use Cwd 'abs_path';
 use strict;
 
 BEGIN { use_ok( "EPrints" ); }
 BEGIN { use_ok( "EPrints::Test" ); }
 BEGIN { use_ok( "HefceOA::Const" ); }
 
-my $repoid = abs_path(__FILE__);
-$repoid =~ s/^.*?\/archives\/([^\/]+)\/tests\/.*?$/$1/;
-my $repo = EPrints::Repository->new( $repoid );
+my @ids = grep { EPrints::Repository->new($_)->dataset("eprint")->has_field("hoa_compliant"); } EPrints::Config::get_repository_ids;
+BAIL_OUT( "Failed to find repository with module enabled" ) unless scalar @ids;
+my $repo = EPrints::Repository->new( $ids[0] );
 
 my @embargos = ( undef, qw( 0 6 12 18 24 30 36 ) );
 my @panels = ( undef, qw( AB CD ) );

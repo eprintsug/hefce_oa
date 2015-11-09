@@ -15,7 +15,7 @@
 
 <epp:phrase id="hefce_oa:test_title:DEP">Deposit</epp:phrase>
 <epp:phrase id="hefce_oa:test_description:DEP">To be deposit compliant, all of the following conditions must be met.</epp:phrase>
-<epp:phrase id="hefce_oa:test_title:DEP_COMPLIANT">The output must have been deposited as the author’s accepted and final peer reviewed text...</epp:phrase>
+<epp:phrase id="hefce_oa:test_title:DEP_COMPLIANT">The output must have been deposited as the author’s accepted and final peer reviewed text.</epp:phrase>
 <epp:phrase id="hefce_oa:test_description:DEP_COMPLIANT">
 <blockquote><epc:phrase ref="hefce_oa:test_description:DEP_COMPLIANT:policy"/></blockquote>
 <p><em><epc:phrase ref="hefce_oa:test_description:DEP_COMPLIANT:eprints"/></em></p>
@@ -23,7 +23,7 @@
 <epp:phrase id="hefce_oa:test_description:DEP_COMPLIANT:policy"><epc:phrase ref="hefce_oa:policy:para:20"/></epp:phrase>
 <epp:phrase id="hefce_oa:test_description:DEP_COMPLIANT:eprints">The <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong> must be set (ie. the item is a compliant deposit).</epp:phrase>
 
-<epp:phrase id="hefce_oa:test_title:DEP_TIMING">The output must have been deposited as soon after the point of acceptance as possible..</epp:phrase>
+<epp:phrase id="hefce_oa:test_title:DEP_TIMING">The output must have been deposited as soon after the point of acceptance as possible.</epp:phrase>
 <epp:phrase id="hefce_oa:test_description:DEP_TIMING">
 <blockquote><epc:phrase ref="hefce_oa:test_description:DEP_TIMING:policy"/></blockquote>
 <p><em><epc:phrase ref="hefce_oa:test_description:DEP_TIMING:eprints"/></em></p>
@@ -40,15 +40,13 @@ The <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong> must be n
 <epp:phrase id="hefce_oa:test_title:DIS">Discovery</epp:phrase>
 <epp:phrase id="hefce_oa:test_description:DIS">To be discovery compliant, all of the following conditions must be met:</epp:phrase>
 
-<epp:phrase id="hefce_oa:test_title:DIS_DISCOVERABLE">The output must be presented in a way that allows it to be discovered by readers...</epp:phrase>
+<epp:phrase id="hefce_oa:test_title:DIS_DISCOVERABLE">The output must be presented in a way that allows it to be discovered by readers.</epp:phrase>
 <epp:phrase id="hefce_oa:test_description:DIS_DISCOVERABLE">
 <blockquote><epc:phrase ref="hefce_oa:test_description:DIS_DISCOVERABLE:policy"/></blockquote>
 <p><em><epc:phrase ref="hefce_oa:test_description:DIS_DISCOVERABLE:eprints"/></em></p>
 </epp:phrase>
 <epp:phrase id="hefce_oa:test_description:DIS_DISCOVERABLE:policy">
 <epc:phrase ref="hefce_oa:policy:para:23"/>
-<br/>
-<epc:phrase ref="hefce_oa:policy:para:24"/>
 <br/>
 <epc:phrase ref="hefce_oa:policy:para:24"/>
 <br/>

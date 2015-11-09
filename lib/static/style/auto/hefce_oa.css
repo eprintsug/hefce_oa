@@ -61,3 +61,8 @@ div.hoa_help
 	border: 1px solid #ccc;
 	margin: 2px;
 }
+
+a.hoa_show_description
+{
+	cursor:pointer;	
+}

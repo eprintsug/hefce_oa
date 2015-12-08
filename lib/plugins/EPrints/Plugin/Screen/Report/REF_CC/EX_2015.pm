@@ -39,10 +39,10 @@ sub validate_dataobj
 	{
 		if( $eprint->is_set( $_ ) )
 		{
-			push @problems, $repo->html_phrase( "Plugin/Screen/EPrint/HefceOA:render_exception", 
-				title => $repo->html_phrase( "eprint_fieldname_$_" ),
-				exception => $eprint->render_value( $_ ),
-				explanation => $eprint->render_value( "$_\_txt" ),
+			push @problems, $repo->phrase( "Plugin/Screen/EPrint/HefceOA:render_exception", 
+				title => "<b>" . $repo->phrase( "eprint_fieldname_$_" ) . "</b>",
+				exception => EPrints::Utils::tree_to_utf8( $eprint->render_value( $_ ) ),
+				explanation => EPrints::Utils::tree_to_utf8( $eprint->render_value( "$_\_txt" ) ),
 			);
 		}
 	}

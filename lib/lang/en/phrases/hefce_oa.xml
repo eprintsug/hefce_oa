@@ -151,8 +151,18 @@ as part of our more detailed work to develop the post-2014 REF.
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:data:unknown">?</epp:phrase>
 
 <epp:phrase id="Plugin/Screen/Report/REF_CC:title">REF Compliance</epp:phrase>
-<epp:phrase id="Plugin/Screen/Report/REF_CC/2015:title">Date of acceptance: 2015</epp:phrase>
-<epp:phrase id="Plugin/Screen/Report/REF_CC/EX_2015:title">Exceptions Used (Date of acceptance: 2015)</epp:phrase>
-
+<epp:phrase id="Plugin/Screen/Report/REF_CC/2015:title">Accepted April 2015 - March 2016</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC/2016:title">Accepted April 2016 - March 2017</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC/2017:title">Accepted April 2017 - March 2018</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC/2018:title">Accepted April 2018 - March 2019</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC/2019:title">Accepted April 2019 - March 2020</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC/2020:title">Accepted April 2020 - March 2021</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC_EX:title">REF Compliance - Exceptions</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2015:title">Accepted April 2015 - March 2016</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2016:title">Accepted April 2016 - March 2017</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2017:title">Accepted April 2017 - March 2018</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2018:title">Accepted April 2018 - March 2019</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2019:title">Accepted April 2019 - March 2020</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2020:title">Accepted April 2020 - March 2021</epp:phrase>
 
 </epp:phrases>

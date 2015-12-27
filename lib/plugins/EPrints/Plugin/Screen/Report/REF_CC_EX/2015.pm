@@ -1,7 +1,7 @@
-package EPrints::Plugin::Screen::Report::REF_CC::2015;
+package EPrints::Plugin::Screen::Report::REF_CC_EX::2015;
 
-use EPrints::Plugin::Screen::Report::REF_CC;
-our @ISA = ( 'EPrints::Plugin::Screen::Report::REF_CC' );
+use EPrints::Plugin::Screen::Report::REF_CC_EX;
+our @ISA = ( 'EPrints::Plugin::Screen::Report::REF_CC_EX' );
 
 use strict;
 
@@ -11,7 +11,7 @@ sub new
 
 	my $self = $class->SUPER::new( %params );
 
-	$self->{report} = 'ref_cc-2015';
+	$self->{report} = 'ref_cc-ex-2015';
 
 	return $self;
 }

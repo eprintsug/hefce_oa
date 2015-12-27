@@ -1,4 +1,4 @@
-package EPrints::Plugin::Screen::Report::REF_CC::2015;
+package EPrints::Plugin::Screen::Report::REF_CC::2018;
 
 use EPrints::Plugin::Screen::Report::REF_CC;
 our @ISA = ( 'EPrints::Plugin::Screen::Report::REF_CC' );
@@ -11,7 +11,7 @@ sub new
 
 	my $self = $class->SUPER::new( %params );
 
-	$self->{report} = 'ref_cc-2015';
+	$self->{report} = 'ref_cc-2018';
 
 	return $self;
 }
@@ -22,7 +22,7 @@ sub filters
 
 	my @filters = @{ $self->SUPER::filters || [] };
 
-	push @filters, { meta_fields => [ "hoa_date_acc" ], value => '2015-04-2016-03', match => "IN" };
+	push @filters, { meta_fields => [ "hoa_date_acc" ], value => '2018-04-2019-03', match => "IN" };
 
 	return \@filters;
 }

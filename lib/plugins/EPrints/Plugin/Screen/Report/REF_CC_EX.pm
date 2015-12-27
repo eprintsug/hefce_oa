@@ -1,4 +1,4 @@
-package EPrints::Plugin::Screen::Report::REF_CC::EX_2015;
+package EPrints::Plugin::Screen::Report::REF_CC_EX;
 
 use EPrints::Plugin::Screen::Report::REF_CC;
 our @ISA = ( 'EPrints::Plugin::Screen::Report::REF_CC' );
@@ -11,20 +11,9 @@ sub new
 
 	my $self = $class->SUPER::new( %params );
 
-	$self->{report} = 'ref_cc-ex-2015';
+	$self->{report} = 'ref_cc-ex';
 
 	return $self;
-}
-
-sub filters
-{
-	my( $self ) = @_;
-
-	my @filters = @{ $self->SUPER::filters || [] };
-
-	push @filters, { meta_fields => [ "hoa_date_acc" ], value => '2015-', match => "IN" };
-
-	return \@filters;
 }
 
 sub validate_dataobj

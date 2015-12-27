@@ -19,7 +19,7 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
     # datesdatesdates
     if( $eprint->exists_and_set( 'dates' ) )
     {
-        $dates = $eprint->value( 'dates' );
+        my $dates = $eprint->value( 'dates' );
         if( ref($dates) eq 'ARRAY' ) # check for expected structure
         {
             for(@$dates)

@@ -52,7 +52,8 @@ $c->add_dataset_trigger( 'document', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, s
 	return if $doc->parent->is_set( "hoa_date_foa" );
 
 	# make sure eprint->commit calls triggers..
-	$doc->parent->{changed}->{_poke}++;
+    # see https://github.com/eprintsug/hefce_oa/issues/19
+	$doc->parent->{changed}->{hoa_update_ep}++;
 }, priority => 100 );
 
 

@@ -91,6 +91,12 @@ push @{ $c->{hefce_oa}->{profile} },
     type => "longtext",
 },
 
+# internal flag
+{
+    name => "hoa_update_ep",
+    type => "int",
+},
+
 ;
 
 for( @{ $c->{hefce_oa}->{profile} } )

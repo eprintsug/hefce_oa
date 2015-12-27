@@ -34,4 +34,5 @@ SKIP: {
 	BAIL_OUT( "Failed to create eprint object" ) if !defined $eprint;
 	is( $eprint->value( "hoa_date_acc" ), $acc, "hoa_date_acc automatically set from datesdatesdates.dates" );
 	is( $eprint->value( "hoa_date_pub" ), $pub, "hoa_date_pub automatically set from datesdatesdates.dates" );
+	$eprint->delete;
 }

@@ -27,4 +27,5 @@ SKIP: {
 
 	is( $eprint->value( "hoa_date_acc" ), $acc, "hoa_date_acc automatically set from rioxx2.rioxx2_dateAccepted" );
 	is( $eprint->value( "hoa_date_pub" ), $pub, "hoa_date_pub automatically set from rioxx2.rioxx2_publication_date" );
+	$eprint->delete;
 }

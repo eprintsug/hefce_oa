@@ -3,6 +3,7 @@ package EPrints::Plugin::Screen::Report::REF_CC;
 use EPrints::Plugin::Screen::Report;
 our @ISA = ( 'EPrints::Plugin::Screen::Report' );
 
+use HefceOA::Const;
 use strict;
 
 sub new

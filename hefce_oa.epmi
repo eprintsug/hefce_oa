@@ -29,9 +29,9 @@
         <file>
           <filename>plugins/EPrints/Plugin/Screen/EPMC/HefceOA.pm</filename>
           <mime_type>inode/symlink</mime_type>
-          <hash>1eebcc7b4b22b91ee4e61b7fb68d292c</hash>
+          <hash>e4cde5e361567a0fa3090a12801a243c</hash>
           <hash_type>MD5</hash_type>
-          <filesize>1090</filesize>
+          <filesize>1224</filesize>
         </file>
         <file>
           <filename>plugins/EPrints/Plugin/Screen/EPrint/HefceOA.pm</filename>
@@ -313,7 +313,7 @@
       <content>coverimage</content>
     </document>
   </documents>
-  <version>1.0.3</version>
+  <version>1.0.4</version>
   <controller>EPMC::HefceOA</controller>
   <creators>
     <item>
@@ -324,8 +324,9 @@
       <id>drtjmb@gmail.com</id>
     </item>
   </creators>
-  <datestamp>2015-12-28 11:03:06</datestamp>
-  <title>he⨍ce OA</title>
+  <datestamp>2016-01-06 20:22:32</datestamp>
+  <title>REF Compliance Checker for EPrints</title>
+  <description>This plugin helps your institution comply with the Open Access policy of the UK HE Funding Bodies.</description>
   <home_page>http://github.com/eprintsug/hefce_oa</home_page>
   <icon>images/epm/icon_ref_cc.png</icon>
 </epm>

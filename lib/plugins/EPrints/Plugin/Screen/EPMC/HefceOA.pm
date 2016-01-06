@@ -24,6 +24,9 @@ sub action_enable
 
     my $filename = $repo->config( "config_path" )."/workflows/eprint/default.xml";
 
+    # remove current version
+    EPrints::XML::remove_package_from_xml( $filename, $self->{package_name} );
+    # install new version
     my $insert = EPrints::XML::parse_xml( $repo->config( "lib_path" )."/workflows/eprint/hefce_oa.xml" );
     EPrints::XML::add_to_xml( $filename, $insert->documentElement(), $self->{package_name} );
 

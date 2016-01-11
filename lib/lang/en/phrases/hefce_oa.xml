@@ -7,6 +7,9 @@
 -->
 <epp:phrase id="hefce">REF CC</epp:phrase>
 
+<epp:phrase id="eprint_fieldname_hoa_update_ep">Internal flag used to trigger EPrint update</epp:phrase>
+<epp:phrase id="eprint_fieldhelp_hoa_update_ep"></epp:phrase>
+
 <epp:phrase id="eprint_fieldname_hoa_compliant">Compliance</epp:phrase>
 <epp:phrase id="eprint_fieldhelp_hoa_compliant"></epp:phrase>
 <epp:phrase id="eprint_fieldopt_hoa_compliant_yes">Yes</epp:phrase>

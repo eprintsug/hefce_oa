@@ -26,7 +26,7 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
             {
                 next unless ref($_) eq 'HASH';
                 next unless EPrints::Utils::is_set( $_->{date} ) && EPrints::Utils::is_set( defined $_->{date_type} );
-                if( $_->{date_type} eq 'published' )
+                if( $_->{date_type} eq 'published_online' )
                 {
                     $eprint->set_value( 'hoa_date_pub', $_->{date} );
                 }

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<epm xmlns='http://eprints.org/ep2/data/2.0' id='http://drtjmb.com/id/epm/hefce_oa'>
+<epm xmlns='http://eprints.org/ep2/data/2.0' id='/id/epm/hefce_oa'>
   <epmid>hefce_oa</epmid>
-  <uri>http://drtjmb.com/id/epm/hefce_oa</uri>
+  <uri>/id/epm/hefce_oa</uri>
   <documents>
     <document>
       <files>
@@ -176,7 +176,7 @@
         <file>
           <filename>cfg.d/hefce_oa_integration.pl</filename>
           <mime_type>inode/symlink</mime_type>
-          <hash>9ac707896d0957bc402b6ced82d08b09</hash>
+          <hash>9076096f0ea316bf3794f1cd29f27889</hash>
           <hash_type>MD5</hash_type>
           <filesize>1791</filesize>
         </file>
@@ -313,7 +313,7 @@
       <content>coverimage</content>
     </document>
   </documents>
-  <version>1.0.4</version>
+  <version>1.0.5</version>
   <controller>EPMC::HefceOA</controller>
   <creators>
     <item>
@@ -322,6 +322,20 @@
         <given>Tim</given>
       </name>
       <id>drtjmb@gmail.com</id>
+    </item>
+    <item>
+      <name>
+        <family>Fyson</family>
+        <given>Will</given>
+      </name>
+      <id>rwf1v07@ecs.soton.ac.uk</id>
+    </item>
+    <item>
+      <name>
+        <family>Salter</family>
+        <given>John</given>
+      </name>
+      <id>j.salter@leeds.ac.uk</id>
     </item>
   </creators>
   <datestamp>2016-01-06 20:22:32</datestamp>

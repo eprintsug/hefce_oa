@@ -37,7 +37,7 @@ SKIP: {
 	is( $eprint->value( "hoa_date_pub" ), $pub, "hoa_date_pub automatically set from datesdatesdates.dates" );
 	$eprint->delete;
 
-	push @$epdata{dates}, { date => $pub_online, date_type => "published_online" };
+	push @{$epdata->{dates}}, { date => $pub_online, date_type => "published_online" };
 	$eprint = $repo->dataset( "eprint" )->create_dataobj( $epdata );
 	BAIL_OUT( "Failed to create eprint object" ) if !defined $eprint;
 	is( $eprint->value( "hoa_date_acc" ), $acc, "hoa_date_acc automatically set from datesdatesdates.dates" );

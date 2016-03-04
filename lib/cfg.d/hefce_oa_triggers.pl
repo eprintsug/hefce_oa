@@ -1,5 +1,5 @@
 #Define what types of items we're interested in
-$c->{ref_cc_item_types} = ['article', 'conference_item'];
+$c->{hefce_oa}->{item_types} = ['article', 'conference_item'];
 
 # date of first compliant deposit
 $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
@@ -71,7 +71,7 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 
 	my $type = $eprint->value( "type" );
 
-	unless( defined $type && grep( /^$type$/, @{$repo->config( "ref_cc_item_types" )} ) )
+	unless( defined $type && grep( /^$type$/, @{$repo->config( "hefce_oa", "item_types" )} ) )
 	{		
 		$eprint->set_value( "hoa_compliant", undef );
 		return;

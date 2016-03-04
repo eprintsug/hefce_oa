@@ -38,7 +38,7 @@ sub filters
 
 	#only report on the types we're interest in
 	my $session = $self->{session};
-        my $types = join( ' ', @{$session->config( "ref_cc_item_types" )} );
+        my $types = join( ' ', @{$session->config( "hefce_oa", "item_types" )} );
 
 	push @filters, { meta_fields => [ 'type' ], value => $types, match => 'EQ', merge => 'ANY' };
 	push @filters, { meta_fields => [ 'eprint_status' ], value => 'archive', match => 'EX' };

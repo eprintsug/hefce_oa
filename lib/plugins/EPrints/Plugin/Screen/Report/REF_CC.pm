@@ -36,7 +36,11 @@ sub filters
 
 	my @filters = @{ $self->SUPER::filters || [] };
 
-	push @filters, { meta_fields => [ 'type' ], value => 'article conference_item', match => 'EQ', merge => 'ANY' };
+	#only report on the types we're interest in
+	my $session = $self->{session};
+        my $types = join( ' ', @{$session->config( "hefce_oa", "item_types" )} );
+
+	push @filters, { meta_fields => [ 'type' ], value => $types, match => 'EQ', merge => 'ANY' };
 	push @filters, { meta_fields => [ 'eprint_status' ], value => 'archive', match => 'EX' };
 
 	return \@filters;

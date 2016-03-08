@@ -79,11 +79,10 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 	}
 
 	#now try and set hoa_emb_len
-	my $doc = $repo->call( [qw( hefce_oa select_document )], $eprint );
-	if( $doc && $doc->exists_and_set( 'date_embargo' ) && $pub_time )
+	#my $doc = $repo->call( [qw( hefce_oa select_document )], $eprint );
+	my $emb_time = $repo->call( [qw( hefce_oa get_earliest_embargo )], $eprint );
+	if( $emb_time && $pub_time )
 	{
-		#get embargo date
-		my $emb_time = Time::Piece->strptime( $doc->value( 'date_embargo' ), "%Y-%m-%d" );
 		if( $emb_time > $pub_time ) #embargo date must come after publication date
 		{
 			#get embargo length
@@ -92,6 +91,32 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 		}
 	}
 }, priority => 100 ); # needs to be called before the compliance flag is set
+
+$c->{hefce_oa}->{get_earliest_embargo} = sub {
+
+	my( $eprint ) = @_;
+
+	my @docs = $eprint->get_all_documents;
+
+	# simple cases
+        return unless scalar @docs;
+        return $docs[0] if scalar @docs == 1;
+
+	my $embargo;
+
+	for( @docs )
+	{
+		if( $_->exists_and_set( 'date_embargo' ) )
+		{
+			my $emb_time = Time::Piece->strptime( $_->value( 'date_embargo' ), "%Y-%m-%d" );
+			if( $emb_time < $embargo || !(defined $embargo) )
+			{
+				$embargo = $emb_time;
+			}
+		}
+	}	
+	return $embargo;
+};
 
 #copied from RIOXX2 plugin
 $c->{hefce_oa}->{select_document} = sub {

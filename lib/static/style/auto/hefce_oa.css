@@ -8,6 +8,10 @@ li.hoa_non_compliant
 {
 	list-style-image: url(/style/images/warning-icon.png);
 }
+li.hoa_future_compliant
+{
+	list-style-image: url('/style/images/hoa_closed_open_compliant-icon.png');
+}
 
 div.hoa_test_description li
 {
@@ -24,6 +28,11 @@ span.hoa_non_compliant
 	padding-left: 18px;
 	background: url('/style/images/warning-icon.png') no-repeat;
 }
+span.hoa_future_compliant
+{
+	padding-left: 50px;
+	background: url('/style/images/hoa_closed_open_compliant-icon.png') no-repeat;
+}
 
 #hoa_tab_title
 {
@@ -36,6 +45,11 @@ span.hoa_non_compliant
 #hoa_tab_title.hoa_non_compliant
 {
     background: url('/style/images/warning-icon.png') no-repeat;
+}
+#hoa_tab_title.hoa_future_compliant
+{
+    background: url('/style/images/hoa_closed_open_compliant-icon.png') no-repeat;
+    padding-left:50px;
 }
 
 div.hoa_help

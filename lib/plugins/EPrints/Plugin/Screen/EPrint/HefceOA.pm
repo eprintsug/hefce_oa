@@ -61,14 +61,24 @@ sub render
 
                 my $td1 = $repo->make_element( "td" );
                 my $imagesurl = $repo->get_conf( "rel_path" );
-                $td1->appendChild( $repo->make_element( "img", class=>"ep_msg_warning_icon", src=>"$imagesurl/style/images/hoa_future_compliance.png", alt=>"future compliance" ) );
+                $td1->appendChild( 
+			$repo->make_element( 
+				"img", 
+				class => "ep_msg_warning_icon",
+				src => "$imagesurl/style/images/hoa_future_compliance.png",
+				alt => $self->phrase( "future_compliant_alt" )
+			)
+		);
                 $tr->appendChild( $td1 );
 
         	my $td2 = $repo->make_element( "td" );
+		my $emb_len = $eprint->value( "hoa_emb_len" ) || 0;
         	$tr->appendChild( $td2 );
         	$td2->appendChild( $self->html_phrase( 
 			"future_compliant", 
-			last_foa_date => $repo->xml->create_text_node( $self->calculate_last_compliant_foa_date->strftime( "%Y-%m-%d" ) ) ) );
+			last_foa_date => $repo->xml->create_text_node( $self->calculate_last_compliant_foa_date->strftime( "%Y-%m-%d" ) ),
+			hoa_emb_len => $repo->xml->create_text_node( $emb_len ),
+		) );
         	$content_div->appendChild( $table );
         	$div->appendChild( $content_div );
 
@@ -309,6 +319,8 @@ sub calculate_last_compliant_foa_date
 		my $end = $fcd->add_months( 1 );
                 return $end;
         }
+
+	#returns if no last foa date can be calculated
 }
 
 1;

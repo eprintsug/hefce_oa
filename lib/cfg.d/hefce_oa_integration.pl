@@ -79,10 +79,10 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 	}
 
 	#now try and set hoa_emb_len
-	#my $doc = $repo->call( [qw( hefce_oa select_document )], $eprint );
-	my $emb_time = $repo->call( [qw( hefce_oa get_earliest_embargo )], $eprint );
-	if( $emb_time && $pub_time )
+	my $doc = $repo->call( [qw( hefce_oa select_document )], $eprint );	
+	if( $doc->exists_and_set( 'date_embargo' ) && $pub_time ) 
 	{
+		my $emb_time = Time::Piece->strptime( $doc->value( 'date_embargo' ), "%Y-%m-%d" );
 		if( $emb_time > $pub_time ) #embargo date must come after publication date
 		{
 			#get embargo length
@@ -92,33 +92,8 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 	}
 }, priority => 100 ); # needs to be called before the compliance flag is set
 
-$c->{hefce_oa}->{get_earliest_embargo} = sub {
 
-	my( $eprint ) = @_;
-
-	my @docs = $eprint->get_all_documents;
-
-	# simple cases
-        return unless scalar @docs;
-        return $docs[0] if scalar @docs == 1;
-
-	my $embargo;
-
-	for( @docs )
-	{
-		if( $_->exists_and_set( 'date_embargo' ) )
-		{
-			my $emb_time = Time::Piece->strptime( $_->value( 'date_embargo' ), "%Y-%m-%d" );
-			if( $emb_time < $embargo || !(defined $embargo) )
-			{
-				$embargo = $emb_time;
-			}
-		}
-	}	
-	return $embargo;
-};
-
-#copied from RIOXX2 plugin
+#adapted from RIOXX2 plugin
 $c->{hefce_oa}->{select_document} = sub {
         my( $eprint ) = @_;
 
@@ -131,22 +106,34 @@ $c->{hefce_oa}->{select_document} = sub {
         # prefer published, accepted and submitted versions over anything else
         my %pref = (
                 published => 3,
-                accepted => 2,
-                submitted => 1,
+                accepted => 2,               
         );
 
         my @ordered = sort {
                 ($pref{$b->value( "content" )||""}||0) <=> ($pref{$a->value( "content" )||""}||0)
         } @docs;
 
-        return $ordered[0] if $ordered[0]->is_set( "content" );
+	my $embargo;
+	my $result;
+	for( @ordered )
+	{
+		next unless $_->value( 'content' ) eq "accepted" || $_->value( 'content' ) eq "published"; #only consider doucments we're interested in
+		if( $_->exists_and_set( 'date_embargo' ) )
+		{
+			my $emb_time = Time::Piece->strptime( $_->value( 'date_embargo' ), "%Y-%m-%d" );
+			if( $emb_time < $embargo || !(defined $embargo) ) #is this earlier than anything previously?
+                        {
+                                $embargo = $emb_time; #store new earliest embargo
+				$result = $_; #update result
+                        }
 
-        # prefer text documents
-        for( @docs )
-        {
-                return $_ if $_->value( "format" ) eq "text";
-        }
-
-        return $docs[0];
+		}
+		elsif( $_->is_public ) #embargo hasn't been set, but the document is public so return
+		{
+			return $_;
+		}
+	}
+	return $result;
 };
+
 

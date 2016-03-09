@@ -30,7 +30,7 @@ span.hoa_non_compliant
 }
 span.hoa_future_compliant
 {
-	padding-left: 50px;
+	padding-left: 18px;
 	background: url('/style/images/hoa_future_compliant-icon.png') no-repeat;
 }
 
@@ -49,7 +49,6 @@ span.hoa_future_compliant
 #hoa_tab_title.hoa_future_compliant
 {
     background: url('/style/images/hoa_future_compliant-icon.png') no-repeat;
-    padding-left:50px;
 }
 
 div.hoa_help

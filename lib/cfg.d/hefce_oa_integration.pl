@@ -132,6 +132,10 @@ $c->{hefce_oa}->{select_document} = sub {
 		{
 			return $_;
 		}
+		elsif( !$result )
+		{
+			$result = $_; #no embargo date and it isn't public
+		}
 	}
 	return $result;
 };

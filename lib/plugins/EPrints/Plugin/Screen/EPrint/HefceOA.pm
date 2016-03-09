@@ -65,7 +65,7 @@ sub render
 			$repo->make_element( 
 				"img", 
 				class => "ep_msg_warning_icon",
-				src => "$imagesurl/style/images/hoa_future_compliance.png",
+				src => "$imagesurl/style/images/hoa_future_compliant.png",
 				alt => $self->phrase( "future_compliant_alt" )
 			)
 		);

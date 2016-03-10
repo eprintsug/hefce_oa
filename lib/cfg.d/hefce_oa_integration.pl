@@ -90,6 +90,10 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 			$eprint->set_value( 'hoa_emb_len', int($len->months) );
 		}
 	}
+	elsif( !$doc->exists_and_set( 'date_embargo' ) )
+	{
+		$eprint->set_value( 'hoa_emb_len', undef );
+	}
 }, priority => 100 ); # needs to be called before the compliance flag is set
 
 

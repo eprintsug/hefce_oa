@@ -120,7 +120,7 @@ $c->{hefce_oa}->{select_document} = sub {
 
         @possible_docs = sort {
 		# public is best. NB Can't use $doc->is_public here, is it checks EPrint is in 'archive' too.
-		($b->exists_and_set( "security " ) && $b->value( "security" ) eq "public" ) <=> ($a->exists_and_set( "security" ) && $a->value( "security" ) eq "public" ) or
+		($b->is_set( "security " ) && $b->value( "security" ) eq "public" ) <=> ($a->is_set( "security" ) && $a->value( "security" ) eq "public" ) or
 		# something not public, but with an embargo set is better than a permanently embargoed item
 		# again, with $a and $b swapped as is_set returns 1 or 0.
 		$b->is_set( "date_embargo" ) <=> $a->is_set( "date_embargo" )  or

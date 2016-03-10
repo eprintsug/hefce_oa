@@ -134,20 +134,6 @@ $c->{hefce_oa}->{select_document} = sub {
 		
         } @possible_docs;
 
-my @test_docs = sort {
-	$a->is_set( "security" ) <=> $b->is_set( "security" )
-} @possible_docs; 
-#for( @possible_docs ){
-#	print STDERR $_->is_set( "content" );
-#	print STDERR $_->is_set( "pos" );
-#	print STDERR $_->is_set( "format" );
-#	print STDERR $_->is_set( "formatdesc" );
-#	print STDERR $_->is_set( "license" );
-#	print STDERR $_->is_set( "main" );
-#	print STDERR $_->is_set( "relation" );
-#	print STDERR $_->is_set( "security" );
-#}
-
 	return $possible_docs[0];
 };
 

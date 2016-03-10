@@ -99,7 +99,7 @@ $c->{hefce_oa}->{select_document} = sub {
 
         my @docs = $eprint->get_all_documents;
 
-        # simple cases
+        # no docs?
         return unless scalar @docs;
 
 	# @possible_docs meet 'content' selection criteria - accepted or published.
@@ -108,15 +108,9 @@ $c->{hefce_oa}->{select_document} = sub {
 				 } @docs;
 
 	return unless scalar @possible_docs;
-	return $possible_docs[0] if scalar @possible_docs == 1;
 
-# DEBUG
-#print STDERR "POSSIBLE DOCS\n";
-#for( @possible_docs ){
-#	print STDERR $_->id," ",$_->value( "content" ), " PUBLIC: ", $_->is_public, " EMB: ", $_->is_set( "date_embargo" )? $_->value( "date_embargo" ): "-", "\n";
-#}
-# /DEBUG
-#
+	# if there's only one possible doc, it's the best (by default)
+	return $possible_docs[0] if scalar @possible_docs == 1;
 
         # prefer published over accepted when other tests are equal
         my %pref = (
@@ -141,39 +135,5 @@ $c->{hefce_oa}->{select_document} = sub {
         } @possible_docs;
 
 	return $possible_docs[0];
-# DEBUG
-#print STDERR "POSSIBLE DOCS SORTED\n";
-#for( @possible_docs ){
-#	print STDERR $_->id," ",$_->value( "content" ), " PUBLIC: ", $_->is_public, " EMB: ", $_->is_set( "date_embargo" )? $_->value( "date_embargo" ): "-", "\n";
-#}
-# /DEBUG
-#
-	my $embargo;
-	my $result;
-	for( @possible_docs )
-	{
-		next unless $_->is_set( "content" );
-		next unless $_->value( 'content' ) eq "accepted" || $_->value( 'content' ) eq "published"; #only consider doucments we're interested in
-		if( $_->exists_and_set( 'date_embargo' ) )
-		{
-			my $emb_time = Time::Piece->strptime( $_->value( 'date_embargo' ), "%Y-%m-%d" );
-			if( $emb_time < $embargo || !(defined $embargo) ) #is this earlier than anything previously?
-                        {
-                                $embargo = $emb_time; #store new earliest embargo
-				$result = $_; #update result
-                        }
-
-		}
-		elsif( $_->is_public ) #embargo hasn't been set, but the document is public so return
-		{
-			return $_;
-		}
-		elsif( !$result )
-		{
-			$result = $_; #no embargo date and it isn't public
-		}
-	}
-	return $result;
 };
-
 

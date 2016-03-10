@@ -101,22 +101,58 @@ $c->{hefce_oa}->{select_document} = sub {
 
         # simple cases
         return unless scalar @docs;
-        return $docs[0] if scalar @docs == 1;
 
-        # prefer published, accepted and submitted versions over anything else
+	# @possible_docs meet 'content' selection criteria - accepted or published.
+	my @possible_docs = grep { $_->is_set( "content") && 
+					( $_->value( "content" ) eq "published" || $_->value( "content" ) eq "accepted" )
+				 } @docs;
+
+	return unless scalar @possible_docs;
+	return $possible_docs[0] if scalar @possible_docs == 1;
+
+# DEBUG
+#print STDERR "POSSIBLE DOCS\n";
+#for( @possible_docs ){
+#	print STDERR $_->id," ",$_->value( "content" ), " PUBLIC: ", $_->is_public, " EMB: ", $_->is_set( "date_embargo" )? $_->value( "date_embargo" ): "-", "\n";
+#}
+# /DEBUG
+#
+
+        # prefer published over accepted when other tests are equal
         my %pref = (
-                published => 3,
+                published => 1,
                 accepted => 2,               
         );
 
-        my @ordered = sort {
-                ($pref{$b->value( "content" )||""}||0) <=> ($pref{$a->value( "content" )||""}||0)
-        } @docs;
+        @possible_docs = sort {
+		# is_public=1 is better than is_public=0 - but <=> is numeric comparison - so swap $a and $b
+		$b->is_public <=> $a->is_public or
+		# something not public, but with an embargo set is better than a permanently embargoed item
+		# again, with $a and $b swapped as is_set returns 1 or 0.
+		$b->is_set( "date_embargo" ) <=> $a->is_set( "date_embargo" )  or
+		# The embargo date will both be set, or both be undef here. Passing a value of undef to 
+		# Time::Piece returns the epoch - so both are equal if neither is set.
+		# to confirm:
+		#  > perl -e 'use Time::Piece; $tp= Time::Piece->strptime( undef, "%Y-%m-%d" ); print $tp;'
+		# what has the shortest embargo?
+		Time::Piece->strptime( $a->value( 'date_embargo' ), "%Y-%m-%d" ) <=> Time::Piece->strptime( $b->value( 'date_embargo' ), "%Y-%m-%d" ) or
+                $pref{$a->value( "content" )} <=> $pref{$b->value( "content" )} 
+		
+        } @possible_docs;
 
+	return $possible_docs[0];
+# DEBUG
+#print STDERR "POSSIBLE DOCS SORTED\n";
+#for( @possible_docs ){
+#	print STDERR $_->id," ",$_->value( "content" ), " PUBLIC: ", $_->is_public, " EMB: ", $_->is_set( "date_embargo" )? $_->value( "date_embargo" ): "-", "\n";
+#}
+# /DEBUG
+#
 	my $embargo;
 	my $result;
-	for( @ordered )
+	for( @possible_docs )
 	{
+		next unless $_->is_set( "content" );
 		next unless $_->value( 'content' ) eq "accepted" || $_->value( 'content' ) eq "published"; #only consider doucments we're interested in
 		if( $_->exists_and_set( 'date_embargo' ) )
 		{

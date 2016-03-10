@@ -72,5 +72,82 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 	{
 		$eprint->set_value( 'hoa_date_pub', $pub_date );
 	}
-    
 }, priority => 100 ); # needs to be called before the compliance flag is set
+
+# attempt to set hoa_emb_len
+$c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
+{
+	my( %args ) = @_; 
+	my( $repo, $eprint, $changed ) = @args{qw( repository dataobj changed )};
+
+	# trigger only applies to repos with hefce_oa plugin enabled
+	return unless $eprint->dataset->has_field( 'hoa_compliant' );
+ 	
+        my $doc = $repo->call( [qw( hefce_oa select_document )], $eprint );
+	my $hoa_pub = $eprint->value( 'hoa_date_pub' );
+        if( $doc && $hoa_pub && !$eprint->is_set( "hoa_date_foa" ) )
+        {
+		if( $doc->exists_and_set( 'date_embargo' ) )
+                {
+			my $pub_time = Time::Piece->strptime( $hoa_pub, "%Y-%m-%d" );
+                        my $emb_time = Time::Piece->strptime( $doc->value( 'date_embargo' ), "%Y-%m-%d" );
+                        if( $emb_time > $pub_time ) #embargo date must come after publication date
+                        {
+                                #get embargo length
+                                my $len = $emb_time-$pub_time;
+                                $eprint->set_value( 'hoa_emb_len', int($len->months) );
+                        }
+                }
+                elsif( !$doc->exists_and_set( 'date_embargo' ) )
+                {
+                        $eprint->set_value( 'hoa_emb_len', undef );
+                }
+
+	}
+}, priority => 250 ); 
+
+
+#adapted from RIOXX2 plugin
+$c->{hefce_oa}->{select_document} = sub {
+        my( $eprint ) = @_;
+
+        my @docs = $eprint->get_all_documents;
+
+        # no docs?
+        return unless scalar @docs;
+
+	# @possible_docs meet 'content' selection criteria - accepted or published.
+	my @possible_docs = grep { $_->is_set( "content") && 
+					( $_->value( "content" ) eq "published" || $_->value( "content" ) eq "accepted" )
+				 } @docs;
+
+	return unless scalar @possible_docs;
+
+	# if there's only one possible doc, it's the best (by default)
+	return $possible_docs[0] if scalar @possible_docs == 1;
+
+        # prefer published over accepted when other tests are equal
+        my %pref = (
+                published => 1,
+                accepted => 2,               
+        );
+
+        @possible_docs = sort {
+		# public is best. NB Can't use $doc->is_public here, is it checks EPrint is in 'archive' too.
+		($b->is_set( "security" ) && $b->value( "security" ) eq "public" ) <=> ($a->is_set( "security" ) && $a->value( "security" ) eq "public" ) or
+		# something not public, but with an embargo set is better than a permanently embargoed item
+		# again, with $a and $b swapped as is_set returns 1 or 0.
+		$b->is_set( "date_embargo" ) <=> $a->is_set( "date_embargo" )  or
+		# The embargo date will both be set, or both be undef here. Passing a value of undef to 
+		# Time::Piece returns the epoch - so both are equal if neither is set.
+		# to confirm:
+		#  > perl -e 'use Time::Piece; $tp= Time::Piece->strptime( undef, "%Y-%m-%d" ); print $tp;'
+		# what has the shortest embargo?
+		Time::Piece->strptime( $a->value( 'date_embargo' ), "%Y-%m-%d" ) <=> Time::Piece->strptime( $b->value( 'date_embargo' ), "%Y-%m-%d" ) or
+                $pref{$a->value( "content" )} <=> $pref{$b->value( "content" )} 
+		
+        } @possible_docs;
+
+	return $possible_docs[0];
+};
+

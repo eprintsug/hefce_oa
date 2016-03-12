@@ -1,4 +1,4 @@
-# attempt to set hoa_date_acc and hoa_date_pub from various sources as well as hoa_emb_len
+# attempt to set hoa_date_acc and hoa_date_pub from various sources
 $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 {
 	my( %args ) = @_; 
@@ -61,40 +61,50 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 		$pub_date = $eprint->value( 'rioxx2_publication_date' );
 	}
 
-	#initialise pub_time for later use when calculating hoa_emb_len
-	my $pub_time;
-
 	# now set the values - date of acceptance
 	$eprint->set_value( 'hoa_date_acc', $acc_date ) if defined $acc_date;
 	#prefer a published_online date
 	if( defined $pub_online_date )
 	{
 		$eprint->set_value( 'hoa_date_pub', $pub_online_date );
-		$pub_time = Time::Piece->strptime( $pub_online_date, "%Y-%m-%d" );
 	}
 	elsif( defined $pub_date ) #but use a published date if that's not available.
 	{
 		$eprint->set_value( 'hoa_date_pub', $pub_date );
-		$pub_time = Time::Piece->strptime( $pub_date, "%Y-%m-%d" );
-	}
-
-	#now try and set hoa_emb_len
-	my $doc = $repo->call( [qw( hefce_oa select_document )], $eprint );	
-	if( $doc->exists_and_set( 'date_embargo' ) && $pub_time ) 
-	{
-		my $emb_time = Time::Piece->strptime( $doc->value( 'date_embargo' ), "%Y-%m-%d" );
-		if( $emb_time > $pub_time ) #embargo date must come after publication date
-		{
-			#get embargo length
-			my $len = $emb_time-$pub_time;
-			$eprint->set_value( 'hoa_emb_len', int($len->months) );
-		}
-	}
-	elsif( !$doc->exists_and_set( 'date_embargo' ) )
-	{
-		$eprint->set_value( 'hoa_emb_len', undef );
 	}
 }, priority => 100 ); # needs to be called before the compliance flag is set
+
+# attempt to set hoa_emb_len
+$c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
+{
+	my( %args ) = @_; 
+	my( $repo, $eprint, $changed ) = @args{qw( repository dataobj changed )};
+
+	# trigger only applies to repos with hefce_oa plugin enabled
+	return unless $eprint->dataset->has_field( 'hoa_compliant' );
+ 	
+        my $doc = $repo->call( [qw( hefce_oa select_document )], $eprint );
+	my $hoa_pub = $eprint->value( 'hoa_date_pub' );
+        if( $doc && $hoa_pub && !$eprint->is_set( "hoa_date_foa" ) )
+        {
+		if( $doc->exists_and_set( 'date_embargo' ) )
+                {
+			my $pub_time = Time::Piece->strptime( $hoa_pub, "%Y-%m-%d" );
+                        my $emb_time = Time::Piece->strptime( $doc->value( 'date_embargo' ), "%Y-%m-%d" );
+                        if( $emb_time > $pub_time ) #embargo date must come after publication date
+                        {
+                                #get embargo length
+                                my $len = $emb_time-$pub_time;
+                                $eprint->set_value( 'hoa_emb_len', int($len->months) );
+                        }
+                }
+                elsif( !$doc->exists_and_set( 'date_embargo' ) )
+                {
+                        $eprint->set_value( 'hoa_emb_len', undef );
+                }
+
+	}
+}, priority => 250 ); 
 
 
 #adapted from RIOXX2 plugin

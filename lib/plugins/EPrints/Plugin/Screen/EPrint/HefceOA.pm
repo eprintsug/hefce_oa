@@ -88,6 +88,33 @@ sub render
         {
             $page->appendChild( $repo->render_message( "warning", $self->html_phrase( "non_compliant" ) ) );
         }
+
+	# if incomplete dates are stored for hoa_date_acc or hoa_date_pub, display a warning
+	# incomplete embargo end dates do not get a warning, as the behaviour in this case is known (embargo released after
+	# most-defined date)
+	my @incomplete_dates;
+	for( qw( hoa_date_acc hoa_date_pub ) )
+	{
+		if( $eprint->is_set( $_ ) && $eprint->value( $_ ) !~ /^\d{4}\-\d{2}\-\d{2}$/ )
+		{
+			push @incomplete_dates, $_;
+		}
+	}
+	if( @incomplete_dates ) 
+	{
+		my $dates = $repo->xml->create_document_fragment;
+		for( @incomplete_dates )
+		{
+			$dates->appendChild( $self->html_phrase( "render_incomplete_date", 
+				date_field => $repo->html_phrase( "eprint_fieldname_$_" ),
+				value => $eprint->render_value( $_ ),
+			) );
+		}
+	    
+		$page->appendChild( $repo->render_message( "warning", $self->html_phrase( "render_incomplete_dates", dates => $dates ) ) );
+	}
+
+
 	$page->appendChild( $self->html_phrase( "render_test_description",
 		description => $repo->html_phrase( "hefce_oa:test_description:COMPLIANT" )
 	) );

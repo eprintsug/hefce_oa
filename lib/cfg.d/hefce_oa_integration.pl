@@ -89,8 +89,26 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
         {
 		if( $doc->exists_and_set( 'date_embargo' ) )
                 {
-			my $pub_time = Time::Piece->strptime( $hoa_pub, "%Y-%m-%d" );
-                        my $emb_time = Time::Piece->strptime( $doc->value( 'date_embargo' ), "%Y-%m-%d" );
+			my $pub_time;
+			if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+			{
+				$pub_time = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $hoa_pub );
+			}
+			if( !defined( $pub_time ) ) #above call can return undef - fallback to default
+			{
+				$pub_time = Time::Piece->strptime( $hoa_pub , "%Y-%m-%d" );
+			}
+
+			my $emb_time;
+			if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+			{
+				$emb_time = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $doc->value( 'date_embargo' ) );
+			}
+			if( !defined( $emb_time ) ) #above call can return undef - fallback to default
+			{
+				$emb_time = Time::Piece->strptime( $doc->value( 'date_embargo' ), "%Y-%m-%d" );
+			}
+
                         if( $emb_time > $pub_time ) #embargo date must come after publication date
                         {
                                 #get embargo length
@@ -98,7 +116,7 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
                                 $eprint->set_value( 'hoa_emb_len', int($len->months) );
                         }
                 }
-                elsif( !$doc->exists_and_set( 'date_embargo' ) )
+                else
                 {
                         $eprint->set_value( 'hoa_emb_len', undef );
                 }

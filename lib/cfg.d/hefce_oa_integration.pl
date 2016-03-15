@@ -151,3 +151,31 @@ $c->{hefce_oa}->{select_document} = sub {
 	return $possible_docs[0];
 };
 
+$c->{hefce_oa}->{handle_possibly_incomplete_date} = sub {
+	# returns a Time::Piece object.
+	#
+	# $epdate is value from EPrints DataObj field. 
+	# setting $default_to_start_of_period = 1 will return the 1st of the month/year for incomplete dates rather than the end.
+	my( $epdate, $default_to_start_of_period ) = @_;
+
+	$default_to_start_of_period ||= 0;
+	# complete date - return Time::Piece object
+	return Time::Piece->strptime( $epdate, "%Y-%m-%d" ) if $epdate =~ /^\d{4}\-\d{2}\-\d{2}$/;
+
+	if( $epdate =~ /^\d{4}\-\d{2}$/ )
+	{
+		my $tp = Time::Piece->strptime( $epdate, "%Y-%m" ); #defaults to start of month
+		return $tp if $default_to_start_of_period;
+
+		# looks like there's no way to $tp->set_day( $tp->month_last-day ). 
+		# I think this is the least-silly option.!?
+		return Time::Piece->strptime( "$epdate-".$tp->month_last_day, "%Y-%m-%d" );
+	}
+
+	# only year supplied - default to start or end of year as flagged
+	return Time::Piece->strptime( "$epdate-01-01", "%Y-%m-%d" ) if $epdate =~ /^\d{4}$/ && $default_to_start_of_period;
+	return Time::Piece->strptime( "$epdate-12-31", "%Y-%m-%d" ) if $epdate =~ /^\d{4}$/;
+
+	return undef;
+
+};

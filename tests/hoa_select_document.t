@@ -10,10 +10,6 @@ BEGIN { use_ok( "HefceOA::Const" ); }
 
 my $repo = EPrints::Test::get_test_repository();
 
-
-#######################################
-#######################################
-
 my $epdata = {
 	eprint_status => "archive",
 	type => "article",
@@ -114,5 +110,4 @@ SKIP: {
 
 	$eprint->delete;
 }
-
 

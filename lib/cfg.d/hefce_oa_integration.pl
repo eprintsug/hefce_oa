@@ -189,6 +189,8 @@ $c->{hefce_oa}->{handle_possibly_incomplete_date} = sub {
 	# setting $default_to_start_of_period = 1 will return the 1st of the month/year for incomplete dates rather than the end.
 	my( $epdate, $default_to_start_of_period ) = @_;
 
+	return undef if !defined $epdate;
+
 	$default_to_start_of_period ||= 0;
 	# complete date - return Time::Piece object
 	return Time::Piece->strptime( $epdate, "%Y-%m-%d" ) if $epdate =~ /^\d{4}\-\d{2}\-\d{2}$/;

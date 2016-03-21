@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <epm id='http://git.asdf.ecs.soton.ac.uk/id/epm/hefce_oa' xmlns='http://eprints.org/ep2/data/2.0'>
   <epmid>hefce_oa</epmid>
-  <uri>/id/epm/hefce_oa</uri>
+  <uri>http://git.asdf.ecs.soton.ac.uk/id/epm/hefce_oa</uri>
   <documents>
     <document>
       <files>
@@ -15,16 +15,16 @@
         <file>
           <filename>cfg.d/hefce_oa_tests.pl</filename>
           <mime_type>inode/symlink</mime_type>
-          <hash>5f7e104f9d495965acf52b2b7efd0e39</hash>
+          <hash>0551866dfacdff8dee047037886cd7d2</hash>
           <hash_type>MD5</hash_type>
-          <filesize>5003</filesize>
+          <filesize>6442</filesize>
         </file>
         <file>
           <filename>cfg.d/hefce_oa_integration.pl</filename>
           <mime_type>inode/symlink</mime_type>
-          <hash>faca946f20886f2cadb9539604238ee7</hash>
+          <hash>535d89786bed83385fabbd0fe37e2962</hash>
           <hash_type>MD5</hash_type>
-          <filesize>5539</filesize>
+          <filesize>8830</filesize>
         </file>
         <file>
           <filename>cfg.d/hefce_oa_triggers.pl</filename>
@@ -43,9 +43,9 @@
         <file>
           <filename>plugins/EPrints/Plugin/Screen/EPrint/HefceOA.pm</filename>
           <mime_type>inode/symlink</mime_type>
-          <hash>762a3ff9a03729fdea4dd2f47659d556</hash>
+          <hash>b65b77d08abd3278591bf58ccd794446</hash>
           <hash_type>MD5</hash_type>
-          <filesize>9429</filesize>
+          <filesize>9186</filesize>
         </file>
         <file>
           <filename>plugins/EPrints/Plugin/Screen/EPMC/HefceOA.pm</filename>
@@ -57,9 +57,9 @@
         <file>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC.pm</filename>
           <mime_type>inode/symlink</mime_type>
-          <hash>7d3ff85839e17280348ec54430458c49</hash>
+          <hash>a37da3f094c65af4f0304c6eac28f502</hash>
           <hash_type>MD5</hash_type>
-          <filesize>2182</filesize>
+          <filesize>2652</filesize>
         </file>
         <file>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX.pm</filename>
@@ -211,9 +211,9 @@
         <file>
           <filename>lang/en/phrases/hefce_oa.xml</filename>
           <mime_type>inode/symlink</mime_type>
-          <hash>d23ed489da9447650710365919483131</hash>
+          <hash>ce6eafb37d8dbf78bdf4594e1f11865c</hash>
           <hash_type>MD5</hash_type>
-          <filesize>11449</filesize>
+          <filesize>12064</filesize>
         </file>
         <file>
           <filename>lang/en/phrases/hefce_oa_policy.xml</filename>
@@ -225,9 +225,9 @@
         <file>
           <filename>lang/en/phrases/hefce_oa_tests.xml</filename>
           <mime_type>inode/symlink</mime_type>
-          <hash>6cec6274f4e2d4a718eabc10bbcde34d</hash>
+          <hash>258e823b46e50f8de205ae0897ae990e</hash>
           <hash_type>MD5</hash_type>
-          <filesize>6056</filesize>
+          <filesize>6054</filesize>
         </file>
         <file>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa_fields.pl</filename>
@@ -265,6 +265,13 @@
           <filesize>1115</filesize>
         </file>
         <file>
+          <filename>epm/hefce_oa/tests/hoa_handle_possibly_incomplete_date.t</filename>
+          <mime_type>text/x-perl</mime_type>
+          <hash>e7a29e655adfadd3ee7ce0a2f90166b2</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>1770</filesize>
+        </file>
+        <file>
           <filename>epm/hefce_oa/tests/DIS_DISCOVERABLE.t</filename>
           <mime_type>text/x-perl</mime_type>
           <hash>0f915ed16222bc8e2d6ac99329b3ca98</hash>
@@ -300,6 +307,13 @@
           <filesize>955</filesize>
         </file>
         <file>
+          <filename>epm/hefce_oa/tests/hoa_select_document.t</filename>
+          <mime_type>text/x-perl</mime_type>
+          <hash>3c550f87295ccef58d59e4725a20d411</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>3406</filesize>
+        </file>
+        <file>
           <filename>epm/hefce_oa/tests/DEP_COMPLIANT.t</filename>
           <mime_type>text/x-perl</mime_type>
           <hash>f4e3ecdfb0626a56f8845077eb1f8464</hash>
@@ -327,7 +341,7 @@
       <content>coverimage</content>
     </document>
   </documents>
-  <version>1.0.6</version>
+  <version>1.1.0</version>
   <controller>EPMC::HefceOA</controller>
   <creators>
     <item>
@@ -352,7 +366,7 @@
       <id>j.salter@leeds.ac.uk</id>
     </item>
   </creators>
-  <datestamp>2016-03-10 17:09:34</datestamp>
+  <datestamp>2016-03-21 14:00:09</datestamp>
   <title>REF Compliance Checker for EPrints</title>
   <description>This plugin helps your institution comply with the Open Access policy of the UK HE Funding Bodies.</description>
   <home_page>http://github.com/eprintsug/hefce_oa</home_page>

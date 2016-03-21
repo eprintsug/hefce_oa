@@ -105,7 +105,15 @@ $c->{hefce_oa}->{run_test_DEP_TIMING} = sub {
 	# checks based on date of acceptance (if set)
 	if( $eprint->is_set( "hoa_date_acc" ) )
 	{
-		my $acc = Time::Piece->strptime( $eprint->value( "hoa_date_acc" ), "%Y-%m-%d" );
+		my $acc;
+		if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+		{
+			$acc = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_acc" ) );
+		}
+		if( !defined( $acc ) ) #above call can return undef - fallback to default
+		{
+			$acc = Time::Piece->strptime( $eprint->value( "hoa_date_acc" ), "%Y-%m-%d" );
+		}
 	
 		# deposit is within 3  months of acceptance
 		return 1 if $dep <= $acc->add_months(3); 
@@ -113,14 +121,30 @@ $c->{hefce_oa}->{run_test_DEP_TIMING} = sub {
 		#for pre-April '17, base calculation on pub date
 		if( $acc < $APR17 && $eprint->is_set( "hoa_date_pub" ) )
 		{
-			my $pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
+			my $pub;
+			if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+			{
+				$pub = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_pub" ) );
+			}
+			if( !defined( $pub ) ) #above call can return undef - fallback to default
+			{
+				$pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
+			}
 			return 1 if $dep <= $pub->add_months(3);
 		}
 		
 	}
 	elsif( $eprint->is_set( "hoa_date_pub" ) )
 	{
-		my $pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
+		my $pub;
+		if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+		{
+			$pub = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_pub" ) );
+		}
+		if( !defined( $pub ) ) #above call can return undef - fallback to default
+		{
+			$pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
+		}
 		
 		#if published date is before 2017-04-01, acceptance date must be too.
 		# NB we may need to introduce a lag here - if it normally takes a month to get something published,
@@ -157,7 +181,16 @@ $c->{hefce_oa}->{run_test_ACC_TIMING} = sub {
 	{
 		return 0 unless $eprint->is_set( "hoa_date_pub" ) && $eprint->is_set( "hoa_date_foa" );
 
-		my $pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
+		my $pub;
+		if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+		{
+			$pub = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_pub" ) );
+		}
+		if( !defined( $pub ) ) #above call can return undef - fallback to default
+		{
+			$pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
+		}
+
 		my $end = $pub->add_months( $len ); # embargo end
 		my $foa = Time::Piece->strptime( $eprint->value( "hoa_date_foa" ), "%Y-%m-%d" );
 

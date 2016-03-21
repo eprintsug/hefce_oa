@@ -83,14 +83,32 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 	# trigger only applies to repos with hefce_oa plugin enabled
 	return unless $eprint->dataset->has_field( 'hoa_compliant' );
  	
-        my $doc = $repo->call( [qw( hefce_oa select_document )], $eprint );
+        my $doc = $repo->call( [qw( hefce_oa select_document )], $repo, $eprint );
 	my $hoa_pub = $eprint->value( 'hoa_date_pub' );
         if( $doc && $hoa_pub && !$eprint->is_set( "hoa_date_foa" ) )
         {
 		if( $doc->exists_and_set( 'date_embargo' ) )
                 {
-			my $pub_time = Time::Piece->strptime( $hoa_pub, "%Y-%m-%d" );
-                        my $emb_time = Time::Piece->strptime( $doc->value( 'date_embargo' ), "%Y-%m-%d" );
+			my $pub_time;
+			if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+			{
+				$pub_time = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $hoa_pub );
+			}
+			if( !defined( $pub_time ) ) #above call can return undef - fallback to default
+			{
+				$pub_time = Time::Piece->strptime( $hoa_pub , "%Y-%m-%d" );
+			}
+
+			my $emb_time;
+			if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+			{
+				$emb_time = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $doc->value( 'date_embargo' ) );
+			}
+			if( !defined( $emb_time ) ) #above call can return undef - fallback to default
+			{
+				$emb_time = Time::Piece->strptime( $doc->value( 'date_embargo' ), "%Y-%m-%d" );
+			}
+
                         if( $emb_time > $pub_time ) #embargo date must come after publication date
                         {
                                 #get embargo length
@@ -98,7 +116,7 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
                                 $eprint->set_value( 'hoa_emb_len', int($len->months) );
                         }
                 }
-                elsif( !$doc->exists_and_set( 'date_embargo' ) )
+                else
                 {
                         $eprint->set_value( 'hoa_emb_len', undef );
                 }
@@ -109,7 +127,7 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 
 #adapted from RIOXX2 plugin
 $c->{hefce_oa}->{select_document} = sub {
-        my( $eprint ) = @_;
+        my( $repo, $eprint ) = @_;
 
         my @docs = $eprint->get_all_documents;
 
@@ -132,18 +150,31 @@ $c->{hefce_oa}->{select_document} = sub {
                 accepted => 2,               
         );
 
+	# this sort staement might be slow when dealing with lots of documents.
+	# we've already pared the array down to only accepted/published versions.
+	# If necessary, some of the methods for pre-calculation on http://www.sysarch.com/Perl/sort_paper.html
+	# may be useful
         @possible_docs = sort {
-		# public is best. NB Can't use $doc->is_public here, is it checks EPrint is in 'archive' too.
-		($b->is_set( "security" ) && $b->value( "security" ) eq "public" ) <=> ($a->is_set( "security" ) && $a->value( "security" ) eq "public" ) or
-		# something not public, but with an embargo set is better than a permanently embargoed item
-		# again, with $a and $b swapped as is_set returns 1 or 0.
+		#pre-calculate embargo dates
+		my( $ade, $bde );
+		$ade = $bde = Time::Piece->new(); #same date if both embargoes are undefined.
+
+		if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) ){
+			$ade = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $a->value( 'date_embargo' ) ) if $a->is_set( 'date_embargo'); 
+			$bde = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $b->value( 'date_embargo' ) ) if $b->is_set( 'date_embargo'); 
+		}
+
+
+			# public is best. NB Can't use $doc->is_public here, is it checks EPrint is in 'archive' too.
+		($b->is_set( "security" ) && $b->value( "security" ) eq "public" ) 
+			<=> ($a->is_set( "security" ) && $a->value( "security" ) eq "public" ) or
+			# something not public, but with an embargo set is better than a permanently embargoed item
+			# again, with $a and $b swapped as is_set returns 1 or 0.
 		$b->is_set( "date_embargo" ) <=> $a->is_set( "date_embargo" )  or
-		# The embargo date will both be set, or both be undef here. Passing a value of undef to 
-		# Time::Piece returns the epoch - so both are equal if neither is set.
-		# to confirm:
-		#  > perl -e 'use Time::Piece; $tp= Time::Piece->strptime( undef, "%Y-%m-%d" ); print $tp;'
-		# what has the shortest embargo?
-		Time::Piece->strptime( $a->value( 'date_embargo' ), "%Y-%m-%d" ) <=> Time::Piece->strptime( $b->value( 'date_embargo' ), "%Y-%m-%d" ) or
+			# The embargo date will both be set, or both be undef here.
+			# If both are undef, $ade and $bde will be equal 
+			# What has the shortest embargo?
+		$ade <=> $bde or
                 $pref{$a->value( "content" )} <=> $pref{$b->value( "content" )} 
 		
         } @possible_docs;
@@ -151,3 +182,33 @@ $c->{hefce_oa}->{select_document} = sub {
 	return $possible_docs[0];
 };
 
+$c->{hefce_oa}->{handle_possibly_incomplete_date} = sub {
+	# returns a Time::Piece object or undef.
+	#
+	# $epdate is value from EPrints DataObj field. 
+	# setting $default_to_start_of_period = 1 will return the 1st of the month/year for incomplete dates rather than the end.
+	my( $epdate, $default_to_start_of_period ) = @_;
+
+	return undef if !defined $epdate;
+
+	$default_to_start_of_period ||= 0;
+	# complete date - return Time::Piece object
+	return Time::Piece->strptime( $epdate, "%Y-%m-%d" ) if $epdate =~ /^\d{4}\-\d{2}\-\d{2}$/;
+
+	if( $epdate =~ /^\d{4}\-\d{2}$/ )
+	{
+		my $tp = Time::Piece->strptime( $epdate, "%Y-%m" ); #defaults to start of month
+		return $tp if $default_to_start_of_period;
+
+		# looks like there's no way to $tp->set_day( $tp->month_last-day ). 
+		# I think this is the least-silly option.!?
+		return Time::Piece->strptime( "$epdate-".$tp->month_last_day, "%Y-%m-%d" );
+	}
+
+	# only year supplied - default to start or end of year as flagged
+	return Time::Piece->strptime( "$epdate-01-01", "%Y-%m-%d" ) if $epdate =~ /^\d{4}$/ && $default_to_start_of_period;
+	return Time::Piece->strptime( "$epdate-12-31", "%Y-%m-%d" ) if $epdate =~ /^\d{4}$/;
+
+	return undef;
+
+};

@@ -212,3 +212,33 @@ $c->{hefce_oa}->{handle_possibly_incomplete_date} = sub {
 	return undef;
 
 };
+
+$c->{hefce_oa}->{calculate_last_compliant_foa_date} = sub {
+	my( $repo, $eprint ) = @_;
+
+	my $len = $eprint->value( "hoa_emb_len" ) || 0;
+
+        # $len will be tested to see whether it is a compliant number of months in ACC_EMBARGO
+        if( $len > 0  )
+        {
+                #need pub date to calculate embargo release date
+                return undef unless $eprint->is_set( "hoa_date_pub" );
+
+                my $pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
+                my $end = $pub->add_months( $len ); # embargo end
+                $end = $end->add_months( 1 ); #1-month grace period
+                return $end;
+        }
+        else # no embargo
+        {
+                return undef unless $eprint->is_set( "hoa_date_fcd" );
+
+                my $fcd = Time::Piece->strptime( $eprint->value( "hoa_date_fcd" ), "%Y-%m-%d" );
+
+                # oa with one month of deposit
+                my $end = $fcd->add_months( 1 );
+                return $end;
+        }
+
+        #returns if no last foa date can be calculated
+};

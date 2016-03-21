@@ -100,6 +100,14 @@ sub validate_dataobj
 				push @problems, $repo->phrase( "hefce_oa:test_title:$test" ); 
 			}
 		}
+		if( $flag & HefceOA::Const::DEP &&
+                	$flag & HefceOA::Const::DIS &&
+	                $flag & HefceOA::Const::ACC_EMBARGO &&
+        	        $repo->call( ["hefce_oa", "could_become_ACC_TIMING_compliant"], $repo, $eprint ) )
+		{
+			push @problems, $repo->phrase( "report_future_compliant", last_foa_date => $repo->xml->create_text_node( $repo->call( [ "hefce_oa", "calculate_last_compliant_foa_date" ], $repo, $eprint )->strftime( "%Y-%m-%d" ) ) );
+
+		}
 	}
 
 	return @problems;

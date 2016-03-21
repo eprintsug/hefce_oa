@@ -59,7 +59,7 @@ The item must be in the <epc:phrase ref="eprint_fieldopt_eprint_status_archive"/
 <epp:phrase id="hefce_oa:test_title:ACC">Access</epp:phrase>
 <epp:phrase id="hefce_oa:test_description:ACC">To be access compliant, all of the following conditions must be met.</epp:phrase>
 
-<epp:phrase id="hefce_oa:test_title:ACC_TIMING">The output must meet the access requirements as soon as possible...</epp:phrase>
+<epp:phrase id="hefce_oa:test_title:ACC_TIMING">The output must meet the access requirements as soon as possible.</epp:phrase>
 <epp:phrase id="hefce_oa:test_description:ACC_TIMING">
 <blockquote><epc:phrase ref="hefce_oa:test_description:ACC_TIMING:policy"/></blockquote>
 <p><em><epc:phrase ref="hefce_oa:test_description:ACC_TIMING:eprints"/></em></p>

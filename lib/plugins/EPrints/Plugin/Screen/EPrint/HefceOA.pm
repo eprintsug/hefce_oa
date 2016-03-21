@@ -50,7 +50,7 @@ sub render
 	elsif( $flag & HefceOA::Const::DEP && 
 		$flag & HefceOA::Const::DIS &&
 		$flag & HefceOA::Const::ACC_EMBARGO &&
-		$self->could_become_ACC_TIMING_compliant )
+		$repo->call( ["hefce_oa", "could_become_ACC_TIMING_compliant"], $repo, $eprint ) )
 	{
 		#not currently compliant, but could be if embargo is released properly
         	my $div = $repo->make_element( "div", class=>"ep_msg_warning" );
@@ -76,7 +76,7 @@ sub render
         	$tr->appendChild( $td2 );
         	$td2->appendChild( $self->html_phrase( 
 			"future_compliant", 
-			last_foa_date => $repo->xml->create_text_node( $self->calculate_last_compliant_foa_date->strftime( "%Y-%m-%d" ) ),
+			last_foa_date => $repo->xml->create_text_node( $repo->call( [ "hefce_oa", "calculate_last_compliant_foa_date" ], $repo, $eprint )->strftime( "%Y-%m-%d" ) ),
 			hoa_emb_len => $repo->xml->create_text_node( $emb_len ),
 		) );
         	$content_div->appendChild( $table );
@@ -273,7 +273,7 @@ sub render_access_tab
 	{
 		$class = "hoa_compliant";
 	}
-	elsif( $self->could_become_ACC_TIMING_compliant && $flag & HefceOA::Const::ACC_EMBARGO )
+	elsif( $repo->call( [ "hefce_oa", "could_become_ACC_TIMING_compliant" ], $repo, $eprint)  && $flag & HefceOA::Const::ACC_EMBARGO )
 	{
 		$class="hoa_future_compliant";	
 	}
@@ -291,7 +291,7 @@ sub render_access_tab
 	for( @$tests )
 	{
 		my $test_class = ( $flag & HefceOA::Const->$_ ? "hoa_compliant" : "hoa_non_compliant" );
-		if( $_ eq "ACC_TIMING" && $self->could_become_ACC_TIMING_compliant ){
+		if( $_ eq "ACC_TIMING" && $repo->call( [ "hefce_oa", "could_become_ACC_TIMING_compliant" ], $repo, $eprint ) ){
 			$test_class= "hoa_future_compliant";
 		}
 		$sub->appendChild( $self->html_phrase( "render_test",
@@ -303,51 +303,6 @@ sub render_access_tab
 	$tab->appendChild( $self->html_phrase( "render_tests", tests => $sub ) );
 
 	return( $tab_title, $tab );
-}
-
-sub could_become_ACC_TIMING_compliant
-{
-	my( $self ) = @_;
-
-	my $last_compliant_date = $self->calculate_last_compliant_foa_date;
-	return 1 if( $last_compliant_date && ( localtime() <= $last_compliant_date ) );
-
-	return 0;
-}
-
-sub calculate_last_compliant_foa_date
-{
-	my( $self ) = @_;
-
-	my $repo = $self->{repository};
-
-	my $eprint = $self->{processor}->{eprint};
-
-	my $len = $eprint->value( "hoa_emb_len" ) || 0;
-
-	# $len will be tested to see whether it is a compliant number of months in ACC_EMBARGO
-	if( $len > 0  )
-        {
-		#need pub date to calculate embargo release date
-		return undef unless $eprint->is_set( "hoa_date_pub" );
-
-                my $pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
-                my $end = $pub->add_months( $len ); # embargo end
-		$end = $end->add_months( 1 ); #1-month grace period
-                return $end;
-        }		
-        else # no embargo
-        {
-		return undef unless $eprint->is_set( "hoa_date_fcd" );
-
-                my $fcd = Time::Piece->strptime( $eprint->value( "hoa_date_fcd" ), "%Y-%m-%d" );
-
-                # oa with one month of deposit
-		my $end = $fcd->add_months( 1 );
-                return $end;
-        }
-
-	#returns if no last foa date can be calculated
 }
 
 1;

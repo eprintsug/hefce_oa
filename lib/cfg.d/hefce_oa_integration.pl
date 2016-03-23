@@ -157,7 +157,7 @@ $c->{hefce_oa}->{select_document} = sub {
         @possible_docs = sort {
 		#pre-calculate embargo dates
 		my( $ade, $bde );
-		$ade = $bde = Time::Piece->new(); #same date if both embargoes are undefined.
+		$ade = $bde = localtime; #same date if both embargoes are undefined.
 
 		if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) ){
 			$ade = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $a->value( 'date_embargo' ) ) if $a->is_set( 'date_embargo'); 

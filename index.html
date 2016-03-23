@@ -20,7 +20,7 @@
     <header>
       <div class="inner">
         <h1>REF Compliance Checker for EPrints</h1>
-        <h2>User Guide for General Release version 1.0.4</h2>
+        <h2>User Guide for General Release version 1.1.0</h2>
         <a href="https://github.com/eprintsug/hefce_oa" class="button"><small>View project on</small> GitHub</a>
       </div>
     </header>
@@ -28,10 +28,18 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          <h1>
-<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h1>
 
-<p>The REF Compliance Checker plugin for EPrints has been developed to help your institution comply with the Open Access policy of the UK HE Funding Bodies.  The key points of the policy are shown below; the full details may be accessed <a href="http://www.hefce.ac.uk/pubs/year/2014/201407/">here</a>.</p>
+          <h2>New in v1.1.0:</h2>
+          <ul>
+            <li>integration with new version of 'datesdatesdates' that supports publication and online-publication dates</li>
+            <li>display of a '<a href="#will-become-compliant">will become compliant</a>' status for items that have an embargoed document attached, but that are otherwise compliant.</li>
+            <li>automatic population of embargo-length (months) field based on embargo end date for AAM/VoRs</li>
+            <li>warning for incomplete dates that may affect calculation of compliance</li>
+          <ul>
+
+	<h1><a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h1>
+
+<p>The REF Compliance Checker plugin for EPrints has been developed to help your institution comply with the Open Access policy of the UK HE Funding Bodies.  The key points of the policy are shown below; the full details may be accessed from the HEFCE website: <a href="http://www.hefce.ac.uk/pubs/year/2014/201407/">Policy for open access in the post-2014 Research Excellence Framework: Updated July 2015</a>.</p>
 
 <ul>
 <li><p>The policy states that, to be eligible for submission to the post-2014 REF, authors’ outputs must have been deposited in an institutional or subject repository. Deposited material should be discoverable, and free to read and download, for anyone with an internet connection. The requirement applies only to journal articles and conference proceedings with an International Standard Serial Number. It will not apply to monographs, book chapters, other long-form publications, working papers, creative or practice-based research outputs, or data. </p></li>
@@ -264,6 +272,9 @@
 
 <p><img src="images/hefce_tab_non_compliant.png" alt=""></p>
 
+<p id="will-become-compliant">Sometimes an output meets all the compliance criteria except that the full text is not OA, as an embargo has been placed on it. The screen shot below shows the 'clock' icon used to denote an item that will become compliante when the embargo is released.</p>
+<p>In this case, there is also an incomplete date (only year and month were specified) which generates a warning, as accurate compliance calculations need accurate dates to work from.</p>
+<p><img src="images/hefce_tab_will_become_compliant.png" alt=""></p>
 <h2>
 <a id="reporting" class="anchor" href="#reporting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reporting</h2>
 

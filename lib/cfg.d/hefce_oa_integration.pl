@@ -1,3 +1,5 @@
+use Time::Piece; 
+
 # attempt to set hoa_date_acc and hoa_date_pub from various sources
 $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 {

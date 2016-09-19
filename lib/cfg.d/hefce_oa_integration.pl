@@ -115,7 +115,7 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
                         {
                                 #get embargo length
                                 my $len = $emb_time-$pub_time;
-                                $eprint->set_value( 'hoa_emb_len', int($len->months) );
+                                $eprint->set_value( 'hoa_emb_len', sprintf "%.0f", $len->months );
                         }
                 }
                 else
@@ -226,7 +226,7 @@ $c->{hefce_oa}->{calculate_last_compliant_foa_date} = sub {
                 #need pub date to calculate embargo release date
                 return undef unless $eprint->is_set( "hoa_date_pub" );
 
-                my $pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
+		my $pub = $repo->call(["hefce_oa", "handle_possibly_incomplete_date"], $eprint->value( "hoa_date_pub" ), "Y-%m-%d" );
                 my $end = $pub->add_months( $len ); # embargo end
                 $end = $end->add_months( 1 ); #1-month grace period
                 return $end;

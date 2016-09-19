@@ -24,6 +24,13 @@ sub validate_dataobj
 
 	my @problems;
 
+	#show wholly non-compliant records as not being compliant still
+	my $flag = $eprint->value( "hoa_compliant" );
+        if( !( $flag & HefceOA::Const::COMPLIANT ) )
+        {
+                push @problems, $repo->phrase( "Plugin/Screen/EPrint/HefceOA:non_compliant" );
+        }
+
 	for( qw( hoa_ex_dep hoa_ex_acc hoa_ex_tec hoa_ex_oth ) )
 	{
 		if( $eprint->is_set( $_ ) )

@@ -21,9 +21,15 @@ sub output_list
 {
         my( $plugin, %opts ) = @_;
 
-	my @fields = grep { $_->type =~ /^RIOXX2$/ } $plugin->{repository}->dataset( "eprint" )->get_fields;
+	
+	my @fields = ();
+	push @fields, $plugin->{repository}->dataset( "eprint" )->field( "eprintid" );
+	push @fields, grep { $_->type =~ /^RIOXX2$/ } $plugin->{repository}->dataset( "eprint" )->get_fields;
 	$plugin->{ref_cc_fields} = [ map { $_->name } @fields ];
 
+	push @fields, $plugin->{repository}->dataset( "eprint" )->field( "hoa_compliant" );
+
+	
 	print join( ",", map { $plugin->escape_value( EPrints::Utils::tree_to_utf8( $_->render_name ) ) } @fields );
 	print "\n";
        
@@ -41,9 +47,20 @@ sub output_dataobj
 
 	my @row;
 	for( @{ $plugin->{ref_cc_fields} } )
-	{
+	{		
 		push @row, $plugin->escape_value( EPrints::Utils::tree_to_utf8( $dataobj->render_value( $_ ) ) );
 	}
+
+	#print compliance
+	my $compliance = "N";
+        if( $dataobj->value( "hoa_compliant" ) >= 511 )
+        {
+                $compliance = "Y";
+        }
+
+        push @row, $compliance;
+
+
 	return join( ",", @row );
 }
 

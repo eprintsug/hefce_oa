@@ -1,6 +1,28 @@
 #Define what types of items we're interested in
 $c->{hefce_oa}->{item_types} = ['article', 'conference_item'];
 
+#Default method to work out if something is in scope
+#This can be overwritten to handle local field definitions e.g. if an article_type field has been added but
+# only some article_types should be considered. 
+$c->{hefce_oa}->{in_scope} = sub {
+	my( $repo, $eprint ) = @_;
+	
+	my $type = $eprint->value( "type" );
+
+	return 0 if !defined $type;
+	
+	return 1 if $type eq 'article';
+	return 1 if $type eq 'conference_item' && $eprint->exists_and_set( "issn" );
+
+	# we could fall back to old definition, but this would negate the check above for conference items
+	# with an ISSN
+	# return 1 if grep( /^$type$/, @{$repo->config( "hefce_oa", "item_types" )} );
+	
+	# default is out-of-scope
+	return 0;
+};
+
+
 # date of first compliant deposit
 $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 {
@@ -69,10 +91,17 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 	# trigger only applies to repos with hefce_oa plugin enabled
 	return unless $eprint->dataset->has_field( "hoa_compliant" );
 
-	my $type = $eprint->value( "type" );
+	# try new function in config first; fall back to simpler item_types
+	my $in_scope = 0;
+	if( $repo->can_call( "hefce_oa", "in_scope" ) ){
+		$in_scope = $repo->call( [ "hefce_oa", "in_scope" ], $repo, $eprint );
+	} else { 
+		my $type = $eprint->value( "type" );
 
-	unless( defined $type && grep( /^$type$/, @{$repo->config( "hefce_oa", "item_types" )} ) )
-	{		
+		$in_scope = defined $type && grep( /^$type$/, @{$repo->config( "hefce_oa", "item_types" )} );
+	}
+	
+	if( !$in_scope ){
 		$eprint->set_value( "hoa_compliant", undef );
 		return;
 	}

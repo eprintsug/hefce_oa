@@ -100,7 +100,7 @@ $c->{hefce_oa}->{run_test_DEP_TIMING} = sub {
 	return 0 unless $eprint->is_set( "hoa_date_fcd" );
 	
 	my $dep = Time::Piece->strptime( $eprint->value( "hoa_date_fcd" ), "%Y-%m-%d" );
-	my $APR17 = Time::Piece->strptime( "2017-04-01", "%Y-%m-%d" );
+	my $APR18 = Time::Piece->strptime( "2018-04-01", "%Y-%m-%d" );
 
 	# checks based on date of acceptance (if set)
 	if( $eprint->is_set( "hoa_date_acc" ) )
@@ -118,8 +118,8 @@ $c->{hefce_oa}->{run_test_DEP_TIMING} = sub {
 		# deposit is within 3  months of acceptance
 		return 1 if $dep <= $acc->add_months(3); 
 
-		#for pre-April '17, base calculation on pub date
-		if( $acc < $APR17 && $eprint->is_set( "hoa_date_pub" ) )
+		#for pre-April '18, base calculation on pub date
+		if( $acc < $APR18 && $eprint->is_set( "hoa_date_pub" ) )
 		{
 			my $pub;
 			if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
@@ -146,10 +146,10 @@ $c->{hefce_oa}->{run_test_DEP_TIMING} = sub {
 			$pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
 		}
 		
-		#if published date is before 2017-04-01, acceptance date must be too.
+		#if published date is before 2018-04-01, acceptance date must be too.
 		# NB we may need to introduce a lag here - if it normally takes a month to get something published,
-		# we may need to check for 'APR17 + 1 month'
-		if( $pub < $APR17 )
+		# we may need to check for 'APR18 + 1 month'
+		if( $pub < $APR18 )
 		{
 			return 1 if $dep <= $pub->add_months(3);
 		}

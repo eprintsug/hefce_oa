@@ -85,12 +85,12 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 	# trigger only applies to repos with hefce_oa plugin enabled
 	return unless $eprint->dataset->has_field( 'hoa_compliant' );
  	
-        my $doc = $repo->call( [qw( hefce_oa select_document )], $repo, $eprint );
+	my $doc = $repo->call( [qw( hefce_oa select_document )], $repo, $eprint );
 	my $hoa_pub = $eprint->value( 'hoa_date_pub' );
-        if( $doc && $hoa_pub && !$eprint->is_set( "hoa_date_foa" ) )
-        {
+	if( $doc && $hoa_pub && !$eprint->is_set( "hoa_date_foa" ) )
+	{
 		if( $doc->exists_and_set( 'date_embargo' ) )
-                {
+		{
 			my $pub_time;
 			if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
 			{
@@ -108,20 +108,25 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 			}
 			if( !defined( $emb_time ) ) #above call can return undef - fallback to default
 			{
-				$emb_time = Time::Piece->strptime( $doc->value( 'date_embargo' ), "%Y-%m-%d" );
+				# capture errors if date is pre-1900 (!!?)
+				eval {
+					$emb_time = Time::Piece->strptime( $doc->value( 'date_embargo' ), "%Y-%m-%d" );
+				}
+				# if there's an error parsing time, we can't usefully set the hoa_emb_len
+				return if $@;
 			}
 
-                        if( $emb_time > $pub_time ) #embargo date must come after publication date
-                        {
-                                #get embargo length
-                                my $len = $emb_time-$pub_time;
-                                $eprint->set_value( 'hoa_emb_len', sprintf "%.0f", $len->months );
-                        }
-                }
-                else
-                {
-                        $eprint->set_value( 'hoa_emb_len', undef );
-                }
+			if( $emb_time > $pub_time ) #embargo date must come after publication date
+			{
+				#get embargo length
+				my $len = $emb_time-$pub_time;
+				$eprint->set_value( 'hoa_emb_len', sprintf "%.0f", $len->months );
+			}
+		}
+		else
+		{
+			$eprint->set_value( 'hoa_emb_len', undef );
+		}
 
 	}
 }, priority => 250 ); 
@@ -195,7 +200,6 @@ $c->{hefce_oa}->{handle_possibly_incomplete_date} = sub {
 
 	$default_to_start_of_period ||= 0;
 	# complete date - return Time::Piece object
-	return Time::Piece->strptime( $epdate, "%Y-%m-%d" ) if $epdate =~ /^\d{4}\-\d{2}\-\d{2}$/;
 
 	if( $epdate =~ /^\d{4}\-\d{2}$/ )
 	{

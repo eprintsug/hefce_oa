@@ -205,7 +205,8 @@ $c->{hefce_oa}->{handle_possibly_incomplete_date} = sub {
 		eval{
 			$tp = Time::Piece->strptime( $epdate, "%Y-%m-%d" );
 		}
-		return $tp if !($@);
+		return if $@;
+		return $tp;
 	}
 	
 	if( $epdate =~ /^\d{4}\-\d{2}$/ )
@@ -213,13 +214,13 @@ $c->{hefce_oa}->{handle_possibly_incomplete_date} = sub {
 		eval {
 			$tp = Time::Piece->strptime( $epdate, "%Y-%m" ); #defaults to start of month
 		}
-		if( !$@ ){
-			return $tp if $default_to_start_of_period;
+		return if $@;
 		
-			# looks like there's no way to $tp->set_day( $tp->month_last-day ). 
-			# I think this is the least-silly option.!?
-			return Time::Piece->strptime( "$epdate-".$tp->month_last_day, "%Y-%m-%d" );
-		}
+		return $tp if $default_to_start_of_period;
+		
+		# looks like there's no way to $tp->set_day( $tp->month_last-day ). 
+		# I think this is the least-silly option.!?
+		return Time::Piece->strptime( "$epdate-".$tp->month_last_day, "%Y-%m-%d" );
 	}
 
 	# only year supplied - default to start or end of year as flagged
@@ -232,7 +233,8 @@ $c->{hefce_oa}->{handle_possibly_incomplete_date} = sub {
 		eval{
 			$tp = Time::Piece->strptime( "$epdate-$md", "%Y-%m-%d" );
 		}
-		return $tp if !($@);
+		return if $@;
+		return $tp;
 	}
 
 	return undef;

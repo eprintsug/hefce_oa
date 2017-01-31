@@ -195,7 +195,17 @@ $c->{hefce_oa}->{handle_possibly_incomplete_date} = sub {
 
 	$default_to_start_of_period ||= 0;
 	# complete date - return Time::Piece object
-	return Time::Piece->strptime( $epdate, "%Y-%m-%d" ) if $epdate =~ /^\d{4}\-\d{2}\-\d{2}$/;
+	if( $epdate =~ /^0*(\d{2}|\d{4})\-(\d{2})\-(\d{2})$/ )
+        {
+                if( length($1) == 2)
+                {
+                        return Time::Piece->strptime( "$1-$2-$3", "%y-%m-%d" );
+                }
+                elsif( length($1) == 4)
+                {
+                        return Time::Piece->strptime( "$1-$2-$3", "%Y-%m-%d" );
+                }
+        }
 
 	if( $epdate =~ /^\d{4}\-\d{2}$/ )
 	{

@@ -34,7 +34,7 @@
 <epc:phrase ref="hefce_oa:policy:para:19"/>
 </epp:phrase>
 <epp:phrase id="hefce_oa:test_description:DEP_TIMING:eprints">
-The <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong> must be no later than three months after the <strong><epc:phrase ref="eprint_fieldname_hoa_date_acc"/></strong>. If the <strong><epc:phrase ref="eprint_fieldname_hoa_date_acc"/></strong> is before 1st April 2017, <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong> must be no later than three months after the <strong><epc:phrase ref="eprint_fieldname_hoa_date_pub"/></strong>.
+The <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong> must be no later than three months after the <strong><epc:phrase ref="eprint_fieldname_hoa_date_acc"/></strong>. If the <strong><epc:phrase ref="eprint_fieldname_hoa_date_acc"/></strong> is before 1st April 2018, <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong> must be no later than three months after the <strong><epc:phrase ref="eprint_fieldname_hoa_date_pub"/></strong>.
 </epp:phrase>
 
 <epp:phrase id="hefce_oa:test_title:DIS">Discovery</epp:phrase>

@@ -58,7 +58,17 @@ sub output_dataobj
                 $compliance = "Y";
         }
 
-        push @row, $compliance;
+	my $repo = $plugin->{repository};
+    
+    #handle future compliance with an "F"
+	my $flag = $dataobj->value( "hoa_compliant" );
+    if( $flag & HefceOA::Const::DEP &&
+                	$flag & HefceOA::Const::DIS &&
+	                $flag & HefceOA::Const::ACC_EMBARGO &&
+        	        $repo->call( ["hefce_oa", "could_become_ACC_TIMING_compliant"], $repo, $dataobj ) ){
+        $compliance = "F";             
+    }
+    push @row, $compliance;
 
 
 	return join( ",", @row );

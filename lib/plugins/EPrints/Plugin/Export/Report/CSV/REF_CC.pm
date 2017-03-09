@@ -1,4 +1,5 @@
 package EPrints::Plugin::Export::Report::CSV::REF_CC;
+use HefceOA::Const;
 
 use EPrints::Plugin::Export::Report::CSV;
 our @ISA = ( "EPrints::Plugin::Export::Report::CSV" );

@@ -1,5 +1,6 @@
 $c->{plugins}{"Screen::EPrint::HefceOA"}{params}{disable} = 0;
 $c->{plugins}{"Screen::Report::REF_CC"}{params}{disable} = 0;
+$c->{plugins}{"Screen::Report::REF_CC_EX"}{params}{disable} = 0;
 $c->{plugins}{"Screen::Report::REF_CC::2015"}{params}{disable} = 0;
 $c->{plugins}{"Screen::Report::REF_CC::2016"}{params}{disable} = 0;
 $c->{plugins}{"Screen::Report::REF_CC::2017"}{params}{disable} = 0;
@@ -13,6 +14,11 @@ $c->{plugins}{"Screen::Report::REF_CC_EX::2018"}{params}{disable} = 0;
 $c->{plugins}{"Screen::Report::REF_CC_EX::2019"}{params}{disable} = 0;
 $c->{plugins}{"Screen::Report::REF_CC_EX::2020"}{params}{disable} = 0;
 $c->{plugins}{"Export::Report::CSV::REF_CC"}{params}{disable} = 0;
+
+#set which can have a custom search, allowing their filter function to be overwridden
+$c->{plugins}{"Screen::Report::REF_CC"}{params}{custom} = 1;
+$c->{plugins}{"Screen::Report::REF_CC_EX"}{params}{custom} = 1;
+
 
 
 push @{ $c->{user_roles}->{editor} }, qw{ +eprint/hefce_oa };

@@ -1,4 +1,5 @@
 package EPrints::Plugin::Export::Report::CSV::REF_CC;
+use HefceOA::Const;
 
 use EPrints::Plugin::Export::Report::CSV;
 our @ISA = ( "EPrints::Plugin::Export::Report::CSV" );
@@ -50,14 +51,23 @@ sub output_dataobj
 		push @row, $plugin->escape_value( EPrints::Utils::tree_to_utf8( $dataobj->render_value( $_ ) ) );
 	}
 
+	my $repo = $plugin->{repository};
+	my $flag = $dataobj->value( "hoa_compliant" );
+
 	#print compliance
 	my $compliance = "N";
-	if( $dataobj->value( "hoa_compliant" ) >= 511 )
+#        if( $dataobj->value( "hoa_compliant" ) >= 511 )
+        if ( $flag & HefceOA::Const::COMPLIANT )
         {
-               $compliance = "Y";
-        }
-
-        push @row, $compliance;
+                $compliance = "Y";
+        }elsif( $flag & HefceOA::Const::DEP &&
+				$flag & HefceOA::Const::DIS &&
+				$flag & HefceOA::Const::ACC_EMBARGO &&
+				$repo->call( ["hefce_oa", "could_become_ACC_TIMING_compliant"], $repo, $dataobj ) ){
+	    #handle future compliance with an "F"
+		$compliance = "F";             
+    	}
+	push @row, $compliance;
 
 	return join( ",", @row );
 }

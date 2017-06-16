@@ -12,11 +12,53 @@ sub new
 
 	my $self = $class->SUPER::new( %params );
 
-	$self->{datasetid} = 'eprint';
+	$self->{datasetid} = 'archive';
 	$self->{custom_order} = '-title/creators_name';
 	$self->{appears} = [];
 	$self->{report} = 'ref_cc';
 	$self->{disable} = 1;
+
+	$self->{exportfields} = {
+		ref_core => [ qw(
+			eprintid
+			type
+			title
+			abstract
+			creators
+			publisher
+			divisions
+			dates
+			id_number
+			isbn
+			issn
+			official_url						
+		)],
+		ref_rioxx => [ qw(
+			rioxx2_free_to_read
+			rioxx2_license_ref
+			rioxx2_coverage
+			rioxx2_source
+			rioxx2_subject
+			rioxx2_dateAccepted
+			rioxx2_publication_date
+			rioxx2_apc
+			rioxx2_project
+			rioxx2_version
+			rioxx2_version_of_record
+		)],
+		ref_exceptions => [ qw(
+		        hoa_compliant
+                	hoa_ref_pan
+	                hoa_ex_dep
+	                hoa_ex_dep_txt
+	                hoa_ex_acc
+	                hoa_ex_acc_txt
+	                hoa_ex_tec
+	                hoa_ex_tec_txt
+	                hoa_ex_oth
+               		hoa_ex_oth_txt
+		)],
+	};
 
 	return $self;
 }
@@ -68,10 +110,32 @@ sub ajax_eprint
 			summary => EPrints::XML::to_string( $frag ),
 #			grouping => sprintf( "%s", $eprint->value( SOME_FIELD ) ),
 			problems => [ $self->validate_dataobj( $eprint ) ],
+			state => $self->get_state( $eprint ),
 		};
 	});
 
 	print $self->to_json( $json );
+}
+
+#define any custom validation states
+sub get_state
+{
+        my( $self, $eprint ) = @_;
+
+        my $repo = $self->{repository};
+
+        my $flag = $eprint->value( "hoa_compliant" );
+	unless ( $flag & HefceOA::Const::COMPLIANT )
+        {
+        	if( $flag & HefceOA::Const::DEP &&
+                	        $flag & HefceOA::Const::DIS &&
+                        	$flag & HefceOA::Const::ACC_EMBARGO &&
+	                        $repo->call( ["hefce_oa", "could_become_ACC_TIMING_compliant"], $repo, $eprint ) ) #will be compliant in future, nothing administrator can do
+        	{
+	                return "#E19141"; #orange
+        	}
+	}
+	return undef;
 }
 
 

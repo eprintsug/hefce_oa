@@ -44,7 +44,6 @@ sub output_list
 sub output_dataobj
 {
 	my( $plugin, $dataobj ) = @_;
-
 	my @row;
 	for( @{ $plugin->{ref_cc_fields} } )
 	{		
@@ -53,13 +52,12 @@ sub output_dataobj
 
 	#print compliance
 	my $compliance = "N";
-        if( $dataobj->value( "hoa_compliant" ) >= 511 )
+	if( $dataobj->value( "hoa_compliant" ) >= 511 )
         {
-                $compliance = "Y";
+               $compliance = "Y";
         }
 
         push @row, $compliance;
-
 
 	return join( ",", @row );
 }

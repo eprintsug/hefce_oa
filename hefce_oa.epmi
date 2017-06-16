@@ -127,9 +127,9 @@
         <file>
           <filename>lang/en/phrases/hefce_oa.xml</filename>
           <mime_type>inode/symlink</mime_type>
-          <hash>ce6eafb37d8dbf78bdf4594e1f11865c</hash>
+          <hash>d5faba30305404ae905da7693d845f74</hash>
           <hash_type>MD5</hash_type>
-          <filesize>12064</filesize>
+          <filesize>12254</filesize>
         </file>
         <file>
           <filename>lang/en/phrases/hefce_oa_policy.xml</filename>
@@ -148,9 +148,9 @@
         <file>
           <filename>plugins/EPrints/Plugin/Export/Report/CSV/REF_CC.pm</filename>
           <mime_type>inode/symlink</mime_type>
-          <hash>0452aab06fd53880d11770add78d8e86</hash>
+          <hash>0689808e51ed2316ce77c99b39b045e8</hash>
           <hash_type>MD5</hash_type>
-          <filesize>1506</filesize>
+          <filesize>1496</filesize>
         </file>
         <file>
           <filename>plugins/EPrints/Plugin/Screen/EPMC/HefceOA.pm</filename>
@@ -169,9 +169,9 @@
         <file>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC.pm</filename>
           <mime_type>inode/symlink</mime_type>
-          <hash>4204fd9d21443149b20f57695539f3e0</hash>
+          <hash>81dfbacd295ecf4fbde4ae6fad57c646</hash>
           <hash_type>MD5</hash_type>
-          <filesize>2684</filesize>
+          <filesize>4159</filesize>
         </file>
         <file>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2015.pm</filename>
@@ -341,7 +341,7 @@
       <content>coverimage</content>
     </document>
   </documents>
-  <version>1.1.2</version>
+  <version>1.2</version>
   <controller>EPMC::HefceOA</controller>
   <creators>
     <item>

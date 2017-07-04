@@ -36,9 +36,9 @@
         <file>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>845857bf78eaec447c00452e2cd98a37</hash>
+          <hash>6df47b6959ba6809a627bd247112d4a1</hash>
           <hash_type>MD5</hash_type>
-          <filesize>1212</filesize>
+          <filesize>1490</filesize>
         </file>
         <file>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa_fields.pl</filename>
@@ -148,9 +148,9 @@
         <file>
           <filename>plugins/EPrints/Plugin/Export/Report/CSV/REF_CC.pm</filename>
           <mime_type>inode/symlink</mime_type>
-          <hash>0689808e51ed2316ce77c99b39b045e8</hash>
+          <hash>0b7758578764487119c7538e511c7c32</hash>
           <hash_type>MD5</hash_type>
-          <filesize>1496</filesize>
+          <filesize>1938</filesize>
         </file>
         <file>
           <filename>plugins/EPrints/Plugin/Screen/EPMC/HefceOA.pm</filename>

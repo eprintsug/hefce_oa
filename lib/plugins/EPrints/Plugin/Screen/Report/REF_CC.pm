@@ -12,7 +12,8 @@ sub new
 
 	my $self = $class->SUPER::new( %params );
 
-	$self->{datasetid} = 'archive';
+	$self->{datasetid} = 'eprint';
+	$self->{searchdatasetid} = 'archive';
 	$self->{custom_order} = '-title/creators_name';
 	$self->{appears} = [];
 	$self->{report} = 'ref_cc';

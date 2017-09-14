@@ -1,6 +1,20 @@
 #Define what types of items we're interested in
 $c->{hefce_oa}->{item_types} = ['article', 'conference_item'];
 
+$c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
+{
+    my( %args ) = @_;
+    my( $repo, $eprint, $changed ) = @args{qw( repository dataobj changed )};
+
+    if(!$eprint->is_set('hoa_exclude'))
+    {
+        $eprint->set_value('hoa_exclude', 'FALSE');
+    }
+
+    return EP_TRIGGER_OK;
+
+}, priority => 100 );
+
 # date of first compliant deposit
 $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 {

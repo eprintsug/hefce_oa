@@ -18,6 +18,7 @@
         <field ref="hoa_date_pub"/>
     </component>
     -->
+    <component><field ref="hoa_exclude"/></component>
     <component><field ref="hoa_emb_len"/></component>
     <component><field ref="hoa_ref_pan"/></component>
     <component type="Field::Multi">

@@ -19,8 +19,94 @@ $c->{plugins}{"Export::Report::CSV::REF_CC"}{params}{disable} = 0;
 $c->{plugins}{"Screen::Report::REF_CC"}{params}{custom} = 1;
 $c->{plugins}{"Screen::Report::REF_CC_EX"}{params}{custom} = 1;
 
-
-
 push @{ $c->{user_roles}->{editor} }, qw{ +eprint/hefce_oa };
 push @{ $c->{user_roles}->{admin} }, qw{ +eprint/hefce_oa };
 push @{ $c->{user_roles}->{admin} }, qw{ +report/hefce_oa };
+
+#set if embargoed records should appear in report as compliant
+$c->{hefce_oa}->{embargo_as_compliant} = 0;
+
+$c->{hefce_report}->{exportfields} = {
+	ref_core => [ qw(
+        	eprintid
+                documents.content
+                type
+                title
+                abstract
+                creators
+                publisher
+                divisions
+                dates
+                id_number
+                isbn
+                issn
+ 	        official_url                                            
+	)],
+        ref_rioxx => [ qw(
+        	rioxx2_free_to_read
+                rioxx2_license_ref
+                rioxx2_coverage
+                rioxx2_source
+                rioxx2_subject
+                rioxx2_dateAccepted
+                rioxx2_publication_date
+                rioxx2_apc
+                rioxx2_project
+                rioxx2_version
+                rioxx2_version_of_record
+	)],
+        ref_exceptions => [ qw(
+                hoa_compliant
+                hoa_problems
+                hoa_ref_pan
+                hoa_ex_dep
+                hoa_ex_dep_txt
+                hoa_ex_acc
+                hoa_ex_acc_txt
+                hoa_ex_tec
+                hoa_ex_tec_txt
+                hoa_ex_oth
+                hoa_ex_oth_txt
+	)],
+};
+
+$c->{hefce_report}->{exportfield_defaults} = [ qw( eprintid documents.content type title creators dates hoa_compliant hoa_problems ) ];
+
+$c->{hefce_report}->{custom_export} = {
+	hoa_compliant => sub {
+		my( $dataobj, $plugin ) = @_;
+
+                my $compliance = "Compliant";
+
+                my @problems = $plugin->validate_dataobj( $dataobj );
+                if( scalar( @problems ) > 0 )
+                {
+			$compliance = "Not Compliant";
+                }
+                $compliance = "Compliant pending open access" if defined $plugin->get_state( $dataobj );
+                return $compliance;
+	},
+        creators => sub {
+        	my( $dataobj ) = @_;
+
+                my @creator_names;
+                my $creators = $dataobj->get_value( "creators" );
+                foreach my $c ( @{$creators} )
+                {
+                	push @creator_names, EPrints::Utils::make_name_string( $c->{name} );
+	        }
+                return join( ";", @creator_names );
+	},
+        dates => sub {
+		my( $dataobj ) = @_;
+
+                my @date_strings;
+                my $dates = $dataobj->get_value( "dates" );
+                foreach my $d ( @{$dates} )
+                {
+			push @date_strings, $d->{date} . " (" . $d->{date_type} . ")";
+                }
+                return join( ";", @date_strings );
+	},
+};
+

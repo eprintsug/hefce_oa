@@ -17,49 +17,9 @@ sub new
 	$self->{custom_order} = '-title/creators_name';
 	$self->{appears} = [];
 	$self->{report} = 'ref_cc';
+	$self->{sconf} = 'hefce_report';
+	$self->{export_conf} = 'hefce_report';
 	$self->{disable} = 1;
-
-	$self->{exportfields} = {
-		ref_core => [ qw(
-			eprintid
-			type
-			title
-			abstract
-			creators
-			publisher
-			divisions
-			dates
-			id_number
-			isbn
-			issn
-			official_url						
-		)],
-		ref_rioxx => [ qw(
-			rioxx2_free_to_read
-			rioxx2_license_ref
-			rioxx2_coverage
-			rioxx2_source
-			rioxx2_subject
-			rioxx2_dateAccepted
-			rioxx2_publication_date
-			rioxx2_apc
-			rioxx2_project
-			rioxx2_version
-			rioxx2_version_of_record
-		)],
-		ref_exceptions => [ qw(
-		        hoa_compliant
-                	hoa_ref_pan
-	                hoa_ex_dep
-	                hoa_ex_dep_txt
-	                hoa_ex_acc
-	                hoa_ex_acc_txt
-	                hoa_ex_tec
-	                hoa_ex_tec_txt
-	                hoa_ex_oth
-               		hoa_ex_oth_txt
-		)],
-	};
 
 	return $self;
 }
@@ -85,6 +45,7 @@ sub filters
 
 	push @filters, { meta_fields => [ 'type' ], value => $types, match => 'EQ', merge => 'ANY' };
 	push @filters, { meta_fields => [ 'eprint_status' ], value => 'archive', match => 'EX' };
+	push @filters, { meta_fields => [ 'hoa_exclude' ], value => 'FALSE', match => 'EX' };
 
 	return \@filters;
 }
@@ -112,10 +73,26 @@ sub ajax_eprint
 #			grouping => sprintf( "%s", $eprint->value( SOME_FIELD ) ),
 			problems => [ $self->validate_dataobj( $eprint ) ],
 			state => $self->get_state( $eprint ),
+			is_compliant => $self->is_compliant( $eprint ),
 		};
 	});
 
 	print $self->to_json( $json );
+}
+
+sub is_compliant
+{
+	my( $self, $eprint ) = @_;
+
+	my $repo = $self->{repository};
+	if( $repo->config( "hefce_oa", "embargo_as_compliant" ) )
+	{
+		if( $self->get_state( $eprint ) )
+		{
+			return "Y";
+		}
+	}
+	return undef;
 }
 
 #define any custom validation states
@@ -175,6 +152,20 @@ sub validate_dataobj
 	}
 
 	return @problems;
+}
+
+#applies any mandatory filters to a search object - used to enforce certain search criteria, even with a custom report
+sub apply_filters
+{
+	my( $self ) = @_;
+
+	my $ds = $self->repository->dataset( 'eprint' );
+	my $field = $ds->field( 'hoa_exclude' );
+
+	$self->{processor}->{search}->add_field( fields => $field,
+		value => 'FALSE',
+		match => 'EX',
+	);
 }
 
 1;

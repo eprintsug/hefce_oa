@@ -6,6 +6,8 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
     my( %args ) = @_;
     my( $repo, $eprint, $changed ) = @args{qw( repository dataobj changed )};
 
+    return unless $eprint->dataset->has_field( "hoa_exclude" );
+
     if(!$eprint->is_set('hoa_exclude'))
     {
         $eprint->set_value('hoa_exclude', 'FALSE');

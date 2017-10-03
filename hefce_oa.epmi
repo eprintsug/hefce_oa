@@ -22,9 +22,9 @@
         <file>
           <filename>cfg.d/hefce_oa_triggers.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>2a8bf4c35292a262ab77d5ab5f6e10a3</hash>
+          <hash>7f51005b0465bc4dddefdf432b52134d</hash>
           <hash_type>MD5</hash_type>
-          <filesize>3444</filesize>
+          <filesize>3509</filesize>
         </file>
         <file>
           <filename>epm/hefce_oa/bin/hefce_oa_tests</filename>
@@ -348,7 +348,7 @@
       <content>coverimage</content>
     </document>
   </documents>
-  <version>1.3</version>
+  <version>1.3.1</version>
   <controller>EPMC::HefceOA</controller>
   <creators>
     <item>

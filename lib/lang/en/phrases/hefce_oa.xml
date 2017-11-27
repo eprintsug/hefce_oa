@@ -50,6 +50,8 @@
 <epp:phrase id="eprint_fieldopt_hoa_ex_dep_d"><epc:phrase ref="hefce_oa:policy:para:38:d"/></epp:phrase>
 <epp:phrase id="eprint_fieldopt_hoa_ex_dep_e"><epc:phrase ref="hefce_oa:policy:para:38:e"/></epp:phrase>
 <epp:phrase id="eprint_fieldopt_hoa_ex_dep_f"><epc:phrase ref="hefce_oa:policy:para:38:f"/></epp:phrase>
+<epp:phrase id="eprint_fieldopt_hoa_ex_dep_g"><epc:phrase ref="hefce_oa:policy:decisions:para:39:g"/></epp:phrase>
+
 <epp:phrase id="eprint_fieldname_hoa_ex_dep_txt">Explanation</epp:phrase>
 <epp:phrase id="eprint_fieldhelp_hoa_ex_dep_txt"></epp:phrase>
 

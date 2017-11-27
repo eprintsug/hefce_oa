@@ -48,7 +48,7 @@ push @{ $c->{hefce_oa}->{profile} },
 {
     name => "hoa_ex_dep",
     type => "set",
-    options => [qw( a b c d e f )],
+    options => [qw( a b c d e f g )],
     input_style => "medium",
 },
 {

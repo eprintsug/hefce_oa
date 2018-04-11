@@ -8,16 +8,16 @@
         <file>
           <filename>cfg.d/hefce_oa_integration.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>cf6701b02f044930f3ab4c6a0fdf7cb3</hash>
+          <hash>8f94ffdcd3a36a4171184aba2103c045</hash>
           <hash_type>MD5</hash_type>
-          <filesize>9167</filesize>
+          <filesize>9608</filesize>
         </file>
         <file>
           <filename>cfg.d/hefce_oa_tests.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>ae7bcf5d66b58ba68940042e22cf8a1e</hash>
+          <hash>ecdbf62e080d7a875354c7b4c921078d</hash>
           <hash_type>MD5</hash_type>
-          <filesize>6441</filesize>
+          <filesize>6629</filesize>
         </file>
         <file>
           <filename>cfg.d/hefce_oa_triggers.pl</filename>
@@ -36,9 +36,9 @@
         <file>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>1235c79973f9a689f0c04af559a9ee58</hash>
+          <hash>5e7b7650a291a86514e73147535ca23d</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4111</filesize>
+          <filesize>4163</filesize>
         </file>
         <file>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa_fields.pl</filename>
@@ -169,16 +169,16 @@
         <file>
           <filename>plugins/EPrints/Plugin/Screen/EPrint/HefceOA.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>b65b77d08abd3278591bf58ccd794446</hash>
+          <hash>8c59fa3b84545b9269315f7c52095865</hash>
           <hash_type>MD5</hash_type>
-          <filesize>9186</filesize>
+          <filesize>9214</filesize>
         </file>
         <file>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>849a0a870967936e74e1240e30807110</hash>
+          <hash>9a808a80d47e005bd27ba2842ae39513</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4545</filesize>
+          <filesize>4500</filesize>
         </file>
         <file>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2015.pm</filename>
@@ -348,7 +348,7 @@
       <content>coverimage</content>
     </document>
   </documents>
-  <version>1.4</version>
+  <version>1.4.2</version>
   <controller>EPMC::HefceOA</controller>
   <creators>
     <item>

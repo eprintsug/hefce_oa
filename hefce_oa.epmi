@@ -385,9 +385,9 @@
           <datasetid>document</datasetid>
           <filename>static/images/epm/icon_ref_cc.png</filename>
           <mime_type>image/png</mime_type>
-          <hash>fc6548808cbcf69a80379aee834914d5</hash>
+          <hash>6aa017a7e7c12c8395953c23dfcda369</hash>
           <hash_type>MD5</hash_type>
-          <filesize>30286</filesize>
+          <filesize>5182</filesize>
         </file>
       </files>
       <format>image</format>
@@ -395,7 +395,7 @@
       <content>coverimage</content>
     </document>
   </documents>
-  <version>1.3.1</version>
+  <version>1.4.2</version>
   <controller>EPMC::HefceOA</controller>
   <creators>
     <item>

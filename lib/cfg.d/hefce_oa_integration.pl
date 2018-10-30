@@ -60,19 +60,30 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 	}
 	if( $eprint->exists_and_set( 'rioxx2_publication_date' ) )
 	{
-		$pub_date = $eprint->value( 'rioxx2_publication_date' );
+		my $rioxx_pub = $eprint->value( 'rioxx2_publication_date' );
+		if( $rioxx_pub =~ /^\d{4}-\d{2}-\d{2}$/ ) #check rioxx override is valid date format
+		{
+			$pub_date = $eprint->value( 'rioxx2_publication_date' );
+		}
 	}
 
 	# now set the values - date of acceptance
-	$eprint->set_value( 'hoa_date_acc', $acc_date ) if defined $acc_date;
+	my $acc_year = substr $acc_date, 0, 4 if defined $acc_date; #ensure year is post 1900 to prevent Time::Piece crash
+	if( defined $acc_date && $acc_year >= 1900 )
+	{
+		$eprint->set_value( 'hoa_date_acc', $acc_date );
+	}
+	
 	#prefer a published_online date
 	if( defined $pub_online_date )
-	{
-		$eprint->set_value( 'hoa_date_pub', $pub_online_date );
+	{	
+		my $pub_year = substr $pub_online_date, 0, 4;
+		$eprint->set_value( 'hoa_date_pub', $pub_online_date ) if $pub_year >= 1900;
 	}
 	elsif( defined $pub_date ) #but use a published date if that's not available.
 	{
-		$eprint->set_value( 'hoa_date_pub', $pub_date );
+		my $pub_year = substr $pub_date, 0, 4;
+		$eprint->set_value( 'hoa_date_pub', $pub_date ) if $pub_year >= 1900;
 	}
 }, priority => 100 ); # needs to be called before the compliance flag is set
 

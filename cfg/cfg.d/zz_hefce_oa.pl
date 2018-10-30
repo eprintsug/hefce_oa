@@ -83,7 +83,12 @@ $c->{hefce_report}->{custom_export} = {
                 {
 			$compliance = "Not Compliant";
                 }
-                $compliance = "Compliant pending open access" if defined $plugin->get_state( $dataobj );
+
+		my $state = $plugin->get_state( $dataobj );
+		if( defined $state && $state eq "#E19141" )
+		{
+                	$compliance = "Compliant pending open access";
+		}
                 return $compliance;
 	},
         creators => sub {

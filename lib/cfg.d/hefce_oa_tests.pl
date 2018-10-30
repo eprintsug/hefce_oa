@@ -101,7 +101,7 @@ $c->{hefce_oa}->{run_test_DEP_TIMING} = sub {
 	
 	my $dep = Time::Piece->strptime( $eprint->value( "hoa_date_fcd" ), "%Y-%m-%d" );
 	my $APR18 = Time::Piece->strptime( "2018-04-01", "%Y-%m-%d" );
-    my $APR16 = Time::Piece->strptime( "2016-04-01", "%Y-%m-%d" );
+    	my $APR16 = Time::Piece->strptime( "2016-04-01", "%Y-%m-%d" );
 
 	# checks based on date of acceptance (if set)
 	if( $eprint->is_set( "hoa_date_acc" ) )
@@ -149,10 +149,7 @@ $c->{hefce_oa}->{run_test_DEP_TIMING} = sub {
 		{
 			$pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
 		}
-		
-        #Published before Apr 1st 2016, compliant as out of OA policy scope
-        return 1 if $pub < $APR16;
-
+	    
 		#if published date is before 2018-04-01, acceptance date must be too.
 		# NB we may need to introduce a lag here - if it normally takes a month to get something published,
 		# we may need to check for 'APR18 + 1 month'

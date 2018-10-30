@@ -15,6 +15,11 @@ $c->{hefce_oa}->{run_test} = sub {
 $c->{hefce_oa}->{run_test_COMPLIANT} = sub {
     my( $repo, $eprint, $flag ) = @_;
 
+	if( $repo->can_call( "hefce_oa", "run_test_OUT_OF_SCOPE" ) )
+	{
+		return 1 if($repo->call( [ "hefce_oa", "run_test_OUT_OF_SCOPE" ], $repo, $eprint ));
+	}
+
     return 1 if $flag & HefceOA::Const::EX_DEP;
 
     return 1 if
@@ -101,7 +106,6 @@ $c->{hefce_oa}->{run_test_DEP_TIMING} = sub {
 	
 	my $dep = Time::Piece->strptime( $eprint->value( "hoa_date_fcd" ), "%Y-%m-%d" );
 	my $APR18 = Time::Piece->strptime( "2018-04-01", "%Y-%m-%d" );
-    	my $APR16 = Time::Piece->strptime( "2016-04-01", "%Y-%m-%d" );
 
 	# checks based on date of acceptance (if set)
 	if( $eprint->is_set( "hoa_date_acc" ) )
@@ -116,9 +120,6 @@ $c->{hefce_oa}->{run_test_DEP_TIMING} = sub {
 			$acc = Time::Piece->strptime( $eprint->value( "hoa_date_acc" ), "%Y-%m-%d" );
 		}
 	
-        #Acceptance is before Apr 1st 2016, compliant as out of OA policy scope
-        return 1 if $acc < $APR16;
-
 		# deposit is within 3  months of acceptance
 		return 1 if $dep <= $acc->add_months(3); 
 
@@ -149,7 +150,7 @@ $c->{hefce_oa}->{run_test_DEP_TIMING} = sub {
 		{
 			$pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
 		}
-	    
+		
 		#if published date is before 2018-04-01, acceptance date must be too.
 		# NB we may need to introduce a lag here - if it normally takes a month to get something published,
 		# we may need to check for 'APR18 + 1 month'
@@ -246,3 +247,46 @@ $c->{hefce_oa}->{could_become_ACC_TIMING_compliant} = sub {
 
         return 0;
 };
+
+$c->{hefce_oa}->{run_test_OUT_OF_SCOPE} = sub {
+
+	my( $repo, $eprint ) = @_;
+
+	my $APR16 = Time::Piece->strptime( "2016-04-01", "%Y-%m-%d" );
+	
+	# checks based on date of acceptance (if set)
+	if( $eprint->is_set( "hoa_date_acc" ) )
+	{
+		my $acc;
+		if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+		{
+			$acc = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_acc" ) );
+		}
+		if( !defined( $acc ) ) #above call can return undef - fallback to default
+		{
+			$acc = Time::Piece->strptime( $eprint->value( "hoa_date_acc" ), "%Y-%m-%d" );
+		}
+		#Acceptance is before Apr 1st 2016, compliant as out of OA policy scope
+		return 1 if $acc < $APR16;
+	}
+	
+	if( $eprint->is_set( "hoa_date_pub" ) )
+	{
+		my $pub;
+		if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+		{
+			$pub = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_pub" ) );
+		}
+		if( !defined( $pub ) ) #above call can return undef - fallback to default
+		{
+			$pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
+		}
+		
+        	#Published before Apr 1st 2016, compliant as out of OA policy scope
+       	 	return 1 if $pub < $APR16;
+	}
+
+	return 0;
+}
+
+

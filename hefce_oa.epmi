@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <epm xmlns='http://eprints.org/ep2/data/2.0' id='http://192.168.23.142/id/epm/hefce_oa'>
   <epmid>hefce_oa</epmid>
-  <uri>http://git.dev.ac.uk/id/epm/hefce_oa</uri>
+  <uri>http://192.168.23.142/id/epm/hefce_oa</uri>
   <documents>
     <document>
       <files>
@@ -33,9 +33,9 @@
           <datasetid>document</datasetid>
           <filename>static/images/epm/icon_ref_cc.png</filename>
           <mime_type>image/png</mime_type>
-          <hash>fc6548808cbcf69a80379aee834914d5</hash>
+          <hash>6aa017a7e7c12c8395953c23dfcda369</hash>
           <hash_type>MD5</hash_type>
-          <filesize>30286</filesize>
+          <filesize>5182</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -97,9 +97,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>dda8bed3a3b0e391f67ba5409dd4de4c</hash>
+          <hash>bc08b30e31f04cccbfe8fc41d4687aad</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4212</filesize>
+          <filesize>4501</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -241,17 +241,17 @@
           <datasetid>document</datasetid>
           <filename>cfg.d/hefce_oa_tests.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>1aa96af0695427fccc44273ddfd799d8</hash>
+          <hash>60d91807a1c3a29c2ecfbfff928078b1</hash>
           <hash_type>MD5</hash_type>
-          <filesize>6737</filesize>
+          <filesize>7856</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
           <filename>cfg.d/hefce_oa_integration.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>cf6701b02f044930f3ab4c6a0fdf7cb3</hash>
+          <hash>8f94ffdcd3a36a4171184aba2103c045</hash>
           <hash_type>MD5</hash_type>
-          <filesize>9167</filesize>
+          <filesize>9608</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -361,9 +361,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>1da721556003991135b9112ffa23479c</hash>
+          <hash>5e7b7650a291a86514e73147535ca23d</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4103</filesize>
+          <filesize>4163</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -395,7 +395,7 @@
       <content>coverimage</content>
     </document>
   </documents>
-  <version>1.4.2</version>
+  <version>1.4.3</version>
   <controller>EPMC::HefceOA</controller>
   <creators>
     <item>
@@ -420,7 +420,7 @@
       <id>j.salter@leeds.ac.uk</id>
     </item>
   </creators>
-  <datestamp>2018-10-05 07:49:55</datestamp>
+  <datestamp>2018-10-30 08:43:25</datestamp>
   <title>REF Compliance Checker for EPrints</title>
   <description>This plugin helps your institution comply with the Open Access policy of the UK HE Funding Bodies.</description>
   <home_page>http://github.com/eprintsug/hefce_oa</home_page>

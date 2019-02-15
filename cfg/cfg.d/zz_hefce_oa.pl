@@ -75,7 +75,7 @@ $c->{hefce_report}->{exportfield_defaults} = [ qw( eprintid documents.content ty
 
 $c->{hefce_report}->{custom_export} = {
         hoa_compliant => sub {
-		my( $dataobj ) = @_;
+		my( $dataobj, $plugin ) = @_;
 
                 my $compliance = "Compliant";
 
@@ -90,8 +90,6 @@ $c->{hefce_report}->{custom_export} = {
                 {
                         return "Out of scope (Pre April 2016)";
                 }
-
-                my $plugin = EPrints::Plugin::Screen::Report::REF_CC->new;
 
                 my @problems = $plugin->validate_dataobj( $dataobj );
                 if( scalar( @problems ) > 0 )

@@ -99,7 +99,7 @@ sub is_compliant
 sub get_state
 {
         my( $self, $eprint ) = @_;
-	my $repo = $self->{repository};
+	my $repo = $eprint->repository;
 
         my $flag = $eprint->value( "hoa_compliant" );
 	unless ( $flag & HefceOA::Const::COMPLIANT )
@@ -114,17 +114,12 @@ sub get_state
 	}
 
 
-	#return blue if compliance not relevant
-	if( $eprint->is_set( "hoa_date_acc" ) )
-	{
-		my $acc = Time::Piece->strptime( $eprint->value( "hoa_date_acc" ), "%Y-%m-%d" );
-		my $APR16 = Time::Piece->strptime( "2016-04-01", "%Y-%m-%d " );
-		if( $acc < $APR16 )
-		{
-			return "#1F73C7"; #blue
-		}
+	#return grey if out of scope
+	my $out_of_scope = $repo->call( [ "hefce_oa", "OUT_OF_SCOPE_reason" ], $repo, $eprint );
+        if( $out_of_scope )
+        {
+		return "#A9A9A9"; #grey
 	}
-
 	return undef;
 }
 

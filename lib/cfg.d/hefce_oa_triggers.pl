@@ -106,7 +106,7 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 		EX_DEP
 		EX_ACC
 		EX_TEC
-		EX_OTH
+		EX_FUR
 		EX
 		COMPLIANT
 	))

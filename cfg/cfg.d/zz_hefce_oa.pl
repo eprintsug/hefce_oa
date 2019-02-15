@@ -35,6 +35,7 @@ $c->{hefce_report}->{exportfields} = {
                 abstract
                 creators
                 publisher
+		publication
                 divisions
                 dates
                 id_number
@@ -73,24 +74,38 @@ $c->{hefce_report}->{exportfields} = {
 $c->{hefce_report}->{exportfield_defaults} = [ qw( eprintid documents.content type title creators dates hoa_compliant hoa_problems ) ];
 
 $c->{hefce_report}->{custom_export} = {
-	hoa_compliant => sub {
-		my( $dataobj, $plugin ) = @_;
+        hoa_compliant => sub {
+		my( $dataobj ) = @_;
 
                 my $compliance = "Compliant";
+
+                my $repo = $dataobj->repository;
+
+                my $out_of_scope = $repo->call( [ "hefce_oa", "OUT_OF_SCOPE_reason" ], $repo, $dataobj );
+                if( $out_of_scope eq "gold" )
+                {
+                        return "Out of scope (Gold OA)";
+                }
+                elsif( $out_of_scope eq "acc" || $out_of_scope eq "pub" )
+                {
+                        return "Out of scope (Pre April 2016)";
+                }
+
+                my $plugin = EPrints::Plugin::Screen::Report::REF_CC->new;
 
                 my @problems = $plugin->validate_dataobj( $dataobj );
                 if( scalar( @problems ) > 0 )
                 {
-			$compliance = "Not Compliant";
+                        $compliance = "Not Compliant";
                 }
 
-		my $state = $plugin->get_state( $dataobj );
-		if( defined $state && $state eq "#E19141" )
-		{
-                	$compliance = "Compliant pending open access";
-		}
+                my $state = $plugin->get_state( $dataobj );
+                if( defined $state && $state eq "#E19141" )
+                {
+                        $compliance = "Compliant pending open access";
+                }
                 return $compliance;
-	},
+        },
         creators => sub {
         	my( $dataobj ) = @_;
 

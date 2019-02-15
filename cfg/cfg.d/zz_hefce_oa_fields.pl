@@ -48,7 +48,7 @@ push @{ $c->{hefce_oa}->{profile} },
 {
     name => "hoa_ex_dep",
     type => "set",
-    options => [qw( a b c d e f g )],
+    options => [qw( a b c d e )],
     input_style => "medium",
 },
 {
@@ -80,7 +80,19 @@ push @{ $c->{hefce_oa}->{profile} },
     type => "longtext",
 },
 
-# other exceptions
+# further exceptions
+{
+    name => "hoa_ex_fur",
+    type => "set",
+    options => [qw( a b )],
+    input_style => "medium",
+},
+{
+    name => "hoa_ex_fur_txt",
+    type => "longtext",
+},
+
+# other exceptions - now redundant but used for mapping over values
 {
     name => "hoa_ex_oth",
     type => "boolean",
@@ -102,6 +114,13 @@ push @{ $c->{hefce_oa}->{profile} },
     name => 'hoa_exclude',
     type => 'boolean',
 },
+
+#gold OA option
+{
+    name => 'hoa_gold',
+    type => 'boolean',
+},
+
 
 #virtual field for report exports
 {

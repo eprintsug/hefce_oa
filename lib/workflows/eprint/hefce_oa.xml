@@ -19,6 +19,7 @@
     </component>
     -->
     <component><field ref="hoa_exclude"/></component>
+    <component><field ref="hoa_gold"/></component>
     <component><field ref="hoa_emb_len"/></component>
     <component><field ref="hoa_ref_pan"/></component>
     <component type="Field::Multi">
@@ -37,6 +38,11 @@
         <field ref="hoa_ex_tec_txt"/>
     </component>
     <component type="Field::Multi">
+        <title>Further Exceptions</title>
+        <field ref="hoa_ex_fur"/>
+        <field ref="hoa_ex_fur_txt"/>
+    </component>
+    <!--<component type="Field::Multi">
         <title>Other Exceptions</title>
         <field ref="hoa_ex_oth"/>
         <epc:choose>
@@ -47,7 +53,7 @@
                 <field ref="hoa_ex_oth_txt"/>
             </epc:otherwise>
         </epc:choose>
-    </component>
+    </component>-->
 </stage>
 
 </workflow>

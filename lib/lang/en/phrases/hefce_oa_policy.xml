@@ -4,10 +4,53 @@
 
 <!-- the policy document used to derive these phrases -->
 <epp:phrase id="hefce_oa:policy_ref">
-<a href="http://www.hefce.ac.uk/media/HEFCE,2014/Content/Pubs/2014/201407/HEFCE2014_07_updated%20July%202015.pdf">Policy for open access in the post-2014 Research Excellence Framework (Updated July 2015)</a>
+<a href="https://www.ref.ac.uk/media/1092/ref_guidance_on_submissions.pdf" target="_blank">REF2019/01 Guidance on submissions</a>
 </epp:phrase>
 
-<epp:phrase id="hefce_oa:policy:para:1">
+<epp:phrase id="hefce_oa:policy:para:236">
+236. The output must be deposited within the repository within a specified timeframe,
+determined by the date of acceptance:
+<p><strong>a. Outputs accepted for publication from the 1 April 2016 to 31 March 2018.</strong>
+The output must have been deposited as soon after the point of acceptance as
+possible, and no later than three months after the date of publication.</p>
+<p><strong>b. Outputs accepted for publication from the 1 April 2018 to 31 December 2020.</strong>
+The output must have been deposited as soon after the point of acceptance as
+possible, and no later than three months after this date.</p> 
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:237">
+237. The output must have been deposited as the author’s accepted manuscript. Where
+the published ‘version of record’ is available for deposit within the required timeframe,
+and where the journal or conference publisher permits it, the ‘version of record’ may
+be deposited instead of the accepted manuscript.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:241">
+241. The output must be presented in a way that allows it to be discovered by readers and
+by automated tools such as search engines. The discovery requirements should typically be
+fulfilled through the storage and open presentation of a bibliographic or metadata record in
+the repository. Once discoverable, the output should remain so.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:249">
+249. The routes to determine the timing of compliance with the access requirements are set
+out below:
+<p><strong>a. Route 1: For outputs deposited with no or ‘zero’ embargo.</strong> Where the output
+has no or a ‘zero’ embargo period it must meet the access requirements as soon as
+possible and no later than one month after deposit.</p>
+<p><strong>b. Route 2: For outputs deposited under embargo.</strong> Where the output is deposited
+under embargo, it must meet the access requirements as soon as possible and no
+later than one month after the end of the embargo period. The embargo period
+typically begins at the point of first publication (including ‘early online’ publication).</p> 
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:policy:para:250">
+250. Embargo periods should not exceed the following maxima:
+<p>a. 12 months for Main Panel A and Main Panel B.</p>
+<p>b. 24 months for Main Panel C and Main Panel D.</p>
+</epp:phrase>
+
+<!--<epp:phrase id="hefce_oa:policy:para:1">
 1. This document sets out the details of a requirement that certain research outputs
 should be made open-access to be eligible for submission to the next Research
 Excellence Framework (REF). This requirement will apply to journal articles and
@@ -460,6 +503,6 @@ preservation, aggregation and text-mining.
 <epp:phrase id="hefce_oa:policy:footnote:10">
 10 The information and audit requirements document can be found under ‘Technical resources’ at
 www.hefce.ac.uk/rsrch/oa/Policy/
-</epp:phrase>
+</epp:phrase>-->
 
 </epp:phrases>

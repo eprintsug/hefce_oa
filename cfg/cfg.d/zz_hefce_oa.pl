@@ -128,3 +128,41 @@ $c->{hefce_report}->{custom_export} = {
 	},
 };
 
+####################################################
+# Trigger to map exceptions from old to new values #
+# Deposit exception (g) --> Further exception (b)  #
+# Deposit exception (f) --> Gold OA (hoa_gold)     #
+# Other exception --> Further exception (a)        #
+####################################################
+$c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
+{
+	my( %args ) = @_;
+	my( $repo, $eprint, $changed ) = @args{qw( repository dataobj changed )};
+
+	# Deposit exception (g) --> Further exception (b)
+	if( ( $eprint->is_set( "hoa_ex_dep" ) && $eprint->get_value( "hoa_ex_dep" ) eq "g" ) ||
+   		( exists $changed->{hoa_ex_dep} && $changed->{hoa_ex_dep} eq "g" ) )
+	{
+		$eprint->set_value( "hoa_ex_fur", "b" );
+	}
+
+	# Deposit exception (f) --> Gold OA (hoa_gold)
+	if( ( $eprint->is_set( "hoa_ex_dep" ) && $eprint->get_value( "hoa_ex_dep" ) eq "f" ) ||
+   		( exists $changed->{hoa_ex_dep} && $changed->{hoa_ex_dep} eq "f" ) )
+	{
+		$eprint->set_value( "hoa_gold", "TRUE" );
+	}	
+
+	# Other exception --> Further exception (a)
+	if( ( $eprint->is_set( "hoa_ex_oth" ) && $eprint->get_value( "hoa_ex_oth" ) eq "TRUE" ) ||
+   		( exists $changed->{hoa_ex_oth} && $changed->{hoa_ex_oth} eq "TRUE" ) )
+	{
+		$eprint->set_value( "hoa_ex_fur", "a" );
+		if( $eprint->is_set( "hoa_ex_oth_txt" ) )
+		{
+			$eprint->set_value( "hoa_ex_fur_txt", $eprint->get_value( "hoa_ex_oth_txt" ) );
+		}
+	}
+	
+}, priority => 50 );
+

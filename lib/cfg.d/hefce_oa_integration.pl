@@ -150,10 +150,17 @@ $c->{hefce_oa}->{select_document} = sub {
         # no docs?
         return unless scalar @docs;
 
-	# @possible_docs meet 'content' selection criteria - accepted or published.
-	my @possible_docs = grep { $_->is_set( "content") && 
-					( $_->value( "content" ) eq "published" || $_->value( "content" ) eq "accepted" )
-				 } @docs;
+	# @possible_docs meet 'content' selection criteria - by default accepted or published, but can now be 
+	# overridden in config. See triggers file.
+	my $good_content = $repo->config( "hefce_oa", "document_content" ) || [ qw/ accepted published / ];
+	my @possible_docs = grep {
+		my $doc = $_;
+		$doc->is_set( "content" ) && 
+			grep {
+				my $content = $doc->value( "content" );
+				/^$content$/; 
+			} @$good_content;
+	} @docs;
 
 	return unless scalar @possible_docs;
 
@@ -165,6 +172,12 @@ $c->{hefce_oa}->{select_document} = sub {
                 published => 1,
                 accepted => 2,               
         );
+	# the final 'spaceship sort'  below will prefer an undef value over a set one - which might 
+	# not be expected (I realise this will be a very niche case)
+	foreach( @$good_content ){
+		next if defined $pref{$_};
+		$pref{$_} = 10; # less preferred than standard options
+	}
 
 	# this sort staement might be slow when dealing with lots of documents.
 	# we've already pared the array down to only accepted/published versions.

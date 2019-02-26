@@ -1,5 +1,7 @@
 #Define what types of items we're interested in
 $c->{hefce_oa}->{item_types} = ['article', 'conference_item'];
+# Define which document versions are 'good'
+$c->{hefce_oa}->{document_content} = ['published', 'accepted'];
 
 $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 {
@@ -32,9 +34,10 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 	for( $eprint->get_all_documents )
 	{
 		next unless $_->is_set( "content" );
-		next unless $_->value( "content" ) eq "accepted" || $_->value( "content" ) eq "published";
+		my $content = $_->value( "content" );
+		next unless grep( /^$content$/, @{$repo->config( "hefce_oa", "document_content" )});
     		$eprint->set_value( "hoa_date_fcd", EPrints::Time::get_iso_date() );
-    		$eprint->set_value( "hoa_version_fcd", $_->value( "content" ) eq "accepted" ? "AM" : "VoR" );
+    		$eprint->set_value( "hoa_version_fcd", $content eq "published" ? "VoR" : "AM" );
 	}
 }, priority => 100 );
 
@@ -53,7 +56,8 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 	for( $eprint->get_all_documents )
 	{
 		next unless $_->is_set( "content" );
-		next unless $_->value( "content" ) eq "accepted" || $_->value( "content" ) eq "published";
+		my $content = $_->value( "content" );
+		next unless grep( /^$content$/, @{$repo->config( "hefce_oa", "document_content" )} );
 		next unless $_->is_public;
     		$eprint->set_value( "hoa_date_foa", EPrints::Time::get_iso_date() );
 	}

@@ -55,10 +55,14 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 		next unless $_->is_set( "content" );
 		next unless $_->value( "content" ) eq "accepted" || $_->value( "content" ) eq "published";
 		next unless $_->is_public;
-    		$eprint->set_value( "hoa_date_foa", EPrints::Time::get_iso_date() );
+		# NB $changed has the *old* values in.
+		$eprint->set_value( "hoa_date_foa", defined $changed->{'hoa_date_foa'} ? $changed->{'hoa_date_foa'} : EPrints::Time::get_iso_date() );
 	}
 }, priority => 200 );
 
+# Sometimes a document is open-access fleetingly.
+# This trigger now incorporates a 'foa_retraction_period' reckoning, based on a setting
+# in the repository configuration. See:  zz_hefce_oa.pl
 $c->add_dataset_trigger( 'document', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 {
 	my( %args ) = @_; 
@@ -67,14 +71,23 @@ $c->add_dataset_trigger( 'document', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, s
 	# trigger only applies to repos with hefce_oa plugin enabled
 	return unless $doc->parent->dataset->has_field( "hoa_compliant" );
 
-	return unless $doc->is_public;
-	return if $doc->parent->is_set( "hoa_date_foa" );
+	if( $doc->is_public )
+	{
+		return if $doc->parent->is_set( "hoa_date_foa" );
+	}
+	else
+	{
+		return unless $doc->parent->is_set( "hoa_date_foa" );
+		return unless $repo->can_call( "hefce_oa", "commit_in_foa_retraction_period" );
+
+		return unless $repo->call( [ "hefce_oa", "commit_in_foa_retraction_period" ], $repo, $doc->parent->value( "hoa_date_foa" ) );
+		$doc->parent->set_value( "hoa_date_foa", undef );
+	}
 
 	# make sure eprint->commit calls triggers..
 	# see https://github.com/eprintsug/hefce_oa/issues/19
 	$doc->parent->{changed}->{hoa_update_ep}++;
 }, priority => 100 );
-
 
 # set compliance flag
 $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub

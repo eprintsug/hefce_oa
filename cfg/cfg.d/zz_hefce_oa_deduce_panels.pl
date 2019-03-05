@@ -33,7 +33,7 @@ $c->{hefce_oa}->{deduce_panel} = sub {
 	foreach my $subj ( @{$eprint->get_value( 'divisions' )} )
 	{
 # check if we are defined in the panels hash
-		if( defined $iau_panels->{$subj} ){
+		if( defined $div_panels->{$subj} ){
 			$panels{$subj} = $div_panels->{$subj};
 			next;
 		}

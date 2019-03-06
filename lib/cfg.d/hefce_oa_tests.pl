@@ -267,8 +267,7 @@ $c->{hefce_oa}->{could_become_ACC_TIMING_compliant} = sub {
 $c->{hefce_oa}->{OUT_OF_SCOPE_reason} = sub {
 
 	my( $repo, $eprint ) = @_;
-
-	if( $eprint->is_set( "hoa_gold" ) )
+	if( $eprint->is_set( "hoa_gold" ) && $eprint->get_value( "hoa_gold" ) eq "TRUE" )
 	{
 		return "gold";
 	}

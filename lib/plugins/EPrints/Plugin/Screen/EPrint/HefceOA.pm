@@ -214,6 +214,15 @@ sub render_data
 
 		my $td = $repo->xml->create_element( "td", class => "ep_row" );
 		$td->appendChild( $eprint->is_set( $field ) ? $eprint->render_value( $field ) : $self->html_phrase( "data:unknown" ) );
+
+		if( $field eq "hoa_ref_pan" && !$eprint->is_set( $field ) && $repo->can_call( 'hefce_oa', 'deduce_panel' ) )
+		{
+			my $deduced_panel = $repo->call( [ 'hefce_oa', 'deduce_panel' ], $eprint );
+			if( defined $deduced_panel )
+			{
+				$td->appendChild( $self->html_phrase( "data:deduced_panel", panel => $repo->make_text( $deduced_panel ) ) );
+			}
+		}
 		$tr->appendChild( $td );
 	}
 

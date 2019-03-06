@@ -170,6 +170,7 @@ as part of our more detailed work to develop the post-2014 REF.
 
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:data:title">Data used to check compliance</epp:phrase>
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:data:unknown">?</epp:phrase>
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:data:deduced_panel"> (deduced panel: <epc:pin name="panel"/>)</epp:phrase>
 
 <!-- Incomplete dates -->
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_incomplete_dates">The following fields have incomplete dates. Incomplete dates may lead to inaccurate reporting of compliance.<ul><epc:pin name="dates"/></ul></epp:phrase>

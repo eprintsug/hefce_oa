@@ -8,23 +8,23 @@
         <file>
           <filename>cfg.d/hefce_oa_integration.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>1eb939588a3611c3fbed0dd7c74a6642</hash>
+          <hash>2412d69643c541b8b55e9e4e7112df17</hash>
           <hash_type>MD5</hash_type>
-          <filesize>9782</filesize>
+          <filesize>10252</filesize>
         </file>
         <file>
           <filename>cfg.d/hefce_oa_tests.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>a3726072c766235f0cb169725c207488</hash>
+          <hash>59f3e4629fd8da574c327f1bc51fbe07</hash>
           <hash_type>MD5</hash_type>
-          <filesize>8322</filesize>
+          <filesize>8535</filesize>
         </file>
         <file>
           <filename>cfg.d/hefce_oa_triggers.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>aa4918dac0f060ca746f16d4c8f9f0c3</hash>
+          <hash>cc3af5ed985cdea8881bb7f6410dafe4</hash>
           <hash_type>MD5</hash_type>
-          <filesize>3509</filesize>
+          <filesize>4298</filesize>
         </file>
         <file>
           <filename>epm/hefce_oa/bin/hefce_oa_tests</filename>
@@ -43,9 +43,16 @@
         <file>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>0d6ccb310e7d68f39c3050fe1014ed21</hash>
+          <hash>c8ad3a1fcbfb63865db8a90893029415</hash>
           <hash_type>MD5</hash_type>
-          <filesize>6190</filesize>
+          <filesize>7590</filesize>
+        </file>
+        <file>
+          <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa_deduce_panels.pl</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>788dd14a7eea68a2a16ed92790e10050</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>2244</filesize>
         </file>
         <file>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa_fields.pl</filename>
@@ -141,9 +148,9 @@
         <file>
           <filename>lang/en/phrases/hefce_oa.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>f32230b404a7db3c3854e8cdec0bf836</hash>
+          <hash>a68c7db0d1127c3b5ee10c4fab38a1ba</hash>
           <hash_type>MD5</hash_type>
-          <filesize>15698</filesize>
+          <filesize>15818</filesize>
         </file>
         <file>
           <filename>lang/en/phrases/hefce_oa_policy.xml</filename>
@@ -176,9 +183,9 @@
         <file>
           <filename>plugins/EPrints/Plugin/Screen/EPrint/HefceOA.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>e7145ce860c22186fa8b18d831dd94ec</hash>
+          <hash>98246668c98966acdad3154cfada53ef</hash>
           <hash_type>MD5</hash_type>
-          <filesize>10816</filesize>
+          <filesize>11170</filesize>
         </file>
         <file>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC.pm</filename>
@@ -404,6 +411,6 @@
   <datestamp>2018-10-30 08:43:25</datestamp>
   <title>REF Compliance Checker for EPrints</title>
   <description>This plugin helps your institution comply with the Open Access policy of the UK HE Funding Bodies.</description>
-  <home_page>http://github.com/eprintsug/hefce_oa</home_page>
+  <home_page>http://github.com/eprints/hefce_oa</home_page>
   <icon>images/epm/icon_ref_cc.png</icon>
 </epm>

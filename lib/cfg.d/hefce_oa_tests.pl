@@ -231,10 +231,10 @@ $c->{hefce_oa}->{run_test_ACC_EMBARGO} = sub {
 	my $len = $eprint->value( "hoa_emb_len" ) || 0;
 
 	my $pan = $eprint->value( "hoa_ref_pan" );
-    if( !defined $pan && $repo->can_call( 'hefce_oa', 'deduce_panel' ) )
-    {
-        $pan = $repo->call( [ 'hefce_oa', 'deduce_panel' ], $eprint );
-    }
+	if( !defined $pan && $repo->can_call( 'hefce_oa', 'deduce_panel' ) )
+	{
+		$pan = $repo->call( [ 'hefce_oa', 'deduce_panel' ], $eprint );
+	}
 
 	my $max = ( defined $pan && $pan eq "AB" ) ? 12 : 24;
 

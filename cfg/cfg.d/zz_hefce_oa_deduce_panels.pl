@@ -21,7 +21,8 @@ $c->{hefce_oa}->{panel_deduction_map} = {
 };
 
 
-$c->{hefce_oa}->{deduce_panel} = sub {
+$c->{hefce_oa}->{deduce_panel} = sub
+{
 	my( $eprint ) = @_;
 
 	my $debug = 0;
@@ -39,18 +40,22 @@ $c->{hefce_oa}->{deduce_panel} = sub {
 	foreach my $subj ( @{$eprint->get_value( $field )} )
 	{
 		# check if we are defined in the panels map
-		if( defined $panel_map->{$subj} ){
+		if( defined $panel_map->{$subj} )
+		{
 			$panels{$subj} = $panel_map->{$subj};
 			next;
 		}
 
 		my $subject = EPrints::DataObj::Subject->new( $repo, $subj );
 
-		if( defined $subject ){
+		if( defined $subject )
+		{
 			# step through ancestors to see if any are defined
-			foreach ( $subject->_get_ancestors ){
+			foreach ( $subject->_get_ancestors )
+			{
 				# stop once we find something
-				if( defined $panel_map->{$_} ){
+				if( defined $panel_map->{$_} )
+				{
 					$panels{$_} = $panel_map->{$_};
 					last;
 				}

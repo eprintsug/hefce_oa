@@ -26,6 +26,39 @@ push @{ $c->{user_roles}->{admin} }, qw{ +report/hefce_oa };
 #set if embargoed records should appear in report as compliant
 $c->{hefce_oa}->{embargo_as_compliant} = 0;
 
+# First Open Access (FOA) retraction period.
+# If this configuration value is set, and an item is updated within the number of day specified,
+# the FOA date can be removed, if the item no longer has an appropriate Open Access document attached.
+# If the value below is commented-out, or undef, no FOA retractions will happen.
+# If the value below is 0, then only updates on the same day can alter the FOA date.
+# If the value below is 1, then updates on the same day, or the day after the FOA date may change the value.
+# A value of 2 means up to 2 days after the FOA date... etc.
+# The value below
+$c->{hefce_oa}->{foa_retraction_period} = undef; #number of days
+
+# The value above is referenced in the following method, called by a commit trigger
+$c->{hefce_oa}->{commit_in_foa_retraction_period} = sub
+{
+	my( $repo, $date_foa ) = @_;
+
+	use Time::Piece;
+	use Time::Seconds;
+
+	return unless defined $date_foa;
+	my $period = $repo->config( "hefce_oa", "foa_retraction_period" );
+	return unless defined $period;
+
+
+	my $retraction_end = Time::Piece->strptime( $date_foa, "%Y-%m-%d"); #defaults to 00:00:00
+	$retraction_end += ONE_DAY * $period;
+
+	# older versions of Time::Piece don't have the 'truncate' method. The below should return
+	# a consistent date for comparisons
+	my $today = Time::Piece->strptime( EPrints::Time::get_iso_date(), "%Y-%m-%d" );
+
+	return 1 if $today <= $retraction_end;  
+};
+
 $c->{hefce_report}->{exportfields} = {
 	ref_core => [ qw(
         	eprintid

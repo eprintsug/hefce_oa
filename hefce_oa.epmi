@@ -155,9 +155,9 @@
         <file>
           <filename>lang/en/phrases/hefce_oa_policy.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>f44a868ec72153880391560fa9039170</hash>
+          <hash>2bad5e5da604d635562fb3f689daaa4e</hash>
           <hash_type>MD5</hash_type>
-          <filesize>26491</filesize>
+          <filesize>26485</filesize>
         </file>
         <file>
           <filename>lang/en/phrases/hefce_oa_tests.xml</filename>

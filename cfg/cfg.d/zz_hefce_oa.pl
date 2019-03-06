@@ -28,7 +28,7 @@ $c->{hefce_oa}->{embargo_as_compliant} = 0;
 
 # First Open Access (FOA) retraction period.
 # If this configuration value is set, and an item is updated within the number of day specified,
-# the FOA date can be removed, if the items no loinger has an appropriate Open Access document attached.
+# the FOA date can be removed, if the item no longer has an appropriate Open Access document attached.
 # If the value below is commented-out, or undef, no FOA retractions will happen.
 # If the value below is 0, then only updates on the same day can alter the FOA date.
 # If the value below is 1, then updates on the same day, or the day after the FOA date may change the value.

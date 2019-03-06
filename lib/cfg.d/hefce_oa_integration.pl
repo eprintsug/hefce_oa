@@ -179,7 +179,7 @@ $c->{hefce_oa}->{select_document} = sub {
 		$pref{$_} = 10; # less preferred than standard options
 	}
 
-	# this sort staement might be slow when dealing with lots of documents.
+	# this sort statement might be slow when dealing with lots of documents.
 	# we've already pared the array down to only accepted/published versions.
 	# If necessary, some of the methods for pre-calculation on http://www.sysarch.com/Perl/sort_paper.html
 	# may be useful

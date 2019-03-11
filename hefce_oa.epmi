@@ -15,9 +15,9 @@
         <file>
           <filename>cfg.d/hefce_oa_tests.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>59f3e4629fd8da574c327f1bc51fbe07</hash>
+          <hash>fdd0adb7267d2c92e304e29de7d7916f</hash>
           <hash_type>MD5</hash_type>
-          <filesize>8535</filesize>
+          <filesize>8719</filesize>
         </file>
         <file>
           <filename>cfg.d/hefce_oa_triggers.pl</filename>
@@ -43,9 +43,9 @@
         <file>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>c8ad3a1fcbfb63865db8a90893029415</hash>
+          <hash>0ca376e0f06125dd752011ef88cbf7be</hash>
           <hash_type>MD5</hash_type>
-          <filesize>7590</filesize>
+          <filesize>7695</filesize>
         </file>
         <file>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa_deduce_panels.pl</filename>
@@ -148,9 +148,9 @@
         <file>
           <filename>lang/en/phrases/hefce_oa.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>a68c7db0d1127c3b5ee10c4fab38a1ba</hash>
+          <hash>3b5ebf6c46a1851065b27fa98d1a52b9</hash>
           <hash_type>MD5</hash_type>
-          <filesize>15818</filesize>
+          <filesize>16141</filesize>
         </file>
         <file>
           <filename>lang/en/phrases/hefce_oa_policy.xml</filename>
@@ -183,9 +183,9 @@
         <file>
           <filename>plugins/EPrints/Plugin/Screen/EPrint/HefceOA.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>98246668c98966acdad3154cfada53ef</hash>
+          <hash>56b201d2e525c63a4ec6dcd302fe76a4</hash>
           <hash_type>MD5</hash_type>
-          <filesize>11170</filesize>
+          <filesize>11294</filesize>
         </file>
         <file>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC.pm</filename>
@@ -309,9 +309,9 @@
         <file>
           <filename>static/style/auto/hefce_oa.css</filename>
           <mime_type>text/plain</mime_type>
-          <hash>4efcfaa9bf9d1bf0e3e5ed98008227d7</hash>
+          <hash>882f7695baf024b01be3f5620abf5d4e</hash>
           <hash_type>MD5</hash_type>
-          <filesize>1547</filesize>
+          <filesize>1575</filesize>
         </file>
         <file>
           <filename>static/style/images/hoa_future_compliant-icon.png</filename>

@@ -267,6 +267,12 @@ $c->{hefce_oa}->{could_become_ACC_TIMING_compliant} = sub {
 $c->{hefce_oa}->{OUT_OF_SCOPE_reason} = sub {
 
 	my( $repo, $eprint ) = @_;
+
+	if( EPrints::Utils::is_set( $repo->config( "hefce_oa", "enforce_issn" ) ) && $repo->config( "hefce_oa", "enforce_issn" ) == 1 && !$eprint->is_set( "issn" ) )
+	{
+		return "issn";
+	}
+
 	if( $eprint->is_set( "hoa_gold" ) && $eprint->get_value( "hoa_gold" ) eq "TRUE" )
 	{
 		return "gold";

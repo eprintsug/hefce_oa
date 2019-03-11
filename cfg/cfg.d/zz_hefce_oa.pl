@@ -26,6 +26,9 @@ push @{ $c->{user_roles}->{admin} }, qw{ +report/hefce_oa };
 #set if embargoed records should appear in report as compliant
 $c->{hefce_oa}->{embargo_as_compliant} = 0;
 
+#set if an article needs an issn not to be considered out of scope
+#$c->{hefce_oa}->{enforce_issn} = 1;
+
 # First Open Access (FOA) retraction period.
 # If this configuration value is set, and an item is updated within the number of day specified,
 # the FOA date can be removed, if the item no longer has an appropriate Open Access document attached.

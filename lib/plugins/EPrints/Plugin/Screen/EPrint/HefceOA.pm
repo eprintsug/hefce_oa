@@ -72,6 +72,10 @@ sub render
 		{
  	               $td2->appendChild( $self->html_phrase( "out_of_scope:gold" ) );
 		}
+		elsif( $out_of_scope eq "issn" )
+		{
+ 	               $td2->appendChild( $self->html_phrase( "out_of_scope:issn" ) );
+		}
 		else
 		{
  	               $td2->appendChild( $self->html_phrase( "out_of_scope:timing" ) );

@@ -33,7 +33,7 @@ span.hoa_future_compliant
 	padding-left: 18px;
 	background: url('/style/images/hoa_future_compliant-icon.png') no-repeat;
 }
-span.hoa_out_of_scope_timing, span.hoa_out_of_scope_gold
+span.hoa_out_of_scope_timing, span.hoa_out_of_scope_gold, span.hoa_out_of_scope_issn
 {
 	padding-left: 18px;
 	background: url('/style/images/hoa_out_of_scope-icon.png') no-repeat;

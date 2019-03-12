@@ -36,9 +36,9 @@
         <file>
           <filename>epm/hefce_oa/bin/hefce_update_exceptions</filename>
           <mime_type>text/x-perl</mime_type>
-          <hash>c2db789b998f8e829526abe82f28c85e</hash>
+          <hash>03404941683ca2f75f8c82062bdf6bd6</hash>
           <hash_type>MD5</hash_type>
-          <filesize>3121</filesize>
+          <filesize>3000</filesize>
         </file>
         <file>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa.pl</filename>

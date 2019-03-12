@@ -460,9 +460,9 @@ MCkgaWYgcnVudGVzdHMobWFwIHsgIiR0ZXN0X3BhdGgvJF8iIH0gQHRlc3RfZmlsZXMpOwo=
         <file>
           <filename>epm/hefce_oa/bin/hefce_update_exceptions</filename>
           <mime_type>text/x-perl</mime_type>
-          <hash>c2db789b998f8e829526abe82f28c85e</hash>
+          <hash>03404941683ca2f75f8c82062bdf6bd6</hash>
           <hash_type>MD5</hash_type>
-          <filesize>3121</filesize>
+          <filesize>3000</filesize>
           <data encoding='base64'>IyEvdXNyL2Jpbi9wZXJsIC13Cgp1c2UgRmluZEJpbjsKdXNlIGxpYiAiJEZpbmRCaW46OkJpbi8u
 Li8uLi8uLi9wZXJsX2xpYiI7CgojIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
 IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCiMKIwojIyMjIyMjIyMjIyMjIyMjIyMj
@@ -506,18 +506,16 @@ PmdldF9yZXBvc2l0b3J5LT5nZXRfZGF0YXNldCgiZXByaW50Iik7CgpteSAkc2VhcmNoX2V4cCA9
 IEVQcmludHM6OlNlYXJjaC0+bmV3KAoJc2Vzc2lvbiA9PiAkc2Vzc2lvbiwKCXNhdGlzZnlfYWxs
 ID0+IDAsCglkYXRhc2V0ID0+ICRkcywKKTsKCiRzZWFyY2hfZXhwLT5hZGRfZmllbGQoCiAgICAg
 ICAgZmllbGRzID0+IFsgJGRzLT5maWVsZCggJ2hvYV9leF9kZXAnICkgXSwKICAgICAgICB2YWx1
-ZSA9PiAnZycsCiAgICAgICAgbWF0Y2ggPT4gIkVRIiwKKTsKCiRzZWFyY2hfZXhwLT5hZGRfZmll
-bGQoCiAgICAgICAgZmllbGRzID0+IFsgJGRzLT5maWVsZCggJ2hvYV9leF9kZXAnICkgXSwKICAg
-ICAgICB2YWx1ZSA9PiAnZicsCiAgICAgICAgbWF0Y2ggPT4gIkVRIiwKKTsKCiRzZWFyY2hfZXhw
-LT5hZGRfZmllbGQoCiAgICAgICAgZmllbGRzID0+IFsgJGRzLT5maWVsZCggJ2hvYV9leF9vdGgn
-ICkgXSwKICAgICAgICB2YWx1ZSA9PiAnVFJVRScsCiAgICAgICAgbWF0Y2ggPT4gIkVRIiwKKTsK
-Cm15ICRsaXN0ID0gJHNlYXJjaF9leHAtPnBlcmZvcm1fc2VhcmNoOwpteSAkY291bnQgPSAwOwok
-bGlzdC0+bWFwKHN1YnsKICAgICAgICBteSgkc2Vzc2lvbiwgJGRhdGFzZXQsICRlcHJpbnQpID0g
-QF87CgoJcHJpbnQgIlJlY29tbWl0dGluZyBFUHJpbnQgIyIgLiAkZXByaW50LT5pZCAuICJcbiIg
-aWYoICRub2lzZSA+IDApOwoJCgkkY291bnQrKzsKCSRlcHJpbnQtPmNvbW1pdCggMSApOwp9KTsK
-CnByaW50ICJGaW5pc2hlZCB1cGRhdGluZyBSRUYgQ0MgZXhjZXB0aW9ucy5cbiIgaWYoICRub2lz
-ZSA+IDAgKTsKaWYoICRub2lzZSA+IDEgKQp7CglwcmludCAiUmVjb21taXR0ZWQgJGNvdW50IEVQ
-cmludHMuXG4iOwp9Cgokc2Vzc2lvbi0+dGVybWluYXRlKCk7CmV4aXQ7Cg==
+ZSA9PiAnZiBnJywKICAgICAgICBtYXRjaCA9PiAiSU4iLAopOwoKJHNlYXJjaF9leHAtPmFkZF9m
+aWVsZCgKICAgICAgICBmaWVsZHMgPT4gWyAkZHMtPmZpZWxkKCAnaG9hX2V4X290aCcgKSBdLAog
+ICAgICAgIHZhbHVlID0+ICdUUlVFJywKICAgICAgICBtYXRjaCA9PiAiRVEiLAopOwoKbXkgJGxp
+c3QgPSAkc2VhcmNoX2V4cC0+cGVyZm9ybV9zZWFyY2g7Cm15ICRjb3VudCA9IDA7CiRsaXN0LT5t
+YXAoc3ViewogICAgICAgIG15KCRzZXNzaW9uLCAkZGF0YXNldCwgJGVwcmludCkgPSBAXzsKCglw
+cmludCAiUmVjb21taXR0aW5nIEVQcmludCAjIiAuICRlcHJpbnQtPmlkIC4gIlxuIiBpZiggJG5v
+aXNlID4gMCk7CgkKCSRjb3VudCsrOwoJJGVwcmludC0+Y29tbWl0KCAxICk7Cn0pOwoKcHJpbnQg
+IkZpbmlzaGVkIHVwZGF0aW5nIFJFRiBDQyBleGNlcHRpb25zLlxuIiBpZiggJG5vaXNlID4gMCAp
+OwppZiggJG5vaXNlID4gMSApCnsKCXByaW50ICJSZWNvbW1pdHRlZCAkY291bnQgRVByaW50cy5c
+biI7Cn0KCiRzZXNzaW9uLT50ZXJtaW5hdGUoKTsKZXhpdDsK
 </data>
         </file>
         <file>

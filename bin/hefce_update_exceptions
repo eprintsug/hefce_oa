@@ -120,14 +120,8 @@ my $search_exp = EPrints::Search->new(
 
 $search_exp->add_field(
         fields => [ $ds->field( 'hoa_ex_dep' ) ],
-        value => 'g',
-        match => "EQ",
-);
-
-$search_exp->add_field(
-        fields => [ $ds->field( 'hoa_ex_dep' ) ],
-        value => 'f',
-        match => "EQ",
+        value => 'f g',
+        match => "IN",
 );
 
 $search_exp->add_field(

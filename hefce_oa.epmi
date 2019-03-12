@@ -190,9 +190,9 @@
         <file>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>f0c29302563ea5bdf5dc4ccc3281aa06</hash>
+          <hash>3ea3cf9f6d7b1c2665b639029e9288ed</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4393</filesize>
+          <filesize>4473</filesize>
         </file>
         <file>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2015.pm</filename>

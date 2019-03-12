@@ -20,7 +20,9 @@ sub new
 	$self->{sconf} = 'hefce_report';
 	$self->{export_conf} = 'hefce_report';
 	$self->{disable} = 1;
-
+	$self->{sort_conf} = 'hefce_report';
+	$self->{group_conf} = 'hefce_report';  
+	
 	return $self;
 }
 

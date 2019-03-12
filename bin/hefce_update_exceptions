@@ -144,7 +144,7 @@ $list->map(sub{
 	print "Recommitting EPrint #" . $eprint->id . "\n" if( $noise > 0);
 	
 	$count++;
-	$eprint->commit;
+	$eprint->commit( 1 );
 });
 
 print "Finished updating REF CC exceptions.\n" if( $noise > 0 );

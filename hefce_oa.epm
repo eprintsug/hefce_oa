@@ -460,9 +460,9 @@ MCkgaWYgcnVudGVzdHMobWFwIHsgIiR0ZXN0X3BhdGgvJF8iIH0gQHRlc3RfZmlsZXMpOwo=
         <file>
           <filename>epm/hefce_oa/bin/hefce_update_exceptions</filename>
           <mime_type>text/x-perl</mime_type>
-          <hash>c953cc6e24205ec24c7c8e14b5f7b9cc</hash>
+          <hash>c2db789b998f8e829526abe82f28c85e</hash>
           <hash_type>MD5</hash_type>
-          <filesize>3116</filesize>
+          <filesize>3121</filesize>
           <data encoding='base64'>IyEvdXNyL2Jpbi9wZXJsIC13Cgp1c2UgRmluZEJpbjsKdXNlIGxpYiAiJEZpbmRCaW46OkJpbi8u
 Li8uLi8uLi9wZXJsX2xpYiI7CgojIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
 IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCiMKIwojIyMjIyMjIyMjIyMjIyMjIyMj
@@ -514,10 +514,10 @@ ICkgXSwKICAgICAgICB2YWx1ZSA9PiAnVFJVRScsCiAgICAgICAgbWF0Y2ggPT4gIkVRIiwKKTsK
 Cm15ICRsaXN0ID0gJHNlYXJjaF9leHAtPnBlcmZvcm1fc2VhcmNoOwpteSAkY291bnQgPSAwOwok
 bGlzdC0+bWFwKHN1YnsKICAgICAgICBteSgkc2Vzc2lvbiwgJGRhdGFzZXQsICRlcHJpbnQpID0g
 QF87CgoJcHJpbnQgIlJlY29tbWl0dGluZyBFUHJpbnQgIyIgLiAkZXByaW50LT5pZCAuICJcbiIg
-aWYoICRub2lzZSA+IDApOwoJCgkkY291bnQrKzsKCSRlcHJpbnQtPmNvbW1pdDsKfSk7Cgpwcmlu
-dCAiRmluaXNoZWQgdXBkYXRpbmcgUkVGIENDIGV4Y2VwdGlvbnMuXG4iIGlmKCAkbm9pc2UgPiAw
-ICk7CmlmKCAkbm9pc2UgPiAxICkKewoJcHJpbnQgIlJlY29tbWl0dGVkICRjb3VudCBFUHJpbnRz
-LlxuIjsKfQoKJHNlc3Npb24tPnRlcm1pbmF0ZSgpOwpleGl0Owo=
+aWYoICRub2lzZSA+IDApOwoJCgkkY291bnQrKzsKCSRlcHJpbnQtPmNvbW1pdCggMSApOwp9KTsK
+CnByaW50ICJGaW5pc2hlZCB1cGRhdGluZyBSRUYgQ0MgZXhjZXB0aW9ucy5cbiIgaWYoICRub2lz
+ZSA+IDAgKTsKaWYoICRub2lzZSA+IDEgKQp7CglwcmludCAiUmVjb21taXR0ZWQgJGNvdW50IEVQ
+cmludHMuXG4iOwp9Cgokc2Vzc2lvbi0+dGVybWluYXRlKCk7CmV4aXQ7Cg==
 </data>
         </file>
         <file>

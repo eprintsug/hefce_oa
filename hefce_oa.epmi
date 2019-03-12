@@ -43,9 +43,9 @@
         <file>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>0ca376e0f06125dd752011ef88cbf7be</hash>
+          <hash>b4c3338b6cea357f0764d0a5b265030f</hash>
           <hash_type>MD5</hash_type>
-          <filesize>7695</filesize>
+          <filesize>7862</filesize>
         </file>
         <file>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa_deduce_panels.pl</filename>

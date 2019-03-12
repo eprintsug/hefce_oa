@@ -62,6 +62,9 @@ $c->{hefce_oa}->{commit_in_foa_retraction_period} = sub
 	return 1 if $today <= $retraction_end;  
 };
 
+#set order of preference for export plugins (GRF v3.1)
+$c->{hefce_report}->{export_plugins} = [ qw( Export::Report::CSV Export::Report::HTML Export::Report::JSON )];
+
 $c->{hefce_report}->{exportfields} = {
 	ref_core => [ qw(
         	eprintid

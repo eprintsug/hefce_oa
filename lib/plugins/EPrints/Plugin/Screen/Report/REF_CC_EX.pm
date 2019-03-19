@@ -24,6 +24,13 @@ sub validate_dataobj
 
 	my @problems;
 
+	my $out_of_scope = $repo->call( [ "hefce_oa", "OUT_OF_SCOPE_reason" ], $repo, $eprint );
+        if( $out_of_scope )
+        {
+		push @problems, EPrints::XML::to_string( $repo->html_phrase( "hefce_oa:out_of_scope:$out_of_scope" ) );
+		return @problems;
+	}
+
 	#show wholly non-compliant records as not being compliant still
 	my $flag = $eprint->value( "hoa_compliant" );
         if( !( $flag & HefceOA::Const::COMPLIANT ) )

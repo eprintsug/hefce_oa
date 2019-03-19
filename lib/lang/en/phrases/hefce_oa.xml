@@ -204,6 +204,12 @@ as part of our more detailed work to develop the post-2014 REF.
 <epp:phrase id="eprint_fieldname_hoa_gold">Gold OA</epp:phrase>
 <epp:phrase id="eprint_fieldhelp_hoa_gold">239. Some UK funders have a preference for gold open access. ‘Gold’ open access usually means the immediate, permanent, and free to access availability of the published version of record on the publisher’s website and with a licence that permits copying and reuse. Outputs that are made open access through the ‘gold’ route, at the point of first publication, in accordance with other funder’s requirements and definitions, meet the requirement of the REF 2021 open access policy. HEIs will need to confirm that outputs were available immediately after publication via the gold route.</epp:phrase>
 
+<!-- Out of Scope Reporting -->
+<epp:phrase id="hefce_oa:out_of_scope:acc">This item falls outside of the scope of the Open Access compliance policy as it has a date of acceptance before 1 April 2016.</epp:phrase>
+<epp:phrase id="hefce_oa:out_of_scope:pub">This item falls outside of the scope of the Open Access compliance policy as it has a date of acceptance before 1 April 2016.</epp:phrase>
+<epp:phrase id="hefce_oa:out_of_scope:gold">This item falls outside of the scope of the Open Access compliance policy as it has been published via Gold open access.</epp:phrase>
+<epp:phrase id="hefce_oa:out_of_scope:issn">This item falls outside of the scope of the Open Access compliance policy as it does not have an ISSN.</epp:phrase>
+
 
 
 </epp:phrases>

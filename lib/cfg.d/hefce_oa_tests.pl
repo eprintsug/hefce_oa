@@ -268,16 +268,6 @@ $c->{hefce_oa}->{OUT_OF_SCOPE_reason} = sub {
 
 	my( $repo, $eprint ) = @_;
 
-	if( EPrints::Utils::is_set( $repo->config( "hefce_oa", "enforce_issn" ) ) && $repo->config( "hefce_oa", "enforce_issn" ) == 1 && !$eprint->is_set( "issn" ) )
-	{
-		return "issn";
-	}
-
-	if( $eprint->is_set( "hoa_gold" ) && $eprint->get_value( "hoa_gold" ) eq "TRUE" )
-	{
-		return "gold";
-	}
-
 	my $APR16 = Time::Piece->strptime( "2016-04-01", "%Y-%m-%d" );
 	
 	# checks based on date of acceptance (if set)
@@ -310,6 +300,16 @@ $c->{hefce_oa}->{OUT_OF_SCOPE_reason} = sub {
 		
         	#Published before Apr 1st 2016, compliant as out of OA policy scope
        	 	return "pub" if $pub < $APR16;
+	}
+
+	if( $eprint->is_set( "hoa_gold" ) && $eprint->get_value( "hoa_gold" ) eq "TRUE" )
+	{
+		return "gold";
+	}
+
+	if( EPrints::Utils::is_set( $repo->config( "hefce_oa", "enforce_issn" ) ) && $repo->config( "hefce_oa", "enforce_issn" ) == 1 && !$eprint->is_set( "issn" ) )
+	{
+		return "issn";
 	}
 
 	return 0;

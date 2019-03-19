@@ -83,7 +83,7 @@ $c->{hefce_report}->{exportfields} = {
  	        official_url                                            
 	)],
         ref_rioxx => [ qw(
-        	rioxx2_free_to_read
+	       	rioxx2_free_to_read
                 rioxx2_license_ref
                 rioxx2_coverage
                 rioxx2_source
@@ -98,6 +98,7 @@ $c->{hefce_report}->{exportfields} = {
         ref_exceptions => [ qw(
                 hoa_compliant
                 hoa_problems
+		hoa_gold
                 hoa_ref_pan
                 hoa_ex_dep
                 hoa_ex_dep_txt
@@ -121,14 +122,19 @@ $c->{hefce_report}->{custom_export} = {
                 my $repo = $dataobj->repository;
 
                 my $out_of_scope = $repo->call( [ "hefce_oa", "OUT_OF_SCOPE_reason" ], $repo, $dataobj );
-                if( $out_of_scope eq "gold" )
-                {
-                        return "Out of scope (Gold OA)";
-                }
-                elsif( $out_of_scope eq "acc" || $out_of_scope eq "pub" )
+                
+                if( $out_of_scope eq "acc" || $out_of_scope eq "pub" )
                 {
                         return "Out of scope (Pre April 2016)";
                 }
+		elsif( $out_of_scope eq "gold" )
+                {
+                        return "Out of scope (Gold OA)";
+                }
+		elsif( $out_of_scope eq "issn" )
+		{
+			return "Out of scope (no ISSN)";
+		}
 
                 my @problems = $plugin->validate_dataobj( $dataobj );
                 if( scalar( @problems ) > 0 )
@@ -182,6 +188,7 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 	if( ( $eprint->is_set( "hoa_ex_dep" ) && $eprint->get_value( "hoa_ex_dep" ) eq "g" ) ||
    		( exists $changed->{hoa_ex_dep} && $changed->{hoa_ex_dep} eq "g" ) )
 	{
+		$eprint->set_value( "hoa_ex_dep", undef ); #unset existing value
 		$eprint->set_value( "hoa_ex_fur", "b" );
 	}
 
@@ -189,6 +196,7 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 	if( ( $eprint->is_set( "hoa_ex_dep" ) && $eprint->get_value( "hoa_ex_dep" ) eq "f" ) ||
    		( exists $changed->{hoa_ex_dep} && $changed->{hoa_ex_dep} eq "f" ) )
 	{
+		$eprint->set_value( "hoa_ex_dep", undef );
 		$eprint->set_value( "hoa_gold", "TRUE" );
 	}	
 
@@ -196,6 +204,7 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 	if( ( $eprint->is_set( "hoa_ex_oth" ) && $eprint->get_value( "hoa_ex_oth" ) eq "TRUE" ) ||
    		( exists $changed->{hoa_ex_oth} && $changed->{hoa_ex_oth} eq "TRUE" ) )
 	{
+		$eprint->set_value( "hoa_ex_oth", undef );
 		$eprint->set_value( "hoa_ex_fur", "a" );
 		if( $eprint->is_set( "hoa_ex_oth_txt" ) )
 		{

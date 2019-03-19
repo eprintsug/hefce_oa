@@ -144,6 +144,14 @@ $c->{render_hoa_problems} = sub {
 
 	my @problems;
 
+	my $out_of_scope = $repo->call( [ "hefce_oa", "OUT_OF_SCOPE_reason" ], $repo, $eprint );
+        if( $out_of_scope )
+        {
+       		my $frag = $repo->make_doc_fragment;
+	        $frag->appendChild( $repo->html_phrase( "hefce_oa:out_of_scope:$out_of_scope" ) );
+		return $frag;
+	}
+
         my $flag = $eprint->value( "hoa_compliant" );
         unless ( $flag & HefceOA::Const::COMPLIANT )
         {

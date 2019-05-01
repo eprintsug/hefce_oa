@@ -242,7 +242,7 @@ $c->{hefce_oa}->{run_test_EX} = sub {
 $c->{hefce_oa}->{could_become_ACC_TIMING_compliant} = sub {
 	my( $repo, $eprint ) = @_;
 
-        my $last_compliant_date = $repo->call( [ "hefce_oa", "calculate_last_compliant_foa_date" ], $eprint );
+        my $last_compliant_date = $repo->call( [ "hefce_oa", "calculate_last_compliant_foa_date" ], $repo, $eprint );
 	return 1 if( $last_compliant_date && ( localtime() <= $last_compliant_date ) );
 
         return 0;

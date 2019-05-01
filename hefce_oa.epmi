@@ -241,9 +241,9 @@
           <datasetid>document</datasetid>
           <filename>cfg.d/hefce_oa_tests.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>134dd0c625fb1bea7b2e0d3ca9dfd080</hash>
+          <hash>60d91807a1c3a29c2ecfbfff928078b1</hash>
           <hash_type>MD5</hash_type>
-          <filesize>7849</filesize>
+          <filesize>7856</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -427,7 +427,7 @@
       <id>Rory.McNicholl@london.ac.uk</id>
     </item>
   </creators>
-  <datestamp>2019-05-01 06:40:47</datestamp>
+  <datestamp>2019-05-01 15:50:37</datestamp>
   <title>REF Compliance Checker for EPrints</title>
   <description>This plugin helps your institution comply with the Open Access policy of the UK HE Funding Bodies.</description>
   <home_page>http://github.com/eprints/hefce_oa</home_page>

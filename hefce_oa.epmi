@@ -97,9 +97,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>bc08b30e31f04cccbfe8fc41d4687aad</hash>
+          <hash>d6f13b45136454032c41ee69a339c5ef</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4501</filesize>
+          <filesize>4782</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -427,7 +427,7 @@
       <id>Rory.McNicholl@london.ac.uk</id>
     </item>
   </creators>
-  <datestamp>2019-05-01 06:07:53</datestamp>
+  <datestamp>2019-05-01 06:40:47</datestamp>
   <title>REF Compliance Checker for EPrints</title>
   <description>This plugin helps your institution comply with the Open Access policy of the UK HE Funding Bodies.</description>
   <home_page>http://github.com/eprints/hefce_oa</home_page>

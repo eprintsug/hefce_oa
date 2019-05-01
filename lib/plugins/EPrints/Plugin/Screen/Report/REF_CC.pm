@@ -113,13 +113,20 @@ sub get_state
         	}
 	}
 
-
 	#return blue if compliance not relevant
 	if( $eprint->is_set( "hoa_date_acc" ) )
 	{
-		my $acc = Time::Piece->strptime( $eprint->value( "hoa_date_acc" ), "%Y-%m-%d" );
+		my $acc;
+		if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) ){
+			$acc = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_acc" ) );
+		}
+		#Fallback (may error on incomplete dates
+		if(!defined $acc){
+			$acc = Time::Piece->strptime( $eprint->value( "hoa_date_acc" ), "%Y-%m-%d" );
+		}
+
 		my $APR16 = Time::Piece->strptime( "2016-04-01", "%Y-%m-%d " );
-		if( $acc < $APR16 )
+		if(defined $acc &&  $acc < $APR16 )
 		{
 			return "#1F73C7"; #blue
 		}

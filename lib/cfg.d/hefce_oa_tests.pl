@@ -15,10 +15,12 @@ $c->{hefce_oa}->{run_test} = sub {
 $c->{hefce_oa}->{run_test_COMPLIANT} = sub {
     my( $repo, $eprint, $flag ) = @_;
 
-	if( $repo->can_call( "hefce_oa", "run_test_OUT_OF_SCOPE" ) )
-	{
-		return 1 if($repo->call( [ "hefce_oa", "run_test_OUT_OF_SCOPE" ], $repo, $eprint ));
-	}
+    if( $repo->can_call( "hefce_oa", "run_test_OUT_OF_SCOPE" ) )
+    {
+	return 1 if($repo->call( [ "hefce_oa", "run_test_OUT_OF_SCOPE" ], $repo, $eprint ));
+    }
+
+    return 1 if( $eprint->is_set( "hoa_override" ) && $eprint->get_value( "hoa_override" ) eq "TRUE" );
 
     return 1 if $flag & HefceOA::Const::EX_DEP;
 

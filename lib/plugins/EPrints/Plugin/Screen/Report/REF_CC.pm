@@ -115,13 +115,19 @@ sub get_state
         	}
 	}
 
-
 	#return grey if out of scope
 	my $out_of_scope = $repo->call( [ "hefce_oa", "OUT_OF_SCOPE_reason" ], $repo, $eprint );
         if( $out_of_scope )
         {
 		return "#A9A9A9"; #grey
 	}
+
+	# return green if compliant override
+	if( $eprint->is_set( "hoa_override" ) && $eprint->get_value( "hoa_override" ) eq "TRUE" )
+	{
+		return "#1F7E02"; # green
+	}
+
 	return undef;
 }
 
@@ -139,6 +145,11 @@ sub validate_dataobj
         {
 		push @problems, EPrints::XML::to_string( $repo->html_phrase( "hefce_oa:out_of_scope:$out_of_scope" ) );
 		return @problems;
+	}
+
+	if( $eprint->is_set( "hoa_override" ) && $eprint->get_value( "hoa_override" ) eq "TRUE" )
+	{
+		 push @problems,  EPrints::XML::to_string( $repo->html_phrase( "report_compliant_override", override_reason => $repo->xml->create_text_node( $eprint->get_value( "hoa_override_txt" ) ) ) );
 	}
 
 	my $flag = $eprint->value( "hoa_compliant" );

@@ -18,6 +18,11 @@
         <field ref="hoa_date_pub"/>
     </component>
     -->
+    <component type="Field::Multi">
+	<title>Pre-Compliance</title>
+	<field ref="hoa_override"/>
+	<field ref="hoa_override_txt"/>
+    </component>
     <component><field ref="hoa_exclude"/></component>
     <component><field ref="hoa_gold"/></component>
     <component><field ref="hoa_emb_len"/></component>

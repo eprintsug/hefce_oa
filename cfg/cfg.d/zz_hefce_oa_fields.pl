@@ -109,20 +109,20 @@ push @{ $c->{hefce_oa}->{profile} },
     type => "int",
 },
 
-#exclude option
+# exclude option
 {
     name => 'hoa_exclude',
     type => 'boolean',
 },
 
-#gold OA option
+# gold OA option
 {
     name => 'hoa_gold',
     type => 'boolean',
 },
 
 
-#virtual field for report exports
+# virtual field for report exports
 {
     name => 'hoa_problems',
     type => 'text',
@@ -130,6 +130,19 @@ push @{ $c->{hefce_oa}->{profile} },
     render_value => 'render_hoa_problems',
 },
 
+# compliance override option
+{
+    name => 'hoa_override',
+    type => 'boolean',
+    sql_index => 0,
+},
+
+# reason for compliance override
+{
+    name => "hoa_override_txt",
+    type => "longtext",
+    sql_index => 0,
+},
 
 ;
 

@@ -280,6 +280,7 @@ sub render_exceptions_tab
 	my $flag = $eprint->value( "hoa_compliant" ) || 0;
 
 	my $count = 0;
+
 	unless( $flag & HefceOA::Const::EX )
 	{
 		$tab->appendChild( $self->html_phrase( "render_no_exceptions" ) );
@@ -287,7 +288,7 @@ sub render_exceptions_tab
 	else
 	{
 		my $ex = $repo->xml->create_document_fragment;
-		for( qw( hoa_ex_dep hoa_ex_acc hoa_ex_tec hoa_ex_oth ) )
+		for( qw( hoa_ex_dep hoa_ex_acc hoa_ex_tec hoa_ex_fur ) )
 		{
 			if( $eprint->is_set( $_ ) )
 			{

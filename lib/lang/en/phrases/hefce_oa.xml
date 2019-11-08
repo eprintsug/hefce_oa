@@ -210,6 +210,11 @@ as part of our more detailed work to develop the post-2014 REF.
 <epp:phrase id="hefce_oa:out_of_scope:gold">This item falls outside of the scope of the Open Access compliance policy as it has been published via Gold open access.</epp:phrase>
 <epp:phrase id="hefce_oa:out_of_scope:issn">This item falls outside of the scope of the Open Access compliance policy as it does not have an ISSN.</epp:phrase>
 
-
+<!-- Pre-Compliance Options -->
+<epp:phrase id="eprint_fieldname_hoa_override">Pre-Compliant</epp:phrase>
+<epp:phrase id="eprint_fieldhelp_hoa_override">Indicate if the item is already compliant from a deposit in a previous repository</epp:phrase>
+<epp:phrase id="eprint_fieldname_hoa_override_txt">Reason for Pre-Compliance</epp:phrase>
+<epp:phrase id="eprint_fieldhelp_hoa_override_txt">Please provide a reason for indicating why the item may be regarded as compliant, and a link to the compliant record.</epp:phrase>
+<epp:phrase id="report_compliant_override">Pre-Compliance Recorded. Reason given: <span class="pre-compliant-reason"><epc:pin name="override_reason"/></span></epp:phrase>
 
 </epp:phrases>

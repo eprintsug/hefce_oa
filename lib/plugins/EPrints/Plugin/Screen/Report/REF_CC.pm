@@ -102,8 +102,7 @@ sub get_state
 {
         my( $self, $eprint ) = @_;
 	    my $repo = $eprint->repository;
-
-        my $flag = $eprint->value( "hoa_compliant" );
+ $flag = $eprint->value( "hoa_compliant" );
 	    unless ( $flag & HefceOA::Const::COMPLIANT )
         {
         	if( $flag & HefceOA::Const::DEP &&

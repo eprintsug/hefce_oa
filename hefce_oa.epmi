@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <epm xmlns='http://eprints.org/ep2/data/2.0' id='http://template.ulcc.ac.uk/id/epm/hefce_oa'>
   <epmid>hefce_oa</epmid>
-  <uri>/id/epm/hefce_oa</uri>
+  <uri>http://template.ulcc.ac.uk/id/epm/hefce_oa</uri>
   <documents>
     <document>
       <files>
@@ -113,9 +113,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>bbb36d3ffd9c234a0796e806076a3a27</hash>
+          <hash>c9021a1993dad5fad60bf6310b796f57</hash>
           <hash_type>MD5</hash_type>
-          <filesize>5773</filesize>
+          <filesize>5783</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -459,7 +459,7 @@
       <id>Rory.McNicholl@london.ac.uk</id>
     </item>
   </creators>
-  <datestamp>2019-11-15 03:15:45</datestamp>
+  <datestamp>2019-11-15 17:19:08</datestamp>
   <title>REF Compliance Checker for EPrints</title>
   <description>This plugin helps your institution comply with the Open Access policy of the UK HE Funding Bodies.</description>
   <home_page>http://github.com/eprints/hefce_oa</home_page>

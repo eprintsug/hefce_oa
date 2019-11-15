@@ -35,7 +35,6 @@ sub can_be_viewed
 sub render
 {
 	my( $self ) = @_;
-
 	my $repo = $self->{repository};
 	my $page = $repo->xml->create_element( "div" ); # wrapper
 
@@ -43,7 +42,51 @@ sub render
 	my $flag = $eprint->value( "hoa_compliant" ) || 0;
 
 	# overall compliance
-	if( $flag & HefceOA::Const::COMPLIANT )
+	my $out_of_scope = $repo->call( [ "hefce_oa", "OUT_OF_SCOPE_reason" ], $repo, $eprint );
+	if( $out_of_scope )
+	{
+                #not currently compliant, but could be if embargo is released properly
+                my $div = $repo->make_element( "div", class=>"ep_msg_message" );
+                my $content_div = $repo->make_element( "div", class=>"ep_msg_message_content" );
+                my $table = $repo->make_element( "table" );
+                my $tr = $repo->make_element( "tr" );
+                $table->appendChild( $tr );
+
+                my $td1 = $repo->make_element( "td" );
+                my $imagesurl = $repo->get_conf( "rel_path" );
+                $td1->appendChild(
+                        $repo->make_element(
+                                "img",
+                                class => "ep_msg_message_icon",
+                                src => "$imagesurl/style/images/hoa_out_of_scope.png",
+                                alt => $self->phrase( "out_of_scope_alt" )
+                        )
+                );
+                $tr->appendChild( $td1 );
+
+                my $td2 = $repo->make_element( "td" );
+                my $emb_len = $eprint->value( "hoa_emb_len" ) || 0;
+                $tr->appendChild( $td2 );
+
+		if( $out_of_scope eq "gold" )
+		{
+ 	               $td2->appendChild( $self->html_phrase( "out_of_scope:gold" ) );
+		}
+		elsif( $out_of_scope eq "issn" )
+		{
+ 	               $td2->appendChild( $self->html_phrase( "out_of_scope:issn" ) );
+		}
+		else
+		{
+ 	               $td2->appendChild( $self->html_phrase( "out_of_scope:timing" ) );
+		}
+
+                $content_div->appendChild( $table );
+                $div->appendChild( $content_div );
+
+                $page->appendChild( $div );
+	}
+	elsif( $flag & HefceOA::Const::COMPLIANT )
 	{
             $page->appendChild( $repo->render_message( "message", $self->html_phrase( "compliant" ) ) );
         }
@@ -126,7 +169,7 @@ sub render
 		[ "DEP", [qw( DEP_COMPLIANT DEP_TIMING )] ],
 		[ "DIS", [qw( DIS_DISCOVERABLE )] ],
 		[ "ACC", [qw( ACC_TIMING ACC_EMBARGO )] ],
-		[ "EX", [qw( EX_DEP EX_ACC EX_TEC EX_OTH )] ],
+		[ "EX", [qw( EX_DEP EX_ACC EX_TEC EX_FUR )] ],
 	)
 	{
 		my( $label, $tab ) = $self->render_tab( @$_ );
@@ -175,6 +218,15 @@ sub render_data
 
 		my $td = $repo->xml->create_element( "td", class => "ep_row" );
 		$td->appendChild( $eprint->is_set( $field ) ? $eprint->render_value( $field ) : $self->html_phrase( "data:unknown" ) );
+
+		if( $field eq "hoa_ref_pan" && !$eprint->is_set( $field ) && $repo->can_call( 'hefce_oa', 'deduce_panel' ) )
+		{
+			my $deduced_panel = $repo->call( [ 'hefce_oa', 'deduce_panel' ], $eprint );
+			if( defined $deduced_panel )
+			{
+				$td->appendChild( $self->html_phrase( "data:deduced_panel", panel => $repo->make_text( $deduced_panel ) ) );
+			}
+		}
 		$tr->appendChild( $td );
 	}
 
@@ -198,7 +250,7 @@ sub render_tab
 		title => $repo->html_phrase( "hefce_oa:test_title:$title" ),
 		class => $repo->xml->create_text_node( $flag & HefceOA::Const->$title ? "hoa_compliant" : "hoa_non_compliant" )
 	);
-
+	
 	$tab->appendChild( $self->html_phrase( "render_test_description",
 		description => $repo->html_phrase( "hefce_oa:test_description:$title" )
 	) );
@@ -228,6 +280,7 @@ sub render_exceptions_tab
 	my $flag = $eprint->value( "hoa_compliant" ) || 0;
 
 	my $count = 0;
+
 	unless( $flag & HefceOA::Const::EX )
 	{
 		$tab->appendChild( $self->html_phrase( "render_no_exceptions" ) );
@@ -235,7 +288,7 @@ sub render_exceptions_tab
 	else
 	{
 		my $ex = $repo->xml->create_document_fragment;
-		for( qw( hoa_ex_dep hoa_ex_acc hoa_ex_tec hoa_ex_oth ) )
+		for( qw( hoa_ex_dep hoa_ex_acc hoa_ex_tec hoa_ex_fur ) )
 		{
 			if( $eprint->is_set( $_ ) )
 			{

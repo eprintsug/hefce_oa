@@ -48,7 +48,7 @@ push @{ $c->{hefce_oa}->{profile} },
 {
     name => "hoa_ex_dep",
     type => "set",
-    options => [qw( a b c d e f g )],
+    options => [qw( a b c d e )],
     input_style => "medium",
 },
 {
@@ -80,7 +80,19 @@ push @{ $c->{hefce_oa}->{profile} },
     type => "longtext",
 },
 
-# other exceptions
+# further exceptions
+{
+    name => "hoa_ex_fur",
+    type => "set",
+    options => [qw( a b )],
+    input_style => "medium",
+},
+{
+    name => "hoa_ex_fur_txt",
+    type => "longtext",
+},
+
+# other exceptions - now redundant but used for mapping over values
 {
     name => "hoa_ex_oth",
     type => "boolean",
@@ -97,13 +109,20 @@ push @{ $c->{hefce_oa}->{profile} },
     type => "int",
 },
 
-#exclude option
+# exclude option
 {
     name => 'hoa_exclude',
     type => 'boolean',
 },
 
-#virtual field for report exports
+# gold OA option
+{
+    name => 'hoa_gold',
+    type => 'boolean',
+},
+
+
+# virtual field for report exports
 {
     name => 'hoa_problems',
     type => 'text',
@@ -111,6 +130,19 @@ push @{ $c->{hefce_oa}->{profile} },
     render_value => 'render_hoa_problems',
 },
 
+# compliance override option
+{
+    name => 'hoa_override',
+    type => 'boolean',
+    sql_index => 0,
+},
+
+# reason for compliance override
+{
+    name => "hoa_override_txt",
+    type => "longtext",
+    sql_index => 0,
+},
 
 ;
 
@@ -124,6 +156,14 @@ $c->{render_hoa_problems} = sub {
         my( $repo, $field, $value, $alllangs, $nolink, $eprint ) = @_;
 
 	my @problems;
+
+	my $out_of_scope = $repo->call( [ "hefce_oa", "OUT_OF_SCOPE_reason" ], $repo, $eprint );
+        if( $out_of_scope )
+        {
+       		my $frag = $repo->make_doc_fragment;
+	        $frag->appendChild( $repo->html_phrase( "hefce_oa:out_of_scope:$out_of_scope" ) );
+		return $frag;
+	}
 
         my $flag = $eprint->value( "hoa_compliant" );
         unless ( $flag & HefceOA::Const::COMPLIANT )

@@ -119,9 +119,12 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 			}
 			if( !defined( $emb_time ) ) #above call can return undef - fallback to default
 			{
-				$emb_time = Time::Piece->strptime( $doc->value( 'date_embargo' ), "%Y-%m-%d" );
+				my $emb_date = $doc->value( 'date_embargo' );
+				if( $emb_date =~ /^(\d{4})/ )
+				{
+					$emb_time = Time::Piece->strptime( $emb_date, "%Y-%m-%d" ) if $1 >= 1900;
+				}
 			}
-
                         if( $emb_time > $pub_time ) #embargo date must come after publication date
                         {
                                 #get embargo length
@@ -147,10 +150,17 @@ $c->{hefce_oa}->{select_document} = sub {
         # no docs?
         return unless scalar @docs;
 
-	# @possible_docs meet 'content' selection criteria - accepted or published.
-	my @possible_docs = grep { $_->is_set( "content") && 
-					( $_->value( "content" ) eq "published" || $_->value( "content" ) eq "accepted" )
-				 } @docs;
+	# @possible_docs meet 'content' selection criteria - by default accepted or published, but can now be 
+	# overridden in config. See triggers file.
+	my $good_content = $repo->config( "hefce_oa", "document_content" ) || [ qw/ accepted published / ];
+	my @possible_docs = grep {
+		my $doc = $_;
+		$doc->is_set( "content" ) && 
+			grep {
+				my $content = $doc->value( "content" );
+				/^$content$/; 
+			} @$good_content;
+	} @docs;
 
 	return unless scalar @possible_docs;
 
@@ -162,8 +172,14 @@ $c->{hefce_oa}->{select_document} = sub {
                 published => 1,
                 accepted => 2,               
         );
+	# the final 'spaceship sort'  below will prefer an undef value over a set one - which might 
+	# not be expected (I realise this will be a very niche case)
+	foreach( @$good_content ){
+		next if defined $pref{$_};
+		$pref{$_} = 10; # less preferred than standard options
+	}
 
-	# this sort staement might be slow when dealing with lots of documents.
+	# this sort statement might be slow when dealing with lots of documents.
 	# we've already pared the array down to only accepted/published versions.
 	# If necessary, some of the methods for pre-calculation on http://www.sysarch.com/Perl/sort_paper.html
 	# may be useful
@@ -201,7 +217,6 @@ $c->{hefce_oa}->{handle_possibly_incomplete_date} = sub {
 	# $epdate is value from EPrints DataObj field. 
 	# setting $default_to_start_of_period = 1 will return the 1st of the month/year for incomplete dates rather than the end.
 	my( $epdate, $default_to_start_of_period ) = @_;
-
 	return undef if !defined $epdate;
 
 	$default_to_start_of_period ||= 0;
@@ -212,26 +227,27 @@ $c->{hefce_oa}->{handle_possibly_incomplete_date} = sub {
                 {
                         return Time::Piece->strptime( "$1-$2-$3", "%y-%m-%d" );
                 }
-                elsif( length($1) == 4)
+                elsif( length($1) == 4 && $1 >= 1900 )
                 {
                         return Time::Piece->strptime( "$1-$2-$3", "%Y-%m-%d" );
                 }
         }
 
-	if( $epdate =~ /^\d{4}\-\d{2}$/ )
+	if( $epdate =~ /^(\d{4})\-\d{2}$/ )
 	{
-		my $tp = Time::Piece->strptime( $epdate, "%Y-%m" ); #defaults to start of month
-		return $tp if $default_to_start_of_period;
+		if( $1 >= 1900 )
+		{
+			my $tp = Time::Piece->strptime( $epdate, "%Y-%m" ); #defaults to start of month
+			return $tp if $default_to_start_of_period;
 
-		# looks like there's no way to $tp->set_day( $tp->month_last-day ). 
-		# I think this is the least-silly option.!?
-		return Time::Piece->strptime( "$epdate-".$tp->month_last_day, "%Y-%m-%d" );
+			# looks like there's no way to $tp->set_day( $tp->month_last-day ). 
+			# I think this is the least-silly option.!?
+			return Time::Piece->strptime( "$epdate-".$tp->month_last_day, "%Y-%m-%d" );
+		}
 	}
-
 	# only year supplied - default to start or end of year as flagged
-	return Time::Piece->strptime( "$epdate-01-01", "%Y-%m-%d" ) if $epdate =~ /^\d{4}$/ && $default_to_start_of_period;
-	return Time::Piece->strptime( "$epdate-12-31", "%Y-%m-%d" ) if $epdate =~ /^\d{4}$/;
-
+	return Time::Piece->strptime( "$epdate-01-01", "%Y-%m-%d" ) if $epdate =~ /^\d{4}$/ && $default_to_start_of_period && $epdate >= 1900;
+	return Time::Piece->strptime( "$epdate-12-31", "%Y-%m-%d" ) if $epdate =~ /^\d{4}$/ && $epdate >= 1900;
 	return undef;
 
 };

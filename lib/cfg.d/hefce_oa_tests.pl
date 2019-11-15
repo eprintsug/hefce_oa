@@ -15,10 +15,12 @@ $c->{hefce_oa}->{run_test} = sub {
 $c->{hefce_oa}->{run_test_COMPLIANT} = sub {
     my( $repo, $eprint, $flag ) = @_;
 
-	if( $repo->can_call( "hefce_oa", "run_test_OUT_OF_SCOPE" ) )
-	{
-		return 1 if($repo->call( [ "hefce_oa", "run_test_OUT_OF_SCOPE" ], $repo, $eprint ));
-	}
+    if( $repo->can_call( "hefce_oa", "run_test_OUT_OF_SCOPE" ) )
+    {
+	return 1 if($repo->call( [ "hefce_oa", "run_test_OUT_OF_SCOPE" ], $repo, $eprint ));
+    }
+
+    return 1 if( $eprint->is_set( "hoa_override" ) && $eprint->get_value( "hoa_override" ) eq "TRUE" );
 
     return 1 if $flag & HefceOA::Const::EX_DEP;
 
@@ -29,7 +31,7 @@ $c->{hefce_oa}->{run_test_COMPLIANT} = sub {
 
     return 1 if $flag & HefceOA::Const::EX_TEC;
 
-    return 1 if $flag & HefceOA::Const::EX_OTH;
+    return 1 if $flag & HefceOA::Const::EX_FUR;
 
     return 1 if
         $flag & HefceOA::Const::DEP &&
@@ -91,13 +93,22 @@ $c->{hefce_oa}->{run_test_EX_TEC} = sub {
     return 0;
 };
 
-$c->{hefce_oa}->{run_test_EX_OTH} = sub {
+$c->{hefce_oa}->{run_test_EX_FUR} = sub {
     my( $repo, $eprint, $flag ) = @_;
 
-    return 1 if $eprint->is_set( "hoa_ex_oth" );
+    return 1 if $eprint->is_set( "hoa_ex_fur" );
 
     return 0;
 };
+
+
+#$c->{hefce_oa}->{run_test_EX_OTH} = sub {
+#    my( $repo, $eprint, $flag ) = @_;
+#
+#    return 1 if $eprint->is_set( "hoa_ex_oth" );
+#
+#    return 0;
+#};
 
 $c->{hefce_oa}->{run_test_DEP_TIMING} = sub {
 	my( $repo, $eprint, $flag ) = @_;
@@ -220,7 +231,14 @@ $c->{hefce_oa}->{run_test_ACC_EMBARGO} = sub {
 	my( $repo, $eprint, $flag ) = @_;
 
 	my $len = $eprint->value( "hoa_emb_len" ) || 0;
-	my $max = ( $eprint->value( "hoa_ref_pan" ) || "CD" ) eq "AB" ? 12 : 24;
+
+	my $pan = $eprint->value( "hoa_ref_pan" );
+	if( !defined $pan && $repo->can_call( 'hefce_oa', 'deduce_panel' ) )
+	{
+		$pan = $repo->call( [ 'hefce_oa', 'deduce_panel' ], $eprint );
+	}
+
+	my $max = ( defined $pan && $pan eq "AB" ) ? 12 : 24;
 
 	return 1 unless $len > $max;
 
@@ -234,7 +252,7 @@ $c->{hefce_oa}->{run_test_EX} = sub {
         $flag & HefceOA::Const::EX_DEP ||
         $flag & HefceOA::Const::EX_ACC ||
         $flag & HefceOA::Const::EX_TEC ||
-        $flag & HefceOA::Const::EX_OTH;
+        $flag & HefceOA::Const::EX_FUR;
 
     return 0;
 };
@@ -248,7 +266,7 @@ $c->{hefce_oa}->{could_become_ACC_TIMING_compliant} = sub {
         return 0;
 };
 
-$c->{hefce_oa}->{run_test_OUT_OF_SCOPE} = sub {
+$c->{hefce_oa}->{OUT_OF_SCOPE_reason} = sub {
 
 	my( $repo, $eprint ) = @_;
 
@@ -260,14 +278,14 @@ $c->{hefce_oa}->{run_test_OUT_OF_SCOPE} = sub {
 		my $acc;
 		if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
 		{
-			$acc = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_acc" ) );
+			$acc = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $repo, $eprint->value( "hoa_date_acc" ) );
 		}
 		if( !defined( $acc ) ) #above call can return undef - fallback to default
 		{
 			$acc = Time::Piece->strptime( $eprint->value( "hoa_date_acc" ), "%Y-%m-%d" );
 		}
 		#Acceptance is before Apr 1st 2016, compliant as out of OA policy scope
-		return 1 if $acc < $APR16;
+		return "acc" if $acc < $APR16;
 	}
 	
 	if( $eprint->is_set( "hoa_date_pub" ) )
@@ -283,10 +301,35 @@ $c->{hefce_oa}->{run_test_OUT_OF_SCOPE} = sub {
 		}
 		
         	#Published before Apr 1st 2016, compliant as out of OA policy scope
-       	 	return 1 if $pub < $APR16;
+       	 	return "pub" if $pub < $APR16;
+	}
+
+	if( $eprint->is_set( "hoa_gold" ) && $eprint->get_value( "hoa_gold" ) eq "TRUE" )
+	{
+		return "gold";
+	}
+
+	if( EPrints::Utils::is_set( $repo->config( "hefce_oa", "enforce_issn" ) ) && $repo->config( "hefce_oa", "enforce_issn" ) == 1 && !$eprint->is_set( "issn" ) )
+	{
+		return "issn";
 	}
 
 	return 0;
+};
+
+$c->{hefce_oa}->{run_test_OUT_OF_SCOPE} = sub {
+
+	my( $repo, $eprint ) = @_;
+
+	my $out_of_scope = $repo->call( [ "hefce_oa", "OUT_OF_SCOPE_reason" ], $repo, $eprint );
+	if( $out_of_scope )
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 

@@ -11,6 +11,8 @@ $c->{search}->{hefce_report} =
 		{ meta_fields => [ "ispublished" ] },
 		{ meta_fields => [ "divisions" ] },
 		{ meta_fields => [ "publication" ] },
+		{ meta_fields => [ "hoa_gold" ] },
+		{ meta_fields => [ "hoa_override" ] },
 	],
 	order_methods => {
 		"byyear" 	 => "-date/creators_name/title",

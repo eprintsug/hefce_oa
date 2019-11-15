@@ -16,7 +16,7 @@ use constant {
     EX_DEP              => 512,
     EX_ACC              => 1024,
     EX_TEC              => 2048,
-    EX_OTH              => 4096,
+    EX_FUR              => 4096,
     EX                  => 8192,
 };
 
@@ -33,7 +33,7 @@ use constant {
     EX_DEP
     EX_ACC
     EX_TEC
-    EX_OTH
+    EX_FUR
     EX
 );
 

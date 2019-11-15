@@ -20,7 +20,9 @@ sub new
 	$self->{sconf} = 'hefce_report';
 	$self->{export_conf} = 'hefce_report';
 	$self->{disable} = 1;
-
+	$self->{sort_conf} = 'hefce_report';
+	$self->{group_conf} = 'hefce_report';  
+	
 	return $self;
 }
 
@@ -99,10 +101,10 @@ sub is_compliant
 sub get_state
 {
         my( $self, $eprint ) = @_;
-	my $repo = $self->{repository};
+	    my $repo = $eprint->repository;
 
         my $flag = $eprint->value( "hoa_compliant" );
-	unless ( $flag & HefceOA::Const::COMPLIANT )
+	    unless ( $flag & HefceOA::Const::COMPLIANT )
         {
         	if( $flag & HefceOA::Const::DEP &&
                 	        $flag & HefceOA::Const::DIS &&
@@ -111,25 +113,37 @@ sub get_state
         	{
 	                return "#E19141"; #orange
         	}
-	}
+	    }
 
 	#return blue if compliance not relevant
-	if( $eprint->is_set( "hoa_date_acc" ) )
-	{
-		my $acc;
-		if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) ){
-			$acc = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_acc" ) );
-		}
-		#Fallback (may error on incomplete dates
-		if(!defined $acc){
-			$acc = Time::Piece->strptime( $eprint->value( "hoa_date_acc" ), "%Y-%m-%d" );
-		}
+#	if( $eprint->is_set( "hoa_date_acc" ) )
+#	{
+#		my $acc;
+#		if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) ){
+#			$acc = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_acc" ) );
+#		}
+#		#Fallback (may error on incomplete dates
+#		if(!defined $acc){
+#			$acc = Time::Piece->strptime( $eprint->value( "hoa_date_acc" ), "%Y-%m-%d" );
+#		}
+#
+#		my $APR16 = Time::Piece->strptime( "2016-04-01", "%Y-%m-%d " );
+#		if(defined $acc &&  $acc < $APR16 )
+#		{
+#			return "#1F73C7"; #blue
+#		}
+#    }
+	#return grey if out of scope
+	my $out_of_scope = $repo->call( [ "hefce_oa", "OUT_OF_SCOPE_reason" ], $repo, $eprint );
+    if( $out_of_scope )
+    {
+		return "#A9A9A9"; #grey
+	}
 
-		my $APR16 = Time::Piece->strptime( "2016-04-01", "%Y-%m-%d " );
-		if(defined $acc &&  $acc < $APR16 )
-		{
-			return "#1F73C7"; #blue
-		}
+	# return green if compliant override
+	if( $eprint->is_set( "hoa_override" ) && $eprint->get_value( "hoa_override" ) eq "TRUE" )
+	{
+		return "#1F7E02"; # green
 	}
 
 	return undef;
@@ -143,6 +157,18 @@ sub validate_dataobj
 	my $repo = $self->{repository};
 
 	my @problems;
+
+	my $out_of_scope = $repo->call( [ "hefce_oa", "OUT_OF_SCOPE_reason" ], $repo, $eprint );
+        if( $out_of_scope )
+        {
+		push @problems, EPrints::XML::to_string( $repo->html_phrase( "hefce_oa:out_of_scope:$out_of_scope" ) );
+		return @problems;
+	}
+
+	if( $eprint->is_set( "hoa_override" ) && $eprint->get_value( "hoa_override" ) eq "TRUE" )
+	{
+		 push @problems,  EPrints::XML::to_string( $repo->html_phrase( "report_compliant_override", override_reason => $repo->xml->create_text_node( $eprint->get_value( "hoa_override_txt" ) ) ) );
+	}
 
 	my $flag = $eprint->value( "hoa_compliant" );
 	unless ( $flag & HefceOA::Const::COMPLIANT )

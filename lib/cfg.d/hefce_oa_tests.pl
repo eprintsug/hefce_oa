@@ -278,7 +278,7 @@ $c->{hefce_oa}->{OUT_OF_SCOPE_reason} = sub {
 		my $acc;
 		if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
 		{
-			$acc = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $repo, $eprint->value( "hoa_date_acc" ) );
+			$acc = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_acc" ) );
 		}
 		if( !defined( $acc ) ) #above call can return undef - fallback to default
 		{

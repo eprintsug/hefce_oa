@@ -171,6 +171,41 @@ $c->{hefce_report}->{custom_export} = {
                 }
                 return join( ";", @date_strings );
 	},
+        rioxx2_free_to_read => sub {
+            my( $dataobj ) = @_;
+    
+            my $free_to_read = $dataobj->get_value( "rioxx2_free_to_read" );
+            if( exists $free_to_read->{free_to_read} &&  $free_to_read->{free_to_read} eq "Yes" )
+            {
+                my $string = "Free_to_read: Yes";
+                if( exists $free_to_read->{start_date} && defined $free_to_read->{start_date} )
+                {
+                    $string .= ", Start_date: " . $free_to_read->{start_date};
+                }
+                return $string;
+            }
+            else
+            {
+                return undef;
+            }
+        },
+        rioxx2_license_ref => sub {
+            my( $dataobj ) = @_;
+            my $license_ref = $dataobj->get_value( "rioxx2_license_ref" );
+            if( exists $license_ref->{license_ref} )
+            {
+                my $string = "License_ref: " . $license_ref->{license_ref};
+                if( exists $license_ref->{start_date} && defined $license_ref->{start_date} )
+                {
+                    $string .= ", Start_date: " . $license_ref->{start_date};
+                }
+                return $string;
+            }
+            else
+            {
+                return undef;
+            }
+        },
 };
 
 ####################################################

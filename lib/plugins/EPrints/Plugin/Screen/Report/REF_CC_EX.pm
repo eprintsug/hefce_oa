@@ -38,7 +38,7 @@ sub validate_dataobj
                 push @problems, $repo->phrase( "Plugin/Screen/EPrint/HefceOA:non_compliant" );
         }
 
-	for( qw( hoa_ex_dep hoa_ex_acc hoa_ex_tec hoa_ex_oth ) )
+	for( qw( hoa_ex_dep hoa_ex_acc hoa_ex_tec hoa_ex_fur ) )
 	{
 		if( $eprint->is_set( $_ ) )
 		{

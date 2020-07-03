@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <epm xmlns='http://eprints.org/ep2/data/2.0' id='http://localhost:8080/id/epm/hefce_oa'>
   <epmid>hefce_oa</epmid>
-  <uri>http://template.ulcc.ac.uk/id/epm/hefce_oa</uri>
+  <uri>http://localhost:8080/id/epm/hefce_oa</uri>
   <documents>
     <document>
       <files>
@@ -2688,7 +2688,7 @@ CgoxOwo=
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>0640273c3198a7ba23e0360ec23826f8</hash>
+          <hash>07d09e85d3bc64ba593f4f66171bec1a</hash>
           <hash_type>MD5</hash_type>
           <filesize>1367</filesize>
           <data encoding='base64'>cGFja2FnZSBFUHJpbnRzOjpQbHVnaW46OlNjcmVlbjo6UmVwb3J0OjpSRUZfQ0NfRVg7Cgp1c2Ug
@@ -2708,7 +2708,7 @@ ICRlcHJpbnQtPnZhbHVlKCAiaG9hX2NvbXBsaWFudCIgKTsKICAgICAgICBpZiggISggJGZsYWcg
 JiBIZWZjZU9BOjpDb25zdDo6Q09NUExJQU5UICkgKQogICAgICAgIHsKICAgICAgICAgICAgICAg
 IHB1c2ggQHByb2JsZW1zLCAkcmVwby0+cGhyYXNlKCAiUGx1Z2luL1NjcmVlbi9FUHJpbnQvSGVm
 Y2VPQTpub25fY29tcGxpYW50IiApOwogICAgICAgIH0KCglmb3IoIHF3KCBob2FfZXhfZGVwIGhv
-YV9leF9hY2MgaG9hX2V4X3RlYyBob2FfZXhfb3RoICkgKQoJewoJCWlmKCAkZXByaW50LT5pc19z
+YV9leF9hY2MgaG9hX2V4X3RlYyBob2FfZXhfZnVyICkgKQoJewoJCWlmKCAkZXByaW50LT5pc19z
 ZXQoICRfICkgKQoJCXsKCQkJcHVzaCBAcHJvYmxlbXMsIEVQcmludHM6OlhNTDo6dG9fc3RyaW5n
 KAoJCQkJJHJlcG8tPmh0bWxfcGhyYXNlKCAiUGx1Z2luL1NjcmVlbi9FUHJpbnQvSGVmY2VPQTpy
 ZW5kZXJfZXhjZXB0aW9uIiwgCgkJCQkJdGl0bGUgPT4gJHJlcG8tPmh0bWxfcGhyYXNlKCAiZXBy
@@ -3289,7 +3289,7 @@ YgHAhFgAMCEWAEyIBQATYgHAhFgAMCEWAEyIBQCT/wcKp6L9y/vySAAAAABJRU5ErkJggg==
       <content>coverimage</content>
     </document>
   </documents>
-  <version>1.5.3</version>
+  <version>1.5.4</version>
   <controller>EPMC::HefceOA</controller>
   <creators>
     <item>

@@ -1,0 +1,129 @@
+#!/usr/bin/perl
+
+=head1 NAME
+
+title_duplicates - warn of duplicate entries based on title
+
+=head1 SYNOPSIS
+
+=head1 DESCRIPTION
+
+Provides a warning box for any other eprints where q prefixes the title.
+
+=cut
+
+use EPrints;
+use LWP::Simple;
+use LWP::UserAgent;
+use URI::Escape;
+use JSON;
+
+use strict;
+use warnings;
+
+#use LWP::UserAgent;
+#use WWW::Curl;
+
+binmode(STDOUT, ":utf8"); # data from curl will already be utf8, this seems to double-encode it
+
+our $repo = EPrints->new->current_repository;
+
+my $eprintid = $repo->param("eprintid");
+
+if( !defined($eprintid) ){
+
+    _fatal( "cgi/unpaywall called without id argument");
+}elsif( $eprintid !~ /^([0-9]+)$/ ){
+    _fatal(" cgi/unpaywall requires numeric eprintid argument");
+}
+
+my $eprint = new EPrints::DataObj::EPrint( $repo, $eprintid );
+
+_fatal("No eprint found with supplied parameters") if (!EPrints::Utils::is_set($eprint));
+
+
+#start with an assumption
+my $doi_field = "id_number";
+if(EPrints::Utils::is_set($repo->get_conf("hefce_oa","eprintdoifield"))){
+    #a) have we defined the doi_field within the hefce_oa conf?
+    $doi_field = $repo->get_conf("hefce_oa","eprintdoifield");
+}elsif(EPrints::Utils::is_set($repo->get_conf("datacitedoi","eprintdoifield"))){
+    #b) have we already defined the doi_field within the dataitedoi plugin?
+    $doi_field = $repo->get_conf("datacitedoi","eprintdoifield");
+}
+
+_fatal("There is no DOI ($doi_field) set ") if (!$eprint->exists_and_set($doi_field));
+
+my $doi = $eprint->value($doi_field);
+
+
+if($doi = doi_check_and_clean($doi)){
+
+    my $up_email = $repo->get_conf("hefce_oa", "unpaywall_email") || $repo->get_conf("adminemail");
+    
+    my $api_request_uri = URI->new($repo->get_conf("hefce_oa","unpaywall_api_base")."$doi?email=".$up_email);
+    print $api_request_uri."\n";
+
+	my $ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
+	my @headers = (
+		'Accept' => 'application/json',
+#		'Authorization' => 'Bearer' . $user->value( "orcid_access_token" ),
+	);
+
+ 	my $response = $ua->get( $api_request_uri, @headers );
+	_result($response);
+
+}else{
+    _fatal("No suitable DOI set in $doi_field (".$eprint->value($doi_field).")");
+}
+
+
+sub doi_check_and_clean {
+    my ($value) = @_;
+    
+    $value = "" unless defined $value;
+     if( $value =~ m!^
+             (?:https?://(?:dx\.)?doi\.org/)?  # add this again later anyway
+             (?:doi:?\s*)?                   # don't need any namespace stuff
+             (10(\.[^./]+)+/.+)              # the actual DOI => $1
+         !ix )
+     {
+         # The only part we care about is the actual DOI.
+        return $1;
+
+     }else{
+         # Doesn't look like a DOI,
+         return 0;
+     }
+}
+
+sub _fatal {
+    my ($msg, $response) = @_;
+
+
+    my $json = JSON->new->allow_nonref;
+ 
+    if(!defined $response){
+        $repo->log($msg);
+        print $json->encode( {error=> $msg, params => $repo->get_request->args } );
+    }else{
+        $repo->log($msg." ".$response->content);
+        print $json->encode( {error=> $msg, status_line=> $response->status_line, code => $response->code, response => $json->utf8->decode($response->content), params => $repo->get_request->args } );
+    }
+ 
+
+}
+
+sub _result {
+    my ($response) = @_;
+
+    my $json = JSON->new->allow_nonref;
+
+	if( $response->is_success ){
+#        print $json->utf8->decode( $response->content );
+        print $response->content;
+
+    }else{
+        _fatal("Error from unpaywall", $response);
+    }
+}

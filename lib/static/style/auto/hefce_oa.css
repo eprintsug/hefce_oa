@@ -83,3 +83,20 @@ a.hoa_show_description
 {
 	cursor:pointer;	
 }
+
+.hoa_data_tables > div
+{
+    display: inline-block;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 5px; 
+}
+
+.hoa_data_compliance{
+    border-right: dashed #bbf 1px;
+}
+
+.hoa_data_tables > table th.ep_row
+{
+    width: auto;
+}

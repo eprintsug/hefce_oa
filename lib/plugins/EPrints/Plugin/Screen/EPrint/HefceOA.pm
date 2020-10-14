@@ -205,12 +205,18 @@ sub render_data
 	my $repo = $self->{repository};
 	my $eprint = $self->{processor}->{eprint};
 
-	my $table = $repo->xml->create_element( "table", border => 0, cellpadding => 3 );
+    my $div = $repo->xml->create_element( "div", class => "hoa_data_tables" );
+   
+    # Compliance Data Table
+    my $compliance_div = $repo->xml->create_element( "div", class => "hoa_data_compliance" );
+    $compliance_div->appendChild( $self->html_phrase( "data:compliance_table" ) );
+
+	my $compliance_table = $repo->xml->create_element( "table", border => 0, cellpadding => 3 );
 
 	foreach my $field ( qw( hoa_date_acc hoa_date_pub hoa_date_fcd eprint_status hoa_date_foa hoa_emb_len hoa_ref_pan ) )
 	{
 		my $tr = $repo->xml->create_element( "tr" );
-		$table->appendChild( $tr );
+		$compliance_table->appendChild( $tr );
 
 		my $th = $repo->xml->create_element( "th", class => "ep_row" );
 		$th->appendChild( $repo->html_phrase( "eprint_fieldname_$field" ) );
@@ -230,7 +236,45 @@ sub render_data
 		$tr->appendChild( $td );
 	}
 
-	return $table;
+    $compliance_div->appendChild( $compliance_table );
+    $div->appendChild( $compliance_div );
+
+    # Audit Data Table
+    #
+    # TODO - this is currently just a repeat of the compliance table
+    #
+    my $audit_div = $repo->xml->create_element( "div", class => "hoa_data_audit" );
+    $audit_div->appendChild( $self->html_phrase( "data:audit_table" ) );
+
+	my $audit_table = $repo->xml->create_element( "table", border => 0, cellpadding => 3 );
+
+	foreach my $field ( qw( hoa_date_acc hoa_date_pub hoa_date_fcd eprint_status hoa_date_foa hoa_emb_len hoa_ref_pan ) )
+	{
+		my $tr = $repo->xml->create_element( "tr" );
+		$audit_table->appendChild( $tr );
+
+		my $th = $repo->xml->create_element( "th", class => "ep_row" );
+		$th->appendChild( $repo->html_phrase( "eprint_fieldname_$field" ) );
+		$tr->appendChild( $th );
+
+		my $td = $repo->xml->create_element( "td", class => "ep_row" );
+		$td->appendChild( $eprint->is_set( $field ) ? $eprint->render_value( $field ) : $self->html_phrase( "data:unknown" ) );
+
+		if( $field eq "hoa_ref_pan" && !$eprint->is_set( $field ) && $repo->can_call( 'hefce_oa', 'deduce_panel' ) )
+		{
+			my $deduced_panel = $repo->call( [ 'hefce_oa', 'deduce_panel' ], $eprint );
+			if( defined $deduced_panel )
+			{
+				$td->appendChild( $self->html_phrase( "data:deduced_panel", panel => $repo->make_text( $deduced_panel ) ) );
+			}
+		}
+		$tr->appendChild( $td );
+	}
+
+    $audit_div->appendChild( $audit_table );
+    $div->appendChild( $audit_div );
+
+	return $div;
 }
 
 sub render_tab

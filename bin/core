@@ -34,10 +34,11 @@ if(defined $eprintid){
     print "Get core data for eprint/$eprintid...\n";
     $eprints = [$eprintid];
 }else{
-    print "Get core data for all REF eligable records...\n"
-#    $eprints = get_eligable_eprints;
+    print "Get core data for all REF eligible records...\n";
+    if($repo->can_call("hefce_oa", "get_eligible_eprints")){
+        $eprints = $repo->call(["hefce_oa", "get_eligible_eprints"],$repo);
+    }
 }
-
 
 if($repo->can_call("hefce_oa", "get_core")){
     for my $eprintid(@{$eprints}){
@@ -105,6 +106,7 @@ sub _process {
         # We have NO IDEA which of these "hits" will be used by any RE audit of this data...
         for my $core_hit (@{$core_data->{data}}){
             my $s = $core_hit->{_source};
+
             print "\n### ".$s->{repositories}->[0]->{name}." ###\n\n";
             print "core id => ".$s->{id}."\n";
             if(defined $s->{datePublished}){

@@ -1,0 +1,138 @@
+#!/usr/bin/perl -w
+
+use FindBin;
+use lib "$FindBin::Bin/../../../perl_lib";
+
+
+=head1 NAME
+
+
+=head1 SYNOPSIS
+
+=head1 DESCRIPTION
+
+
+=cut
+
+use EPrints;
+use JSON;
+use Data::Dumper;
+use DateTime::Format::Epoch;
+
+use strict;
+use warnings;
+
+my $repositoryid = $ARGV[0];
+#### Repo stuff ####
+my $ep = EPrints->new();
+my $repo = $ep->repository($repositoryid);
+unless($repo) {die("could not find repository with id: $repositoryid");}
+
+my $eprintid = $ARGV[1];
+my $eprints = [];
+if(defined $eprintid){
+    print "Get core data for eprint/$eprintid...\n";
+    $eprints = [$eprintid];
+}else{
+    print "Get core data for all REF eligable records...\n"
+#    $eprints = get_eligable_eprints;
+}
+
+
+if($repo->can_call("hefce_oa", "get_core")){
+    for my $eprintid(@{$eprints}){
+
+        if( !defined($eprintid) ){
+            _fatal($repo,,"get_core called without id argument");
+        }elsif( $eprintid !~ /^([0-9]+)$/ ){
+            _fatal($repo, "get_core requires numeric eprintid argument");
+        }
+
+		my $eprint = $repo->dataset( "eprint" )->dataobj( $eprintid );
+        _fatal($repo, "No eprint found with supplied parameters") if (!EPrints::Utils::is_set($eprint));
+
+        my ($status, $response, $details) = $repo->call(["hefce_oa", "get_core"],$repo, $eprint);
+        _fatal($repo, $response, $details) if($status eq "ERROR");
+        _process($repo, $response, $eprint) if($status eq "SUCCESS");
+    }
+
+}else{
+    _fatal($repo, "The REF CC audit check-up does not appear ot be properly installed");
+}
+
+
+sub _fatal {
+    my ($repo, $msg, $response) = @_;
+
+    my $json = JSON->new->allow_nonref;
+ 
+    if(!defined $response){
+        $repo->log($msg);
+        print $json->encode( {error=> $msg, params => $repo->get_request->args } );
+    }else{
+        $repo->log($msg." ".$response->content);
+        print $json->encode( {error=> $msg, status_line=> $response->status_line, code => $response->code, response => $json->utf8->decode($response->content), params => $repo->get_request->args } );
+    }
+    exit; 
+
+}
+
+sub _process {
+    my ($repo, $response,$eprint) = @_;
+
+    my $json = JSON->new->allow_nonref;
+
+	if( ! $response->is_success ){
+        _fatal($repo, "Error from core", $response);
+    }else{
+        my $core_data =  $json->utf8->decode( $response->content );
+        my $ep_oai_id = EPrints::OpenArchives::to_oai_identifier( EPrints::OpenArchives::archive_id( $repo ), $eprint->get_id );
+        
+        print "Hits: ".$core_data->{totalHits}."\n";
+
+
+
+        my $dt = DateTime->new( year => 1970, month => 1, day => 1 );
+        my $formatter = DateTime::Format::Epoch->new(
+                    epoch          => $dt,
+                    unit           => 'milliseconds',
+                    type           => 'int',    # or 'float', 'bigint'
+                    skip_leap_seconds => 1,
+                    start_at       => 0,
+                    local_epoch    => undef,
+                ); 
+
+        # We have NO IDEA which of these "hits" will be used by any RE audit of this data...
+        for my $core_hit (@{$core_data->{data}}){
+            my $s = $core_hit->{_source};
+            print "\n### ".$s->{repositories}->[0]->{name}." ###\n\n";
+            print "core id => ".$s->{id}."\n";
+            if(defined $s->{datePublished}){
+                print "core datePublished => ".$s->{datePublished}."\n";
+            }else{
+                print "core datePublished not set \n";
+            }
+            print "eprint datePublished => ".$eprint->value("date")."\n";
+
+            # depositedDate shows up directly in the _source
+            my $dd = $s->{depositedDate};
+            # then again in the repositoryDocument
+            if(defined $s->{repositoryDocument} && $s->{depositedDate} < $s->{repositoryDocument}->{depositedDate}){ # repository document deposit date is later than the deposit date
+                $dd = $s->{repositoryDocument}->{depositedDate};
+            }
+            # and potentially again in the crossrefDocument
+            if(defined $s->{crossrefDocument} && $s->{depositedDate} < $s->{crossrefDocument}->{depositedDate}){ # repository document deposit date is later than the deposit date
+                $dd = $s->{crossrefDocument}->{depositedDate};
+            }
+            # we'll take the latest one?!
+
+            my $d = $formatter->parse_datetime( $dd );
+
+            print "core depositedDate => ".$d->ymd."\n";
+            print "eprint deposit date (datestamp) => ".$eprint->value("datestamp")."\n";
+            print "eprint FCD => ".$eprint->value("hoa_date_fcd")."\n" if($eprint->exists_and_set("hoa_date_fcd"));
+
+        }
+
+    }
+}

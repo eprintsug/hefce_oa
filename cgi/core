@@ -22,18 +22,18 @@ binmode(STDOUT, ":utf8");
 
 my $repo = EPrints->new->current_repository;
 my $eprintid = $repo->param("eprintid");
-if($repo->can_call("hefce_oa", "get_unpaywall")){
+if($repo->can_call("hefce_oa", "get_core")){
 
     if( !defined($eprintid) ){
-        _fatal($repo,,"get_unpaywall called without id argument");
+        _fatal($repo,,"get_core called without id argument");
     }elsif( $eprintid !~ /^([0-9]+)$/ ){
-        _fatal($repo, "get_unpaywall requires numeric eprintid argument");
+        _fatal($repo, "get_core requires numeric eprintid argument");
     }
 
-     my $eprint = $repo->dataset( "eprint" )->dataobj( $eprintid );
+    my $eprint = $repo->dataset( "eprint" )->dataobj( $eprintid );
     _fatal($repo, "No eprint found with supplied parameters") if (!EPrints::Utils::is_set($eprint));
 
-    my ($status, $response, $details) = $repo->call(["hefce_oa", "get_unpaywall"],$repo, $eprint);
+    my ($status, $response, $details) = $repo->call(["hefce_oa", "get_core"],$repo, $eprint);
     _fatal($repo, $response, $details) if($status eq "ERROR");
     _result($repo, $response) if($status eq "SUCCESS");
 
@@ -66,6 +66,6 @@ sub _result {
 	if( $response->is_success ){
         print $response->content;
     }else{
-        _fatal($repo,"Error from unpaywall", $response);
+        _fatal($repo,"Error from core", $response);
     }
 }

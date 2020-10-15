@@ -1,0 +1,122 @@
+#!/usr/bin/perl -w
+
+use FindBin;
+use lib "$FindBin::Bin/../../../perl_lib";
+
+
+=head1 NAME
+
+
+=head1 SYNOPSIS
+
+=head1 DESCRIPTION
+
+
+=cut
+
+use EPrints;
+use JSON;
+use Data::Dumper;
+
+use strict;
+use warnings;
+
+my $repositoryid = $ARGV[0];
+#### Repo stuff ####
+my $ep = EPrints->new();
+my $repo = $ep->repository($repositoryid);
+unless($repo) {die("could not find repository with id: $repositoryid");}
+
+my $eprintid = $ARGV[1];
+my $eprints = [];
+if(defined $eprintid){
+    print "Get unpaywall data for eprint/$eprintid...\n";
+    $eprints = [$eprintid];
+}else{
+    print "Get unpaywall data for all REF eligable records...\n"
+#    $eprints = get_eligable_eprints;
+}
+
+
+if($repo->can_call("hefce_oa", "get_unpaywall")){
+    for my $eprintid(@{$eprints}){
+
+        if( !defined($eprintid) ){
+            _fatal($repo,,"get_unpaywall called without id argument");
+        }elsif( $eprintid !~ /^([0-9]+)$/ ){
+            _fatal($repo, "get_unpaywall requires numeric eprintid argument");
+        }
+
+         my $eprint = $repo->dataset( "eprint" )->dataobj( $eprintid );
+        _fatal($repo, "No eprint found with supplied parameters") if (!EPrints::Utils::is_set($eprint));
+
+        my ($status, $response, $details) = $repo->call(["hefce_oa", "get_unpaywall"],$repo, $eprint);
+        _fatal($repo, $response, $details) if($status eq "ERROR");
+        _process($repo, $response, $eprint) if($status eq "SUCCESS");
+    }
+
+}else{
+    _fatal($repo, "The REF CC audit check-up does not appear ot be properly installed");
+}
+
+
+sub _fatal {
+    my ($repo, $msg, $response) = @_;
+
+    my $json = JSON->new->allow_nonref;
+ 
+    if(!defined $response){
+        $repo->log($msg);
+        print $json->encode( {error=> $msg, params => $repo->get_request->args } );
+    }else{
+        $repo->log($msg." ".$response->content);
+        print $json->encode( {error=> $msg, status_line=> $response->status_line, code => $response->code, response => $json->utf8->decode($response->content), params => $repo->get_request->args } );
+    }
+    exit; 
+
+}
+
+sub _process {
+    my ($repo, $response,$eprint) = @_;
+
+    my $json = JSON->new->allow_nonref;
+
+	if( ! $response->is_success ){
+        _fatal("Error from unpaywall", $response);
+    }else{
+        my $up_data =  $json->utf8->decode( $response->content );
+        my $ep_oai_id = EPrints::OpenArchives::to_oai_identifier( EPrints::OpenArchives::archive_id( $repo ), $eprint->get_id );
+        
+        my $repo_host = $repo->get_conf("host");
+
+        print "is_oa: ".$up_data->{is_oa}."\n";
+
+        my $up_loc =$up_data->{best_oa_location};
+       
+        for my $up_loc (@{$up_data->{oa_locations}}){
+            if($up_loc->{is_best} eq "true"){
+                print "\n### Unpaywall thinks that this is the best location ###\n\n";
+                print "Repository institution => ".$up_loc->{repository_institution}."\n" if(defined $up_loc->{repository_institution});
+                print "host_type => ".$up_loc->{host_type}."\n";
+                print "pmh_id => ".$up_loc->{pmh_id}."\n" if(defined $up_loc->{pmh_id});
+                print "url => ".$up_loc->{url}."\n";
+                print "url_for_pdf => ".$up_loc->{url_for_pdf}."\n";
+                print "version => ".$up_loc->{version}."\n";
+                print "updated (by UP)=> ".$up_loc->{updated}."\n";
+
+            }
+            if(defined $up_loc->{pmh_id} && $up_loc->{pmh_id} =~ /$repo_host/){
+                print "\n### Unpaywall oa_location looks like a match for this reposiotry ###\n\n";
+                print "Repository institution => ".$up_loc->{repository_institution}."\n";
+                print "host_type => ".$up_loc->{host_type}."\n";
+                print "pmh_id => ".$up_loc->{pmh_id}."\n";
+                print "url => ".$up_loc->{url}."\n";
+                print "url_for_pdf => ".$up_loc->{url_for_pdf}."\n";
+                print "version => ".$up_loc->{version}."\n";
+                print "updated (by UP)=> ".$up_loc->{updated}."\n";
+
+            }
+        }
+
+    }
+}

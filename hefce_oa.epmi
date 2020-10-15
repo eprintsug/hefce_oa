@@ -1,194 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<epm xmlns='http://eprints.org/ep2/data/2.0' id='http://localhost:8080/id/epm/hefce_oa'>
+<epm xmlns='http://eprints.org/ep2/data/2.0' id='http://researchonline.lshtm.ac.uk/id/epm/hefce_oa'>
   <epmid>hefce_oa</epmid>
   <uri>http://localhost:8080/id/epm/hefce_oa</uri>
   <documents>
     <document>
       <files>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>cfg.d/hefce_oa_integration.pl</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>2412d69643c541b8b55e9e4e7112df17</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>10252</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>cfg.d/hefce_oa_tests.pl</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>1db51b149dee8916a0a6e3b9a2d11610</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>8825</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>cfg.d/hefce_oa_triggers.pl</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>2acc1be905a5eba0eeab21493b74f64b</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>4771</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/hefce_oa/bin/hefce_oa_tests</filename>
-          <mime_type>text/x-perl</mime_type>
-          <hash>5990adaad2aafa6dcd34a57332c0f25d</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>623</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/hefce_oa/bin/hefce_update_exceptions</filename>
-          <mime_type>text/x-perl</mime_type>
-          <hash>03404941683ca2f75f8c82062bdf6bd6</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>3000</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa.pl</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>b42c188dcd83f54cc6d9ca064dabc478</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>9472</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa_deduce_panels.pl</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>788dd14a7eea68a2a16ed92790e10050</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>2244</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa_fields.pl</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>4d9b6564b63a9f5f3b7b716992f730dd</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>4231</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/hefce_oa/cfg/cfg.d/zzz_hefce_oa_audit.pl</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>cdfe598ec913f28cb07f47f2a9fe5eb4</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>154</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/hefce_oa/cfg/cfg.d/zzz_hefce_oa_search_reports.pl</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>0c8ec4f4ef3e701455f9fe5c80f9dc58</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>740</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/hefce_oa/cgi/unpaywall</filename>
-          <mime_type>text/x-perl</mime_type>
-          <hash>1e81bc75d606c5ffea9bf75509d8a93e</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>3436</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/hefce_oa/tests/ACC_EMBARGO.t</filename>
-          <mime_type>text/x-perl</mime_type>
-          <hash>00cda63eb7d8c927598c43411571e60a</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>1327</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/hefce_oa/tests/ACC_TIMING.t</filename>
-          <mime_type>text/x-perl</mime_type>
-          <hash>3426691861a98257b2fc0b7ee139a270</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>2382</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/hefce_oa/tests/DEP_COMPLIANT.t</filename>
-          <mime_type>text/x-perl</mime_type>
-          <hash>184b5cd18616372207f8f74a57306bdb</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>1698</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/hefce_oa/tests/DEP_TIMING.t</filename>
-          <mime_type>text/x-perl</mime_type>
-          <hash>30778c28e0f361072b1ee65a6a9e333e</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>2106</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/hefce_oa/tests/DIS_DISCOVERABLE.t</filename>
-          <mime_type>text/x-perl</mime_type>
-          <hash>d7638234b364f50ab6339886c90ac264</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>1025</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/hefce_oa/tests/hoa_handle_possibly_incomplete_date.t</filename>
-          <mime_type>text/x-perl</mime_type>
-          <hash>e7a29e655adfadd3ee7ce0a2f90166b2</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>1770</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/hefce_oa/tests/hoa_select_document.t</filename>
-          <mime_type>text/x-perl</mime_type>
-          <hash>3c550f87295ccef58d59e4725a20d411</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>3406</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/hefce_oa/tests/hoa_update_ep.t</filename>
-          <mime_type>text/x-perl</mime_type>
-          <hash>1a9dbf602e8fe9252c8a4e60b385f147</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>1039</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/hefce_oa/tests/integration_datesdatesdates.t</filename>
-          <mime_type>text/x-perl</mime_type>
-          <hash>03df610108ce5feeaf540f178591a8e4</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>1530</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/hefce_oa/tests/integration_default.t</filename>
-          <mime_type>text/x-perl</mime_type>
-          <hash>6542f4ffd13888a1bcf5a818f06986ba</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>624</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/hefce_oa/tests/integration_rioxx2.t</filename>
-          <mime_type>text/x-perl</mime_type>
-          <hash>3b599817f98e36e6a29505a7496da25e</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>955</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>lang/en/phrases/hefce_oa.xml</filename>
-          <mime_type>application/xml</mime_type>
-          <hash>e933ef939d3c9660e2fa381dea2667e0</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>17931</filesize>
-        </file>
         <file>
           <datasetid>document</datasetid>
           <filename>lang/en/phrases/hefce_oa_policy.xml</filename>
@@ -207,27 +23,91 @@
         </file>
         <file>
           <datasetid>document</datasetid>
+          <filename>lang/en/phrases/hefce_oa.xml</filename>
+          <mime_type>application/xml</mime_type>
+          <hash>e933ef939d3c9660e2fa381dea2667e0</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>17931</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>static/images/epm/icon_ref_cc.png</filename>
+          <mime_type>image/png</mime_type>
+          <hash>6aa017a7e7c12c8395953c23dfcda369</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>5182</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>static/javascript/auto/hefce_oa.js</filename>
+          <mime_type>text/x-c++</mime_type>
+          <hash>46d1b72ef8a7dc9f193bbc0985a190ea</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>471</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>static/style/images/hoa_out_of_scope.png</filename>
+          <mime_type>image/png</mime_type>
+          <hash>15dc5f125c65ad471a9e543543b1fe9e</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>706</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>static/style/images/hoa_future_compliant.png</filename>
+          <mime_type>image/png</mime_type>
+          <hash>a81bed53c6fa866c0e3306e6c8d4f27d</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>1215</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>static/style/images/hoa_message-icon.png</filename>
+          <mime_type>image/png</mime_type>
+          <hash>09a55048a4e5d641dac50d519ceda642</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>1120</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>static/style/images/hoa_out_of_scope-icon.png</filename>
+          <mime_type>image/png</mime_type>
+          <hash>d200e31d8a5bc97859d50c1a6ddec9c4</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>460</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>static/style/images/hoa_future_compliant-icon.png</filename>
+          <mime_type>image/png</mime_type>
+          <hash>0b1b3c0b155f07e136c1b860337df47c</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>634</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>static/style/auto/hefce_oa.css</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>ccd63482ff5255f476b24025ea73469a</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>1810</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/HefceOA/Const.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>095258bf0c130ff4059332b862097b50</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>718</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Export/Report/CSV/REF_CC.pm</filename>
           <mime_type>text/plain</mime_type>
           <hash>0b7758578764487119c7538e511c7c32</hash>
           <hash_type>MD5</hash_type>
           <filesize>1938</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>plugins/EPrints/Plugin/Screen/EPMC/HefceOA.pm</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>e4cde5e361567a0fa3090a12801a243c</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>1224</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>plugins/EPrints/Plugin/Screen/EPrint/HefceOA.pm</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>7e618c1b148bc99329bd0fe61cd8a231</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>13081</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -239,54 +119,6 @@
         </file>
         <file>
           <datasetid>document</datasetid>
-          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2015.pm</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>1aa5b4050122a091e98b02b2a06c15c4</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>518</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2016.pm</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>c5b2fb0feb121469559942334e00023b</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>518</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2017.pm</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>4d42ddd7c32154b1b3a1a735dfe3fbdf</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>518</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2018.pm</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>66ef51fa5adc33facbea71335a193e3e</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>518</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2019.pm</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>a1a1c71fc849d6b126bcbbb5c82330dc</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>518</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2020.pm</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>fc8cb4e4db1724693788f7f39e0d7f5b</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>518</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX.pm</filename>
           <mime_type>text/plain</mime_type>
           <hash>07d09e85d3bc64ba593f4f66171bec1a</hash>
@@ -295,17 +127,9 @@
         </file>
         <file>
           <datasetid>document</datasetid>
-          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX/2015.pm</filename>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX/2020.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>30c9cf00af3fa67c958c21e7aff41b00</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>530</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX/2016.pm</filename>
-          <mime_type>text/plain</mime_type>
-          <hash>fc520c9cbdd2bc21def797c3493ea26c</hash>
+          <hash>c8ae2d8134cc3b5680f59b19503297ef</hash>
           <hash_type>MD5</hash_type>
           <filesize>530</filesize>
         </file>
@@ -335,83 +159,83 @@
         </file>
         <file>
           <datasetid>document</datasetid>
-          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX/2020.pm</filename>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX/2016.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>c8ae2d8134cc3b5680f59b19503297ef</hash>
+          <hash>fc520c9cbdd2bc21def797c3493ea26c</hash>
           <hash_type>MD5</hash_type>
           <filesize>530</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
-          <filename>plugins/HefceOA/Const.pm</filename>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX/2015.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>095258bf0c130ff4059332b862097b50</hash>
+          <hash>30c9cf00af3fa67c958c21e7aff41b00</hash>
           <hash_type>MD5</hash_type>
-          <filesize>718</filesize>
+          <filesize>530</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
-          <filename>static/images/epm/icon_ref_cc.png</filename>
-          <mime_type>image/png</mime_type>
-          <hash>6aa017a7e7c12c8395953c23dfcda369</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>5182</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>static/javascript/auto/hefce_oa.js</filename>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2020.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>46d1b72ef8a7dc9f193bbc0985a190ea</hash>
+          <hash>fc8cb4e4db1724693788f7f39e0d7f5b</hash>
           <hash_type>MD5</hash_type>
-          <filesize>471</filesize>
+          <filesize>518</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
-          <filename>static/style/auto/hefce_oa.css</filename>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2017.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>ccd63482ff5255f476b24025ea73469a</hash>
+          <hash>4d42ddd7c32154b1b3a1a735dfe3fbdf</hash>
           <hash_type>MD5</hash_type>
-          <filesize>1810</filesize>
+          <filesize>518</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
-          <filename>static/style/images/hoa_future_compliant-icon.png</filename>
-          <mime_type>image/png</mime_type>
-          <hash>0b1b3c0b155f07e136c1b860337df47c</hash>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2018.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>66ef51fa5adc33facbea71335a193e3e</hash>
           <hash_type>MD5</hash_type>
-          <filesize>634</filesize>
+          <filesize>518</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
-          <filename>static/style/images/hoa_future_compliant.png</filename>
-          <mime_type>image/png</mime_type>
-          <hash>a81bed53c6fa866c0e3306e6c8d4f27d</hash>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2019.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>a1a1c71fc849d6b126bcbbb5c82330dc</hash>
           <hash_type>MD5</hash_type>
-          <filesize>1215</filesize>
+          <filesize>518</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
-          <filename>static/style/images/hoa_message-icon.png</filename>
-          <mime_type>image/png</mime_type>
-          <hash>09a55048a4e5d641dac50d519ceda642</hash>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2016.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>c5b2fb0feb121469559942334e00023b</hash>
           <hash_type>MD5</hash_type>
-          <filesize>1120</filesize>
+          <filesize>518</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
-          <filename>static/style/images/hoa_out_of_scope-icon.png</filename>
-          <mime_type>image/png</mime_type>
-          <hash>d200e31d8a5bc97859d50c1a6ddec9c4</hash>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2015.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>1aa5b4050122a091e98b02b2a06c15c4</hash>
           <hash_type>MD5</hash_type>
-          <filesize>460</filesize>
+          <filesize>518</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
-          <filename>static/style/images/hoa_out_of_scope.png</filename>
-          <mime_type>image/png</mime_type>
-          <hash>15dc5f125c65ad471a9e543543b1fe9e</hash>
+          <filename>plugins/EPrints/Plugin/Screen/EPMC/HefceOA.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>e4cde5e361567a0fa3090a12801a243c</hash>
           <hash_type>MD5</hash_type>
-          <filesize>706</filesize>
+          <filesize>1224</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/EPrint/HefceOA.pm</filename>
+          <mime_type>text/x-c++</mime_type>
+          <hash>7e618c1b148bc99329bd0fe61cd8a231</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>13081</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -421,10 +245,218 @@
           <hash_type>MD5</hash_type>
           <filesize>2078</filesize>
         </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>cfg.d/hefce_oa_audit.pl</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>9a50f7e6c13f65cbb57003a95a39a744</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>3929</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>cfg.d/hefce_oa_triggers.pl</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>2acc1be905a5eba0eeab21493b74f64b</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>4771</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>cfg.d/hefce_oa_tests.pl</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>1db51b149dee8916a0a6e3b9a2d11610</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>8825</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>cfg.d/hefce_oa_integration.pl</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>2412d69643c541b8b55e9e4e7112df17</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>10252</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/cgi/core</filename>
+          <mime_type>text/x-perl</mime_type>
+          <hash>bf3802223daf6aa2747824f2ab0f4ab2</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>1848</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/cgi/unpaywall</filename>
+          <mime_type>text/x-perl</mime_type>
+          <hash>3ae3bff4cb6defe75c2dd027522d31ba</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>1874</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/tests/ACC_TIMING.t</filename>
+          <mime_type>text/x-perl</mime_type>
+          <hash>3426691861a98257b2fc0b7ee139a270</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>2382</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/tests/integration_default.t</filename>
+          <mime_type>text/x-perl</mime_type>
+          <hash>6542f4ffd13888a1bcf5a818f06986ba</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>624</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/tests/hoa_update_ep.t</filename>
+          <mime_type>text/x-perl</mime_type>
+          <hash>1a9dbf602e8fe9252c8a4e60b385f147</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>1039</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/tests/hoa_handle_possibly_incomplete_date.t</filename>
+          <mime_type>text/x-perl</mime_type>
+          <hash>e7a29e655adfadd3ee7ce0a2f90166b2</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>1770</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/tests/ACC_EMBARGO.t</filename>
+          <mime_type>text/x-perl</mime_type>
+          <hash>00cda63eb7d8c927598c43411571e60a</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>1327</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/tests/DEP_COMPLIANT.t</filename>
+          <mime_type>text/x-perl</mime_type>
+          <hash>184b5cd18616372207f8f74a57306bdb</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>1698</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/tests/integration_datesdatesdates.t</filename>
+          <mime_type>text/x-perl</mime_type>
+          <hash>03df610108ce5feeaf540f178591a8e4</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>1530</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/tests/hoa_select_document.t</filename>
+          <mime_type>text/x-perl</mime_type>
+          <hash>3c550f87295ccef58d59e4725a20d411</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>3406</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/tests/integration_rioxx2.t</filename>
+          <mime_type>text/x-perl</mime_type>
+          <hash>3b599817f98e36e6a29505a7496da25e</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>955</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/tests/DEP_TIMING.t</filename>
+          <mime_type>text/x-perl</mime_type>
+          <hash>30778c28e0f361072b1ee65a6a9e333e</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>2106</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/tests/DIS_DISCOVERABLE.t</filename>
+          <mime_type>text/x-perl</mime_type>
+          <hash>d7638234b364f50ab6339886c90ac264</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>1025</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/bin/hefce_update_exceptions</filename>
+          <mime_type>text/x-perl</mime_type>
+          <hash>03404941683ca2f75f8c82062bdf6bd6</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>3000</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/bin/core</filename>
+          <mime_type>text/x-perl</mime_type>
+          <hash>ab0e6549ecfca233953eb52cba548465</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>4616</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/bin/unpaywall</filename>
+          <mime_type>text/x-perl</mime_type>
+          <hash>228f4ab6f689874c2d363656d1973435</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>4004</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/bin/hefce_oa_tests</filename>
+          <mime_type>text/x-perl</mime_type>
+          <hash>5990adaad2aafa6dcd34a57332c0f25d</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>623</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa_fields.pl</filename>
+          <mime_type>text/x-c++</mime_type>
+          <hash>4d9b6564b63a9f5f3b7b716992f730dd</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>4231</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa.pl</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>b42c188dcd83f54cc6d9ca064dabc478</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>9472</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa_deduce_panels.pl</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>788dd14a7eea68a2a16ed92790e10050</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>2244</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/cfg/cfg.d/zzz_hefce_oa_search_reports.pl</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>0c8ec4f4ef3e701455f9fe5c80f9dc58</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>740</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/cfg/cfg.d/zzz_hefce_oa_audit.pl</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>91a19328a85ad8e2585e70017599f180</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>293</filesize>
+        </file>
       </files>
-      <mime_type>application/xml</mime_type>
-      <format>other</format>
-      <main>workflows/eprint/hefce_oa.xml</main>
+      <mime_type>text/plain</mime_type>
+      <format>text</format>
+      <main>epm/hefce_oa/cfg/cfg.d/zzz_hefce_oa_audit.pl</main>
       <content>install</content>
     </document>
     <document>
@@ -475,7 +507,7 @@
       <id>Rory.McNicholl@london.ac.uk</id>
     </item>
   </creators>
-  <datestamp>2019-12-03 07:51:37</datestamp>
+  <datestamp>2020-10-15 00:44:56</datestamp>
   <title>REF Compliance Checker for EPrints</title>
   <description>This plugin helps your institution comply with the Open Access policy of the UK HE Funding Bodies.</description>
   <home_page>http://github.com/eprints/hefce_oa</home_page>

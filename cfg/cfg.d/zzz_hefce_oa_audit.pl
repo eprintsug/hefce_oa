@@ -5,7 +5,7 @@ $c->{"hefce_oa"}->{"unpaywall_email"} = undef;
 $c->{"hefce_oa"}->{"unpaywall_api_base"} = "http://api.unpaywall.org/v2/";
 
 $c->{"hefce_oa"}->{"core_api_base"} ="https://core.ac.uk/api-v2";
-$c->{"hefce_oa"}->{"core_api_key"} = "JETetiYKu5ksvW1yCmolMLIjXcOxUNZa";
+$c->{"hefce_oa"}->{"core_api_key"} = "[enter core api key here]";
 
 
 # get all eligible eprints

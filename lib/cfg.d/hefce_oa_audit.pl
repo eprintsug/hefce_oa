@@ -1,3 +1,146 @@
+# HEFCE OA Audit DataObj
+{
+no warnings;
+
+package EPrints::DataObj::HefceOA_Audit;
+
+@EPrints::DataObj::HefceOA_Audit::ISA = qw( EPrints::DataObj );
+
+sub get_dataset_id { "hefce_oa_audit" }
+
+sub get_url { shift->uri }
+
+sub get_defaults
+{
+    my( $class, $session, $data, $dataset ) = @_;
+
+    $data = $class->SUPER::get_defaults( @_[1..$#_] );
+
+    return $data;
+}
+
+# gets an audit record for a given eprint
+sub get_audit_record
+{
+    my( $class, $session, $eprint ) = @_;
+
+    return $session->dataset( $class->get_dataset_id )->search(
+        filters => [
+            { meta_fields => [qw( eprintid )], value => $eprint->id, match => "EX", },
+        ],
+    )->item( 0 );
+}
+
+# define the dataset
+$c->{datasets}->{hefce_oa_audit} = {
+    class => "EPrints::DataObj::HefceOA_Audit",
+    sqlname => "hefce_oa_audit",
+    name => "hefce_oa_audit",
+    columns => [qw( auditid )],
+    index => 1,
+    import => 1,
+};
+
+# define fields
+$c->{fields}->{hefce_oa_audit} = [] if !defined $c->{fields}->{hefce_oa_audit};
+unshift @{$c->{fields}->{hefce_oa_audit}}, (
+    {
+        name => "auditid",
+        type => "counter",
+        required => 1,
+        can_clone => 0,
+        sql_counter => "auditid"
+    },
+    {
+        name => "eprintid",
+        type => "itemref",
+        datasetid => "eprint",
+        required => 1,
+        show_in_html => 0
+    },
+    {
+        name => "up_datestamp",
+        type => "time",
+        required => 0,
+        import => 0,
+        render_res => "minute",
+        render_style => "short",
+        can_clone => 0
+    },
+    {
+        name => "core_datestamp",
+        type => "time",
+        required => 0,
+        import => 0,
+        render_res => "minute",
+        render_style => "short",
+        can_clone => 0
+    },
+    # Unpaywall fields
+    {
+        name => 'up_is_oa',
+        type => 'boolean'
+    },
+    {
+        name => 'up_url_for_pdf',
+        type => 'url',
+    },
+    {
+        name => 'up_locations',
+        type => 'compound',
+        multiple => 1,
+        fields => [
+            {
+                sub_name => 'url',
+                type  => 'url',
+            },
+            {
+                sub_name => 'pmh_id',
+                type  => 'text',
+                allow_null => 1,
+            },
+            {
+                sub_name => 'is_best',
+                type  => 'boolean',
+            },
+        ],
+    },
+    # CORE fields
+    {
+        name => 'core_sources',
+        type => 'compound',
+        multiple => 1,
+        fields => [
+            {
+                sub_name => 'core_id',
+                type  => 'int',
+            },
+            {
+                sub_name => 'datePublished',
+                type  => 'text',
+                allow_null => 1,
+            },
+            {
+                sub_name => 'depositedDate',
+                type  => 'timestamp',
+                allow_null => 1,
+            },
+            {
+                sub_name => 'publishedDate',
+                type  => 'timestamp',
+                allow_null => 1,
+            },
+            {
+                sub_name => 'acceptedDate',
+                type  => 'timestamp',
+                allow_null => 1,
+            },
+        ],
+    },
+);
+
+}
+
 
 $c->{hefce_oa}->{get_unpaywall} = sub {
 

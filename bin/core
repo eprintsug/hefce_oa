@@ -83,15 +83,28 @@ sub _process {
 
     my $json = JSON->new->allow_nonref;
 
-	if( ! $response->is_success ){
+    if( ! $response->is_success ){
         _fatal($repo, "Error from core", $response);
     }else{
+
+
+        # We have some data, but before we can use it we need an audit record
+        my $audit_ds = $repo->dataset( "hefce_oa_audit" );
+        my $audit = $audit_ds->dataobj_class->get_audit_record( $repo, $eprint );
+        if( !defined $audit ) 
+        {
+            # we need to create a new audit record
+            $audit = $audit_ds->create_dataobj(
+                {
+                    eprintid => $eprint->id
+                }
+            );
+        }
+
         my $core_data =  $json->utf8->decode( $response->content );
         my $ep_oai_id = EPrints::OpenArchives::to_oai_identifier( EPrints::OpenArchives::archive_id( $repo ), $eprint->get_id );
         
         print "Hits: ".$core_data->{totalHits}."\n";
-
-
 
         my $dt = DateTime->new( year => 1970, month => 1, day => 1 );
         my $formatter = DateTime::Format::Epoch->new(
@@ -104,37 +117,76 @@ sub _process {
                 ); 
 
         # We have NO IDEA which of these "hits" will be used by any RE audit of this data...
+        my @core_sources;
         for my $core_hit (@{$core_data->{data}}){
+
+            my $core_source = {};
+    
             my $s = $core_hit->{_source};
 
             print "\n### ".$s->{repositories}->[0]->{name}." ###\n\n";
             print "core id => ".$s->{id}."\n";
+            $core_source->{core_id} = $s->{id};
+
             if(defined $s->{datePublished}){
                 print "core datePublished => ".$s->{datePublished}."\n";
+                $core_source->{datePublished} = $s->{datePublished};
             }else{
                 print "core datePublished not set \n";
             }
             print "eprint datePublished => ".$eprint->value("date")."\n";
 
-            # depositedDate shows up directly in the _source
-            my $dd = $s->{depositedDate};
-            # then again in the repositoryDocument
-            if(defined $s->{repositoryDocument} && $s->{depositedDate} < $s->{repositoryDocument}->{depositedDate}){ # repository document deposit date is later than the deposit date
+            # get the latest depositedDate value
+            my $dd = _get_latest_date( $s, "depositedDate" );
+            
+            # need to check the repositoryDocument too for a depositedDate
+            if(defined $s->{repositoryDocument} && $dd < $s->{repositoryDocument}->{depositedDate}){ # repository document deposit date is later than the deposit date
                 $dd = $s->{repositoryDocument}->{depositedDate};
             }
-            # and potentially again in the crossrefDocument
-            if(defined $s->{crossrefDocument} && $s->{depositedDate} < $s->{crossrefDocument}->{depositedDate}){ # repository document deposit date is later than the deposit date
-                $dd = $s->{crossrefDocument}->{depositedDate};
+            if( defined $dd ){
+                $dd = $formatter->parse_datetime( $dd );
+                $core_source->{depositedDate} = $dd->ymd;
             }
-            # we'll take the latest one?!
 
-            my $d = $formatter->parse_datetime( $dd );
+            # get the latest publishedDate
+            my $pd = _get_latest_date( $s, "publishedDate" );
+            if( defined $pd ){
+                $pd = $formatter->parse_datetime( $pd );
+                $core_source->{publishedDate} = $pd->ymd;
+            }
 
-            print "core depositedDate => ".$d->ymd."\n";
+            # get the latest acceptedDate
+            my $ad = _get_latest_date( $s, "acceptedDate" );
+            if( defined $ad ){
+                $ad = $formatter->parse_datetime( $ad );
+                $core_source->{acceptedDate} = $ad->ymd;
+            }
+
+            print "core depositedDate => ".$dd->ymd."\n";
             print "eprint deposit date (datestamp) => ".$eprint->value("datestamp")."\n";
             print "eprint FCD => ".$eprint->value("hoa_date_fcd")."\n" if($eprint->exists_and_set("hoa_date_fcd"));
 
+            push @core_sources, $core_source;
         }
 
+        $audit->set_value( "core_sources", \@core_sources );
+
+        # now we have updated the core audit record, set the timestamp
+        $audit->set_value( "core_datestamp", EPrints::Time::get_iso_timestamp() );
+        $audit->commit;
     }
+}
+
+# gets the latest version of the given date either directly from the source or from the corssref document
+sub _get_latest_date{
+    my ($s, $date) = @_;
+
+    # date shows up directly in the _source
+    my $dd = $s->{$date};
+    
+    # and potentially again in the crossrefDocument
+    if(defined $s->{crossrefDocument} && $s->{$date} < $s->{crossrefDocument}->{$date}){ # crossref document date is later than the date
+        $dd = $s->{crossrefDocument}->{$date};
+    }
+    return $dd;
 }

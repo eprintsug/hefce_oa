@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <epm xmlns='http://eprints.org/ep2/data/2.0' id='http://localhost:8080/id/epm/hefce_oa'>
   <epmid>hefce_oa</epmid>
-  <uri>http://researchonline.lshtm.ac.uk/id/epm/hefce_oa</uri>
+  <uri>http://localhost:8080/id/epm/hefce_oa</uri>
   <documents>
     <document>
       <files>
@@ -9,9 +9,9 @@
           <datasetid>document</datasetid>
           <filename>cfg.d/hefce_oa_audit.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>9a50f7e6c13f65cbb57003a95a39a744</hash>
+          <hash>aa6bb6565c4f1563a255a1f80a498502</hash>
           <hash_type>MD5</hash_type>
-          <filesize>3929</filesize>
+          <filesize>7129</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -41,9 +41,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/bin/core</filename>
           <mime_type>text/x-perl</mime_type>
-          <hash>6a5d4928a956202f119e82f61457f9f9</hash>
+          <hash>19d242c84d84af3c6a98f94ba0e84e2b</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4722</filesize>
+          <filesize>6455</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -97,9 +97,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/cfg/cfg.d/zzz_hefce_oa_audit.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>de8c84441a44a9fbfd2ffcca5834fe33</hash>
+          <hash>afdf3cd06fa221e26b9fdda58ef8c3be</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4399</filesize>
+          <filesize>1483</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>

@@ -217,9 +217,9 @@
           <datasetid>document</datasetid>
           <filename>lang/en/phrases/hefce_oa.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>e933ef939d3c9660e2fa381dea2667e0</hash>
+          <hash>dd6c1f5b7f3297a21c4de5798db26f2a</hash>
           <hash_type>MD5</hash_type>
-          <filesize>17931</filesize>
+          <filesize>18366</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -257,9 +257,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/EPrint/HefceOA.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>7e618c1b148bc99329bd0fe61cd8a231</hash>
+          <hash>7b601e6651d2879c59d38cc3f817fcce</hash>
           <hash_type>MD5</hash_type>
-          <filesize>13081</filesize>
+          <filesize>15583</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -401,9 +401,9 @@
           <datasetid>document</datasetid>
           <filename>static/style/auto/hefce_oa.css</filename>
           <mime_type>text/plain</mime_type>
-          <hash>ccd63482ff5255f476b24025ea73469a</hash>
+          <hash>283961b233b671ebc7ffd3b3e57581aa</hash>
           <hash_type>MD5</hash_type>
-          <filesize>1810</filesize>
+          <filesize>1835</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>

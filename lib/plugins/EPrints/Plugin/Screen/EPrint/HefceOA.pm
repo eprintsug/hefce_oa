@@ -246,35 +246,92 @@ sub render_data
     my $audit_div = $repo->xml->create_element( "div", class => "hoa_data_audit" );
     $audit_div->appendChild( $self->html_phrase( "data:audit_table" ) );
 
-	my $audit_table = $repo->xml->create_element( "table", border => 0, cellpadding => 3 );
+    my $audit_table = $repo->xml->create_element( "table", border => 0, cellpadding => 3 );
 
-	foreach my $field ( qw( hoa_date_acc hoa_date_pub hoa_date_fcd eprint_status hoa_date_foa hoa_emb_len hoa_ref_pan ) )
-	{
-		my $tr = $repo->xml->create_element( "tr" );
-		$audit_table->appendChild( $tr );
+    # first thing we use is the doi s0 lets show the one we're using
+    my $doi_field = "id_number";
+    if(EPrints::Utils::is_set($repo->get_conf("hefce_oa","eprintdoifield"))){
+        #a) have we defined the doi_field within the hefce_oa conf?
+        $doi_field = $repo->get_conf("hefce_oa","eprintdoifield");
+    }elsif(EPrints::Utils::is_set($repo->get_conf("datacitedoi","eprintdoifield"))){
+        #b) have we already defined the doi_field within the dataitedoi plugin?
+        $doi_field = $repo->get_conf("datacitedoi","eprintdoifield");
+    }
 
-		my $th = $repo->xml->create_element( "th", class => "ep_row" );
-		$th->appendChild( $repo->html_phrase( "eprint_fieldname_$field" ) );
-		$tr->appendChild( $th );
+    my $tr = $repo->xml->create_element( "tr" );
+    $audit_table->appendChild( $tr );
 
-		my $td = $repo->xml->create_element( "td", class => "ep_row" );
-		$td->appendChild( $eprint->is_set( $field ) ? $eprint->render_value( $field ) : $self->html_phrase( "data:unknown" ) );
+    my $th = $repo->xml->create_element( "th", class => "ep_row" );
+    $th->appendChild( $repo->html_phrase( "eprint_fieldname_$doi_field" ) );
+    $tr->appendChild( $th );
 
-		if( $field eq "hoa_ref_pan" && !$eprint->is_set( $field ) && $repo->can_call( 'hefce_oa', 'deduce_panel' ) )
-		{
-			my $deduced_panel = $repo->call( [ 'hefce_oa', 'deduce_panel' ], $eprint );
-			if( defined $deduced_panel )
-			{
-				$td->appendChild( $self->html_phrase( "data:deduced_panel", panel => $repo->make_text( $deduced_panel ) ) );
-			}
-		}
-		$tr->appendChild( $td );
-	}
+    my $td = $repo->xml->create_element( "td", class => "ep_row" );
+    $td->appendChild( $eprint->is_set( $doi_field ) ? $eprint->render_value( $doi_field ) : $self->html_phrase( "data:unknown" ) );
+    $tr->appendChild( $td );
 
     $audit_div->appendChild( $audit_table );
+
+    # now show our audit record
+    my $audit_ds = $repo->dataset( "hefce_oa_audit" );
+    my $audit = $audit_ds->dataobj_class->get_audit_record( $repo, $eprint );
+    if( !defined $audit )
+    {
+        # no audit record to display data from
+        $audit_div->appendChild( $self->html_phrase( "data:no_audit" ) );  
+    }   
+    else
+    {
+        # display unpaywall data
+        if( $audit->is_set( "up_datestamp" ) )
+        {
+            $audit_div->appendChild( $self->html_phrase( "data:up_audit", date => $audit->render_value( "up_datestamp" ) ) );
+            my $up_table = $repo->xml->create_element( "table", border => 0, cellpadding => 3 );
+            $audit_div->appendChild( $up_table );
+
+            my $tr = $repo->xml->create_element( "tr" );
+            $up_table->appendChild( $tr );
+
+            my $th = $repo->xml->create_element( "th", class => "ep_row" );
+            $th->appendChild( $repo->html_phrase( "hefce_oa_audit_fieldname_up_locations" ) );
+            $tr->appendChild( $th );
+
+            my $td = $repo->xml->create_element( "td", class => "ep_row" );
+            my $ul = $repo->make_element( "ul" );
+            foreach my $location ( @{$audit->get_value( "up_locations" )} )
+            {
+                my $li = $repo->make_element( "li" );
+                my $link = $repo->render_link( $location->{url}, "_blank" );
+                if( defined $location->{pmh_id} )
+                {
+                    $link->appendChild( $repo->make_text( $location->{pmh_id} ) );
+                }
+                else
+                {
+                    my $text = $location->{url};
+                    if( length( $text ) > 40 ) { $text = substr( $text, 0, 40 )."..."; }
+                    $link->appendChild( $repo->make_text( $text ) );
+                }
+                $li->appendChild( $link );
+                $ul->appendChild( $li );
+            }
+            $td->appendChild( $ul );
+            $tr->appendChild( $td );
+        }
+
+        # display core data
+        if( $audit->is_set( "core_datestamp" ) )
+        {
+            $audit_div->appendChild( $self->html_phrase( "data:core_audit", date => $audit->render_value( "core_datestamp" ) ) );  
+            my $core_table = $repo->xml->create_element( "table", border => 0, cellpadding => 3 );
+            $audit_div->appendChild( $core_table );
+
+            # TO DO
+        }
+    }
+
     $div->appendChild( $audit_div );
 
-	return $div;
+    return $div;
 }
 
 sub render_tab

@@ -90,6 +90,7 @@ a.hoa_show_description
     width: 50%;
     box-sizing: border-box;
     padding: 5px; 
+    vertical-align: top;
 }
 
 .hoa_data_compliance{

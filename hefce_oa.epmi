@@ -65,9 +65,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/bin/unpaywall</filename>
           <mime_type>text/x-perl</mime_type>
-          <hash>228f4ab6f689874c2d363656d1973435</hash>
+          <hash>bb5db7813137fb8c7709cd759b51bf4a</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4004</filesize>
+          <filesize>5252</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>

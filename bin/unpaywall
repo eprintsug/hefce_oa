@@ -33,14 +33,14 @@ if(defined $eprintid){
     print "Get unpaywall data for eprint/$eprintid...\n";
     $eprints = [$eprintid];
 }else{
-    print "Get unpaywall data for all REF eligable records...\n"
-#    $eprints = get_eligable_eprints;
+    print "Get unpaywall data for all REF eligible records...\n";
+    if($repo->can_call("hefce_oa", "get_eligible_eprints")){
+        $eprints = $repo->call(["hefce_oa", "get_eligible_eprints"],$repo);
+    }
 }
-
 
 if($repo->can_call("hefce_oa", "get_unpaywall")){
     for my $eprintid(@{$eprints}){
-
         if( !defined($eprintid) ){
             _fatal($repo,,"get_unpaywall called without id argument");
         }elsif( $eprintid !~ /^([0-9]+)$/ ){
@@ -86,14 +86,42 @@ sub _process {
     }else{
         my $up_data =  $json->utf8->decode( $response->content );
         my $ep_oai_id = EPrints::OpenArchives::to_oai_identifier( EPrints::OpenArchives::archive_id( $repo ), $eprint->get_id );
-        
+
+        # We have some data, but before we can use it we need an audit record
+        my $audit_ds = $repo->dataset( "hefce_oa_audit" );
+        my $audit = $audit_ds->dataobj_class->get_audit_record( $repo, $eprint );
+        if( !defined $audit )
+        {
+            # we need to create a new audit record
+            $audit = $audit_ds->create_dataobj(
+                {
+                    eprintid => $eprint->id
+                }
+            );
+        }
+
         my $repo_host = $repo->get_conf("host");
 
         print "is_oa: ".$up_data->{is_oa}."\n";
+        $audit->set_value( "up_is_oa", $up_data->{is_oa} );
 
         my $up_loc =$up_data->{best_oa_location};
-       
+        if( defined $up_loc )
+        { 
+            $audit->set_value( "up_url_for_pdf", $up_loc );
+        }
+
+        my @up_locations;
         for my $up_loc (@{$up_data->{oa_locations}}){
+
+            my $up_location = {};
+
+            $up_location->{url} = $up_loc->{url};
+            $up_location->{pmh_id} = $up_loc->{pmh_id};
+            $up_location->{is_best} = $up_loc->{is_best};
+            
+            push @up_locations, $up_location;
+
             if($up_loc->{is_best} eq "true"){
                 print "\n### Unpaywall thinks that this is the best location ###\n\n";
                 print "Repository institution => ".$up_loc->{repository_institution}."\n" if(defined $up_loc->{repository_institution});
@@ -118,5 +146,10 @@ sub _process {
             }
         }
 
+        $audit->set_value( "up_locations", \@up_locations );
+
+        # now we have updated the core audit record, set the timestamp
+        $audit->set_value( "up_datestamp", EPrints::Time::get_iso_timestamp() );
+        $audit->commit;
     }
 }

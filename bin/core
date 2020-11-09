@@ -69,10 +69,10 @@ sub _fatal {
  
     if(!defined $response){
         $repo->log($msg);
-        print $json->encode( {error=> $msg, params => $repo->get_request->args } );
+        print $json->encode( {error=> $msg} );
     }else{
         $repo->log($msg." ".$response->content);
-        print $json->encode( {error=> $msg, status_line=> $response->status_line, code => $response->code, response => $json->utf8->decode($response->content), params => $repo->get_request->args } );
+        print $json->encode( {error=> $msg, status_line=> $response->status_line, code => $response->code, response => $json->utf8->decode($response->content)} );
     }
     exit; 
 

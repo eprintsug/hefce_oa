@@ -41,9 +41,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/bin/core</filename>
           <mime_type>text/x-perl</mime_type>
-          <hash>19d242c84d84af3c6a98f94ba0e84e2b</hash>
+          <hash>d537d955bf05e07bf2a1908060d2b78d</hash>
           <hash_type>MD5</hash_type>
-          <filesize>6455</filesize>
+          <filesize>6381</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -65,9 +65,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/bin/unpaywall</filename>
           <mime_type>text/x-perl</mime_type>
-          <hash>bb5db7813137fb8c7709cd759b51bf4a</hash>
+          <hash>3b93897a03c72a6a07f1b036e500887b</hash>
           <hash_type>MD5</hash_type>
-          <filesize>5252</filesize>
+          <filesize>5201</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>

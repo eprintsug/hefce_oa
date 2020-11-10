@@ -1,3 +1,5 @@
+$c->{"hefce_oa"}->{"core_url"} = "https://core.ac.uk/display/";
+
 # HEFCE OA Audit DataObj
 {
 no warnings;

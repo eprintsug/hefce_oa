@@ -1,5 +1,6 @@
 use HefceOA::Const;
 use Time::Piece;
+use Time::Seconds;
 
 $c->{hefce_oa}->{run_test} = sub {
     my( $repo, $test, $eprint, $flag ) = @_;
@@ -330,6 +331,76 @@ $c->{hefce_oa}->{run_test_OUT_OF_SCOPE} = sub {
 	{
 		return 0;
 	}
-}
+};
 
+$c->{hefce_oa}->{run_test_AUDIT} = sub {
+    my( $repo, $eprint, $flag ) = @_;
 
+    return 1 if
+        $flag & HefceOA::Const::AUD_UP_OA &&
+        $flag & HefceOA::Const::AUD_UP_URL &&
+        $flag & HefceOA::Const::AUD_CORE_DATES;
+
+    return 0;
+};
+
+$c->{hefce_oa}->{run_test_AUD_UP_OA} = sub {
+    my( $repo, $eprint, $flag ) = @_;
+
+    # get audit record
+    my $audit_ds = $repo->dataset( "hefce_oa_audit" );
+    my $audit = $audit_ds->dataobj_class->get_audit_record( $repo, $eprint );
+
+    return 0 unless defined $audit;
+    return 0 unless $audit->is_set( "up_is_oa" );
+
+    if( $audit->get_value( "up_is_oa" ) eq "TRUE" )
+    {
+        return 1;
+    }
+
+    return 0;
+};
+
+$c->{hefce_oa}->{run_test_AUD_UP_URL} = sub {
+    my( $repo, $eprint, $flag ) = @_;
+
+    # get audit record
+    my $audit_ds = $repo->dataset( "hefce_oa_audit" );
+    my $audit = $audit_ds->dataobj_class->get_audit_record( $repo, $eprint );
+
+    return 0 unless defined $audit;
+    return 1 if $audit->is_set( "up_url_for_pdf" );
+
+    return 0;
+};
+
+$c->{hefce_oa}->{run_test_AUD_CORE_DATES} = sub {
+    my( $repo, $eprint, $flag ) = @_;
+
+    # get audit record
+    my $audit_ds = $repo->dataset( "hefce_oa_audit" );
+    my $audit = $audit_ds->dataobj_class->get_audit_record( $repo, $eprint );
+
+    return 0 unless defined $audit;
+    return 0 unless $audit->is_set( "core_sources" );
+
+    foreach my $cs ( @{$audit->get_value( "core_sources" )} )
+    {
+        next unless exists $cs->{datePublished};
+        next unless exists $cs->{depositedDate};
+
+        my $dp = $cs->{datePublished};
+        my $dd = $cs->{depositedDate};
+
+        my $pub = Time::Piece->strptime( $cs->{datePublished}, "%Y-%m-%dT%H:%M:%S" );
+        my $dep = Time::Piece->strptime( $cs->{depositedDate}, "%Y-%m-%d" );
+    
+        my $diff = $dep - $pub;
+        if( $diff->days < 92 ){ # one of them was deposited in time
+            return 1;
+        }
+    }
+
+    return 0;
+};

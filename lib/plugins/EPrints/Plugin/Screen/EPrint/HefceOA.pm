@@ -170,6 +170,7 @@ sub render
 		[ "DIS", [qw( DIS_DISCOVERABLE )] ],
 		[ "ACC", [qw( ACC_TIMING ACC_EMBARGO )] ],
 		[ "EX", [qw( EX_DEP EX_ACC EX_TEC EX_FUR )] ],
+        [ "AUDIT", [qw( AUD_UP_OA AUD_UP_URL AUD_CORE_DATES )] ],
 	)
 	{
 		my( $label, $tab ) = $self->render_tab( @$_ );
@@ -288,34 +289,62 @@ sub render_data
             my $up_table = $repo->xml->create_element( "table", border => 0, cellpadding => 3 );
             $audit_div->appendChild( $up_table );
 
-            my $tr = $repo->xml->create_element( "tr" );
-            $up_table->appendChild( $tr );
+	        foreach my $field ( qw( up_is_oa up_url_for_pdf up_locations ) )
+        	{
+                my $tr = $repo->xml->create_element( "tr" );
+                $up_table->appendChild( $tr );
 
-            my $th = $repo->xml->create_element( "th", class => "ep_row" );
-            $th->appendChild( $repo->html_phrase( "hefce_oa_audit_fieldname_up_locations" ) );
-            $tr->appendChild( $th );
+                my $th = $repo->xml->create_element( "th", class => "ep_row" );
+                $th->appendChild( $repo->html_phrase( "hefce_oa_audit_fieldname_$field" ) );
+                $tr->appendChild( $th );
 
-            my $td = $repo->xml->create_element( "td", class => "ep_row" );
-            my $ul = $repo->make_element( "ul" );
-            foreach my $location ( @{$audit->get_value( "up_locations" )} )
-            {
-                my $li = $repo->make_element( "li" );
-                my $link = $repo->render_link( $location->{url}, "_blank" );
-                if( defined $location->{pmh_id} )
+                my $td = $repo->xml->create_element( "td", class => "ep_row" );
+
+                if( $field eq "up_locations" )
                 {
-                    $link->appendChild( $repo->make_text( $location->{pmh_id} ) );
+                    my $ul = $repo->make_element( "ul" );
+                    foreach my $location ( @{$audit->get_value( $field )} )
+                    {
+                        my $li = $repo->make_element( "li" );
+                        my $link = $repo->render_link( $location->{url}, "_blank" );
+                        if( defined $location->{pmh_id} )
+                        {
+                            $link->appendChild( $repo->make_text( $location->{pmh_id} ) );
+                        }
+                        else
+                        {
+                            my $text = $location->{url};
+                            if( length( $text ) > 40 ) { $text = substr( $text, 0, 40 )."..."; }
+                            $link->appendChild( $repo->make_text( $text ) );
+                        }
+                        $li->appendChild( $link );
+                        $ul->appendChild( $li );
+                    }
+                    $td->appendChild( $ul );
                 }
-                else
+                elsif( $field eq "up_url_for_pdf" )
                 {
-                    my $text = $location->{url};
-                    if( length( $text ) > 40 ) { $text = substr( $text, 0, 40 )."..."; }
-                    $link->appendChild( $repo->make_text( $text ) );
+                    if( $audit->is_set( $field ) )
+                    {
+                        
+                        my $link = $repo->render_link( $audit->get_value( $field ), "_blank" );
+                        my $text = $audit->get_value( $field );
+                        if( length( $text ) > 40 ) { $text = substr( $text, 0, 40 )."..."; }
+                        $link->appendChild( $repo->make_text( $text ) );
+            		    $td->appendChild( $link );
+                    }
+                    else
+                    {
+            		    $td->appendChild( $self->html_phrase( "data:unknown" ) );
+                    }      
                 }
-                $li->appendChild( $link );
-                $ul->appendChild( $li );
+                else # up_is_oa
+                {
+            		$td->appendChild( $audit->is_set( $field ) ? $audit->render_value( $field ) : $self->html_phrase( "data:unknown" ) );
+                }
+                
+                $tr->appendChild( $td );
             }
-            $td->appendChild( $ul );
-            $tr->appendChild( $td );
         }
 
         # display core data
@@ -325,7 +354,33 @@ sub render_data
             my $core_table = $repo->xml->create_element( "table", border => 0, cellpadding => 3 );
             $audit_div->appendChild( $core_table );
 
-            # TO DO
+            my $tr = $repo->xml->create_element( "tr" );
+            $core_table->appendChild( $tr );
+
+            my $th = $repo->xml->create_element( "th", class => "ep_row" );
+            $th->appendChild( $repo->html_phrase( "hefce_oa_audit_fieldname_core_sources" ) );
+            $tr->appendChild( $th );
+
+            my $td = $repo->xml->create_element( "td", class => "ep_row" );
+            my $ul = $repo->make_element( "ul" );
+            foreach my $cs ( @{$audit->get_value( "core_sources" )} )
+            {
+                my $li = $repo->make_element( "li" );
+
+                # link to the core page
+                my $href = $repo->get_conf("hefce_oa","core_url") . $cs->{core_id};
+                my $link = $repo->render_link( $href, "_blank" );
+                $link->appendChild( $repo->make_text( $cs->{core_id} ) );
+                $li->appendChild( $link );
+
+                # show the relevant dates
+                $li->appendChild( $repo->make_text( " (Dep: " . $cs->{depositedDate} . ", Pub: " . $cs->{datePublished} . ")" ) );
+
+                $ul->appendChild( $li );
+            }
+            $td->appendChild( $ul );
+            $tr->appendChild( $td );
+   
         }
     }
 
@@ -340,6 +395,7 @@ sub render_tab
 
 	return $self->render_exceptions_tab( $title, $tests ) if $title eq "EX";
 	return $self->render_access_tab( $title, $tests ) if $title eq "ACC";
+    return $self->render_audit_tab( $title, $tests ) if $title eq "AUDIT";
 
 	my $repo = $self->{repository};
 	my $tab = $repo->xml->create_document_fragment;
@@ -455,6 +511,37 @@ sub render_access_tab
 		) );
 	}
 	$tab->appendChild( $self->html_phrase( "render_tests", tests => $sub ) );
+
+	return( $tab_title, $tab );
+}
+
+sub render_audit_tab
+{
+	my( $self, $title, $tests ) = @_;
+
+	my $repo = $self->{repository};
+	my $tab = $repo->xml->create_document_fragment;
+
+	my $eprint = $self->{processor}->{eprint};
+	my $flag = $eprint->value( "hoa_compliant" ) || 0;
+
+	my $tab_title = $self->html_phrase( "render_audit_tab_title",
+		class => $repo->xml->create_text_node( $flag & HefceOA::Const->$title ? "hoa_compliant" : "hoa_non_compliant" )
+	);
+
+	$tab->appendChild( $self->html_phrase( "render_audit_test_description" ) );
+
+	my $sub = $repo->xml->create_document_fragment;
+	for( @$tests )
+	{
+		my $test_class = ( $flag & HefceOA::Const->$_ ? "hoa_compliant" : "hoa_non_compliant" );
+		$sub->appendChild( $self->html_phrase( "render_audit_test",
+			title => $repo->html_phrase( "hefce_oa:test_title:$_" ),
+			class => $repo->xml->create_text_node( $test_class )
+		) );
+	}
+	$tab->appendChild( $self->html_phrase( "render_tests", tests => $sub ) );
+
 
 	return( $tab_title, $tab );
 }

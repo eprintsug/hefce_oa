@@ -125,6 +125,10 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
         EX_TEC
         EX_FUR
         EX
+        AUD_UP_OA
+        AUD_UP_URL
+        AUD_CORE_DATES
+        AUDIT
         COMPLIANT
     ))
     {

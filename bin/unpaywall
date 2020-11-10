@@ -102,7 +102,7 @@ sub _process {
         my $repo_host = $repo->get_conf("host");
 
         print "is_oa: ".$up_data->{is_oa}."\n";
-        $audit->set_value( "up_is_oa", $up_data->{is_oa} );
+        $audit->set_value( "up_is_oa", uc( $up_data->{is_oa} ) );
 
         my $up_loc = $up_data->{best_oa_location};
         if( defined $up_loc )
@@ -117,7 +117,7 @@ sub _process {
 
             $up_location->{url} = $up_loc->{url};
             $up_location->{pmh_id} = $up_loc->{pmh_id};
-            $up_location->{is_best} = $up_loc->{is_best};
+            $up_location->{is_best} = uc( $up_loc->{is_best} );
             
             push @up_locations, $up_location;
 

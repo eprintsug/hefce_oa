@@ -79,4 +79,9 @@ The <strong><epc:phrase ref="eprint_fieldname_hoa_emb_len"/></strong> must not e
 
 <epp:phrase id="hefce_oa:test_data:UNKNOWN">Unknown</epp:phrase>
 
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_audit_test_description"><p/><p>Research England will assess overall compliance with the REF 2021 open access policy by:</p></epp:phrase>
+<epp:phrase id="hefce_oa:test_title:AUD_UP_OA">Using unpaywall.org to establish whether there is an OA copy of the output (based on the <strong>is_oa</strong> field).</epp:phrase>
+<epp:phrase id="hefce_oa:test_title:AUD_UP_URL">Using unpaywall.org to establish whether the output is a file with searchable text (based on the <strong>url_for_pdf</strong> field).</epp:phrase>
+<epp:phrase id="hefce_oa:test_title:AUD_CORE_DATES">Using Jisc CORE, comparing the <strong>datePublished</strong> and <strong>depositedDate</strong> and identifying where the number of days between the two dates is greater than 92.</epp:phrase>
+
 </epp:phrases>

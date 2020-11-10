@@ -9,9 +9,9 @@
           <datasetid>document</datasetid>
           <filename>cfg.d/hefce_oa_audit.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>aa6bb6565c4f1563a255a1f80a498502</hash>
+          <hash>b86fb15d03c2a52a05326d66e508fac6</hash>
           <hash_type>MD5</hash_type>
-          <filesize>7129</filesize>
+          <filesize>7194</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -25,17 +25,17 @@
           <datasetid>document</datasetid>
           <filename>cfg.d/hefce_oa_tests.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>1db51b149dee8916a0a6e3b9a2d11610</hash>
+          <hash>497e47eb9c5a384b1d7723501e4b3114</hash>
           <hash_type>MD5</hash_type>
-          <filesize>8825</filesize>
+          <filesize>10783</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
           <filename>cfg.d/hefce_oa_triggers.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>2acc1be905a5eba0eeab21493b74f64b</hash>
+          <hash>a1bece78afaf994f8ed1cba3fae8bebb</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4771</filesize>
+          <filesize>4845</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -65,9 +65,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/bin/unpaywall</filename>
           <mime_type>text/x-perl</mime_type>
-          <hash>3b93897a03c72a6a07f1b036e500887b</hash>
+          <hash>99ea5728ac1d3893d700d3c029571ffd</hash>
           <hash_type>MD5</hash_type>
-          <filesize>5201</filesize>
+          <filesize>5213</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -217,9 +217,9 @@
           <datasetid>document</datasetid>
           <filename>lang/en/phrases/hefce_oa.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>dd6c1f5b7f3297a21c4de5798db26f2a</hash>
+          <hash>ffaf0ba9bee49dbaa4c14bd587d33409</hash>
           <hash_type>MD5</hash_type>
-          <filesize>18366</filesize>
+          <filesize>18888</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -233,9 +233,9 @@
           <datasetid>document</datasetid>
           <filename>lang/en/phrases/hefce_oa_tests.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>b10ad0af1d16c914abc2274f8d5860f5</hash>
+          <hash>01107b93131178ddc86772e3bc8248c4</hash>
           <hash_type>MD5</hash_type>
-          <filesize>5859</filesize>
+          <filesize>6669</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -257,9 +257,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/EPrint/HefceOA.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>7b601e6651d2879c59d38cc3f817fcce</hash>
+          <hash>2f73be01a47874e206aff3414be8fa99</hash>
           <hash_type>MD5</hash_type>
-          <filesize>15583</filesize>
+          <filesize>19147</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -377,9 +377,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/HefceOA/Const.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>095258bf0c130ff4059332b862097b50</hash>
+          <hash>27e94dcaece99dcabcf9cb5edad5e791</hash>
           <hash_type>MD5</hash_type>
-          <filesize>718</filesize>
+          <filesize>913</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>

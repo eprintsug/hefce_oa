@@ -18,6 +18,10 @@ use constant {
     EX_TEC              => 2048,
     EX_FUR              => 4096,
     EX                  => 8192,
+    AUDIT               => 16384,
+    AUD_UP_OA           => 32768,
+    AUD_UP_URL          => 65536,
+    AUD_CORE_DATES      => 131072,
 };
 
 @EXPORT = qw(
@@ -35,6 +39,10 @@ use constant {
     EX_TEC
     EX_FUR
     EX
+    AUDIT
+    AUD_UP_OA
+    AUD_UP_URL
+    AUD_CORE_DATES
 );
 
 1;

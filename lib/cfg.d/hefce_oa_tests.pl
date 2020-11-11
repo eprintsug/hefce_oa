@@ -18,10 +18,12 @@ $c->{hefce_oa}->{run_test_COMPLIANT} = sub {
 
     if( $repo->can_call( "hefce_oa", "run_test_OUT_OF_SCOPE" ) )
     {
-	return 1 if($repo->call( [ "hefce_oa", "run_test_OUT_OF_SCOPE" ], $repo, $eprint ));
+        return 1 if($repo->call( [ "hefce_oa", "run_test_OUT_OF_SCOPE" ], $repo, $eprint ));
     }
 
     return 1 if( $eprint->is_set( "hoa_override" ) && $eprint->get_value( "hoa_override" ) eq "TRUE" );
+
+    return 1 if( $eprint->is_set( "hoa_gold" ) && $eprint->get_value( "hoa_gold" ) eq "TRUE" );
 
     return 1 if $flag & HefceOA::Const::EX_DEP;
 
@@ -303,11 +305,6 @@ $c->{hefce_oa}->{OUT_OF_SCOPE_reason} = sub {
 		
         	#Published before Apr 1st 2016, compliant as out of OA policy scope
        	 	return "pub" if $pub < $APR16;
-	}
-
-	if( $eprint->is_set( "hoa_gold" ) && $eprint->get_value( "hoa_gold" ) eq "TRUE" )
-	{
-		return "gold";
 	}
 
 	if( EPrints::Utils::is_set( $repo->config( "hefce_oa", "enforce_issn" ) ) && $repo->config( "hefce_oa", "enforce_issn" ) == 1 && !$eprint->is_set( "issn" ) )

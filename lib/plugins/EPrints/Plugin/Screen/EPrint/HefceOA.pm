@@ -214,7 +214,7 @@ sub render_data
 
 	my $compliance_table = $repo->xml->create_element( "table", border => 0, cellpadding => 3 );
 
-	foreach my $field ( qw( hoa_date_acc hoa_date_pub hoa_date_fcd eprint_status hoa_date_foa hoa_emb_len hoa_ref_pan ) )
+	foreach my $field ( qw( hoa_date_acc hoa_date_pub hoa_date_fcd eprint_status hoa_date_foa hoa_emb_len hoa_ref_pan hoa_gold ) )
 	{
 		my $tr = $repo->xml->create_element( "tr" );
 		$compliance_table->appendChild( $tr );
@@ -241,9 +241,6 @@ sub render_data
     $div->appendChild( $compliance_div );
 
     # Audit Data Table
-    #
-    # TODO - this is currently just a repeat of the compliance table
-    #
     my $audit_div = $repo->xml->create_element( "div", class => "hoa_data_audit" );
     $audit_div->appendChild( $self->html_phrase( "data:audit_table" ) );
 

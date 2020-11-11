@@ -127,10 +127,6 @@ $c->{hefce_report}->{custom_export} = {
             {
                 return "Out of scope (Pre April 2016)";
             }
-            elsif( $out_of_scope eq "gold" )
-            {
-                return "Out of scope (Gold OA)";
-            }
             elsif( $out_of_scope eq "issn" )
             {
                 return "Out of scope (no ISSN)";

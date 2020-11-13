@@ -17,17 +17,17 @@
           <datasetid>document</datasetid>
           <filename>cfg.d/hefce_oa_integration.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>2412d69643c541b8b55e9e4e7112df17</hash>
+          <hash>bd0bb2fa1441f9c17bd6e7b7bbaff6f9</hash>
           <hash_type>MD5</hash_type>
-          <filesize>10252</filesize>
+          <filesize>10152</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
           <filename>cfg.d/hefce_oa_tests.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>1420a7933b692516c9c8161cdf11fc3c</hash>
+          <hash>ff1cb6e2e66b522d2a6397ebc419b057</hash>
           <hash_type>MD5</hash_type>
-          <filesize>10780</filesize>
+          <filesize>11585</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -97,9 +97,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/cfg/cfg.d/zzz_hefce_oa_audit.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>afdf3cd06fa221e26b9fdda58ef8c3be</hash>
+          <hash>580d4161bbb50f78881fc574ab7700c5</hash>
           <hash_type>MD5</hash_type>
-          <filesize>1483</filesize>
+          <filesize>1977</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -257,9 +257,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/EPrint/HefceOA.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>7574f2942105605d8d7e048489d263bb</hash>
+          <hash>22cfa070f03903a0b56f790a4ef1a2ba</hash>
           <hash_type>MD5</hash_type>
-          <filesize>19075</filesize>
+          <filesize>19105</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>

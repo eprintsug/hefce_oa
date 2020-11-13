@@ -88,8 +88,8 @@ sub render
 	}
 	elsif( $flag & HefceOA::Const::COMPLIANT )
 	{
-            $page->appendChild( $repo->render_message( "message", $self->html_phrase( "compliant" ) ) );
-        }
+        $page->appendChild( $repo->render_message( "message", $self->html_phrase( "compliant" ) ) );
+    }
 	elsif( $flag & HefceOA::Const::DEP && 
 		$flag & HefceOA::Const::DIS &&
 		$flag & HefceOA::Const::ACC_EMBARGO &&
@@ -498,7 +498,7 @@ sub render_access_tab
 	for( @$tests )
 	{
 		my $test_class = ( $flag & HefceOA::Const->$_ ? "hoa_compliant" : "hoa_non_compliant" );
-		if( $_ eq "ACC_TIMING" && $repo->call( [ "hefce_oa", "could_become_ACC_TIMING_compliant" ], $repo, $eprint ) ){
+		if( $_ eq "ACC_TIMING" && $test_class eq "hoa_non_compliant" && $repo->call( [ "hefce_oa", "could_become_ACC_TIMING_compliant" ], $repo, $eprint ) ){
 			$test_class= "hoa_future_compliant";
 		}
 		$sub->appendChild( $self->html_phrase( "render_test",

@@ -194,40 +194,51 @@ $c->{hefce_oa}->{run_test_DIS_DISCOVERABLE} = sub {
 $c->{hefce_oa}->{run_test_ACC_TIMING} = sub {
     my( $repo, $eprint, $flag ) = @_;
 
-	my $len = $eprint->value( "hoa_emb_len" ) || 0;
+    my $len = $eprint->value( "hoa_emb_len" ) || 0;
 
-	if( $len > 0  )
-	{
-		return 0 unless $eprint->is_set( "hoa_date_pub" ) && $eprint->is_set( "hoa_date_foa" );
+    if( $len > 0  )
+    {
+        # we need a publication date to work out when our embargo ends
+        return 0 unless $eprint->is_set( "hoa_date_pub" );
+        my $pub;
+        if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+        {
+            $pub = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_pub" ) );
+        }
+        if( !defined( $pub ) ) #above call can return undef - fallback to default
+        {
+            $pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
+        }
 
-		my $pub;
-		if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
-		{
-			$pub = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_pub" ) );
-		}
-		if( !defined( $pub ) ) #above call can return undef - fallback to default
-		{
-			$pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
-		}
+        my $end = $pub->add_months( $len ); # embargo end
 
-		my $end = $pub->add_months( $len ); # embargo end
-		my $foa = Time::Piece->strptime( $eprint->value( "hoa_date_foa" ), "%Y-%m-%d" );
+        # emabargoes that end at/after the submission deadline are compliant
+        my $MAR31 = Time::Piece->strptime( "2021-03-31", "%Y-%m-%d" );
+        if( $end >= $MAR31 )
+        {
+            return 1;
+        }
 
-		# oa within one month of embargo end
-		return 1 if $foa <= $end->add_months( 1 );
-	}
-	else # no embargo
-	{
-		return 0 unless $eprint->is_set( "hoa_date_fcd" ) && $eprint->is_set( "hoa_date_foa" );
+        # we now need a first open access date to see if this happened in time with respect to the embargo
+        return 0 unless $eprint->is_set( "hoa_date_foa" );
 
-		my $fcd = Time::Piece->strptime( $eprint->value( "hoa_date_fcd" ), "%Y-%m-%d" );
-		my $foa = Time::Piece->strptime( $eprint->value( "hoa_date_foa" ), "%Y-%m-%d" );
+        my $foa = Time::Piece->strptime( $eprint->value( "hoa_date_foa" ), "%Y-%m-%d" );
 
-		# oa with one month of deposit
-		return 1 if $foa <= $fcd->add_months( 1 );
-	}
+        # oa within one month of embargo end
+        return 1 if $foa <= $end->add_months( 1 );
+    }
+    else # no embargo
+    {
+        return 0 unless $eprint->is_set( "hoa_date_fcd" ) && $eprint->is_set( "hoa_date_foa" );
 
-	return 0;
+        my $fcd = Time::Piece->strptime( $eprint->value( "hoa_date_fcd" ), "%Y-%m-%d" );
+        my $foa = Time::Piece->strptime( $eprint->value( "hoa_date_foa" ), "%Y-%m-%d" );
+
+        # oa with one month of deposit
+        return 1 if $foa <= $fcd->add_months( 1 );
+    }
+
+    return 0;
 };
 
 $c->{hefce_oa}->{run_test_ACC_EMBARGO} = sub {
@@ -261,12 +272,12 @@ $c->{hefce_oa}->{run_test_EX} = sub {
 };
 
 $c->{hefce_oa}->{could_become_ACC_TIMING_compliant} = sub {
-	my( $repo, $eprint ) = @_;
+    my( $repo, $eprint ) = @_;
 
-        my $last_compliant_date = $repo->call( [ "hefce_oa", "calculate_last_compliant_foa_date" ], $repo, $eprint );
-	return 1 if( $last_compliant_date && ( localtime() <= $last_compliant_date ) );
+    my $last_compliant_date = $repo->call( [ "hefce_oa", "calculate_last_compliant_foa_date" ], $repo, $eprint );
+    return 1 if( $last_compliant_date && ( localtime() <= $last_compliant_date ) );
 
-        return 0;
+    return 0;
 };
 
 $c->{hefce_oa}->{OUT_OF_SCOPE_reason} = sub {
@@ -348,13 +359,11 @@ $c->{hefce_oa}->{run_test_AUD_UP_OA} = sub {
     my $audit_ds = $repo->dataset( "hefce_oa_audit" );
     my $audit = $audit_ds->dataobj_class->get_audit_record( $repo, $eprint );
 
-    print STDERR "audit object: $audit\n";
     return 0 unless defined $audit;
     return 0 unless $audit->is_set( "up_is_oa" );
 
     if( $audit->get_value( "up_is_oa" ) eq "TRUE" )
     {
-        print STDERR "Test pass\n";
         return 1;
     }
 

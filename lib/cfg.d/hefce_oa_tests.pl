@@ -348,11 +348,13 @@ $c->{hefce_oa}->{run_test_AUD_UP_OA} = sub {
     my $audit_ds = $repo->dataset( "hefce_oa_audit" );
     my $audit = $audit_ds->dataobj_class->get_audit_record( $repo, $eprint );
 
+    print STDERR "audit object: $audit\n";
     return 0 unless defined $audit;
     return 0 unless $audit->is_set( "up_is_oa" );
 
     if( $audit->get_value( "up_is_oa" ) eq "TRUE" )
     {
+        print STDERR "Test pass\n";
         return 1;
     }
 
@@ -384,16 +386,22 @@ $c->{hefce_oa}->{run_test_AUD_CORE_DATES} = sub {
 
     foreach my $cs ( @{$audit->get_value( "core_sources" )} )
     {
-        next unless exists $cs->{datePublished};
-        next unless exists $cs->{depositedDate};
+        next unless defined $cs->{datePublished};
+        next unless defined $cs->{depositedDate};
 
         my $dp = $cs->{datePublished};
         my $dd = $cs->{depositedDate};
 
-        my $pub = Time::Piece->strptime( $cs->{datePublished}, "%Y-%m-%dT%H:%M:%S" );
-        my $dep = Time::Piece->strptime( $cs->{depositedDate}, "%Y-%m-%d" );
+        # datePublished is a string and can be incomplete (others are timestamps)
+        # It would be better to use publishedDate rather than datePublished but RE say use DP
+        if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+		{
+			$dp = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $dp );
+		}
+
+        my $dep = Time::Piece->strptime( $dd, "%Y-%m-%d" );
     
-        my $diff = $dep - $pub;
+        my $diff = $dep - $dp;
         if( $diff->days < 92 ){ # one of them was deposited in time
             return 1;
         }

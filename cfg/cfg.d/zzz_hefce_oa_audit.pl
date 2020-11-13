@@ -5,8 +5,21 @@ $c->{"hefce_oa"}->{"unpaywall_email"} = undef;
 $c->{"hefce_oa"}->{"unpaywall_api_base"} = "http://api.unpaywall.org/v2/";
 
 $c->{"hefce_oa"}->{"core_api_base"} ="https://core.ac.uk/api-v2";
-$c->{"hefce_oa"}->{"core_api_key"} = "[enter core api key here]";
+$c->{"hefce_oa"}->{"core_api_key"} = "JETetiYKu5ksvW1yCmolMLIjXcOxUNZa";
 
+# trigger to (re)commit eprint after 
+$c->add_dataset_trigger( 'hefce_oa_audit', EPrints::Const::EP_TRIGGER_AFTER_COMMIT, sub
+{
+    my( %args ) = @_; 
+    my( $repo, $audit, $changed ) = @args{qw( repository dataobj changed )};
+
+    # If nothing changes but the date then there will be only 1 key in $changed
+    if(scalar keys %{$changed} > 1){
+        my $eprint = $repo->get_dataset("eprint")->dataobj($audit->value("eprintid"));
+        $eprint->commit;
+    }
+
+}, priority => 100 );
 
 # get all eligible eprints
 $c->{hefce_oa}->{get_eligible_eprints} = sub

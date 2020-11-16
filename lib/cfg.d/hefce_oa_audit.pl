@@ -118,6 +118,11 @@ unshift @{$c->{fields}->{hefce_oa_audit}}, (
                 type  => 'int',
             },
             {
+                sub_name => 'repo_name',
+                type => 'text',
+                allow_null => 1,
+            },
+            {
                 sub_name => 'datePublished',
                 type  => 'text',
                 allow_null => 1,

@@ -354,7 +354,7 @@ $c->{hefce_oa}->{run_test_AUDIT} = sub {
 
 $c->{hefce_oa}->{run_test_AUD_UP_OA} = sub {
     my( $repo, $eprint, $flag ) = @_;
-
+    
     # get audit record
     my $audit_ds = $repo->dataset( "hefce_oa_audit" );
     my $audit = $audit_ds->dataobj_class->get_audit_record( $repo, $eprint );
@@ -400,7 +400,6 @@ $c->{hefce_oa}->{run_test_AUD_CORE_DATES} = sub {
 
         my $dp = $cs->{datePublished};
         my $dd = $cs->{depositedDate};
-
         # datePublished is a string and can be incomplete (others are timestamps)
         # It would be better to use publishedDate rather than datePublished but RE say use DP
         if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )

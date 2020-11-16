@@ -97,7 +97,14 @@ a.hoa_show_description
     border-right: dashed #bbf 1px;
 }
 
-.hoa_data_tables > table th.ep_row
-{
-    width: auto;
+.hoa_data_tables .hoa_data_header{
+    font-size: 1.1rem;
+}
+
+.hoa_data_tables .hoa_data_audit table{
+    margin-bottom: 15px;
+}
+
+.hoa_data_tables td ul{
+    margin-bottom: 0;
 }

@@ -69,20 +69,18 @@ sub _fatal {
  
     if(!defined $response){
         $repo->log($msg);
-        print $json->encode( {error=> $msg} );
+        print $json->encode( {error=> $msg} ) . "\n";
     }else{
         $repo->log($msg." ".$response->content);
         print $json->encode( {error=> $msg, status_line=> $response->status_line, code => $response->code, response => $json->utf8->decode($response->content)} );
     }
-    exit; 
-
+    #exit
 }
 
 sub _process {
     my ($repo, $response,$eprint) = @_;
 
     my $json = JSON->new->allow_nonref;
-
     if( ! $response->is_success ){
         _fatal($repo, "Error from core", $response);
     }else{
@@ -127,6 +125,7 @@ sub _process {
             print "\n### ".$s->{repositories}->[0]->{name}." ###\n\n";
             print "core id => ".$s->{id}."\n";
             $core_source->{core_id} = $s->{id};
+            $core_source->{repo_name} = $s->{repositories}->[0]->{name};
 
             if(defined $s->{datePublished}){
                 print "core datePublished => ".$s->{datePublished}."\n";
@@ -162,7 +161,7 @@ sub _process {
                 $core_source->{acceptedDate} = $ad->ymd;
             }
 
-            print "core depositedDate => ".$dd->ymd."\n";
+            print "core depositedDate => ".$dd->ymd."\n" if defined $dd;
             print "eprint deposit date (datestamp) => ".$eprint->value("datestamp")."\n";
             print "eprint FCD => ".$eprint->value("hoa_date_fcd")."\n" if($eprint->exists_and_set("hoa_date_fcd"));
 
@@ -185,7 +184,7 @@ sub _get_latest_date{
     my $dd = $s->{$date};
     
     # and potentially again in the crossrefDocument
-    if(defined $s->{crossrefDocument} && $s->{$date} < $s->{crossrefDocument}->{$date}){ # crossref document date is later than the date
+    if(defined $s->{crossrefDocument} && defined $s->{crossrefDocument}->{$date} && $s->{$date} < $s->{crossrefDocument}->{$date}){ # crossref document date is later than the date
         $dd = $s->{crossrefDocument}->{$date};
     }
     return $dd;

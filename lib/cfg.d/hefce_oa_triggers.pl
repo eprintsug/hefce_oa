@@ -134,7 +134,6 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
     {
         $flag |= HefceOA::Const->$_ if $repo->call( [qw( hefce_oa run_test )], $repo, $_, $eprint, $flag );
     }
-
     $eprint->set_value( "hoa_compliant", $flag );
 
 }, priority => 300 );

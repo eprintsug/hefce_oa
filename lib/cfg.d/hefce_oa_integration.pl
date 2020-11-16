@@ -221,7 +221,7 @@ $c->{hefce_oa}->{handle_possibly_incomplete_date} = sub {
 
 	$default_to_start_of_period ||= 0;
 	# complete date - return Time::Piece object
-	if( $epdate =~ /^0*(\d{2}|\d{4})\-(\d{2})\-(\d{2})$/ )
+	if( $epdate =~ /^0*(\d{2}|\d{4})\-(\d{2})\-(\d{2})/ )
         {
                 if( length($1) == 2)
                 {

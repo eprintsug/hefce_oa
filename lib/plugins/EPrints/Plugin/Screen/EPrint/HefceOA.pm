@@ -364,14 +364,14 @@ sub render_data
             {
                 my $li = $repo->make_element( "li" );
 
-                # link to the core page
+                # link to the core page 
                 my $href = $repo->get_conf("hefce_oa","core_url") . $cs->{core_id};
                 my $link = $repo->render_link( $href, "_blank" );
                 $link->appendChild( $repo->make_text( $cs->{core_id} ) );
-                $li->appendChild( $link );
+                $li->appendChild( $self->html_phrase( "data:core_source_link", repo => $repo->make_text( $cs->{repo_name} ), core => $link ) ); 
 
                 # show the relevant dates
-                $li->appendChild( $repo->make_text( " (Dep: " . $cs->{depositedDate} . ", Pub: " . $cs->{datePublished} . ")" ) );
+                $li->appendChild( $self->html_phrase( "data:core_source_dates", dep => $repo->make_text( $cs->{depositedDate} ), pub => $repo->make_text( $cs->{datePublished} ) ) );
 
                 $ul->appendChild( $li );
             }

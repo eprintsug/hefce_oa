@@ -170,7 +170,7 @@ sub render
 		[ "DIS", [qw( DIS_DISCOVERABLE )] ],
 		[ "ACC", [qw( ACC_TIMING ACC_EMBARGO )] ],
 		[ "EX", [qw( EX_DEP EX_ACC EX_TEC EX_FUR )] ],
-        [ "AUDIT", [qw( AUD_UP_OA AUD_UP_URL AUD_CORE_DATES )] ],
+        [ "AUDIT", [qw( AUD_UP_OA AUD_UP_URL )] ],
 	)
 	{
 		my( $label, $tab ) = $self->render_tab( @$_ );
@@ -344,7 +344,9 @@ sub render_data
             }
         }
 
-        # display core data
+        # display core data - disabled for now because Core data and RE's usage of it is a bit confusing
+        if( 0 ) 
+        {
         if( $audit->is_set( "core_datestamp" ) )
         {
             $audit_div->appendChild( $self->html_phrase( "data:core_audit", date => $audit->render_value( "core_datestamp" ) ) );  
@@ -376,9 +378,9 @@ sub render_data
                 $ul->appendChild( $li );
             }
             $td->appendChild( $ul );
-            $tr->appendChild( $td );
-   
+            $tr->appendChild( $td );  
         }
+}
     }
 
     $div->appendChild( $audit_div );

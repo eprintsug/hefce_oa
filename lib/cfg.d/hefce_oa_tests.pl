@@ -346,8 +346,7 @@ $c->{hefce_oa}->{run_test_AUDIT} = sub {
 
     return 1 if
         $flag & HefceOA::Const::AUD_UP_OA &&
-        $flag & HefceOA::Const::AUD_UP_URL &&
-        $flag & HefceOA::Const::AUD_CORE_DATES;
+        $flag & HefceOA::Const::AUD_UP_URL;
 
     return 0;
 };

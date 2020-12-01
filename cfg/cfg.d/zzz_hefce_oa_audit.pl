@@ -65,3 +65,50 @@ $c->{hefce_oa}->{get_eligible_eprints} = sub
 
     return \@eligible_eprints;
 };
+
+# Audit Reports
+$c->{plugins}{"Screen::Report::REF_Audit::Unpaywall"}{params}{disable} = 0;
+$c->{unpaywall_report}->{export_plugins} = [ qw( Export::Report::CSV Export::Report::HTML Export::Report::JSON )];
+$c->{unpaywall_report}->{exportfields} = {
+    ref_core => [ qw(
+        eprintid
+        documents.content
+        type
+        title
+        abstract
+        creators
+        publisher
+        publication
+        divisions
+        dates
+        id_number
+        isbn
+        issn
+        official_url
+    )],
+    ref_audit=> [ qw(
+        unpaywall_oa
+        unpaywall_url
+    )],
+};
+
+$c->{unpaywall_report}->{custom_export} = {
+    unpaywall_oa => sub {
+        my( $eprint, $plugin ) = @_;
+
+        my $repo = $eprint->repository;
+        my $audit_ds = $repo->dataset( "hefce_oa_audit" );
+        my $audit = $audit_ds->dataobj_class->get_audit_record( $repo, $eprint );
+
+        return $audit->get_value( "up_is_oa" );
+    },
+    unpaywall_url => sub {
+        my( $eprint, $plugin ) = @_;
+
+        my $repo = $eprint->repository;
+        my $audit_ds = $repo->dataset( "hefce_oa_audit" );
+        my $audit = $audit_ds->dataobj_class->get_audit_record( $repo, $eprint );
+
+        return $audit->get_value( "up_url_for_pdf" );
+    },
+};

@@ -225,7 +225,7 @@ as part of our more detailed work to develop the post-2014 REF.
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:data:audit_table"><span class="hoa_data_header">Audit Data</span></epp:phrase>
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:data:up_audit"><span class="hoa_data_header">Unpaywall Data (last updated <epc:pin name="date"/>)</span></epp:phrase>
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:data:core_audit"><span class="hoa_data_header">Core Data (last updated <epc:pin name="date"/>)</span></epp:phrase>
-<epp:phrase id="Plugin/Screen/EPrint/HefceOA:data:no_audit"><span class="hoa_data_header">No Unpaywall or Core data found</span></epp:phrase>
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:data:no_audit"><span class="hoa_data_header">No Unpaywall data found</span></epp:phrase>
 
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:data:core_source_link"><div class="core_source_link"><epc:pin name="repo"/> (<epc:pin name="core"/>)</div></epp:phrase>
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:data:core_source_dates"><div class="core_source_dates">Deposited: <epc:pin name="dep"/>, Published: <epc:pin name="pub"/></div></epp:phrase>
@@ -243,5 +243,16 @@ as part of our more detailed work to develop the post-2014 REF.
 </li>
 </epp:phrase>
 
+<epp:phrase id="Plugin/Screen/Report/REF_Audit:title">REF Audit</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_Audit/Unpaywall:title">Unpaywall</epp:phrase>
+
+<epp:phrase id="audit_report:no_doi">No DOI associated with this item</epp:phrase>
+<epp:phrase id="audit_report:no_audit">No audit record associated with this item</epp:phrase>
+<epp:phrase id="audit_report:AUD_UP_OA">Unpaywall reports this item is not Open Access</epp:phrase>
+<epp:phrase id="audit_report:AUD_UP_URL">Unpaywall does not have a URL for this item</epp:phrase>
+
+<epp:phrase id="exportfields:ref_audit">REF Audit</epp:phrase>
+<epp:phrase id="exportfieldoptions:unpaywall_oa">Is OA?</epp:phrase>
+<epp:phrase id="exportfieldoptions:unpaywall_url">URL for PDF</epp:phrase>
 
 </epp:phrases>

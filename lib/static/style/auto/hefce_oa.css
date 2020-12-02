@@ -4,6 +4,11 @@ li.hoa_compliant
 	list-style-image: url(/style/images/hoa_message-icon.png);
 }
 
+li.audit_test.hoa_compliant
+{
+	list-style-image: none;
+}
+
 li.hoa_non_compliant
 {
 	list-style-image: url(/style/images/warning-icon.png);
@@ -23,6 +28,13 @@ span.hoa_compliant
 	padding-left: 18px;
 	background: url('/style/images/hoa_message-icon.png') no-repeat;
 }
+
+span.hoa_audit.hoa_compliant
+{
+    padding-left: 0px;
+	background: none;
+}
+
 span.hoa_non_compliant
 {
 	padding-left: 18px;

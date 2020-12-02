@@ -157,7 +157,6 @@ sub render
 		$page->appendChild( $repo->render_message( "warning", $self->html_phrase( "render_incomplete_dates", dates => $dates ) ) );
 	}
 
-
 	$page->appendChild( $self->html_phrase( "render_test_description",
 		description => $repo->html_phrase( "hefce_oa:test_description:COMPLIANT" )
 	) );
@@ -343,6 +342,9 @@ sub render_data
                 $tr->appendChild( $td );
             }
         }
+
+        $audit_div->appendChild( $self->html_phrase( "data:core_audit_unavailable_title" ) );  
+        $audit_div->appendChild( $self->html_phrase( "data:core_audit_unavailable_message" ) );  
 
         # display core data - disabled for now because Core data and RE's usage of it is a bit confusing
         if( 0 ) 
@@ -533,7 +535,8 @@ sub render_audit_tab
 	my $sub = $repo->xml->create_document_fragment;
 	for( @$tests )
 	{
-		my $test_class = ( $flag & HefceOA::Const->$_ ? "hoa_compliant" : "hoa_non_compliant" );
+        my $test_class="audit_test ";
+		$test_class .= ( $flag & HefceOA::Const->$_ ? "hoa_compliant" : "hoa_non_compliant" );
 		$sub->appendChild( $self->html_phrase( "render_audit_test",
 			title => $repo->html_phrase( "hefce_oa:test_title:$_" ),
 			class => $repo->xml->create_text_node( $test_class )
@@ -541,6 +544,7 @@ sub render_audit_tab
 	}
 	$tab->appendChild( $self->html_phrase( "render_tests", tests => $sub ) );
 
+	$tab->appendChild( $self->html_phrase( "render_audit_test_core_message" ) );
 
 	return( $tab_title, $tab );
 }

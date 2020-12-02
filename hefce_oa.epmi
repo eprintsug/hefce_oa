@@ -217,9 +217,9 @@
           <datasetid>document</datasetid>
           <filename>lang/en/phrases/hefce_oa.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>45571b62d32b6c43f908912f926005b1</hash>
+          <hash>495b1510f5fa7558759414eb7b0882c5</hash>
           <hash_type>MD5</hash_type>
-          <filesize>20171</filesize>
+          <filesize>20682</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -233,9 +233,9 @@
           <datasetid>document</datasetid>
           <filename>lang/en/phrases/hefce_oa_tests.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>01107b93131178ddc86772e3bc8248c4</hash>
+          <hash>7bfd4bb796703e246c5e41af766b4673</hash>
           <hash_type>MD5</hash_type>
-          <filesize>6669</filesize>
+          <filesize>7501</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -257,9 +257,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/EPrint/HefceOA.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>7b42560e70131af65f0eaec678c09733</hash>
+          <hash>d2d162d3ee6538c4c75939dc56fddbfb</hash>
           <hash_type>MD5</hash_type>
-          <filesize>19348</filesize>
+          <filesize>19656</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -417,9 +417,9 @@
           <datasetid>document</datasetid>
           <filename>static/style/auto/hefce_oa.css</filename>
           <mime_type>text/plain</mime_type>
-          <hash>19f8550aa68514a8ff3d8c98e56af9e3</hash>
+          <hash>fbbdebf8c57c3a5bd672ad1dcd9d9d94</hash>
           <hash_type>MD5</hash_type>
-          <filesize>1956</filesize>
+          <filesize>2091</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -491,7 +491,7 @@
       <content>coverimage</content>
     </document>
   </documents>
-  <version>1.5.6</version>
+  <version>1.5.7</version>
   <controller>EPMC::HefceOA</controller>
   <creators>
     <item>

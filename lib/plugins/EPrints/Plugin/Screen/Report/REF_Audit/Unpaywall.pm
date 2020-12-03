@@ -25,20 +25,6 @@ sub new
 	return $self;
 }
 
-sub items
-{
-    my( $self ) = @_;
-
-    my $repo = $self->repository;
-
-    my $ids = $repo->call( [ "hefce_oa", "get_eligible_eprints" ], $repo );
-
-    my $ds = $repo->dataset( $self->{datasetid} );
-
-    my $results = $ds->list( $ids );
-    return $results;
-}
-
 sub ajax_eprint
 {
 	my( $self ) = @_;

@@ -65,9 +65,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/bin/unpaywall</filename>
           <mime_type>text/x-perl</mime_type>
-          <hash>99ea5728ac1d3893d700d3c029571ffd</hash>
+          <hash>6cbda82373c4bcb70d5a7209dbbd9400</hash>
           <hash_type>MD5</hash_type>
-          <filesize>5213</filesize>
+          <filesize>6388</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -97,9 +97,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/cfg/cfg.d/zzz_hefce_oa_audit.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>d45c3d2418c1e2e10bb0b1249fec7d05</hash>
+          <hash>6e8fcad03002cc617f447daa9d2415c7</hash>
           <hash_type>MD5</hash_type>
-          <filesize>3230</filesize>
+          <filesize>3273</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -265,17 +265,17 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_Audit.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>4d8c1b452907c6ea62af5f0c539867c4</hash>
+          <hash>28338bcfdfaf252d6e9c29308ea1ee22</hash>
           <hash_type>MD5</hash_type>
-          <filesize>600</filesize>
+          <filesize>860</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_Audit/Unpaywall.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>cc3a9afc03b01cb22fb3c4450ec401f4</hash>
+          <hash>b6b477d93b64323cc285aeab30c7ab35</hash>
           <hash_type>MD5</hash_type>
-          <filesize>2952</filesize>
+          <filesize>2692</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -491,7 +491,7 @@
       <content>coverimage</content>
     </document>
   </documents>
-  <version>1.5.7</version>
+  <version>1.5.8</version>
   <controller>EPMC::HefceOA</controller>
   <creators>
     <item>

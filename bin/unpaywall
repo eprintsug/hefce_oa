@@ -28,19 +28,44 @@ my $repo = $ep->repository($repositoryid);
 unless($repo) {die("could not find repository with id: $repositoryid");}
 
 my $eprintid = $ARGV[1];
-my $eprints = [];
+my @eprints;
 if(defined $eprintid){
     print "Get unpaywall data for eprint/$eprintid...\n";
-    $eprints = [$eprintid];
+    my $eprints = [$eprintid];
+    @eprints = @{$eprints};
 }else{
     print "Get unpaywall data for all REF eligible records...\n";
     if($repo->can_call("hefce_oa", "get_eligible_eprints")){
-        $eprints = $repo->call(["hefce_oa", "get_eligible_eprints"],$repo);
+        my $eprints = $repo->call(["hefce_oa", "get_eligible_eprints"],$repo);
+
+        # in case we encounter any trouble querying unpaywall API, lets prioritise new updates based on when an item was last updated
+        my %eprint_audits = ();
+        my $eprint_ds = $repo->dataset( "eprint" );
+        my $audit_ds = $repo->dataset( "hefce_oa_audit" );
+
+        my $list = $eprint_ds->list( $eprints );
+
+        $list->map(sub{
+            (undef, undef, my $eprint) = @_;
+            my $audit = $audit_ds->dataobj_class->get_audit_record( $repo, $eprint );
+            if( !defined $audit )
+            {
+                $eprint_audits{$eprint->id} = 0;
+            }
+            else
+            {
+                my $value = $audit->get_value( "up_datestamp" );
+                my $field = $audit_ds->field( "up_datestamp" );               
+                $eprint_audits{$eprint->id} = $field->ordervalue_basic( $value );
+            }
+        });
+        
+        @eprints = sort { $eprint_audits{$a} cmp $eprint_audits{$b} } keys %eprint_audits;
     }
 }
 
 if($repo->can_call("hefce_oa", "get_unpaywall")){
-    for my $eprintid(@{$eprints}){
+    for my $eprintid(@eprints){
         if( !defined($eprintid) ){
             _fatal($repo,,"get_unpaywall called without id argument");
         }elsif( $eprintid !~ /^([0-9]+)$/ ){
@@ -51,8 +76,14 @@ if($repo->can_call("hefce_oa", "get_unpaywall")){
         _fatal($repo, "No eprint found with supplied parameters") if (!EPrints::Utils::is_set($eprint));
 
         my ($status, $response, $details) = $repo->call(["hefce_oa", "get_unpaywall"],$repo, $eprint);
+    
         _fatal($repo, $response, $details) if($status eq "ERROR");
-        _process($repo, $response, $eprint) if($status eq "SUCCESS");
+        
+        if($status eq "SUCCESS")
+        {
+            _process($repo, $response, $eprint);
+            sleep($repo->get_conf("hefce_oa","unpaywall_sleep")); # sleep to ensure we don't do over 100,000 calls in a day 
+        }
     }
 
 }else{

@@ -25,9 +25,9 @@
           <datasetid>document</datasetid>
           <filename>cfg.d/hefce_oa_tests.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>f0eeb9a21a5bf540486f4ea8204454b5</hash>
+          <hash>91de6cb93d8e10c31713f112e0cde22e</hash>
           <hash_type>MD5</hash_type>
-          <filesize>11538</filesize>
+          <filesize>11848</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -73,9 +73,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>403f52a2ff67614b20968509d038a87c</hash>
+          <hash>2ec7148791bb8380bba738143ffa52ae</hash>
           <hash_type>MD5</hash_type>
-          <filesize>9350</filesize>
+          <filesize>9499</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -217,9 +217,9 @@
           <datasetid>document</datasetid>
           <filename>lang/en/phrases/hefce_oa.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>495b1510f5fa7558759414eb7b0882c5</hash>
+          <hash>408229795a4a200b9865e3ed2ff80c65</hash>
           <hash_type>MD5</hash_type>
-          <filesize>20682</filesize>
+          <filesize>21217</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -257,9 +257,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/EPrint/HefceOA.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>d2d162d3ee6538c4c75939dc56fddbfb</hash>
+          <hash>07c69e70b0f11938a77e6bd0fef9f08a</hash>
           <hash_type>MD5</hash_type>
-          <filesize>19656</filesize>
+          <filesize>20153</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -417,9 +417,9 @@
           <datasetid>document</datasetid>
           <filename>static/style/auto/hefce_oa.css</filename>
           <mime_type>text/plain</mime_type>
-          <hash>fbbdebf8c57c3a5bd672ad1dcd9d9d94</hash>
+          <hash>d0b070c7023134df16b7bcc4e51464d0</hash>
           <hash_type>MD5</hash_type>
-          <filesize>2091</filesize>
+          <filesize>2119</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -491,7 +491,7 @@
       <content>coverimage</content>
     </document>
   </documents>
-  <version>1.5.8</version>
+  <version>1.6</version>
   <controller>EPMC::HefceOA</controller>
   <creators>
     <item>

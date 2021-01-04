@@ -23,6 +23,9 @@ push @{ $c->{user_roles}->{editor} }, qw{ +eprint/hefce_oa };
 push @{ $c->{user_roles}->{admin} }, qw{ +eprint/hefce_oa };
 push @{ $c->{user_roles}->{admin} }, qw{ +report/hefce_oa };
 
+#hide REF CC tab post ref - set to 1 if you want to hide the REF CC for eprints accepted/published after 31/03/2021
+$c->{hefce_oa}->{hide_tab} = 0;
+
 #set if embargoed records should appear in report as compliant
 $c->{hefce_oa}->{embargo_as_compliant} = 0;
 

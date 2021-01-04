@@ -29,6 +29,12 @@ sub can_be_viewed
 
 	return unless $self->{processor}->{eprint}->is_set( "hoa_compliant" );
 
+    my $repo = $self->{repository};
+    if( $repo->get_conf( "hefce_oa", "hide_tab" ) ) # we want to hide the tab for eprints accepted/published after the submission deadline
+    {
+        my $out_of_scope = $repo->call( [ "hefce_oa", "OUT_OF_SCOPE_reason" ], $repo, $self->{processor}->{eprint} );
+        return if $out_of_scope eq "over";       
+    }
 	return $self->allow( "eprint/hefce_oa" );
 }
 
@@ -76,6 +82,10 @@ sub render
 		{
  	               $td2->appendChild( $self->html_phrase( "out_of_scope:issn" ) );
 		}
+        elsif( $out_of_scope eq "over" )
+        {
+ 	               $td2->appendChild( $self->html_phrase( "out_of_scope:over" ) );
+        }
 		else
 		{
  	               $td2->appendChild( $self->html_phrase( "out_of_scope:timing" ) );

@@ -132,6 +132,8 @@ as part of our more detailed work to develop the post-2014 REF.
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:out_of_scope:timing"><span id="hoa_status" data-status="out_of_scope_timing">This item falls outside of the scope of the Open Access compliance policy as it has a date of acceptance before 1 April 2016.</span></epp:phrase>
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:out_of_scope:gold"><span id="hoa_status" data-status="out_of_scope_gold">This item falls outside of the scope of the Open Access compliance policy as it has been published via Gold open access. For more information see paragraph 239 of <epc:phrase ref="hefce_oa:policy_ref"/></span></epp:phrase>
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:out_of_scope:issn"><span id="hoa_status" data-status="out_of_scope_issn">This item falls outside of the scope of the Open Access compliance policy as it does not have an ISSN. For more information see paragraph 223 of <epc:phrase ref="hefce_oa:policy_ref"/></span></epp:phrase>
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:out_of_scope:over"><span id="hoa_status" data-status="out_of_scope_over">This item falls outside of the scope of the REF2021 Open Access compliance policy as it has a date of acceptance or publication after the 31st March 2021 submission deadline.</span></epp:phrase>
+
 
 
 <!-- This phrase is used as the alt text in the compliance message -->
@@ -212,6 +214,7 @@ as part of our more detailed work to develop the post-2014 REF.
 <epp:phrase id="hefce_oa:out_of_scope:pub">This item falls outside of the scope of the Open Access compliance policy as it has a date of acceptance before 1 April 2016.</epp:phrase>
 <epp:phrase id="hefce_oa:out_of_scope:gold">This item falls outside of the scope of the Open Access compliance policy as it has been published via Gold open access.</epp:phrase>
 <epp:phrase id="hefce_oa:out_of_scope:issn">This item falls outside of the scope of the Open Access compliance policy as it does not have an ISSN.</epp:phrase>
+<epp:phrase id="hefce_oa:out_of_scope:over">This item falls outside of the scope of the REF2021 Open Access compliance policy as it was accepted or published after the submission deadline on 31st March 2021.</epp:phrase>
 
 <!-- Pre-Compliance Options -->
 <epp:phrase id="eprint_fieldname_hoa_override">Pre-Compliant</epp:phrase>

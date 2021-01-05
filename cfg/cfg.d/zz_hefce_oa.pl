@@ -134,6 +134,10 @@ $c->{hefce_report}->{custom_export} = {
             {
                 return "Out of scope (no ISSN)";
             }
+            elsif( $out_of_scope eq "over" )
+            {
+                return "Out of scope (post REF2021 submission deadline)";
+            }
 
             my @problems = $plugin->validate_dataobj( $dataobj );
             if( scalar( @problems ) > 0 )

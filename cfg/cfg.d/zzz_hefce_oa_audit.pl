@@ -1,12 +1,10 @@
-
 # Uses adminemail if not set
 $c->{"hefce_oa"}->{"unpaywall_email"} = undef;
-
 $c->{"hefce_oa"}->{"unpaywall_api_base"} = "http://api.unpaywall.org/v2/";
 $c->{"hefce_oa"}->{"unpaywall_sleep"} = 1;
 
 $c->{"hefce_oa"}->{"core_api_base"} ="https://core.ac.uk/api-v2";
-$c->{"hefce_oa"}->{"core_api_key"} = "JETetiYKu5ksvW1yCmolMLIjXcOxUNZa";
+$c->{"hefce_oa"}->{"core_api_key"} = "";
 
 # trigger to (re)commit eprint after 
 $c->add_dataset_trigger( 'hefce_oa_audit', EPrints::Const::EP_TRIGGER_AFTER_COMMIT, sub
@@ -93,6 +91,8 @@ $c->{unpaywall_report}->{exportfields} = {
     )],
 };
 
+$c->{unpaywall_report}->{exportfield_defaults} = [ qw( eprintid title creators dates id_number unpaywall_oa unpaywall_url ) ];
+
 $c->{unpaywall_report}->{custom_export} = {
     unpaywall_oa => sub {
         my( $eprint, $plugin ) = @_;
@@ -100,8 +100,7 @@ $c->{unpaywall_report}->{custom_export} = {
         my $repo = $eprint->repository;
         my $audit_ds = $repo->dataset( "hefce_oa_audit" );
         my $audit = $audit_ds->dataobj_class->get_audit_record( $repo, $eprint );
-
-        return $audit->get_value( "up_is_oa" );
+        return $audit->get_value( "up_is_oa" ) if defined $audit;
     },
     unpaywall_url => sub {
         my( $eprint, $plugin ) = @_;
@@ -110,6 +109,30 @@ $c->{unpaywall_report}->{custom_export} = {
         my $audit_ds = $repo->dataset( "hefce_oa_audit" );
         my $audit = $audit_ds->dataobj_class->get_audit_record( $repo, $eprint );
 
-        return $audit->get_value( "up_url_for_pdf" );
+        return $audit->get_value( "up_url_for_pdf" ) if defined $audit;
+    },
+    creators => sub {
+        my( $dataobj ) = @_;
+
+        my @creator_names;
+        my $creators = $dataobj->get_value( "creators" );
+        foreach my $c ( @{$creators} )
+        {
+            push @creator_names, EPrints::Utils::make_name_string( $c->{name} );
+        }
+        my $output_string = join( ";", @creator_names );
+        return ($output_string) ? $output_string: "N/A";
+    },
+    dates => sub {
+        my( $dataobj ) = @_;
+
+        my @date_strings;
+        my $dates = $dataobj->get_value( "dates" );
+        foreach my $d ( @{$dates} )
+        {
+            push @date_strings, $d->{date} . " (" . $d->{date_type} . ")";
+        }
+        my $output_string = join( ";", @date_strings );
+        return ($output_string) ? $output_string: "N/A";
     },
 };

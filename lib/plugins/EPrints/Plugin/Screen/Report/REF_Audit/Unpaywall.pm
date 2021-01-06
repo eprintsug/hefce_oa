@@ -1,7 +1,7 @@
 package EPrints::Plugin::Screen::Report::REF_Audit::Unpaywall;
 
-use EPrints::Plugin::Screen::Report;
-our @ISA = ( 'EPrints::Plugin::Screen::Report' );
+use EPrints::Plugin::Screen::Report::REF_Audit;
+our @ISA = ( 'EPrints::Plugin::Screen::Report::REF_Audit' );
 
 use HefceOA::Const;
 use strict;

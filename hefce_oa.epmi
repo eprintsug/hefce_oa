@@ -111,22 +111,6 @@
         </file>
         <file>
           <datasetid>document</datasetid>
-          <filename>epm/hefce_oa/cgi/core</filename>
-          <mime_type>text/x-perl</mime_type>
-          <hash>bf3802223daf6aa2747824f2ab0f4ab2</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>1848</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
-          <filename>epm/hefce_oa/cgi/unpaywall</filename>
-          <mime_type>text/x-perl</mime_type>
-          <hash>3ae3bff4cb6defe75c2dd027522d31ba</hash>
-          <hash_type>MD5</hash_type>
-          <filesize>1874</filesize>
-        </file>
-        <file>
-          <datasetid>document</datasetid>
           <filename>epm/hefce_oa/tests/ACC_EMBARGO.t</filename>
           <mime_type>text/x-perl</mime_type>
           <hash>00cda63eb7d8c927598c43411571e60a</hash>
@@ -273,9 +257,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_Audit/Unpaywall.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>b6b477d93b64323cc285aeab30c7ab35</hash>
+          <hash>b8a9fe78d29eadcf07730ff56eca38b2</hash>
           <hash_type>MD5</hash_type>
-          <filesize>2692</filesize>
+          <filesize>2714</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>

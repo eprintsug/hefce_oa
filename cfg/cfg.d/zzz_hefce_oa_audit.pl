@@ -15,7 +15,7 @@ $c->add_dataset_trigger( 'hefce_oa_audit', EPrints::Const::EP_TRIGGER_AFTER_COMM
     # If nothing changes but the date then there will be only 1 key in $changed
     if(scalar keys %{$changed} > 1){
         my $eprint = $repo->get_dataset("eprint")->dataobj($audit->value("eprintid"));
-        $eprint->commit;
+        $eprint->commit( 1 );
     }
 
 }, priority => 100 );

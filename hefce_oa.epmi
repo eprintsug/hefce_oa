@@ -97,9 +97,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/cfg/cfg.d/zzz_hefce_oa_audit.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>1bcc610fe36b8731d6b9a49557a1f07d</hash>
+          <hash>275a719ffe461136cd9b23da6a0e208a</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4178</filesize>
+          <filesize>4183</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>

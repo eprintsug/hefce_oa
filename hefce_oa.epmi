@@ -217,9 +217,9 @@
           <datasetid>document</datasetid>
           <filename>lang/en/phrases/hefce_oa.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>408229795a4a200b9865e3ed2ff80c65</hash>
+          <hash>a34c65edcae40d2588e042984a7a1217</hash>
           <hash_type>MD5</hash_type>
-          <filesize>21217</filesize>
+          <filesize>21306</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>

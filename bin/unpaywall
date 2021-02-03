@@ -147,6 +147,8 @@ sub _process {
             my $up_location = {};
 
             $up_location->{url} = $up_loc->{url};
+            # If we do not have a value for url_for_pdf from the best_location we will get one from the first location that does have one.
+            $audit->set_value( "up_url_for_pdf", $up_loc->{url_for_pdf} ) if(!EPrints::Utils::is_set($audit->value("up_url_for_pdf")) && EPrints::Utils::is_set($up_loc->{url_for_pdf}));
             $up_location->{pmh_id} = $up_loc->{pmh_id};
             $up_location->{is_best} = uc( $up_loc->{is_best} );
             

@@ -7,12 +7,18 @@ $c->{plugins}{"Screen::Report::REF_CC::2017"}{params}{disable} = 0;
 $c->{plugins}{"Screen::Report::REF_CC::2018"}{params}{disable} = 0;
 $c->{plugins}{"Screen::Report::REF_CC::2019"}{params}{disable} = 0;
 $c->{plugins}{"Screen::Report::REF_CC::2020"}{params}{disable} = 0;
+$c->{plugins}{"Screen::Report::REF_CC::2021"}{params}{disable} = 0;
+$c->{plugins}{"Screen::Report::REF_CC::2022"}{params}{disable} = 0;
+$c->{plugins}{"Screen::Report::REF_CC::2023"}{params}{disable} = 0;
 $c->{plugins}{"Screen::Report::REF_CC_EX::2015"}{params}{disable} = 0;
 $c->{plugins}{"Screen::Report::REF_CC_EX::2016"}{params}{disable} = 0;
 $c->{plugins}{"Screen::Report::REF_CC_EX::2017"}{params}{disable} = 0;
 $c->{plugins}{"Screen::Report::REF_CC_EX::2018"}{params}{disable} = 0;
 $c->{plugins}{"Screen::Report::REF_CC_EX::2019"}{params}{disable} = 0;
 $c->{plugins}{"Screen::Report::REF_CC_EX::2020"}{params}{disable} = 0;
+$c->{plugins}{"Screen::Report::REF_CC_EX::2021"}{params}{disable} = 0;
+$c->{plugins}{"Screen::Report::REF_CC_EX::2022"}{params}{disable} = 0;
+$c->{plugins}{"Screen::Report::REF_CC_EX::2023"}{params}{disable} = 0;
 $c->{plugins}{"Export::Report::CSV::REF_CC"}{params}{disable} = 0;
 
 #set which can have a custom search, allowing their filter function to be overwridden

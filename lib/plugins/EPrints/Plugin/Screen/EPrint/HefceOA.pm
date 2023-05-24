@@ -28,12 +28,11 @@ sub can_be_viewed
 	my( $self ) = @_;
 
 	return unless $self->{processor}->{eprint}->is_set( "hoa_compliant" );
-
     my $repo = $self->{repository};
     if( $repo->get_conf( "hefce_oa", "hide_tab" ) ) # we want to hide the tab for eprints accepted/published after the submission deadline
     {
         my $out_of_scope = $repo->call( [ "hefce_oa", "OUT_OF_SCOPE_reason" ], $repo, $self->{processor}->{eprint} );
-        return if $out_of_scope eq "over";       
+        return 0 if( grep { $out_of_scope eq $_ } qw( 2021_acc 2014_acc 2021_pub 2014_pub ) );
     }
 	return $self->allow( "eprint/hefce_oa" );
 }
@@ -51,50 +50,35 @@ sub render
 	my $out_of_scope = $repo->call( [ "hefce_oa", "OUT_OF_SCOPE_reason" ], $repo, $eprint );
 	if( $out_of_scope )
 	{
-                #not currently compliant, but could be if embargo is released properly
-                my $div = $repo->make_element( "div", class=>"ep_msg_message" );
-                my $content_div = $repo->make_element( "div", class=>"ep_msg_message_content" );
-                my $table = $repo->make_element( "table" );
-                my $tr = $repo->make_element( "tr" );
-                $table->appendChild( $tr );
+        # not currently compliant, but could be if embargo is released properly
+        my $div = $repo->make_element( "div", class=>"ep_msg_message" );
+        my $content_div = $repo->make_element( "div", class=>"ep_msg_message_content" );
+        my $table = $repo->make_element( "table" );
+        my $tr = $repo->make_element( "tr" );
+        $table->appendChild( $tr );
 
-                my $td1 = $repo->make_element( "td" );
-                my $imagesurl = $repo->get_conf( "rel_path" );
-                $td1->appendChild(
-                        $repo->make_element(
-                                "img",
-                                class => "ep_msg_message_icon",
-                                src => "$imagesurl/style/images/hoa_out_of_scope.png",
-                                alt => $self->phrase( "out_of_scope_alt" )
-                        )
-                );
-                $tr->appendChild( $td1 );
+        my $td1 = $repo->make_element( "td" );
+        my $imagesurl = $repo->get_conf( "rel_path" );
+        $td1->appendChild(
+            $repo->make_element(
+                "img",
+                class => "ep_msg_message_icon",
+                src => "$imagesurl/style/images/hoa_out_of_scope.png",
+                alt => $self->phrase( "out_of_scope_alt" )
+            )
+        );
+        $tr->appendChild( $td1 );
 
-                my $td2 = $repo->make_element( "td" );
-                my $emb_len = $eprint->value( "hoa_emb_len" ) || 0;
-                $tr->appendChild( $td2 );
+        my $td2 = $repo->make_element( "td" );
+        my $emb_len = $eprint->value( "hoa_emb_len" ) || 0;
+        $tr->appendChild( $td2 );
 
-		if( $out_of_scope eq "gold" )
-		{
- 	               $td2->appendChild( $self->html_phrase( "out_of_scope:gold" ) );
-		}
-		elsif( $out_of_scope eq "issn" )
-		{
- 	               $td2->appendChild( $self->html_phrase( "out_of_scope:issn" ) );
-		}
-        elsif( $out_of_scope eq "over" )
-        {
- 	               $td2->appendChild( $self->html_phrase( "out_of_scope:over" ) );
-        }
-		else
-		{
- 	               $td2->appendChild( $self->html_phrase( "out_of_scope:timing" ) );
-		}
+        $td2->appendChild( $self->html_phrase( "out_of_scope:$out_of_scope" ) );
 
-                $content_div->appendChild( $table );
-                $div->appendChild( $content_div );
+        $content_div->appendChild( $table );
+        $div->appendChild( $content_div );
 
-                $page->appendChild( $div );
+        $page->appendChild( $div );
 	}
 	elsif( $flag & HefceOA::Const::COMPLIANT )
 	{

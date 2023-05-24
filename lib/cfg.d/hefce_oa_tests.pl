@@ -285,7 +285,7 @@ $c->{hefce_oa}->{OUT_OF_SCOPE_reason} = sub {
 	my( $repo, $eprint ) = @_;
 
 	my $APR16 = Time::Piece->strptime( "2016-04-01", "%Y-%m-%d" );
- 	my $DEADLINE = Time::Piece->strptime( "2021-03-31", "%Y-%m-%d" );
+ 	my $APR21 = Time::Piece->strptime( "2021-04-01", "%Y-%m-%d" );
 
 	# checks based on date of acceptance (if set)
 	if( $eprint->is_set( "hoa_date_acc" ) )
@@ -299,11 +299,16 @@ $c->{hefce_oa}->{OUT_OF_SCOPE_reason} = sub {
 		{
 			$acc = Time::Piece->strptime( $eprint->value( "hoa_date_acc" ), "%Y-%m-%d" );
 		}
-		#Acceptance is before 1st Apr 2016, compliant as out of OA policy scope
-		return "acc" if $acc < $APR16;
+		
+        
+		# Acceptance is before 1st Apr 2016, compliant as out of OA policy scope
+		return "2014_acc" if $acc < $APR16;
 
-        # Acceptance is after 31st Mar 2021, the submission deadline has passed
-        return "over" if $acc > $DEADLINE;
+		# Acceptance is after 31st Mar 2021, the submission deadline has passed
+		#return "over" if $acc > $DEADLINE_2021;
+        
+		# Acceptance is before 1st Apr 2021, out of scope of 2028
+        # return "2021_acc" if $acc < $APR21;
 	}
 	
 	if( $eprint->is_set( "hoa_date_pub" ) )
@@ -319,11 +324,14 @@ $c->{hefce_oa}->{OUT_OF_SCOPE_reason} = sub {
 		}
 		
 
-        #Published before 1st Apr 2016, compliant as out of OA policy scope
-        return "pub" if $pub < $APR16;
+		# Published before 1st Apr 2016, compliant as out of OA policy scope
+		return "2014_pub" if $pub < $APR16;
 
-        # Published after 31st Mar 2021, the submissione deadline has passed
-        return "over" if $pub > $DEADLINE;
+		# Published after 31st Mar 2021, the submissione deadline has passed
+		#return "" if $pub > $DEADLINE;
+
+		# Published is before 1st Apr 2021, out of scope of 2028
+		# return "2021_pub" if $pub < $APR21;
 	}
 
 	if( EPrints::Utils::is_set( $repo->config( "hefce_oa", "enforce_issn" ) ) && $repo->config( "hefce_oa", "enforce_issn" ) == 1 && !$eprint->is_set( "issn" ) )

@@ -144,6 +144,13 @@ push @{ $c->{hefce_oa}->{profile} },
     sql_index => 0,
 },
 
+# pre-publication embargo flag
+{
+    name => 'hoa_pre_pub',
+    type => 'boolean',
+    sql_index => 0,
+},
+
 ;
 
 for( @{ $c->{hefce_oa}->{profile} } )

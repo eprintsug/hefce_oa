@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <epm xmlns='http://eprints.org/ep2/data/2.0' id='http://localhost:8080/id/epm/hefce_oa'>
   <epmid>hefce_oa</epmid>
-  <uri>http://devorkin/id/epm/hefce_oa</uri>
+  <uri>http://localhost:8080/id/epm/hefce_oa</uri>
   <documents>
     <document>
       <files>
@@ -17,17 +17,17 @@
           <datasetid>document</datasetid>
           <filename>cfg.d/hefce_oa_integration.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>9cf0a2176ebca5ec03452623a67b5698</hash>
+          <hash>256e19ef2e2f269fa409da378d23c7df</hash>
           <hash_type>MD5</hash_type>
-          <filesize>10151</filesize>
+          <filesize>10704</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
           <filename>cfg.d/hefce_oa_tests.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>e3d499ca3317458ff2efbf3c2c55cbca</hash>
+          <hash>9a1cbe37c737f108616d73afa938659f</hash>
           <hash_type>MD5</hash_type>
-          <filesize>12051</filesize>
+          <filesize>13741</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -73,9 +73,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>94d7495db3229972b917dd257b086f2d</hash>
+          <hash>5a8a229fe0f8637bd093067583286164</hash>
           <hash_type>MD5</hash_type>
-          <filesize>10063</filesize>
+          <filesize>10158</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -89,9 +89,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa_fields.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>4d9b6564b63a9f5f3b7b716992f730dd</hash>
+          <hash>051578d9588e7e08f0291448c6cc643b</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4231</filesize>
+          <filesize>4338</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -201,9 +201,9 @@
           <datasetid>document</datasetid>
           <filename>lang/en/phrases/hefce_oa.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>b2221cfb59078625182786f710ae7691</hash>
+          <hash>d785d4b7f145e3cbedacf34abd700aa5</hash>
           <hash_type>MD5</hash_type>
-          <filesize>23441</filesize>
+          <filesize>24678</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -241,9 +241,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/EPrint/HefceOA.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>4a7fe7297474ad2f4ec6a98b0b7ce10b</hash>
+          <hash>265be8ad960b2ed82cb880e575644662</hash>
           <hash_type>MD5</hash_type>
-          <filesize>19570</filesize>
+          <filesize>20354</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -265,9 +265,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>c9021a1993dad5fad60bf6310b796f57</hash>
+          <hash>8c0bc5cf6f975f847ca4cc7bd8d87f7a</hash>
           <hash_type>MD5</hash_type>
-          <filesize>5783</filesize>
+          <filesize>6024</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -449,9 +449,9 @@
           <datasetid>document</datasetid>
           <filename>workflows/eprint/hefce_oa.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>cdbe91dbff2fe7de3c81164370c95a32</hash>
+          <hash>7214d9e74e23d541b3c1961c4c31f3a7</hash>
           <hash_type>MD5</hash_type>
-          <filesize>2078</filesize>
+          <filesize>2132</filesize>
         </file>
       </files>
       <mime_type>application/xml</mime_type>
@@ -475,7 +475,7 @@
       <content>coverimage</content>
     </document>
   </documents>
-  <version>1.7</version>
+  <version>1.8</version>
   <controller>EPMC::HefceOA</controller>
   <creators>
     <item>

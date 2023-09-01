@@ -213,8 +213,42 @@ $c->{hefce_oa}->{run_test_ACC_TIMING} = sub {
         my $end = $pub->add_months( $len ); # embargo end
 
         # emabargoes that end at/after the submission deadline are compliant
-        my $MAR31 = Time::Piece->strptime( "2021-03-31", "%Y-%m-%d" );
-        if( $end >= $MAR31 )
+        # DEADLINE TO BE CONFIRMED BUT WILL BE BEFORE 2028
+        my $DEADLINE = Time::Piece->strptime( "2028-01-01", "%Y-%m-%d" );
+        if( $end >= $DEADLINE )
+        {
+            return 1;
+        }
+
+        # we now need a first open access date to see if this happened in time with respect to the embargo
+        return 0 unless $eprint->is_set( "hoa_date_foa" );
+
+        my $foa = Time::Piece->strptime( $eprint->value( "hoa_date_foa" ), "%Y-%m-%d" );
+
+        # oa within one month of embargo end
+        return 1 if $foa <= $end->add_months( 1 );
+    }
+    elsif( $eprint->is_set( "hoa_pre_pub" ) && $eprint->value( "hoa_pre_pub" ) eq "TRUE" ) 
+    {
+        # pre publication embargo - i .e. no embargo has been set but we want to base this test on the published date, not fcd date
+        
+        return 0 unless $eprint->is_set( "hoa_date_pub" );
+        my $pub;
+        if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+        {
+            $pub = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_pub" ) );
+        }
+        if( !defined( $pub ) ) #above call can return undef - fallback to default
+        {
+            $pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
+        }
+
+        my $end = $pub->add_months( 1 ); # embargo end
+
+        # emabargoes that end at/after the submission deadline are compliant
+        # DEADLINE TO BE CONFIRMED BUT WILL BE BEFORE 2028
+        my $DEADLINE = Time::Piece->strptime( "2028-01-01", "%Y-%m-%d" );
+        if( $end >= $DEADLINE )
         {
             return 1;
         }
@@ -282,79 +316,77 @@ $c->{hefce_oa}->{could_become_ACC_TIMING_compliant} = sub {
 
 $c->{hefce_oa}->{OUT_OF_SCOPE_reason} = sub {
 
-	my( $repo, $eprint ) = @_;
+    my( $repo, $eprint ) = @_;
 
-	my $APR16 = Time::Piece->strptime( "2016-04-01", "%Y-%m-%d" );
- 	my $APR21 = Time::Piece->strptime( "2021-04-01", "%Y-%m-%d" );
+    my $APR16 = Time::Piece->strptime( "2016-04-01", "%Y-%m-%d" );
+    my $APR21 = Time::Piece->strptime( "2021-04-01", "%Y-%m-%d" );
 
-	# checks based on date of acceptance (if set)
-	if( $eprint->is_set( "hoa_date_acc" ) )
-	{
-		my $acc;
-		if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
-		{
-			$acc = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_acc" ) );
-		}
-		if( !defined( $acc ) ) #above call can return undef - fallback to default
-		{
-			$acc = Time::Piece->strptime( $eprint->value( "hoa_date_acc" ), "%Y-%m-%d" );
-		}
-		
+    # checks based on date of acceptance (if set)
+    if( $eprint->is_set( "hoa_date_acc" ) )
+    {
+        my $acc;
+        if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+        {
+            $acc = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_acc" ) );
+        }
+        if( !defined( $acc ) ) #above call can return undef - fallback to default
+        {
+            $acc = Time::Piece->strptime( $eprint->value( "hoa_date_acc" ), "%Y-%m-%d" );
+        }
         
-		# Acceptance is before 1st Apr 2016, compliant as out of OA policy scope
-		return "2014_acc" if $acc < $APR16;
+        # Acceptance is before 1st Apr 2016, compliant as out of OA policy scope
+        return "2014_acc" if $acc < $APR16;
 
-		# Acceptance is after 31st Mar 2021, the submission deadline has passed
-		#return "over" if $acc > $DEADLINE_2021;
-        
-		# Acceptance is before 1st Apr 2021, out of scope of 2028
-        # return "2021_acc" if $acc < $APR21;
-	}
-	
-	if( $eprint->is_set( "hoa_date_pub" ) )
-	{
-		my $pub;
-		if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
-		{
-			$pub = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_pub" ) );
-		}
-		if( !defined( $pub ) ) #above call can return undef - fallback to default
-		{
-			$pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
-		}
-		
+        if( !$repo->config( "hefce_oa", "ref2021_scope" ) )
+        {
+            # Acceptance is before 1st Apr 2021, out of scope of 2028
+            return "2021_acc" if $acc < $APR21;
+        }
+    }
 
-		# Published before 1st Apr 2016, compliant as out of OA policy scope
-		return "2014_pub" if $pub < $APR16;
+    if( $eprint->is_set( "hoa_date_pub" ) )
+    {
+        my $pub;
+        if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+        {
+            $pub = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_pub" ) );
+        }
+        if( !defined( $pub ) ) #above call can return undef - fallback to default
+        {
+            $pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
+        }
 
-		# Published after 31st Mar 2021, the submissione deadline has passed
-		#return "" if $pub > $DEADLINE;
+        # Published before 1st Apr 2016, compliant as out of OA policy scope
+        return "2014_pub" if $pub < $APR16;
 
-		# Published is before 1st Apr 2021, out of scope of 2028
-		# return "2021_pub" if $pub < $APR21;
-	}
+        if( !$repo->config( "hefce_oa", "ref2021_scope" ) )
+        {
+            # Published is before 1st Apr 2021, out of scope of 2028
+            return "2021_pub" if $pub < $APR21;
+        }
+    }
 
-	if( EPrints::Utils::is_set( $repo->config( "hefce_oa", "enforce_issn" ) ) && $repo->config( "hefce_oa", "enforce_issn" ) == 1 && !$eprint->is_set( "issn" ) )
-	{
-		return "issn";
-	}
+    if( EPrints::Utils::is_set( $repo->config( "hefce_oa", "enforce_issn" ) ) && $repo->config( "hefce_oa", "enforce_issn" ) == 1 && !$eprint->is_set( "issn" ) )
+    {
+        return "issn";
+    }
 
-	return 0;
+    return 0;
 };
 
 $c->{hefce_oa}->{run_test_OUT_OF_SCOPE} = sub {
 
-	my( $repo, $eprint ) = @_;
+    my( $repo, $eprint ) = @_;
 
-	my $out_of_scope = $repo->call( [ "hefce_oa", "OUT_OF_SCOPE_reason" ], $repo, $eprint );
-	if( $out_of_scope )
-	{
-		return 1;
-	}
-	else
-	{
-		return 0;
-	}
+    my $out_of_scope = $repo->call( [ "hefce_oa", "OUT_OF_SCOPE_reason" ], $repo, $eprint );
+    if( $out_of_scope )
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 };
 
 $c->{hefce_oa}->{run_test_AUDIT} = sub {
@@ -418,9 +450,9 @@ $c->{hefce_oa}->{run_test_AUD_CORE_DATES} = sub {
         # datePublished is a string and can be incomplete (others are timestamps)
         # It would be better to use publishedDate rather than datePublished but RE say use DP
         if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
-		{
-			$dp = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $dp );
-		}
+        {
+            $dp = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $dp );
+        }
 
         my $dep = Time::Piece->strptime( $dd, "%Y-%m-%d" );
     

@@ -268,6 +268,16 @@ $c->{hefce_oa}->{calculate_last_compliant_foa_date} = sub {
         $end = $end->add_months( 1 ); #1-month grace period
         return $end;
     }
+    elsif( $eprint->is_set( "hoa_pre_pub" ) && $eprint->value( "hoa_pre_pub" ) eq "TRUE" )
+    {
+        # pre publication embargo - i.e. no embargo has been set but we want to base this on published date not fcd date
+        return undef unless $eprint->is_set( "hoa_date_pub" );
+
+        my $pub = $repo->call(["hefce_oa", "handle_possibly_incomplete_date"], $eprint->value( "hoa_date_pub" ), "Y-%m-%d" );
+        my $end = $pub->add_months( $len ); # embargo end
+        $end = $end->add_months( 1 ); #1-month grace period
+        return $end;
+    }
     else # no embargo
     {
         return undef unless $eprint->is_set( "hoa_date_fcd" );

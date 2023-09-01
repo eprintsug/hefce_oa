@@ -279,4 +279,12 @@ as part of our more detailed work to develop the post-2014 REF.
 <epp:phrase id="exportfieldoptions:unpaywall_oa">Is OA?</epp:phrase>
 <epp:phrase id="exportfieldoptions:unpaywall_url">URL for PDF</epp:phrase>
 
+<!-- Pre-Publication Embargo -->
+<epp:phrase id="eprint_fieldname_hoa_pre_pub">Pre-Publication Embargo</epp:phrase>
+<epp:phrase id="eprint_fieldhelp_hoa_pre_pub">Use this checkbox to indicate when an item cannot be made available until it has been published, but no embargo applies or an embargo date has not been provided. This is considered a Pre-Publication embargo and so the item falls within the Route 2 Open Access rules, where the item must be made fully open access within one month of publication.</epp:phrase>
+
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:pre_pub_future_compliant"><span id="hoa_status" data-status="future_compliant">This item is not currently compliant. If the output (full text) is made open access by <epc:pin name="last_foa_date" /> it will become compliant.<br />This date is calculated assuming a pre-publication embargo. Where no embargo has been set, but the output cannot be made open access until publication, the Route 2 Open Access rules apply. Please see the 'Access' tab below for more details.</span></epp:phrase>
+
+<epp:phrase id="report_pre_pub">This item is marked as having a pre-publication embargo. The Route 2 Open Access rules apply, despite no embargo period being set."</epp:phrase>
+
 </epp:phrases>

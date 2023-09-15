@@ -194,8 +194,10 @@ as part of our more detailed work to develop the post-2014 REF.
 <epp:phrase id="Plugin/Screen/Report/REF_CC/2021:title">Accepted April 2021 - March 2022</epp:phrase>
 <epp:phrase id="Plugin/Screen/Report/REF_CC/2022:title">Accepted April 2022 - March 2023</epp:phrase>
 <epp:phrase id="Plugin/Screen/Report/REF_CC/2023:title">Accepted April 2023 - March 2024</epp:phrase>
-
-
+<epp:phrase id="Plugin/Screen/Report/REF_CC/2024:title">Accepted April 2024 - March 2025</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC/2025:title">Accepted April 2025 - March 2026</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC/2026:title">Accepted April 2026 - March 2027</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC/2027:title">Accepted April 2027 - March 2028</epp:phrase>
 
 <epp:phrase id="Plugin/Screen/Report/REF_CC_EX:title">REF Compliance - Exceptions</epp:phrase>
 <epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2015:title">Accepted April 2015 - March 2016</epp:phrase>
@@ -207,6 +209,11 @@ as part of our more detailed work to develop the post-2014 REF.
 <epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2021:title">Accepted April 2021 - March 2022</epp:phrase>
 <epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2022:title">Accepted April 2022 - March 2023</epp:phrase>
 <epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2023:title">Accepted April 2023 - March 2024</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2024:title">Accepted April 2024 - March 2025</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2025:title">Accepted April 2025 - March 2026</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2026:title">Accepted April 2026 - March 2027</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2027:title">Accepted April 2027 - March 2028</epp:phrase>
+
 
 <epp:phrase id="exportfields:ref_core">Core</epp:phrase>
 <epp:phrase id="exportfields:ref_rioxx">RIOXX</epp:phrase>

@@ -73,9 +73,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>5a8a229fe0f8637bd093067583286164</hash>
+          <hash>a0fff16cd8f129492d62b3e145b5691b</hash>
           <hash_type>MD5</hash_type>
-          <filesize>10158</filesize>
+          <filesize>10714</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -201,9 +201,9 @@
           <datasetid>document</datasetid>
           <filename>lang/en/phrases/hefce_oa.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>d785d4b7f145e3cbedacf34abd700aa5</hash>
+          <hash>c7697d267bb112e50bb8df1032f09836</hash>
           <hash_type>MD5</hash_type>
-          <filesize>24678</filesize>
+          <filesize>25505</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -319,6 +319,62 @@
         </file>
         <file>
           <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2021.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>2c1ad86f1ce1bf47227092729f695748</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>518</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2022.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>0cffc19e0c8df16734d9325a3e4caf64</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>518</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2023.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>bf41de3a003047a719810c198133b02f</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>518</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2024.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>5f1582b3dc5f537a0755a587a2e503e4</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>518</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2025.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>96194970a70c93ea3bbc2f655a8d78c0</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>518</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2026.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>a946ffa8bbf07a7518cab855e1697c9d</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>518</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/2027.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>9903e19dcb4003e7576e842fd298503f</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>518</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX.pm</filename>
           <mime_type>text/plain</mime_type>
           <hash>07d09e85d3bc64ba593f4f66171bec1a</hash>
@@ -370,6 +426,62 @@
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX/2020.pm</filename>
           <mime_type>text/plain</mime_type>
           <hash>c8ae2d8134cc3b5680f59b19503297ef</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>530</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX/2021.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>787f5f2bf2ec398aa9edd3131bc1e653</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>530</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX/2022.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>d5db5f2a0d75cacbe0bec1e3b1487168</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>530</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX/2023.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>79fdd080056b9daa1ac1bb6d831636e9</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>530</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX/2024.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>60e802919c61cd292b3a420fa4cd414a</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>530</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX/2025.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>ec0a8b630d57507c4d67259e9679d819</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>530</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX/2026.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>6d14756e0d95a1a2b82d4e68faf56ea1</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>530</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX/2027.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>791a9bc8c3077b2975fdfa922582f443</hash>
           <hash_type>MD5</hash_type>
           <filesize>530</filesize>
         </file>
@@ -475,7 +587,7 @@
       <content>coverimage</content>
     </document>
   </documents>
-  <version>1.8</version>
+  <version>2.0</version>
   <controller>EPMC::HefceOA</controller>
   <creators>
     <item>

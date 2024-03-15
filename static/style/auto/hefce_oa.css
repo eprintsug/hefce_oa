@@ -1,0 +1,122 @@
+
+li.hoa_compliant
+{
+	list-style-image: url(/style/images/hoa_message-icon.png);
+}
+
+li.audit_test.hoa_compliant
+{
+	list-style-image: none;
+}
+
+li.hoa_non_compliant
+{
+	list-style-image: url(/style/images/warning-icon.png);
+}
+li.hoa_future_compliant
+{
+	list-style-image: url('/style/images/hoa_future_compliant-icon.png');
+}
+
+div.hoa_test_description li
+{
+	list-style-image: none;
+}
+
+span.hoa_compliant
+{
+	padding-left: 18px;
+	background: url('/style/images/hoa_message-icon.png') no-repeat;
+}
+
+span.hoa_audit.hoa_compliant
+{
+    padding-left: 0px;
+	background: none;
+}
+
+span.hoa_non_compliant
+{
+	padding-left: 18px;
+	background: url('/style/images/warning-icon.png') no-repeat;
+}
+span.hoa_future_compliant
+{
+	padding-left: 18px;
+	background: url('/style/images/hoa_future_compliant-icon.png') no-repeat;
+}
+span.hoa_out_of_scope_timing, span.hoa_out_of_scope_gold, span.hoa_out_of_scope_issn, span.hoa_out_of_scope_over
+{
+	padding-left: 18px;
+	background: url('/style/images/hoa_out_of_scope-icon.png') no-repeat;
+}
+#hoa_tab_title
+{
+	padding-left: 18px;
+}
+#hoa_tab_title.hoa_compliant
+{
+    background: url('/style/images/hoa_message-icon.png') no-repeat;
+}
+#hoa_tab_title.hoa_non_compliant
+{
+    background: url('/style/images/warning-icon.png') no-repeat;
+}
+#hoa_tab_title.hoa_future_compliant
+{
+    background: url('/style/images/hoa_future_compliant-icon.png') no-repeat;
+}
+
+div.hoa_help
+{
+    padding-left: 1em;
+    padding-right: 1em;
+    background: #fff;
+    border: 1px solid #ccc;
+    margin: 2px;
+}
+
+.hoa_hidden
+{
+    display: none;
+    visibility: hidden;
+}
+
+.hoa_test_description
+{
+	padding-left: 1em;
+	padding-right: 1em;
+	background: #fff;
+	border: 1px solid #ccc;
+	margin: 2px;
+}
+
+a.hoa_show_description
+{
+	cursor:pointer;	
+}
+
+.hoa_data_tables > div
+{
+    display: inline-block;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 5px; 
+    vertical-align: top;
+}
+
+.hoa_data_compliance{
+    border-right: dashed #bbf 1px;
+}
+
+.hoa_data_tables .hoa_data_header{
+    font-size: 1.1rem;
+}
+
+.hoa_data_tables .hoa_data_audit table{
+    margin-bottom: 15px;
+}
+
+.hoa_data_tables td ul{
+    margin-bottom: 0;
+}

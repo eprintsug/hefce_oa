@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE phrases SYSTEM "entities.dtd">
+<epp:phrases xmlns="http://www.w3.org/1999/xhtml" xmlns:epp="http://eprints.org/ep3/phrase" xmlns:epc="http://eprints.org/ep3/control">
+
+<epp:phrase id="hefce_oa:test_title:COMPLIANT"><epc:phrase ref="hefce"/> Open Access compliance</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:COMPLIANT">To be compliant, an item must meet at least one of the following conditions:
+<ul>
+	<li>The <strong>deposit</strong>, <strong>discovery</strong> and <strong>access</strong> requirements are met.</li>
+	<li>There is a <strong>deposit exception</strong>.</li>
+	<li>There is an <strong>access exception</strong> and the <strong>deposit</strong> and <strong>discovery</strong> requirements are met.</li>
+	<li>There is a <strong>technical exception</strong>.</li>
+	<li>There is an <strong>'other' exception</strong>.</li>
+</ul>
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_title:DEP">Deposit</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DEP">To be deposit compliant, all of the following conditions must be met.</epp:phrase>
+<epp:phrase id="hefce_oa:test_title:DEP_COMPLIANT">The output must have been deposited as the author’s accepted and final peer reviewed text.</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DEP_COMPLIANT">
+<blockquote><epc:phrase ref="hefce_oa:test_description:DEP_COMPLIANT:policy"/></blockquote>
+<p><em><epc:phrase ref="hefce_oa:test_description:DEP_COMPLIANT:eprints"/></em></p>
+</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DEP_COMPLIANT:policy"><epc:phrase ref="hefce_oa:policy:para:237"/></epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DEP_COMPLIANT:eprints">The <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong> must be set (ie. the item is a compliant deposit).</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_title:DEP_TIMING">The output must have been deposited as soon after the point of acceptance as possible.</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DEP_TIMING">
+<blockquote><epc:phrase ref="hefce_oa:test_description:DEP_TIMING:policy"/></blockquote>
+<p><em><epc:phrase ref="hefce_oa:test_description:DEP_TIMING:eprints"/></em></p>
+</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DEP_TIMING:policy">
+<epc:phrase ref="hefce_oa:policy:para:236"/>
+</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DEP_TIMING:eprints">
+The <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong> must be no later than three months after the <strong><epc:phrase ref="eprint_fieldname_hoa_date_acc"/></strong>. If the <strong><epc:phrase ref="eprint_fieldname_hoa_date_acc"/></strong> is before 1st April 2018, <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong> must be no later than three months after the <strong><epc:phrase ref="eprint_fieldname_hoa_date_pub"/></strong>.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_title:DIS">Discovery</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DIS">To be discovery compliant, all of the following conditions must be met:</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_title:DIS_DISCOVERABLE">The output must be presented in a way that allows it to be discovered by readers.</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DIS_DISCOVERABLE">
+<blockquote><epc:phrase ref="hefce_oa:test_description:DIS_DISCOVERABLE:policy"/></blockquote>
+<p><em><epc:phrase ref="hefce_oa:test_description:DIS_DISCOVERABLE:eprints"/></em></p>
+</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DIS_DISCOVERABLE:policy">
+<epc:phrase ref="hefce_oa:policy:para:241"/>
+</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DIS_DISCOVERABLE:eprints">
+The item must be in the <epc:phrase ref="eprint_fieldopt_eprint_status_archive"/>.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_title:ACC">Access</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:ACC">To be access compliant, all of the following conditions must be met.</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_title:ACC_TIMING">The output must meet the access requirements as soon as possible.</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:ACC_TIMING">
+<blockquote><epc:phrase ref="hefce_oa:test_description:ACC_TIMING:policy"/></blockquote>
+<p><em><epc:phrase ref="hefce_oa:test_description:ACC_TIMING:eprints"/></em></p>
+</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:ACC_TIMING:policy">
+<epc:phrase ref="hefce_oa:policy:para:249"/>
+</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:ACC_TIMING:eprints">
+If no embargo applies, the <strong><epc:phrase ref="eprint_fieldname_hoa_date_foa"/></strong> must be less than one month after the <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong>. Otherwise, the <strong><epc:phrase ref="eprint_fieldname_hoa_date_foa"/></strong> must be less than one month after the embargo expiry date (<strong><epc:phrase ref="eprint_fieldname_hoa_date_pub"/></strong> + <strong><epc:phrase ref="eprint_fieldname_hoa_emb_len"/>)</strong>.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_title:ACC_EMBARGO">Embargo periods should not exceed the following maxima</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:ACC_EMBARGO">
+<blockquote><epc:phrase ref="hefce_oa:test_description:ACC_EMBARGO:policy"/></blockquote>
+<p><em><epc:phrase ref="hefce_oa:test_description:ACC_EMBARGO:eprints"/></em></p>
+</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:ACC_EMBARGO:policy">
+<epc:phrase ref="hefce_oa:policy:para:250"/>
+</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:ACC_EMBARGO:eprints">
+The <strong><epc:phrase ref="eprint_fieldname_hoa_emb_len"/></strong> must not exceed the stated maxima for the target <strong><epc:phrase ref="eprint_fieldname_hoa_ref_pan"/></strong>.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_data:UNKNOWN">Unknown</epp:phrase>
+
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_audit_test_description">
+        <p>Research England will take a risk-based approach to open access compliance. The <a href="https://www.ref.ac.uk/media/1164/ref-2019_04-audit-guidance.pdf" target="_blank">Audit Guidance</a> states:</p>
+        <div class="hoa_test_description"><p></p><blockquote>46. b. The risk identification does not itself form part of the audit, but will be used to inform the selection of HEIs and submissions for possible audit review.</blockquote></div>
+        <p>HEIs will be ranked by the following criteria:</p>
+</epp:phrase>
+<epp:phrase id="hefce_oa:test_title:AUD_UP_OA">Using unpaywall.org to establish whether there is an OA copy of the output (based on the <strong>is_oa</strong> field).</epp:phrase>
+<epp:phrase id="hefce_oa:test_title:AUD_UP_URL">Using unpaywall.org to establish whether the output is a file with searchable text (based on the <strong>url_for_pdf</strong> field).</epp:phrase>
+<epp:phrase id="hefce_oa:test_title:AUD_CORE_DATES">Using Jisc CORE, comparing the <strong>datePublished</strong> and <strong>depositedDate</strong> and identifying where the number of days between the two dates is greater than 92.</epp:phrase>
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_audit_test_core_message">Research England will also use data from CORE to compare deposited and published dates to further establish risk identification, however this data is currently unavailable. For more information please see the <a href="https://core.ac.uk/faq/#how-can-I-see-the-deposit-date-from-my-repository" target="_blank">CORE FAQ</a>.</epp:phrase>
+
+</epp:phrases>

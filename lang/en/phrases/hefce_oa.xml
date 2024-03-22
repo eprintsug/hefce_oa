@@ -135,6 +135,10 @@ as part of our more detailed work to develop the post-2014 REF.
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:out_of_scope:issn"><span id="hoa_status" data-status="out_of_scope_issn">This item falls outside of the scope of the Open Access compliance policy as it does not have an ISSN. For more information see paragraph 223 of <epc:phrase ref="hefce_oa:policy_ref"/></span></epp:phrase>
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:out_of_scope:over"><span id="hoa_status" data-status="out_of_scope_over">This item falls outside of the scope of the REF2021 Open Access compliance policy as it has a date of acceptance or publication after the 31st March 2021 submission deadline.</span></epp:phrase>
 
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:out_of_scope:2021_acc"><span id="hoa_status" data-status="out_of_scope_timing">This item falls outside of the scope of the REF2028 Open Access compliance policy as it has a date of acceptance before the 1st April 2021.</span></epp:phrase>
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:out_of_scope:2021_pub"><span id="hoa_status" data-status="out_of_scope_timing">This item falls outside of the scope of the REF2028 Open Access compliance policy as it has a date of publication before the 1st April 2021.</span></epp:phrase>
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:out_of_scope:2014_acc"><span id="hoa_status" data-status="out_of_scope_timing">This item falls outside of the scope of the REF2028 Open Access compliance policy as it has a date of acceptance before the 1st April 2021.</span></epp:phrase>
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:out_of_scope:2014_pub"><span id="hoa_status" data-status="out_of_scope_timing">This item falls outside of the scope of the REF2028 Open Access compliance policy as it has a date of publication before the 1st April 2021.</span></epp:phrase>
 
 
 <!-- This phrase is used as the alt text in the compliance message -->
@@ -187,6 +191,14 @@ as part of our more detailed work to develop the post-2014 REF.
 <epp:phrase id="Plugin/Screen/Report/REF_CC/2018:title">Accepted April 2018 - March 2019</epp:phrase>
 <epp:phrase id="Plugin/Screen/Report/REF_CC/2019:title">Accepted April 2019 - March 2020</epp:phrase>
 <epp:phrase id="Plugin/Screen/Report/REF_CC/2020:title">Accepted April 2020 - March 2021</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC/2021:title">Accepted April 2021 - March 2022</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC/2022:title">Accepted April 2022 - March 2023</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC/2023:title">Accepted April 2023 - March 2024</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC/2024:title">Accepted April 2024 - March 2025</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC/2025:title">Accepted April 2025 - March 2026</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC/2026:title">Accepted April 2026 - March 2027</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC/2027:title">Accepted April 2027 - March 2028</epp:phrase>
+
 <epp:phrase id="Plugin/Screen/Report/REF_CC_EX:title">REF Compliance - Exceptions</epp:phrase>
 <epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2015:title">Accepted April 2015 - March 2016</epp:phrase>
 <epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2016:title">Accepted April 2016 - March 2017</epp:phrase>
@@ -194,6 +206,14 @@ as part of our more detailed work to develop the post-2014 REF.
 <epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2018:title">Accepted April 2018 - March 2019</epp:phrase>
 <epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2019:title">Accepted April 2019 - March 2020</epp:phrase>
 <epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2020:title">Accepted April 2020 - March 2021</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2021:title">Accepted April 2021 - March 2022</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2022:title">Accepted April 2022 - March 2023</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2023:title">Accepted April 2023 - March 2024</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2024:title">Accepted April 2024 - March 2025</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2025:title">Accepted April 2025 - March 2026</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2026:title">Accepted April 2026 - March 2027</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC_EX/2027:title">Accepted April 2027 - March 2028</epp:phrase>
+
 
 <epp:phrase id="exportfields:ref_core">Core</epp:phrase>
 <epp:phrase id="exportfields:ref_rioxx">RIOXX</epp:phrase>
@@ -216,6 +236,10 @@ as part of our more detailed work to develop the post-2014 REF.
 <epp:phrase id="hefce_oa:out_of_scope:gold">This item falls outside of the scope of the Open Access compliance policy as it has been published via Gold open access.</epp:phrase>
 <epp:phrase id="hefce_oa:out_of_scope:issn">This item falls outside of the scope of the Open Access compliance policy as it does not have an ISSN.</epp:phrase>
 <epp:phrase id="hefce_oa:out_of_scope:over">This item falls outside of the scope of the REF2021 Open Access compliance policy as it was accepted or published after the submission deadline on 31st March 2021.</epp:phrase>
+<epp:phrase id="hefce_oa:out_of_scope:2021_acc">This item falls outside of the scope of the REF2028 Open Access compliance policy as it was accepted before 1st April 2021.</epp:phrase>
+<epp:phrase id="hefce_oa:out_of_scope:2021_pub">This item falls outside of the scope of the REF2028 Open Access compliance policy as it was published before 1st April 2021.</epp:phrase>
+
+
 
 <!-- Pre-Compliance Options -->
 <epp:phrase id="eprint_fieldname_hoa_override">Pre-Compliant</epp:phrase>
@@ -261,5 +285,13 @@ as part of our more detailed work to develop the post-2014 REF.
 <epp:phrase id="exportfields:ref_audit">3rd Party Data</epp:phrase>
 <epp:phrase id="exportfieldoptions:unpaywall_oa">Is OA?</epp:phrase>
 <epp:phrase id="exportfieldoptions:unpaywall_url">URL for PDF</epp:phrase>
+
+<!-- Pre-Publication Embargo -->
+<epp:phrase id="eprint_fieldname_hoa_pre_pub">Pre-Publication Embargo</epp:phrase>
+<epp:phrase id="eprint_fieldhelp_hoa_pre_pub">Use this checkbox to indicate when an item cannot be made available until it has been published, but no embargo applies or an embargo date has not been provided. This is considered a Pre-Publication embargo and so the item falls within the Route 2 Open Access rules, where the item must be made fully open access within one month of publication.</epp:phrase>
+
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:pre_pub_future_compliant"><span id="hoa_status" data-status="future_compliant">This item is not currently compliant. If the output (full text) is made open access by <epc:pin name="last_foa_date" /> it will become compliant.<br />This date is calculated assuming a pre-publication embargo. Where no embargo has been set, but the output cannot be made open access until publication, the Route 2 Open Access rules apply. Please see the 'Access' tab below for more details.</span></epp:phrase>
+
+<epp:phrase id="report_pre_pub">This item is marked as having a pre-publication embargo. The Route 2 Open Access rules apply, despite no embargo period being set."</epp:phrase>
 
 </epp:phrases>

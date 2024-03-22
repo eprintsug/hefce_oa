@@ -28,184 +28,178 @@ sub can_be_viewed
 	my( $self ) = @_;
 
 	return unless $self->{processor}->{eprint}->is_set( "hoa_compliant" );
-
     my $repo = $self->{repository};
     if( $repo->get_conf( "hefce_oa", "hide_tab" ) ) # we want to hide the tab for eprints accepted/published after the submission deadline
     {
         my $out_of_scope = $repo->call( [ "hefce_oa", "OUT_OF_SCOPE_reason" ], $repo, $self->{processor}->{eprint} );
-        return if $out_of_scope eq "over";       
+        return 0 if( grep { $out_of_scope eq $_ } qw( 2021_acc 2014_acc 2021_pub 2014_pub ) );
     }
 	return $self->allow( "eprint/hefce_oa" );
 }
 
 sub render
 {
-	my( $self ) = @_;
-	my $repo = $self->{repository};
-	my $page = $repo->xml->create_element( "div" ); # wrapper
+    my( $self ) = @_;
+    my $repo = $self->{repository};
+    my $page = $repo->xml->create_element( "div" ); # wrapper
 
-	my $eprint = $self->{processor}->{eprint};
-	my $flag = $eprint->value( "hoa_compliant" ) || 0;
+    my $eprint = $self->{processor}->{eprint};
+    my $flag = $eprint->value( "hoa_compliant" ) || 0;
 
-	# overall compliance
-	my $out_of_scope = $repo->call( [ "hefce_oa", "OUT_OF_SCOPE_reason" ], $repo, $eprint );
-	if( $out_of_scope )
-	{
-                #not currently compliant, but could be if embargo is released properly
-                my $div = $repo->make_element( "div", class=>"ep_msg_message" );
-                my $content_div = $repo->make_element( "div", class=>"ep_msg_message_content" );
-                my $table = $repo->make_element( "table" );
-                my $tr = $repo->make_element( "tr" );
-                $table->appendChild( $tr );
+    # overall compliance
+    my $out_of_scope = $repo->call( [ "hefce_oa", "OUT_OF_SCOPE_reason" ], $repo, $eprint );
+    if( $out_of_scope )
+    {
+        # not currently compliant, but could be if embargo is released properly
+        my $div = $repo->make_element( "div", class=>"ep_msg_message" );
+        my $content_div = $repo->make_element( "div", class=>"ep_msg_message_content" );
+        my $table = $repo->make_element( "table" );
+        my $tr = $repo->make_element( "tr" );
+        $table->appendChild( $tr );
 
-                my $td1 = $repo->make_element( "td" );
-                my $imagesurl = $repo->get_conf( "rel_path" );
-                $td1->appendChild(
-                        $repo->make_element(
-                                "img",
-                                class => "ep_msg_message_icon",
-                                src => "$imagesurl/style/images/hoa_out_of_scope.png",
-                                alt => $self->phrase( "out_of_scope_alt" )
-                        )
-                );
-                $tr->appendChild( $td1 );
+        my $td1 = $repo->make_element( "td" );
+        my $imagesurl = $repo->get_conf( "rel_path" );
+        $td1->appendChild(
+            $repo->make_element(
+                "img",
+                class => "ep_msg_message_icon",
+                src => "$imagesurl/style/images/hoa_out_of_scope.png",
+                alt => $self->phrase( "out_of_scope_alt" )
+            )
+        );
+        $tr->appendChild( $td1 );
 
-                my $td2 = $repo->make_element( "td" );
-                my $emb_len = $eprint->value( "hoa_emb_len" ) || 0;
-                $tr->appendChild( $td2 );
+        my $td2 = $repo->make_element( "td" );
+        my $emb_len = $eprint->value( "hoa_emb_len" ) || 0;
+        $tr->appendChild( $td2 );
 
-		if( $out_of_scope eq "gold" )
-		{
- 	               $td2->appendChild( $self->html_phrase( "out_of_scope:gold" ) );
-		}
-		elsif( $out_of_scope eq "issn" )
-		{
- 	               $td2->appendChild( $self->html_phrase( "out_of_scope:issn" ) );
-		}
-        elsif( $out_of_scope eq "over" )
-        {
- 	               $td2->appendChild( $self->html_phrase( "out_of_scope:over" ) );
-        }
-		else
-		{
- 	               $td2->appendChild( $self->html_phrase( "out_of_scope:timing" ) );
-		}
+        $td2->appendChild( $self->html_phrase( "out_of_scope:$out_of_scope" ) );
 
-                $content_div->appendChild( $table );
-                $div->appendChild( $content_div );
+        $content_div->appendChild( $table );
+        $div->appendChild( $content_div );
 
-                $page->appendChild( $div );
-	}
-	elsif( $flag & HefceOA::Const::COMPLIANT )
-	{
+        $page->appendChild( $div );
+    }
+    elsif( $flag & HefceOA::Const::COMPLIANT )
+    {
         $page->appendChild( $repo->render_message( "message", $self->html_phrase( "compliant" ) ) );
     }
-	elsif( $flag & HefceOA::Const::DEP && 
-		$flag & HefceOA::Const::DIS &&
-		$flag & HefceOA::Const::ACC_EMBARGO &&
-		$repo->call( ["hefce_oa", "could_become_ACC_TIMING_compliant"], $repo, $eprint ) )
-	{
-		#not currently compliant, but could be if embargo is released properly
-        	my $div = $repo->make_element( "div", class=>"ep_msg_warning" );
-        	my $content_div = $repo->make_element( "div", class=>"ep_msg_warning_content" );
-        	my $table = $repo->make_element( "table" );
-        	my $tr = $repo->make_element( "tr" );
-        	$table->appendChild( $tr );
+    elsif( $flag & HefceOA::Const::DEP && 
+        $flag & HefceOA::Const::DIS &&
+        $flag & HefceOA::Const::ACC_EMBARGO &&
+        $repo->call( ["hefce_oa", "could_become_ACC_TIMING_compliant"], $repo, $eprint ) )
+    {
+        # not currently compliant, but could be if embargo is released properly
+        my $div = $repo->make_element( "div", class=>"ep_msg_warning" );
+        my $content_div = $repo->make_element( "div", class=>"ep_msg_warning_content" );
+        my $table = $repo->make_element( "table" );
+        my $tr = $repo->make_element( "tr" );
+        $table->appendChild( $tr );
 
-                my $td1 = $repo->make_element( "td" );
-                my $imagesurl = $repo->get_conf( "rel_path" );
-                $td1->appendChild( 
-			$repo->make_element( 
-				"img", 
-				class => "ep_msg_warning_icon",
-				src => "$imagesurl/style/images/hoa_future_compliant.png",
-				alt => $self->phrase( "future_compliant_alt" )
-			)
-		);
-                $tr->appendChild( $td1 );
+        my $td1 = $repo->make_element( "td" );
+        my $imagesurl = $repo->get_conf( "rel_path" );
+        $td1->appendChild( 
+            $repo->make_element( 
+                "img", 
+                class => "ep_msg_warning_icon",
+                src => "$imagesurl/style/images/hoa_future_compliant.png",
+                alt => $self->phrase( "future_compliant_alt" )
+            )
+        );
+        $tr->appendChild( $td1 );
 
-        	my $td2 = $repo->make_element( "td" );
-		my $emb_len = $eprint->value( "hoa_emb_len" ) || 0;
-        	$tr->appendChild( $td2 );
-        	$td2->appendChild( $self->html_phrase( 
-			"future_compliant", 
-			last_foa_date => $repo->xml->create_text_node( $repo->call( [ "hefce_oa", "calculate_last_compliant_foa_date" ], $repo, $eprint )->strftime( "%Y-%m-%d" ) ),
-			hoa_emb_len => $repo->xml->create_text_node( $emb_len ),
-		) );
-        	$content_div->appendChild( $table );
-        	$div->appendChild( $content_div );
+        my $td2 = $repo->make_element( "td" );
+        my $emb_len = $eprint->value( "hoa_emb_len" ) || 0;
+        $tr->appendChild( $td2 );
 
-		$page->appendChild( $div );
+        if( $eprint->is_set( "hoa_pre_pub" ) && $eprint->value( "hoa_pre_pub" ) eq "TRUE" )
+        {
+            $td2->appendChild( $self->html_phrase( 
+                "pre_pub_future_compliant", 
+                last_foa_date => $repo->xml->create_text_node( $repo->call( [ "hefce_oa", "calculate_last_compliant_foa_date" ], $repo, $eprint )->strftime( "%Y-%m-%d" ) ),
+            ) );
         }
         else
         {
-            $page->appendChild( $repo->render_message( "warning", $self->html_phrase( "non_compliant" ) ) );
+            $td2->appendChild( $self->html_phrase( 
+                "future_compliant", 
+                last_foa_date => $repo->xml->create_text_node( $repo->call( [ "hefce_oa", "calculate_last_compliant_foa_date" ], $repo, $eprint )->strftime( "%Y-%m-%d" ) ),
+                hoa_emb_len => $repo->xml->create_text_node( $emb_len ),
+            ) );
         }
+        $content_div->appendChild( $table );
+        $div->appendChild( $content_div );
 
-	# if incomplete dates are stored for hoa_date_acc or hoa_date_pub, display a warning
-	# incomplete embargo end dates do not get a warning, as the behaviour in this case is known (embargo released after
-	# most-defined date)
-	my @incomplete_dates;
-	for( qw( hoa_date_acc hoa_date_pub ) )
-	{
-		if( $eprint->is_set( $_ ) && $eprint->value( $_ ) !~ /^\d{4}\-\d{2}\-\d{2}$/ )
-		{
-			push @incomplete_dates, $_;
-		}
-	}
-	if( @incomplete_dates ) 
-	{
-		my $dates = $repo->xml->create_document_fragment;
-		for( @incomplete_dates )
-		{
-			$dates->appendChild( $self->html_phrase( "render_incomplete_date", 
-				date_field => $repo->html_phrase( "eprint_fieldname_$_" ),
-				value => $eprint->render_value( $_ ),
-			) );
-		}
-	    
-		$page->appendChild( $repo->render_message( "warning", $self->html_phrase( "render_incomplete_dates", dates => $dates ) ) );
-	}
+        $page->appendChild( $div );
+    }
+    else
+    {
+        $page->appendChild( $repo->render_message( "warning", $self->html_phrase( "non_compliant" ) ) );
+    }
 
-	$page->appendChild( $self->html_phrase( "render_test_description",
-		description => $repo->html_phrase( "hefce_oa:test_description:COMPLIANT" )
-	) );
+        
+    # incomplete embargo end dates do not get a warning, as the behaviour in this case is known (embargo released after
+    # most-defined date)
+    my @incomplete_dates;
+    for( qw( hoa_date_acc hoa_date_pub ) )
+    {
+        if( $eprint->is_set( $_ ) && $eprint->value( $_ ) !~ /^\d{4}\-\d{2}\-\d{2}$/ )
+        {
+            push @incomplete_dates, $_;
+        }
+    }
+    if( @incomplete_dates ) 
+    {
+        my $dates = $repo->xml->create_document_fragment;
+        for( @incomplete_dates )
+        {
+            $dates->appendChild( $self->html_phrase( "render_incomplete_date", 
+                date_field => $repo->html_phrase( "eprint_fieldname_$_" ),
+                value => $eprint->render_value( $_ ),
+            ) );
+        }    
+        $page->appendChild( $repo->render_message( "warning", $self->html_phrase( "render_incomplete_dates", dates => $dates ) ) );
+    }
 
-	# tabs for individual requirements and exceptions
-	my @labels;
-	my @tabs;
-	for(
-		[ "DEP", [qw( DEP_COMPLIANT DEP_TIMING )] ],
-		[ "DIS", [qw( DIS_DISCOVERABLE )] ],
-		[ "ACC", [qw( ACC_TIMING ACC_EMBARGO )] ],
-		[ "EX", [qw( EX_DEP EX_ACC EX_TEC EX_FUR )] ],
+    $page->appendChild( $self->html_phrase( "render_test_description",
+        description => $repo->html_phrase( "hefce_oa:test_description:COMPLIANT" )
+    ) );
+
+    # tabs for individual requirements and exceptions
+    my @labels;
+    my @tabs;
+    for(
+        [ "DEP", [qw( DEP_COMPLIANT DEP_TIMING )] ],
+        [ "DIS", [qw( DIS_DISCOVERABLE )] ],
+        [ "ACC", [qw( ACC_TIMING ACC_EMBARGO )] ],
+        [ "EX", [qw( EX_DEP EX_ACC EX_TEC EX_FUR )] ],
         [ "AUDIT", [qw( AUD_UP_OA AUD_UP_URL )] ],
-	)
-	{
-		my( $label, $tab ) = $self->render_tab( @$_ );
-		push @labels, $label;
-		push @tabs, $tab;
-	}
-	$page->appendChild( $repo->xhtml->tabs(
-		\@labels,
-		\@tabs,
-		basename => "hoa_tabs",
-	) );
+    )
+    {
+        my( $label, $tab ) = $self->render_tab( @$_ );
+        push @labels, $label;
+        push @tabs, $tab;
+    }
+    $page->appendChild( $repo->xhtml->tabs(
+        \@labels,
+        \@tabs,
+        basename => "hoa_tabs",
+    ) );
 
-	$page->appendChild( $repo->xml->create_element( "br" ) );
+    $page->appendChild( $repo->xml->create_element( "br" ) );
 
-	# data used to check compliance
-	my $box = $repo->make_element( "div", style=>"text-align: left" );
-	$box->appendChild( EPrints::Box::render(
-		id => "hoa_data",
-		title => $self->html_phrase( "data:title" ),
-		content => $self->render_data,
-		collapsed => 1,
-		session => $repo,
-	) );
-	$page->appendChild( $box );
+    # data used to check compliance
+    my $box = $repo->make_element( "div", style=>"text-align: left" );
+    $box->appendChild( EPrints::Box::render(
+        id => "hoa_data",
+        title => $self->html_phrase( "data:title" ),
+        content => $self->render_data,
+        collapsed => 1,
+        session => $repo,
+    ) );
+    $page->appendChild( $box );
 
-	return $page;
+    return $page;
 }
 
 sub render_data
@@ -223,7 +217,7 @@ sub render_data
 
 	my $compliance_table = $repo->xml->create_element( "table", border => 0, cellpadding => 3 );
 
-	foreach my $field ( qw( hoa_date_acc hoa_date_pub hoa_date_fcd eprint_status hoa_date_foa hoa_emb_len hoa_ref_pan hoa_gold ) )
+	foreach my $field ( qw( hoa_date_acc hoa_date_pub hoa_date_fcd eprint_status hoa_date_foa hoa_emb_len hoa_ref_pan hoa_gold hoa_pre_pub ) )
 	{
 		my $tr = $repo->xml->create_element( "tr" );
 		$compliance_table->appendChild( $tr );

@@ -5,11 +5,13 @@ push @{ $c->{hefce_oa}->{profile} },
 {
     name => "hoa_compliant",
     type => "int",
+    sql_index => 0,
 },
 
 {
     name => "hoa_emb_len",
     type => "int",
+    sql_index => 0,
 },
 
 {
@@ -17,24 +19,29 @@ push @{ $c->{hefce_oa}->{profile} },
     type => "set",
     options => [qw( AB CD )],
     input_style => "medium",
+    sql_index => 0,
 },
 
 # dates
 {
     name => "hoa_date_acc",
     type => "date",
+    sql_index => 0,
 },
 {
     name => "hoa_date_pub",
     type => "date",
+    sql_index => 0,
 },
 {
     name => "hoa_date_fcd", # first compliant deposit
     type => "date",
+    sql_index => 0,
 },
 {
     name => "hoa_date_foa", # first compliant open access
     type => "date",
+    sql_index => 0,
 },
 
 # version of first compliant deposit
@@ -42,6 +49,7 @@ push @{ $c->{hefce_oa}->{profile} },
     name => "hoa_version_fcd",
     type => "set",
     options => [qw( AM VoR )],
+    sql_index => 0,
 },
 
 # deposit exceptions
@@ -50,10 +58,12 @@ push @{ $c->{hefce_oa}->{profile} },
     type => "set",
     options => [qw( a b c d e )],
     input_style => "medium",
+    sql_index => 0,
 },
 {
     name => "hoa_ex_dep_txt",
     type => "longtext",
+    sql_index => 0,
 },
 
 # access exceptions
@@ -62,10 +72,12 @@ push @{ $c->{hefce_oa}->{profile} },
     type => "set",
     options => [qw( a b c )],
     input_style => "medium",
+    sql_index => 0,
 },
 {
     name => "hoa_ex_acc_txt",
     type => "longtext",
+    sql_index => 0,
 },
 
 # technical exceptions
@@ -74,10 +86,12 @@ push @{ $c->{hefce_oa}->{profile} },
     type => "set",
     options => [qw( a b c )],
     input_style => "medium",
+    sql_index => 0,
 },
 {
     name => "hoa_ex_tec_txt",
     type => "longtext",
+    sql_index => 0,
 },
 
 # further exceptions
@@ -86,10 +100,12 @@ push @{ $c->{hefce_oa}->{profile} },
     type => "set",
     options => [qw( a b )],
     input_style => "medium",
+    sql_index => 0,
 },
 {
     name => "hoa_ex_fur_txt",
     type => "longtext",
+    sql_index => 0,
 },
 
 # other exceptions - now redundant but used for mapping over values
@@ -97,28 +113,33 @@ push @{ $c->{hefce_oa}->{profile} },
     name => "hoa_ex_oth",
     type => "boolean",
     input_style => "radio",
+    sql_index => 0,
 },
 {
     name => "hoa_ex_oth_txt",
     type => "longtext",
+    sql_index => 0,
 },
 
 # internal flag
 {
     name => "hoa_update_ep",
     type => "int",
+    sql_index => 0,
 },
 
 # exclude option
 {
     name => 'hoa_exclude',
     type => 'boolean',
+    sql_index => 0,
 },
 
 # gold OA option
 {
     name => 'hoa_gold',
     type => 'boolean',
+    sql_index => 0,
 },
 
 
@@ -128,6 +149,7 @@ push @{ $c->{hefce_oa}->{profile} },
     type => 'text',
     virtual => 1,
     render_value => 'render_hoa_problems',
+    sql_index => 0,
 },
 
 # compliance override option

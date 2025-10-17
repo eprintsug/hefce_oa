@@ -337,9 +337,9 @@ $c->{hefce_oa}->{OUT_OF_SCOPE_reason} = sub {
         # Acceptance is before 1st Apr 2016, compliant as out of OA policy scope
         return "2014_acc" if $acc < $APR16;
 
-        if( !$repo->config( "hefce_oa", "ref2021_scope" ) )
+        if( !$repo->config( "hefce_oa", "ref2021_in_scope" ) )
         {
-            # Acceptance is before 1st Apr 2021, out of scope of 2028
+            # Acceptance is before 1st Apr 2021, out of scope of 2029
             return "2021_acc" if $acc < $APR21;
         }
     }
@@ -359,7 +359,7 @@ $c->{hefce_oa}->{OUT_OF_SCOPE_reason} = sub {
         # Published before 1st Apr 2016, compliant as out of OA policy scope
         return "2014_pub" if $pub < $APR16;
 
-        if( !$repo->config( "hefce_oa", "ref2021_scope" ) )
+        if( !$repo->config( "hefce_oa", "ref2021_in_scope" ) )
         {
             # Published is before 1st Apr 2021, out of scope of 2028
             return "2021_pub" if $pub < $APR21;

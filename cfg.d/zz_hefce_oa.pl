@@ -1,32 +1,32 @@
 $c->{plugins}{"Screen::EPrint::HefceOA"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC_EX"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC::2015"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC::2016"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC::2017"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC::2018"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC::2019"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC::2020"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC::2021"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC::2022"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC::2023"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC::2024"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC::2025"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC::2026"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC::2027"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC_EX::2015"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC_EX::2016"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC_EX::2017"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC_EX::2018"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC_EX::2019"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC_EX::2020"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC_EX::2021"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC_EX::2022"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC_EX::2023"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC_EX::2024"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC_EX::2025"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC_EX::2026"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC_EX::2027"}{params}{disable} = 0;
+$c->{plugins}{"Screen::Report::REF_CC"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC_EX"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC::2015"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC::2016"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC::2017"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC::2018"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC::2019"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC::2020"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC::2021"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC::2022"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC::2023"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC::2024"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC::2025"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC::2026"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC::2027"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC_EX::2015"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC_EX::2016"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC_EX::2017"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC_EX::2018"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC_EX::2019"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC_EX::2020"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC_EX::2021"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC_EX::2022"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC_EX::2023"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC_EX::2024"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC_EX::2025"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC_EX::2026"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC_EX::2027"}{params}{disable} = 1;
 $c->{plugins}{"Export::Report::CSV::REF_CC"}{params}{disable} = 0;
 
 #set which can have a custom search, allowing their filter function to be overwridden
@@ -40,8 +40,10 @@ push @{ $c->{user_roles}->{admin} }, qw{ +report/hefce_oa };
 #hide REF CC tab post ref - set to 1 if you want to hide the REF CC for eprints accepted/published after 31/03/2021
 $c->{hefce_oa}->{hide_tab} = 0;
 
-# set if REF2021 items should be considered out of scope
-$c->{hefce_oa}->{ref2021_scope} = 1;
+# set REF scopes
+$c->{hefce_oa}->{ref2029_in_scope} = 1; # Items published between 01-01-2021 and 21-12-2028
+$c->{hefce_oa}->{ref2021_in_scope} = 0; # Items accepted before 01-04-2021
+
 
 #set if embargoed records should appear in report as compliant
 $c->{hefce_oa}->{embargo_as_compliant} = 0;

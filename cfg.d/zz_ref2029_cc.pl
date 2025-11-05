@@ -1,3 +1,14 @@
+# https://2029.ref.ac.uk/guidance/ref-2029-open-access-policy/
+
+# 7.5 Licensing requirements
+# Array used to test license requirements
+$c->{ref2029}->{licenses} = [qw(
+    cc-by
+    cc-by-nc
+    cc-by-nd
+    cc-by-nc-nd
+)];
+
 # Workflow component
 $c->{plugins}{"InputForm::Component::REF2029"}{params}{disable} = 0;
 
@@ -8,24 +19,41 @@ $c->{datasets}->{ref2029_cc} = {
     sqlname => "ref2029_cc",
 };
 
-$c->add_dataset_field( 'ref2029_cc', { name => "compliant", type => "int", }, reuse => 1 );
-$c->add_dataset_field( 'ref2029_cc', { name => 'ref2029_ex_dep', type=>"set", options => [qw(a b c )], input_style => "medium" }, reuse => 1 );
-$c->add_dataset_field( 'ref2029_cc', { name => 'ref2029_ex_acc', type=>"set", options => [qw(a b )], input_style => "medium" }, reuse => 1 );
-$c->add_dataset_field( 'ref2029_cc', { name => 'ref2029_ex_tec', type=>"set", options => [qw(a b )], input_style => "medium" }, reuse => 1 );
+# All articles and conference item records will have REF2029 CC records created
+# For now we will just treat records published from Jan 26 as being in scope
+# But in future we may want to add other options
+$c->add_dataset_field( 'ref2029_cc', { name => 'scope', type=>"set", options =>[qw( out 21-25 26-28 )] }, reuse => 1 );
+
+# Data used to check compliance
+$c->add_dataset_field( 'ref2029_cc', { name => 'embargo', type=>"date", }, reuse => 1 );
+
+# Results
+$c->add_dataset_field( 'ref2029_cc', { name => 'compliant', type => "int", }, reuse => 1 );
+
+# Exception Fields
+$c->add_dataset_field( 'ref2029_cc', { name => 'ref2029_ex_dep', type=>"set", options => [qw( a b c )], input_style => "medium" }, reuse => 1 );
+$c->add_dataset_field( 'ref2029_cc', { name => 'ref2029_ex_dep_txt', type=>"longtext", sql_index=>0 } );
+
+$c->add_dataset_field( 'ref2029_cc', { name => 'ref2029_ex_acc', type=>"set", options => [qw( a b )], input_style => "medium" }, reuse => 1 );
+$c->add_dataset_field( 'ref2029_cc', { name => 'ref2029_ex_acc_txt', type=>"longtext", sql_index=>0 } );
+
+$c->add_dataset_field( 'ref2029_cc', { name => 'ref2029_ex_tec', type=>"set", options => [qw( a b )], input_style => "medium" }, reuse => 1 );
+$c->add_dataset_field( 'ref2029_cc', { name => 'ref2029_ex_tec_txt', type=>"longtext", sql_index=>0 } );
+
 $c->add_dataset_field( 'ref2029_cc', { name => 'ref2029_ex_fur', type=>"boolean" }, reuse => 1 );
+$c->add_dataset_field( 'ref2029_cc', { name => 'ref2029_ex_fur_txt', type=>"longtext", sql_index=>0 } );
+
 $c->add_dataset_field( 'ref2029_cc', { name => 'ref2029_pub_agreement', type=>"boolean" }, reuse => 1 );
-$c->add_dataset_field( 'ref2029_cc', { name => 'ref2029_other_repo', type=>"boolean" }, reuse => 1 );
+
+# Override Flags
+$c->add_dataset_field( 'ref2029_cc', { name => 'ref2029_override', type=>"boolean" }, reuse => 1 );
+$c->add_dataset_field( 'ref2029_cc', { name => 'ref2029_gold_oa', type=>"boolean" }, reuse => 1 );
 
 # New EPrint field for new subobject
 $c->add_dataset_field( 'eprint', { name => 'ref2029_cc', type=>"subobject", datasetid => 'ref2029_cc', dataobj_fieldname => 'eprintid', dataset_fieldname => '' } );
 
-
-# Establish if the record falls with in the 2026 OA Compliance scope
-# If it does create a REF2029 record
-
-# TODO: Handle the record being updated/corrected to fall outside of the scope, 
-# i.e. what happens when published date is changed to before Jan 2026?
-
+# All potentially relevant records now get a REF2029 object, i.e. all articles and conference items
+# This allows us to store events that we may need if the EPrint becomes in scope
 $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
 {
     my( %args ) = @_;
@@ -34,30 +62,46 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
     # we already have one, don't need more
     return if $eprint->is_set( "ref2029_cc" );
 
-    # check if published after 1st Jan 2026
-    my $JAN26 = Time::Piece->strptime( "2026-01-01", "%Y-%m-%d" );
-    if( $eprint->is_set( "hoa_date_pub" ) )
+    # is this a REF type?
+    my $type = $eprint->value( "type" );
+    if( defined $type && grep( /^$type$/, @{$repo->config( "hefce_oa", "item_types" )} ) )
     {
-        my $pub;
-        if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
-        {
-            $pub = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_pub" ) );
-        }
-        if( !defined( $pub ) ) #above call can return undef - fallback to default
-        {
-            $pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
-        }
+        # create the new record
+        my $ds = $repo->dataset( "ref2029_cc" );
+        my $ref_cc = $ds->dataobj_class->create_from_data(
+            $repo,
+            {
+                eprintid => $eprint->id,
+            }
+        );
 
-        if( $pub > $JAN26 )
-        {
-            my $ds = $repo->dataset( "ref2029_cc" );
-            my $ref_cc = $ds->dataobj_class->create_from_data(
-                $repo,
-                {
-                    eprintid => $eprint->id,
-                }
-            );
-        }
-    }
+        # and calculate which OA scope it is in
+        $ref_cc->calculate_scope;
+    }                                  
 
-}, priority => 200 ); # needs to be called after the pub date has been set
+}, priority => 300 );
+
+# Update REF2029 record with any dates or info from the eprint
+$c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
+{
+    my( %args ) = @_;
+    my( $repo, $eprint, $changed ) = @args{qw( repository dataobj changed )};
+
+    my $ref2029_cc = $eprint->value( "ref2029_cc" );
+
+    $ref2029_cc->update_data if defined $ref2029_cc;
+
+}, priority => 350 ); # needs to be called after the pub date has been set
+
+# Set REF CC 2029 Compliance value
+$c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
+{
+    my( %args ) = @_;
+
+    my( $repo, $eprint, $changed ) = @args{qw( repository dataobj changed )};
+
+    my $ref2029_cc = $eprint->value( "ref2029_cc" );
+
+    $ref2029_cc->test_compliance if defined $ref2029_cc;
+
+}, priority => 400 );

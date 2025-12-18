@@ -7,6 +7,14 @@ $c->{ref2029}->{licenses} = [qw(
     cc-by-nc
     cc-by-nd
     cc-by-nc-nd
+    cc_by_4
+    cc_by_nc_4
+    cc_by_nd_4
+    cc_by_nc_nd_4
+    cc_by
+    cc_by_nc
+    cc_by_nd
+    cc_by_nc_nd
 )];
 
 # Workflow component
@@ -26,6 +34,7 @@ $c->add_dataset_field( 'ref2029_cc', { name => 'scope', type=>"set", options =>[
 
 # Data used to check compliance
 $c->add_dataset_field( 'ref2029_cc', { name => 'embargo', type=>"date", }, reuse => 1 );
+$c->add_dataset_field( 'ref2029_cc', { name => 'licensed_foa', type=>"date", }, reuse => 1 );
 
 # Results
 $c->add_dataset_field( 'ref2029_cc', { name => 'compliant', type => "int", }, reuse => 1 );

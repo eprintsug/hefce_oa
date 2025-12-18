@@ -37,6 +37,14 @@ sub new
     return shift->SUPER::new( @_ );
 }
 
+# There must be a better way of doing this sort of thing?
+sub get_const
+{
+    my( $self, $const ) = @_;
+
+    return $self->$const;
+}
+
 sub get_dataset_id
 {
     my ($self) = @_;
@@ -177,10 +185,51 @@ sub update_data
 
     my $eprint = $self->get_parent;
 
+    # double check our scope 
     $self->calculate_scope;
 
     # gather other bits of data we might need to check compliance
-    # E.g. store the embargo date here to check ACC_TIMING later
+    # earliest embargo date
+    my @embargoes;
+    for( $eprint->get_all_documents )
+    {
+        next unless $_->is_set( "content" );
+        my $content = $_->value( "content" );
+        next unless grep( /^$content$/, @{$repo->config( "hefce_oa", "document_content" )});
+        push @embargoes, $_->value( "date_embargo" ) if $_->is_set( "date_embargo" );
+    }
+
+    if( scalar @embargoes > 0 )
+    {
+       @embargoes = sort {$a cmp $b} @embargoes;
+       my $earliest_date = shift @embargoes;
+       $self->set_value( "embargo", $earliest_date );
+    }
+
+    # get the date the first time a document that had an appropriate licence was made available
+    if( !$self->is_set( "licensed_foa" ) )
+    {
+        for( $eprint->get_all_documents )
+        {
+            # is it the correct type
+            next unless $_->is_set( "content" );
+            my $content = $_->value( "content" );                         
+            next unless grep( /^$content$/, @{$repo->config( "hefce_oa", "document_content" )} );
+
+            # does it have a correct license
+            next unless $_->is_set( "license" );
+            my $license = $_->value( "license" );                         
+            next unless grep( /^$license$/, @{$repo->config( "ref2029", "licenses" )} );
+
+            # and is it open
+            next unless $_->is_public;
+            
+            # NB $changed has the *old* values in.
+            $self->set_value( "licensed_foa", EPrints::Time::get_iso_date() );
+        }
+    }
+
+    $self->commit;
 }
 
 sub test_compliance
@@ -200,8 +249,8 @@ sub test_compliance
         DIS
         ACC_TIMING
         ACC_EMBARGO
-        ACC
         ACC_LIC   
+        ACC
         EX_DEP
         EX_ACC_EMB
         EX_ACC_LIC
@@ -213,12 +262,10 @@ sub test_compliance
         COMPLIANT
     ))
     { 
-        my $test_fn = "test_$_";
         $flag |= $self->$_ if $self->$test_fn( $repo, $eprint, $flag );
-
-        print STDERR "flag 2029....$flag\n";
     }
     $self->set_value( "compliant", $flag );
+    $self->commit;
 }
 
 # returns a true/false for compliance and the reasoning
@@ -336,16 +383,74 @@ sub test_ACC
 {
     my( $self, $repo, $eprint, $flag ) = @_;   
 
-    # test_ACC may not be a combination of sub tests passing
-    # we need to ensure that the same single document has the licence AND is OA AND is OA on time
-    # e.g. accepted version may have licence but may not have been OA in time and published version was
-    # made OA in time but doesn't have licence   
+    return 1 if
+        $flag & ACC_TIMING &&
+        $flag & ACC_EMBARGO &&
+        $flag & ACC_LIC
+
+    return 0;
 }
 
 # 7.4.2 - output must be made fully accessible on deposit, subject to embargo 
 sub test_ACC_TIMING
 {
-    my( $repo, $eprint, $flag ) = @_;
+    my( $self, $repo, $eprint, $flag ) = @_;
+
+    return 0 unless $eprint->is_set( "hoa_date_foa" ); 
+    my $foa = Time::Piece->strptime( $eprint->value( "hoa_date_foa" ), "%Y-%m-%d" );
+
+    if( $self->is_set( "embargo" ) )
+    {
+        # we have an embargo, open access must be available as soon as embargo expires
+        my $emb;
+        if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+        {
+            $emb = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $self->value( "embargo" ) );
+        }
+        if( !defined( $emb ) ) #above call can return undef - fallback to default
+        {
+            $emb = Time::Piece->strptime( $self->value( "embargo" ), "%Y-%m-%d" );
+        }                         
+
+        return 1 if $foa <= $emb;
+    }
+    else
+    {
+        # we must be within three months of publication still
+        # check if we have a publication date and deposit date is within 3 months
+        if( $eprint->is_set( "hoa_date_pub" ) )
+        {
+            my $pub;
+            if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+            {
+                $pub = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_pub" ) );
+            }
+            if( !defined( $pub ) ) #above call can return undef - fallback to default
+            {
+                $pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
+            }
+            return 1 if $foa <= $pub->add_months(3);       
+        }  
+
+        # we might have an acceptance date, if we're within 3 months of acceptance date then we will be within 3 months of publication (as publication comes after acceptance)
+        if( $eprint->is_set( "hoa_date_acc" ) )
+        {
+            my $acc;
+            if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+            {
+                $acc = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_acc" ) );
+            }
+            if( !defined( $acc ) ) #above call can return undef - fallback to default
+            {
+                $acc = Time::Piece->strptime( $eprint->value( "hoa_date_acc" ), "%Y-%m-%d" );
+            }
+
+            # within 3  months of acceptance
+            return 1 if $foa <= $acc->add_months(3);
+        }
+    }
+
+    return 0;
 }
 
 # 7.6.1 - Embargo period must be up to 6 months for Panels A and B, or 12 months for Panels C and D
@@ -373,7 +478,8 @@ sub test_ACC_LIC
 {
     my( $self, $repo, $eprint, $flag ) = @_;
 
-    # do we have a correctly licensed document
+    # do we have a correctly licensed document  
+    return $eprint->is_set( "licensed_foa" ); # licensed_foa only gets set when we have an AAM or VoR, publicly available under a valid licence
 }
 
 sub test_EX_DEP

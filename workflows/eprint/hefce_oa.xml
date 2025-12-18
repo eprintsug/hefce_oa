@@ -12,14 +12,19 @@
 
 <stage name="hefce_oa">
   <epc:choose>
-    <epc:when test="ref2029_cc">
+    <epc:when test="ref2029_cc.property('scope') = '26-28'">
       <component type="REF2029">
         <field ref="ref2029_ex_dep"/>
+        <field ref="ref2029_ex_dep_txt"/>
         <field ref="ref2029_ex_acc"/>
+        <field ref="ref2029_ex_acc_txt"/>
         <field ref="ref2029_ex_tec"/>
+        <field ref="ref2029_ex_tec_txt"/>
         <field ref="ref2029_ex_fur"/>
+        <field ref="ref2029_ex_fur_txt"/>
         <field ref="ref2029_pub_agreement"/>
-        <field ref="ref2029_other_repo"/>
+        <field ref="ref2029_override"/>
+        <field ref="ref2029_gold_oa"/>
       </component>
     </epc:when>
     <epc:otherwise>

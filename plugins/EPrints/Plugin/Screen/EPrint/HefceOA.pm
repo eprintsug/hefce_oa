@@ -80,6 +80,13 @@ sub render
 
         $page->appendChild( $div );
     }
+
+    # REF2029
+    if( $eprint->is_set( "ref2029_cc" ) && $eprint->value( "ref2029_cc" )->value( "scope" ) eq "26-28" )
+    {
+        $page->appendChild( $self->render_ref2029( $repo, $eprint, $eprint->value( "ref2029_cc" ) ) );
+        return $page;
+    }
     elsif( $flag & HefceOA::Const::COMPLIANT )
     {
         $page->appendChild( $repo->render_message( "message", $self->html_phrase( "compliant" ) ) );
@@ -137,29 +144,7 @@ sub render
         $page->appendChild( $repo->render_message( "warning", $self->html_phrase( "non_compliant" ) ) );
     }
 
-        
-    # incomplete embargo end dates do not get a warning, as the behaviour in this case is known (embargo released after
-    # most-defined date)
-    my @incomplete_dates;
-    for( qw( hoa_date_acc hoa_date_pub ) )
-    {
-        if( $eprint->is_set( $_ ) && $eprint->value( $_ ) !~ /^\d{4}\-\d{2}\-\d{2}$/ )
-        {
-            push @incomplete_dates, $_;
-        }
-    }
-    if( @incomplete_dates ) 
-    {
-        my $dates = $repo->xml->create_document_fragment;
-        for( @incomplete_dates )
-        {
-            $dates->appendChild( $self->html_phrase( "render_incomplete_date", 
-                date_field => $repo->html_phrase( "eprint_fieldname_$_" ),
-                value => $eprint->render_value( $_ ),
-            ) );
-        }    
-        $page->appendChild( $repo->render_message( "warning", $self->html_phrase( "render_incomplete_dates", dates => $dates ) ) );
-    }
+    $self->_render_incomplete_dates( $repo, $eprint, $page );       
 
     $page->appendChild( $self->html_phrase( "render_test_description",
         description => $repo->html_phrase( "hefce_oa:test_description:COMPLIANT" )
@@ -552,5 +537,202 @@ sub render_audit_tab
 
 	return( $tab_title, $tab );
 }
+
+sub render_ref2029
+{
+    my( $self, $repo, $eprint, $ref2029_cc ) = @_;
+
+    my $div = $repo->xml->create_element( "div", class => "hoa_ref2029" );
+
+    ## Headlines
+    # Result
+
+    # Warnings
+    $self->_render_incomplete_dates( $repo, $eprint, $div );
+
+    ## Description
+    $div->appendChild( $self->html_phrase( "render_test_description",
+        description => $repo->html_phrase( "hefce_oa:2029:test_description:COMPLIANT" )
+    ) );
+
+    ## Details
+    my @labels;
+    my @tabs;
+
+    my( $label, $tab ) = $self->_render_2029_deposit_tab( $repo, $eprint, $ref2029_cc );
+    push @labels, $label;
+    push @tabs, $tab;    
+
+    ( $label, $tab ) = $self->_render_2029_discovery_tab( $repo, $eprint, $ref2029_cc );
+    push @labels, $label;
+    push @tabs, $tab;    
+
+    ( $label, $tab ) = $self->_render_2029_access_tab( $repo, $eprint, $ref2029_cc );
+    push @labels, $label;
+    push @tabs, $tab;    
+
+    $div->appendChild( $repo->xhtml->tabs(
+        \@labels,
+        \@tabs,
+        basename => "hoa_2029_tabs",
+    ) );
+   
+
+    ## Data
+    my $box = $repo->make_element( "div", style=>"text-align: left" );
+    $box->appendChild( EPrints::Box::render(
+        id => "hoa_data",
+        title => $self->html_phrase( "data:title" ),
+        content => $self->render_data,
+        collapsed => 1,
+        session => $repo,
+    ) );
+    $div->appendChild( $box );
+
+
+    return $div;
+}
+
+sub _render_2029_deposit_tab
+{
+    my( $self, $repo, $eprint, $ref2029_cc ) = @_;
+    
+    my $tab = $repo->xml->create_document_fragment;
+
+    my $flag = $ref2029_cc->value( "compliant" ) || 0;
+
+    my $title = "DEP";
+    my $tests = [qw( DEP_COMPLIANT DEP_TIMING )];
+
+    # title    
+    my $tab_title = $self->html_phrase( "render_tab_title",
+        title => $repo->html_phrase( "hefce_oa:test_title:$title" ),
+        class => $repo->xml->create_text_node( $flag & EPrints::DataObj::REF2029_CC->get_const($title) ? "hoa_compliant" : "hoa_non_compliant" )
+    );
+
+    # description
+    $tab->appendChild( $self->html_phrase( "render_test_description",
+        description => $repo->html_phrase( "hefce_oa:2029_test_description:$title" )
+    ) );
+
+    # test
+    my $sub = $repo->xml->create_document_fragment;
+    for( @$tests )
+    {
+        $sub->appendChild( $self->html_phrase( "render_test",
+            title => $repo->html_phrase( "hefce_oa:2029:test_title:$_" ),
+            description => $repo->html_phrase( "hefce_oa:2029:test_description:$_" ),
+            class => $repo->xml->create_text_node( $flag & EPrints::DataObj::REF2029_CC->get_const($_) ? "hoa_compliant" : "hoa_non_compliant" )
+        ) );
+    }
+    $tab->appendChild( $self->html_phrase( "render_tests", tests => $sub ) );
+
+    return( $tab_title, $tab );
+}
+
+sub _render_2029_discovery_tab
+{
+    my( $self, $repo, $eprint, $ref2029_cc ) = @_;
+    
+    my $tab = $repo->xml->create_document_fragment;
+
+    my $flag = $ref2029_cc->value( "compliant" ) || 0;
+
+    my $title = "DIS";
+    my $tests = [qw( DIS_DISCOVERABLE )];
+
+    # title    
+    my $tab_title = $self->html_phrase( "render_tab_title",
+        title => $repo->html_phrase( "hefce_oa:test_title:$title" ),
+        class => $repo->xml->create_text_node( $flag & EPrints::DataObj::REF2029_CC->get_const($title) ? "hoa_compliant" : "hoa_non_compliant" )
+    );
+
+    # description
+    $tab->appendChild( $self->html_phrase( "render_test_description",
+        description => $repo->html_phrase( "hefce_oa:2029_test_description:$title" )
+    ) );
+
+    # test
+    my $sub = $repo->xml->create_document_fragment;
+    for( @$tests )
+    {
+        $sub->appendChild( $self->html_phrase( "render_test",
+            title => $repo->html_phrase( "hefce_oa:2029:test_title:$_" ),
+            description => $repo->html_phrase( "hefce_oa:2029:test_description:$_" ),
+            class => $repo->xml->create_text_node( $flag & EPrints::DataObj::REF2029_CC->get_const($_) ? "hoa_compliant" : "hoa_non_compliant" )
+        ) );
+    }
+    $tab->appendChild( $self->html_phrase( "render_tests", tests => $sub ) );
+
+    return( $tab_title, $tab );
+}
+
+sub _render_2029_access_tab
+{
+    my( $self, $repo, $eprint, $ref2029_cc ) = @_;
+    
+    my $tab = $repo->xml->create_document_fragment;
+
+    my $flag = $ref2029_cc->value( "compliant" ) || 0;
+
+    my $title = "ACC";
+    my $tests = [qw( ACC_TIMING ACC_LIC ACC_EMBARGO )];
+
+    # title    
+    my $tab_title = $self->html_phrase( "render_tab_title",
+        title => $repo->html_phrase( "hefce_oa:test_title:$title" ),
+        class => $repo->xml->create_text_node( $flag & EPrints::DataObj::REF2029_CC->get_const($title) ? "hoa_compliant" : "hoa_non_compliant" )
+    );
+
+    # description
+    $tab->appendChild( $self->html_phrase( "render_test_description",
+        description => $repo->html_phrase( "hefce_oa:2029_test_description:$title" )
+    ) );
+
+    # test
+    my $sub = $repo->xml->create_document_fragment;
+    for( @$tests )
+    {
+        $sub->appendChild( $self->html_phrase( "render_test",
+            title => $repo->html_phrase( "hefce_oa:2029:test_title:$_" ),
+            description => $repo->html_phrase( "hefce_oa:2029:test_description:$_" ),
+            class => $repo->xml->create_text_node( $flag & EPrints::DataObj::REF2029_CC->get_const($_) ? "hoa_compliant" : "hoa_non_compliant" )
+        ) );
+    }
+    $tab->appendChild( $self->html_phrase( "render_tests", tests => $sub ) );
+
+    return( $tab_title, $tab );
+}
+
+
+sub _render_incomplete_dates
+{
+    my( $self, $repo, $eprint, $page ) = @_;
+
+    # incomplete embargo end dates do not get a warning, as the behaviour in this case is known (embargo released after
+    # most-defined date)
+    my @incomplete_dates;
+    for( qw( hoa_date_acc hoa_date_pub ) )
+    {
+        if( $eprint->is_set( $_ ) && $eprint->value( $_ ) !~ /^\d{4}\-\d{2}\-\d{2}$/ )
+        {
+            push @incomplete_dates, $_;
+        }
+    }
+    if( @incomplete_dates )
+    {
+        my $dates = $repo->xml->create_document_fragment;
+        for( @incomplete_dates )
+        {
+            $dates->appendChild( $self->html_phrase( "render_incomplete_date",
+                date_field => $repo->html_phrase( "eprint_fieldname_$_" ),
+                value => $eprint->render_value( $_ ),
+            ) );
+        }
+        $page->appendChild( $repo->render_message( "warning", $self->html_phrase( "render_incomplete_dates", dates => $dates ) ) );
+    }
+}
+
+
 
 1;

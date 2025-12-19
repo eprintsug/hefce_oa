@@ -255,6 +255,14 @@
         </file>
         <file>
           <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/InputForm/Component/REF2029.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>12cb84ee0f49be553e7125d0a2525cbc</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>4235</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/EPMC/HefceOA.pm</filename>
           <mime_type>text/plain</mime_type>
           <hash>e4cde5e361567a0fa3090a12801a243c</hash>

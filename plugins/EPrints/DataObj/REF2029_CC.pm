@@ -261,7 +261,8 @@ sub test_compliance
         GOLD
         COMPLIANT
     ))
-    { 
+    {
+        my $test_fn = "test_$_";
         $flag |= $self->$_ if $self->$test_fn( $repo, $eprint, $flag );
     }
     $self->set_value( "compliant", $flag );
@@ -386,7 +387,7 @@ sub test_ACC
     return 1 if
         $flag & ACC_TIMING &&
         $flag & ACC_EMBARGO &&
-        $flag & ACC_LIC
+        $flag & ACC_LIC;
 
     return 0;
 }
@@ -479,7 +480,7 @@ sub test_ACC_LIC
     my( $self, $repo, $eprint, $flag ) = @_;
 
     # do we have a correctly licensed document  
-    return $eprint->is_set( "licensed_foa" ); # licensed_foa only gets set when we have an AAM or VoR, publicly available under a valid licence
+    return $self->is_set( "licensed_foa" ); # licensed_foa only gets set when we have an AAM or VoR, publicly available under a valid licence
 }
 
 sub test_EX_DEP

@@ -232,6 +232,16 @@ sub update_data
     $self->commit;
 }
 
+sub run_flag_check
+{
+    my( $self, $test ) = @_;
+
+    return 0 if !$self->is_set( "compliant" );
+
+    my $flag = $self->value( "compliant" );
+    return $flag & $self->$test;
+}
+
 sub test_compliance
 {
     my( $self ) = @_;
@@ -273,7 +283,7 @@ sub test_compliance
 # the reasoning can be used by the screen to display a useful message
 sub test_COMPLIANT
 {
-    my( $self, $repo, $eprint, $flag ) = @_;
+    my( $self, $repo, $flag ) = @_;
 
     # compliant if overridden
     return (1, "override") if( $self->is_set( "ref2029_override" ) && $self->get_value( "ref2029_override" ) eq "TRUE" );
@@ -285,8 +295,18 @@ sub test_COMPLIANT
     return (1, "ex_dep") if $flag & EX_DEP;
 
     # compliant if EX_ACC_EMB = 8.2.2 && DEP && DIS && ACC_TIMING && ACC_LIC
+    return (1, "ex_acc_emb" ) if
+        $flag & EX_ACC_EMB &&
+        $flag & DEP &&
+        $flag & DIS &&
+        $flag & ACC_TIMING &&
+        $flag & ACC_LIC;
 
     # compliant if EX_ACC_LIC = 8.2.3 && DEP && DIS
+    return (1, "ex_acc_lic" ) if
+        $flag & EX_ACC_LIC &&
+        $flag & DEP &&
+        $flag & DIS;
 
     # compliant if EX_TEC
     return (1, "ex_tec") if $flag & EX_TEC;
@@ -295,6 +315,12 @@ sub test_COMPLIANT
     return (1, "ex_fur") if $flag & EX_FUR;
 
     # 1 if DEP && DIS && ACC && LIC
+    return (1, "compliant" ) if
+        $flag & DEP &&
+        $flag & DIS &&
+        $flag & ACC;
+
+    return 0;
 }
 
 sub test_DEP
@@ -479,8 +505,15 @@ sub test_ACC_LIC
 {
     my( $self, $repo, $eprint, $flag ) = @_;
 
-    # do we have a correctly licensed document  
-    return $self->is_set( "licensed_foa" ); # licensed_foa only gets set when we have an AAM or VoR, publicly available under a valid licence
+    if( $self->is_set( "ref2029_pub_agreement" ) )
+    {
+        return 1;
+    }
+    else
+    {
+        # do we have a correctly licensed document  
+        return $self->is_set( "licensed_foa" ); # licensed_foa only gets set when we have an AAM or VoR, publicly available under a valid licence
+    }
 }
 
 sub test_EX_DEP
@@ -523,7 +556,7 @@ sub test_EX_FUR
 {
     my( $self, $repo, $eprint, $flag ) = @_;
 
-    return 1 if $self->is_set( "ref2029_ex_fur" );
+    return 1 if $self->is_set( "ref2029_ex_fur" ) &&  $self->value( "ref2029_ex_fur" ) eq "TRUE";
 
     return 0;
 }

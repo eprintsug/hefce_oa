@@ -189,7 +189,7 @@ sub render
 
 sub render_data
 {
-	my( $self ) = @_;
+	my( $self, $ref2029_cc ) = @_;
 
 	my $repo = $self->{repository};
 	my $eprint = $self->{processor}->{eprint};
@@ -202,27 +202,45 @@ sub render_data
 
 	my $compliance_table = $repo->xml->create_element( "table", border => 0, cellpadding => 3 );
 
-	foreach my $field ( qw( hoa_date_acc hoa_date_pub hoa_date_fcd eprint_status hoa_date_foa hoa_emb_len hoa_ref_pan hoa_gold hoa_pre_pub ) )
+    # REF2029
+    my $fields = {
+        eprint => [qw ( hoa_date_acc hoa_date_pub hoa_date_fcd eprint_status hoa_date_foa hoa_emb_len hoa_ref_pan hoa_gold hoa_pre_pub )]
+    };
+    my $ref2029_oa_scope = 0;
+    if( defined $ref2029_cc && $ref2029_cc->value( "scope" ) eq "26-28" )
+    {
+        $fields = {
+            eprint => [qw ( hoa_date_acc hoa_date_pub hoa_date_fcd eprint_status hoa_date_foa hoa_emb_len hoa_ref_pan )],
+            ref2029_cc => [qw( licensed_foa embargo ref2029_pub_agreement ref2029_gold_oa ref2029_override )],
+        };
+    }
+
+	foreach my $obj ( keys %$fields )
 	{
-		my $tr = $repo->xml->create_element( "tr" );
-		$compliance_table->appendChild( $tr );
+        my $record = $eprint;
+        $record = $ref2029_cc if $obj eq "ref2029_cc";
+        foreach my $field ( @{$fields->{$obj}} )
+        {
+    		my $tr = $repo->xml->create_element( "tr" );
+	    	$compliance_table->appendChild( $tr );
 
-		my $th = $repo->xml->create_element( "th", class => "ep_row" );
-		$th->appendChild( $repo->html_phrase( "eprint_fieldname_$field" ) );
-		$tr->appendChild( $th );
+    		my $th = $repo->xml->create_element( "th", class => "ep_row" );
+	    	$th->appendChild( $repo->html_phrase( "$obj\_fieldname_$field" ) );
+    		$tr->appendChild( $th );
 
-		my $td = $repo->xml->create_element( "td", class => "ep_row" );
-		$td->appendChild( $eprint->is_set( $field ) ? $eprint->render_value( $field ) : $self->html_phrase( "data:unknown" ) );
+    		my $td = $repo->xml->create_element( "td", class => "ep_row" );
+	    	$td->appendChild( $record->is_set( $field ) ? $record->render_value( $field ) : $self->html_phrase( "data:unknown" ) );
 
-		if( $field eq "hoa_ref_pan" && !$eprint->is_set( $field ) && $repo->can_call( 'hefce_oa', 'deduce_panel' ) )
-		{
-			my $deduced_panel = $repo->call( [ 'hefce_oa', 'deduce_panel' ], $eprint );
-			if( defined $deduced_panel )
-			{
-				$td->appendChild( $self->html_phrase( "data:deduced_panel", panel => $repo->make_text( $deduced_panel ) ) );
-			}
-		}
-		$tr->appendChild( $td );
+		    if( $obj eq "eprint" && $field eq "hoa_ref_pan" && !$record->is_set( $field ) && $repo->can_call( 'hefce_oa', 'deduce_panel' ) )
+    		{
+	    		my $deduced_panel = $repo->call( [ 'hefce_oa', 'deduce_panel' ], $record );
+		    	if( defined $deduced_panel )
+    			{
+	    			$td->appendChild( $self->html_phrase( "data:deduced_panel", panel => $repo->make_text( $deduced_panel ) ) );
+		    	}
+	    	}
+		    $tr->appendChild( $td );
+        }
 	}
 
     $compliance_div->appendChild( $compliance_table );
@@ -546,6 +564,18 @@ sub render_ref2029
 
     ## Headlines
     # Result
+    my $flag = $ref2029_cc->value( "compliant" ) || 0;
+    my( $result, $reason ) = $ref2029_cc->test_COMPLIANT( $repo, $flag );
+    if( $result )
+    {
+        $div->appendChild( $repo->render_message( "message", $self->html_phrase( "compliant:2029", 
+            reason => $repo->html_phrase( "compliant:2029:reason:$reason" ),
+        ) ) );
+    }
+    else
+    {
+        $div->appendChild( $repo->render_message( "warning", $self->html_phrase( "non_compliant" ) ) );
+    }
 
     # Warnings
     $self->_render_incomplete_dates( $repo, $eprint, $div );
@@ -556,6 +586,8 @@ sub render_ref2029
     ) );
 
     ## Details
+    # Note: Lots of repetition, here could be refactored like the older version, but does
+    # keep some scope for customising, e.g. access tab needs to show (will become compliant)
     my @labels;
     my @tabs;
 
@@ -588,7 +620,7 @@ sub render_ref2029
     $box->appendChild( EPrints::Box::render(
         id => "hoa_data",
         title => $self->html_phrase( "data:title" ),
-        content => $self->render_data,
+        content => $self->render_data( $ref2029_cc ),
         collapsed => 1,
         session => $repo,
     ) );
@@ -604,15 +636,13 @@ sub _render_2029_deposit_tab
     
     my $tab = $repo->xml->create_document_fragment;
 
-    my $flag = $ref2029_cc->value( "compliant" ) || 0;
-
     my $title = "DEP";
     my $tests = [qw( DEP_COMPLIANT DEP_TIMING )];
 
     # title    
     my $tab_title = $self->html_phrase( "render_tab_title",
         title => $repo->html_phrase( "hefce_oa:test_title:$title" ),
-        class => $repo->xml->create_text_node( $flag & EPrints::DataObj::REF2029_CC->get_const($title) ? "hoa_compliant" : "hoa_non_compliant" )
+        class => $repo->xml->create_text_node( $ref2029_cc->run_flag_check( $title ) ? "hoa_compliant" : "hoa_non_compliant" )
     );
 
     # description
@@ -627,7 +657,7 @@ sub _render_2029_deposit_tab
         $sub->appendChild( $self->html_phrase( "render_test",
             title => $repo->html_phrase( "hefce_oa:2029:test_title:$_" ),
             description => $repo->html_phrase( "hefce_oa:2029:test_description:$_" ),
-            class => $repo->xml->create_text_node( $flag & EPrints::DataObj::REF2029_CC->get_const($_) ? "hoa_compliant" : "hoa_non_compliant" )
+            class => $repo->xml->create_text_node( $ref2029_cc->run_flag_check( $_ ) ? "hoa_compliant" : "hoa_non_compliant" )
         ) );
     }
     $tab->appendChild( $self->html_phrase( "render_tests", tests => $sub ) );
@@ -641,15 +671,13 @@ sub _render_2029_discovery_tab
     
     my $tab = $repo->xml->create_document_fragment;
 
-    my $flag = $ref2029_cc->value( "compliant" ) || 0;
-
     my $title = "DIS";
     my $tests = [qw( DIS_DISCOVERABLE )];
 
     # title    
     my $tab_title = $self->html_phrase( "render_tab_title",
         title => $repo->html_phrase( "hefce_oa:test_title:$title" ),
-        class => $repo->xml->create_text_node( $flag & EPrints::DataObj::REF2029_CC->get_const($title) ? "hoa_compliant" : "hoa_non_compliant" )
+        class => $repo->xml->create_text_node( $ref2029_cc->run_flag_check( $title ) ? "hoa_compliant" : "hoa_non_compliant" )
     );
 
     # description
@@ -664,7 +692,7 @@ sub _render_2029_discovery_tab
         $sub->appendChild( $self->html_phrase( "render_test",
             title => $repo->html_phrase( "hefce_oa:2029:test_title:$_" ),
             description => $repo->html_phrase( "hefce_oa:2029:test_description:$_" ),
-            class => $repo->xml->create_text_node( $flag & EPrints::DataObj::REF2029_CC->get_const($_) ? "hoa_compliant" : "hoa_non_compliant" )
+            class => $repo->xml->create_text_node( $ref2029_cc->run_flag_check( $_ ) ? "hoa_compliant" : "hoa_non_compliant" )
         ) );
     }
     $tab->appendChild( $self->html_phrase( "render_tests", tests => $sub ) );
@@ -678,15 +706,13 @@ sub _render_2029_access_tab
     
     my $tab = $repo->xml->create_document_fragment;
 
-    my $flag = $ref2029_cc->value( "compliant" ) || 0;
-
     my $title = "ACC";
     my $tests = [qw( ACC_TIMING ACC_LIC ACC_EMBARGO )];
 
     # title    
     my $tab_title = $self->html_phrase( "render_tab_title",
         title => $repo->html_phrase( "hefce_oa:test_title:$title" ),
-        class => $repo->xml->create_text_node( $flag & EPrints::DataObj::REF2029_CC->get_const($title) ? "hoa_compliant" : "hoa_non_compliant" )
+        class => $repo->xml->create_text_node( $ref2029_cc->run_flag_check( $title ) ? "hoa_compliant" : "hoa_non_compliant" )
     );
 
     # description
@@ -701,7 +727,7 @@ sub _render_2029_access_tab
         $sub->appendChild( $self->html_phrase( "render_test",
             title => $repo->html_phrase( "hefce_oa:2029:test_title:$_" ),
             description => $repo->html_phrase( "hefce_oa:2029:test_description:$_" ),
-            class => $repo->xml->create_text_node( $flag & EPrints::DataObj::REF2029_CC->get_const($_) ? "hoa_compliant" : "hoa_non_compliant" )
+            class => $repo->xml->create_text_node( $ref2029_cc->run_flag_check( $_ ) ? "hoa_compliant" : "hoa_non_compliant" )
         ) );
     }
     $tab->appendChild( $self->html_phrase( "render_tests", tests => $sub ) );
@@ -715,11 +741,9 @@ sub _render_2029_exceptions_tab
 
 	my $tab = $repo->xml->create_document_fragment;
 
-	my $flag = $ref2029_cc->value( "compliant" ) || 0;
-
 	my $count = 0;
 
-	unless( $flag &  EPrints::DataObj::REF2029_CC->get_const("EX") )
+	unless( $ref2029_cc->run_flag_check( "EX" ) )
 	{
 		$tab->appendChild( $self->html_phrase( "render_no_exceptions" ) );
 	}

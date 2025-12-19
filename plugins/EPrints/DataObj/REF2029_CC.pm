@@ -423,7 +423,10 @@ sub test_ACC_TIMING
 {
     my( $self, $repo, $eprint, $flag ) = @_;
 
-    return 0 unless $eprint->is_set( "hoa_date_foa" ); 
+    return 0 unless $eprint->is_set( "hoa_date_foa" );
+
+    # TODO: Use licensed_foa if set and pub agreement isn't true??
+
     my $foa = Time::Piece->strptime( $eprint->value( "hoa_date_foa" ), "%Y-%m-%d" );
 
     if( $self->is_set( "embargo" ) )
@@ -505,7 +508,8 @@ sub test_ACC_LIC
 {
     my( $self, $repo, $eprint, $flag ) = @_;
 
-    if( $self->is_set( "ref2029_pub_agreement" ) )
+    # we don't need to check the license for this record
+    if( $self->is_set( "ref2029_pub_agreement" ) && $self->value( "ref2029_pub_agreement" ) eq "TRUE" )
     {
         return 1;
     }

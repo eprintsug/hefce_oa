@@ -571,6 +571,11 @@ sub render_ref2029
     push @labels, $label;
     push @tabs, $tab;    
 
+    ( $label, $tab ) = $self->_render_2029_exceptions_tab( $repo, $eprint, $ref2029_cc );
+    push @labels, $label;
+    push @tabs, $tab;    
+
+
     $div->appendChild( $repo->xhtml->tabs(
         \@labels,
         \@tabs,
@@ -702,6 +707,54 @@ sub _render_2029_access_tab
     $tab->appendChild( $self->html_phrase( "render_tests", tests => $sub ) );
 
     return( $tab_title, $tab );
+}
+
+sub _render_2029_exceptions_tab
+{
+	my( $self, $repo, $eprint, $ref2029_cc ) = @_;
+
+	my $tab = $repo->xml->create_document_fragment;
+
+	my $flag = $ref2029_cc->value( "compliant" ) || 0;
+
+	my $count = 0;
+
+	unless( $flag &  EPrints::DataObj::REF2029_CC->get_const("EX") )
+	{
+		$tab->appendChild( $self->html_phrase( "render_no_exceptions" ) );
+	}
+	else
+	{
+		my $ex = $repo->xml->create_document_fragment;
+		for( qw( ref2029_ex_dep ref2029_ex_acc ref2029_ex_tec ) )
+		{
+			if( $ref2029_cc->is_set( $_ ) )
+			{
+				$ex->appendChild( $self->html_phrase( "render_exception", 
+					title => $repo->html_phrase( "ref2029_cc_fieldname_$_" ),
+					exception => $ref2029_cc->render_value( $_ ),
+					explanation => $ref2029_cc->render_value( "$_\_txt" ),
+				) );
+				$count++;
+			}        
+		}
+        if( $ref2029_cc->is_set( "ref2029_ex_fur" ) && $ref2029_cc->value( "ref2029_ex_fur" )eq "TRUE" )
+        {
+    		$ex->appendChild( $self->html_phrase( "render_exception", 
+	    		title => $repo->html_phrase( "ref2029_cc_fieldname_ref2029_ex_fur" ),
+				exception => $ref2029_cc->render_value( "ref2029_ex_fur" ),
+				explanation => $ref2029_cc->render_value( "ref2029_ex_fur_txt" ),
+			) );
+			$count++;
+		}                
+		$tab->appendChild( $self->html_phrase( "render_exceptions", exceptions => $ex ) );
+	}
+
+	my $tab_title = $self->html_phrase( "render_exception_tab_title",
+		count => $repo->xml->create_text_node( $count ),
+	);
+
+	return( $tab_title, $tab );
 }
 
 

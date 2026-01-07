@@ -13,9 +13,11 @@
 <stage name="hefce_oa">
   <epc:choose>
     <epc:when test="ref2029_cc.property('scope') = '26-28'">
+      <component><field ref="hoa_emb_len"/></component>      
       <component type="REF2029">
         <field ref="ref2029_gold_oa"/>
         <field ref="ref2029_pub_agreement"/>
+        <field ref="ref2029_pre_compliant"/>
         <field ref="ref2029_override"/>
         <field ref="ref2029_ex_dep"/>
         <field ref="ref2029_ex_dep_txt"/>
@@ -26,6 +28,7 @@
         <field ref="ref2029_ex_fur"/>
         <field ref="ref2029_ex_fur_txt"/>
       </component>
+      <component><field ref="hoa_ref_pan"/></component>
     </epc:when>
     <epc:otherwise>
       <component type="Field::Multi">

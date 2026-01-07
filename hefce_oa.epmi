@@ -97,9 +97,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_ref2029_cc.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>2289b21e0e79ab3c694ec4aed1ee630b</hash>
+          <hash>faf5c40882b6c668fb9abefca30e5191</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4529</filesize>
+          <filesize>4634</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -233,17 +233,17 @@
           <datasetid>document</datasetid>
           <filename>lang/en/phrases/ref2029.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>7728faedda871dd50eb855b4a3233836</hash>
+          <hash>5a8d4bb6afce534a01b07be50c3c3782</hash>
           <hash_type>MD5</hash_type>
-          <filesize>11285</filesize>
+          <filesize>13426</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/DataObj/REF2029_CC.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>aa49035f34043f55d45906cb237eee47</hash>
+          <hash>e3856c0c15a8a6ace8d3c74585797be9</hash>
           <hash_type>MD5</hash_type>
-          <filesize>16055</filesize>
+          <filesize>16243</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -593,9 +593,9 @@
           <datasetid>document</datasetid>
           <filename>workflows/eprint/hefce_oa.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>dd323100deb5520cb5e5f6df71d11f90</hash>
+          <hash>65d28bd1634d74f357a8dc1607309e99</hash>
           <hash_type>MD5</hash_type>
-          <filesize>2218</filesize>
+          <filesize>2381</filesize>
         </file>
       </files>
       <mime_type>application/xml</mime_type>

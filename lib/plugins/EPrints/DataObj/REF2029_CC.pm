@@ -288,6 +288,9 @@ sub test_COMPLIANT
     # compliant if overridden
     return (1, "override") if( $self->is_set( "ref2029_override" ) && $self->get_value( "ref2029_override" ) eq "TRUE" );
     
+    # compliant if flagged as compliant elsewhere
+    return (1, "pre_compliant") if( $self->is_set( "ref2029_pre_compliant" ) && $self->get_value( "ref2029_pre_compliant" ) eq "TRUE" );
+
     # compliant if gold OA
     return (1, "gold_oa") if $flag & GOLD;
 

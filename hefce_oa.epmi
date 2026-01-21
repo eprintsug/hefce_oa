@@ -97,9 +97,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_ref2029_cc.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>faf5c40882b6c668fb9abefca30e5191</hash>
+          <hash>f78056d5c63b61ed59849cde25b5c734</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4634</filesize>
+          <filesize>4746</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -233,9 +233,9 @@
           <datasetid>document</datasetid>
           <filename>lang/en/phrases/ref2029.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>cb2db24c9f1435d954266aacf3df01cb</hash>
+          <hash>64e4af938d390213932f86c74d303e40</hash>
           <hash_type>MD5</hash_type>
-          <filesize>14600</filesize>
+          <filesize>14881</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -593,9 +593,9 @@
           <datasetid>document</datasetid>
           <filename>workflows/eprint/hefce_oa.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>65d28bd1634d74f357a8dc1607309e99</hash>
+          <hash>757cf463518fed7ffb1da4db390ccec7</hash>
           <hash_type>MD5</hash_type>
-          <filesize>2381</filesize>
+          <filesize>2430</filesize>
         </file>
       </files>
       <mime_type>application/xml</mime_type>

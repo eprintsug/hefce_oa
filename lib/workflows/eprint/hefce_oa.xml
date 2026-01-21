@@ -18,6 +18,7 @@
         <field ref="ref2029_gold_oa"/>
         <field ref="ref2029_pub_agreement"/>
         <field ref="ref2029_pre_compliant"/>
+        <field ref="ref2029_pre_compliant_txt"/>
         <field ref="ref2029_override"/>
         <field ref="ref2029_ex_dep"/>
         <field ref="ref2029_ex_dep_txt"/>

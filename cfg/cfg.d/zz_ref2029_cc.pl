@@ -57,6 +57,7 @@ $c->add_dataset_field( 'ref2029_cc', { name => 'ref2029_pub_agreement', type=>"b
 # Override Flags
 $c->add_dataset_field( 'ref2029_cc', { name => 'ref2029_override', type=>"boolean" }, reuse => 1 );
 $c->add_dataset_field( 'ref2029_cc', { name => 'ref2029_pre_compliant', type=>"boolean" }, reuse => 1 );
+$c->add_dataset_field( 'ref2029_cc', { name => 'ref2029_pre_compliant_txt', type=>"longtext", sql_index=>0 } );
 $c->add_dataset_field( 'ref2029_cc', { name => 'ref2029_gold_oa', type=>"boolean" }, reuse => 1 );
 
 # New EPrint field for new subobject

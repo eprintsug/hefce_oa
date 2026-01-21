@@ -39,6 +39,9 @@
 
 <epp:phrase id="ref2029_cc_fieldname_ref2029_pre_compliant">Compliant elsewhere</epp:phrase>
 <epp:phrase id="ref2029_cc_fieldhelp_ref2029_pre_compliant">This record meets OA compliance criteria in another repository.</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldname_ref2029_pre_compliant_txt">Compliant elsewhere evidence</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_pre_compliant_txt">Please provide a link or description that evidences where this record is otherwise OA compliant.</epp:phrase>
+
 
 <epp:phrase id="ref2029_cc_fieldname_ref2029_override">Override Compliance Checks</epp:phrase>
 <epp:phrase id="ref2029_cc_fieldhelp_ref2029_override">Prevent REF OA compliance checls from being applied, exempting this record.</epp:phrase>

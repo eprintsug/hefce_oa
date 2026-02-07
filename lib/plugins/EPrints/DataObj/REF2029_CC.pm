@@ -8,24 +8,27 @@ package EPrints::DataObj::REF2029_CC;
 our @ISA = qw( EPrints::DataObj::SubObject );
 
 use constant {
-    COMPLIANT           => 1,
-    DEP                 => 2,
-    DEP_TIMING          => 4,
-    DEP_COMPLIANT       => 8,
-    DIS                 => 16,
-    DIS_DISCOVERABLE    => 32,
-    ACC                 => 64,
-    ACC_TIMING          => 128,
-    ACC_EMBARGO         => 256,
-    ACC_LIC             => 512,
-    EX_DEP              => 1024,
-    EX_ACC_EMB          => 2048,
-    EX_ACC_LIC          => 4096,
-    EX_TEC              => 8192,
-    EX_FUR              => 16384,
-    EX_LIC              => 32768,
-    EX                  => 65536,
-    GOLD                => 131072,
+    COMPLIANT               => 1,
+    DEP                     => 2,
+    DEP_TIMING              => 4,
+    DEP_COMPLIANT           => 8,
+    DIS                     => 16,
+    DIS_DISCOVERABLE        => 32,
+    ACC                     => 64,
+    ACC_TIMING              => 128,
+    ACC_EMBARGO             => 256,
+    ACC_LIC                 => 512,
+    ACC_POTENTIAL           => 1024,
+    ACC_TIMING_POTENTIAL    => 2048,
+    ACC_LIC_POTENTIAL       => 4096,
+    EX_DEP                  => 8192,
+    EX_ACC_EMB              => 16384,
+    EX_ACC_LIC              => 32768,
+    EX_TEC                  => 65536,
+    EX_FUR                  => 131072,
+    EX_LIC                  => 262144,
+    EX                      => 524288,
+    GOLD                    => 1048576,
 };
 
 use strict;
@@ -261,6 +264,9 @@ sub test_compliance
         ACC_EMBARGO
         ACC_LIC   
         ACC
+        ACC_TIMING_POTENTIAL
+        ACC_LIC_POTENTIAL
+        ACC_POTENTIAL
         EX_DEP
         EX_ACC_EMB
         EX_ACC_LIC
@@ -323,6 +329,18 @@ sub test_COMPLIANT
         $flag & DIS &&
         $flag & ACC;
 
+    return( 1, "acc_potential_emb" ) if
+        $flag & EX_ACC_EMB &&
+        $flag & DEP &&
+        $flag & DIS &&
+        $flag & ACC_POTENTIAL;
+ 
+     return( 1, "acc_potential" ) if
+        $flag & DEP &&
+        $flag & DIS &&
+        $flag & ACC_EMBARGO &&
+        $flag & ACC_POTENTIAL;
+    
     return 0;
 }
 
@@ -420,6 +438,90 @@ sub test_ACC
 
     return 0;
 }
+
+sub test_ACC_POTENTIAL
+{
+    my( $self, $repo, $eprint, $flag ) = @_;   
+
+    return 1 if
+        $flag & ACC_LIC_POTENTIAL &&
+        $flag & ACC_TIMING_POTENTIAL;
+
+    return 0;
+}
+
+sub test_ACC_LIC_POTENTIAL
+{
+    my( $self, $repo, $eprint, $flag ) = @_;   
+
+    # do we have a document with the correct licence that has an embargo at least?
+    for( $eprint->get_all_documents )
+    {
+        # is it the correct type
+        next unless $_->is_set( "content" );
+        my $content = $_->value( "content" );                         
+        next unless grep( /^$content$/, @{$repo->config( "hefce_oa", "document_content" )} );
+
+        # does it have a correct license
+        next unless $_->is_set( "license" );
+        my $license = $_->value( "license" );                         
+        next unless grep( /^$license$/, @{$repo->config( "ref2029", "licenses" )} );
+
+        next if $_->is_public; # this is already public, we don't care about potential stuff...
+       
+        next unless $self->is_set( "embargo" );
+        next unless $_->is_set( "date_embargo" );
+
+        my $local_time = localtime();
+
+        # this document needs to have an appropriate licence and an embargo date that is before the earliest embargo release
+        return 1 if $local_time <= $self->value( "embargo" ) && $_->value( "date_embargo" ) <= $self->value( "embargo" );
+    }
+}
+
+sub test_ACC_TIMING_POTENTIAL
+{
+    my( $self, $repo, $eprint, $flag ) = @_;   
+
+    my $local_time = localtime();
+
+    if( $self->is_set( "embargo" ) )
+    {
+         # we have an embargo, open access must be available as soon as embargo expires
+        my $emb;
+        if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+        {
+            $emb = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $self->value( "embargo" ) );
+        }
+        if( !defined( $emb ) ) #above call can return undef - fallback to default
+        {
+            $emb = Time::Piece->strptime( $self->value( "embargo" ), "%Y-%m-%d" );
+        }                         
+ 
+        return 1 if $local_time <= $emb;  
+    }
+    else
+    {
+        # we must be within three months of publication still
+        # check if we have a publication date and deposit date is within 3 months
+        if( $eprint->is_set( "hoa_date_pub" ) )
+        {
+            my $pub;
+            if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+            {
+                $pub = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_pub" ) );
+            }
+            if( !defined( $pub ) ) #above call can return undef - fallback to default
+            {
+                $pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
+            }
+            return 1 if $local_time <= $pub->add_months(3);       
+        }  
+    }
+
+    return 0;
+}
+
 
 # 7.4.2 - output must be made fully accessible on deposit, subject to embargo 
 sub test_ACC_TIMING

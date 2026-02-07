@@ -60,6 +60,10 @@
 <epp:phrase id="compliant:2029:reason:gold_oa">Open Access with 'Gold', 'Diamond' or 'Platinum' routes (see 7.2.1)</epp:phrase>
 <epp:phrase id="compliant:2029:reason:ex_dep">Deposit exception applied (see 8.1)</epp:phrase>
 <epp:phrase id="compliant:2029:reason:ex_acc_emb">Meets compliance rules with embargo exception (see 8.2.2)</epp:phrase>
+
+<epp:phrase id="compliant:2029:reason:acc_potential">The output will be compliant if it is made open access within the allowed timeframe (when the embargo releases or within three months of publication date).</epp:phrase>
+<epp:phrase id="compliant:2029:reason:acc_potential_emb">The output will be compliant if it is made open access within the allowed timeframe (when the embargo releases or within three months of publication date). An embargo exception has been applied (see 8.2.2).</epp:phrase>
+
 <epp:phrase id="compliant:2029:reason:ex_acc_lic">Meets compliance rules with license exception (see 8.2.3)</epp:phrase>
 <epp:phrase id="compliant:2029:reason:ex_tec">Technical exception technical (see 8.3)</epp:phrase>
 <epp:phrase id="compliant:2029:reason:ex_fur">Further exception applied (see 8.4)</epp:phrase>

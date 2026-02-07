@@ -233,17 +233,17 @@
           <datasetid>document</datasetid>
           <filename>lang/en/phrases/ref2029.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>64e4af938d390213932f86c74d303e40</hash>
+          <hash>817982c943bdf006c5ba58657a9a565d</hash>
           <hash_type>MD5</hash_type>
-          <filesize>14881</filesize>
+          <filesize>15382</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/DataObj/REF2029_CC.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>e3856c0c15a8a6ace8d3c74585797be9</hash>
+          <hash>672cf2f97aaea4b363578ae39bf6f84e</hash>
           <hash_type>MD5</hash_type>
-          <filesize>16243</filesize>
+          <filesize>19702</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -273,9 +273,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/EPrint/HefceOA.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>70463c6f83a7a5dcb1741d1737cd8638</hash>
+          <hash>b3025e9a0783778dc33fbe287d3c5179</hash>
           <hash_type>MD5</hash_type>
-          <filesize>28796</filesize>
+          <filesize>29700</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>

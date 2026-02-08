@@ -166,4 +166,10 @@
 </epp:phrase>
 <epp:phrase id="hefce_oa:2029:test_description:ACC_EMBARGO:eprints">The <strong><epc:phrase ref="eprint_fieldname_hoa_emb_len"/></strong> must not exceed the stated maxima for the target <strong><epc:phrase ref="eprint_fieldname_hoa_ref_pan"/></strong>.</epp:phrase>
 
+<!-- Reports -->
+<epp:phrase id="Plugin/Screen/Report/REF_2029_CC:title">REF 2029 Compliance</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_2029_CC/Post2026:title">Outputs published between Jan 26 to Dec 28</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC_EX/Pre2026:title">Outputs published between Jan 21 to Dec 25</epp:phrase>
+
+
 </epp:phrases>

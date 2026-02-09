@@ -177,4 +177,14 @@
 
 <epp:phrase id="ref2029_cc:missing_ref2029_record">Missing REF2029 Compliance data record</epp:phrase>
 
+<epp:phrase id="ref2029_cc:non_compliant">Output is not compliant with the REF Open Access policy</epp:phrase>
+
+
+<epp:phrase id="ref2029_cc:problem:DEP_COMPLIANT">The output must have been deposited as the author’s accepted and final peer reviewed text.</epp:phrase>
+<epp:phrase id="ref2029_cc:problem:DEP_TIMING">The output must have been deposited as soon after the date of publication as possible.</epp:phrase>
+<epp:phrase id="ref2029_cc:problem:DIS_DISCOVERABLE">The output must be discoverable by readers and automated tools such as search engines.</epp:phrase>
+<epp:phrase id="ref2029_cc:problem:ACC_TIMING">The output must meet the access requirements as soon as possible.</epp:phrase>
+<epp:phrase id="ref2029_cc:problem:ACC_LIC">The output must be made accessible using an open licence.</epp:phrase>
+<epp:phrase id="ref2029_cc:problem:ACC_EMBARGO">Embargo periods should not exceed the maximum allowed length for the panel.</epp:phrase>
+
 </epp:phrases>

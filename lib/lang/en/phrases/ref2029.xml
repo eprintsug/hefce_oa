@@ -175,4 +175,6 @@
 <epp:phrase id="exportfields:eprints_core">EPrint Fields</epp:phrase>
 <epp:phrase id="exportfields:ref2029">REF2029 Compliance Fields</epp:phrase>
 
+<epp:phrase id="ref2029_cc:missing_ref2029_record">Missing REF2029 Compliance data record</epp:phrase>
+
 </epp:phrases>

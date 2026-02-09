@@ -151,6 +151,11 @@ sub bullet_points
 
     my @bullets;
 
+    if( !defined $ref2029_cc )
+    {
+        return @bullets;
+    }    
+
     foreach my $field ( qw(
 	    ref2029_pub_agreement
 		ref2029_gold_oa

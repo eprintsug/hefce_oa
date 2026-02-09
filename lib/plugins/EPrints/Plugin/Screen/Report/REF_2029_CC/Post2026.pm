@@ -23,7 +23,7 @@ sub filters
 	my @filters = @{ $self->SUPER::filters || [] };
 
     # for outputs published between 1 January 2026 and 31 December 2028
-	push @filters, { meta_fields => [ "hoa_date_pub" ], value => '2021-01-01-2028-12-31', match => "IN" };
+	push @filters, { meta_fields => [ "hoa_date_pub" ], value => '2026-01-01-2028-12-31', match => "IN" };
 
 	return \@filters;
 }

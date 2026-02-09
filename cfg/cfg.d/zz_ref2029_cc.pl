@@ -1,5 +1,83 @@
 # https://2029.ref.ac.uk/guidance/ref-2029-open-access-policy/
 
+# New Report Plugins
+$c->{plugins}{"Screen::Report::REF_CC::Pre2026"}{params}{disable} = 0;
+$c->{plugins}{"Screen::Report::REF_CC_EX::Pre2026"}{params}{disable} = 0;
+$c->{plugins}{"Screen::Report::REF_2029_CC"}{params}{disable} = 0;
+$c->{plugins}{"Screen::Report::REF_2029_CC::Post2026"}{params}{disable} = 0;
+$c->{plugins}{"Screen::Report::REF_2029_CC"}{params}{custom} = 1;
+
+$c->{ref2029_cc_report}->{exportfields} = {
+    eprints_core => [ qw(
+        eprintid
+        documents.content
+        type
+        title
+        abstract
+        creators_name
+        creators_orcid
+        creators_id
+        publisher
+        publication
+        divisions
+        dates
+        id_number
+        isbn
+        issn
+        official_url
+    )],
+    ref2029 => [qw (
+        hoa_ref_pan
+        ref2029_cc.ref2029_gold_oa
+        ref2029_cc.ref2029_pub_agreement
+        ref2029_cc.ref2029_pre_compliant
+        ref2029_cc.ref2029_pre_compliant_txt
+        ref2029_cc.ref2029_override
+        ref2029_cc.ref2029_ex_dep
+        ref2029_cc.ref2029_ex_dep_txt
+        ref2029_cc.ref2029_ex_acc
+        ref2029_cc.ref2029_ex_acc_txt
+        ref2029_cc.ref2029_ex_tec
+        ref2029_cc.ref2029_ex_tec_txt
+        ref2029_cc.ref2029_ex_fur
+        ref2029_cc.ref2029_ex_fur_txt
+    )],
+};
+
+$c->{ref2029_cc_report}->{exportfield_defaults} = [ qw( 
+    eprintid
+    documents.content
+    type
+    title
+    abstract
+    creators_name
+    creators_orcid
+    creators_id
+    publisher
+    publication
+    divisions
+    dates
+    id_number
+    isbn
+    issn
+    official_url
+    hoa_ref_pan
+    ref2029_cc.ref2029_gold_oa
+    ref2029_cc.ref2029_pub_agreement
+    ref2029_cc.ref2029_pre_compliant
+    ref2029_cc.ref2029_pre_compliant_txt
+    ref2029_cc.ref2029_override
+    ref2029_cc.ref2029_ex_dep
+    ref2029_cc.ref2029_ex_dep_txt
+    ref2029_cc.ref2029_ex_acc
+    ref2029_cc.ref2029_ex_acc_txt
+    ref2029_cc.ref2029_ex_tec
+    ref2029_cc.ref2029_ex_tec_txt
+    ref2029_cc.ref2029_ex_fur
+    ref2029_cc.ref2029_ex_fur_txt
+)];
+
+
 # 7.5 Licensing requirements
 # Array used to test license requirements
 $c->{ref2029}->{licenses} = [qw(

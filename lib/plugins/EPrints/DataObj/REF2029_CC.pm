@@ -33,6 +33,7 @@ use constant {
 
 use strict;
 use Data::Dumper;
+use Time::Piece;
 
 # The new method can simply return the constructor of the super class (Dataset)
 sub new
@@ -475,7 +476,27 @@ sub test_ACC_LIC_POTENTIAL
         my $local_time = localtime();
 
         # this document needs to have an appropriate licence and an embargo date that is before the earliest embargo release
-        return 1 if $local_time <= $self->value( "embargo" ) && $_->value( "date_embargo" ) <= $self->value( "embargo" );
+        my $emb;
+        if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+        {
+            $emb = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $self->value( "embargo" ) );
+        }
+        if( !defined( $emb ) ) #above call can return undef - fallback to default
+        {
+            $emb = Time::Piece->strptime( $self->value( "embargo" ), "%Y-%m-%d" );
+        }         
+
+        my $doc_emb;
+        if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+        {
+            $doc_emb = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $_->value( "date_embargo" ) );
+        }
+        if( !defined( $doc_emb ) ) #above call can return undef - fallback to default
+        {
+            $doc_emb = Time::Piece->strptime( $_->value( "date_embargo" ), "%Y-%m-%d" );
+        }       
+
+        return 1 if $local_time <= $emb && $doc_emb <= $emb;
     }
 }
 
@@ -497,7 +518,7 @@ sub test_ACC_TIMING_POTENTIAL
         {
             $emb = Time::Piece->strptime( $self->value( "embargo" ), "%Y-%m-%d" );
         }                         
- 
+        
         return 1 if $local_time <= $emb;  
     }
     else

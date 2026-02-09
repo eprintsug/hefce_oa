@@ -73,9 +73,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>e644523cdf6a2d00378a96630b125dcf</hash>
+          <hash>abe23357154192f87521c322169a918e</hash>
           <hash_type>MD5</hash_type>
-          <filesize>10805</filesize>
+          <filesize>11020</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -97,9 +97,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_ref2029_cc.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>f78056d5c63b61ed59849cde25b5c734</hash>
+          <hash>e10b0b59a06d43629d67b59be72ae052</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4746</filesize>
+          <filesize>6763</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -233,17 +233,17 @@
           <datasetid>document</datasetid>
           <filename>lang/en/phrases/ref2029.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>817982c943bdf006c5ba58657a9a565d</hash>
+          <hash>de1cfb600f948bbfd41a210a49360835</hash>
           <hash_type>MD5</hash_type>
-          <filesize>15382</filesize>
+          <filesize>15991</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/DataObj/REF2029_CC.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>672cf2f97aaea4b363578ae39bf6f84e</hash>
+          <hash>4957bf2cd108a1863a4f24c05a4ddae0</hash>
           <hash_type>MD5</hash_type>
-          <filesize>19702</filesize>
+          <filesize>20529</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -276,6 +276,22 @@
           <hash>b3025e9a0783778dc33fbe287d3c5179</hash>
           <hash_type>MD5</hash_type>
           <filesize>29700</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_2029_CC.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>4a4bc373593255d6a2c84d7a2ac61078</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>4390</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_2029_CC/Post2026.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>b2eeb32050e8677d54cc52eaa2ca0e0f</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>625</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -407,6 +423,14 @@
         </file>
         <file>
           <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/Pre2026.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>233ddb80fed83e16e16d343ad995a1f5</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>603</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX.pm</filename>
           <mime_type>text/plain</mime_type>
           <hash>07d09e85d3bc64ba593f4f66171bec1a</hash>
@@ -516,6 +540,14 @@
           <hash>791a9bc8c3077b2975fdfa922582f443</hash>
           <hash_type>MD5</hash_type>
           <filesize>530</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX/Pre2026.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>89afc9f95ef88e3066dbcf0ff4962d2a</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>615</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>

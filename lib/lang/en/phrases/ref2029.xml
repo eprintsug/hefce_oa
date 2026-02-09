@@ -169,7 +169,10 @@
 <!-- Reports -->
 <epp:phrase id="Plugin/Screen/Report/REF_2029_CC:title">REF 2029 Compliance</epp:phrase>
 <epp:phrase id="Plugin/Screen/Report/REF_2029_CC/Post2026:title">Outputs published between Jan 26 to Dec 28</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC/Pre2026:title">Outputs published between Jan 21 to Dec 25</epp:phrase>
 <epp:phrase id="Plugin/Screen/Report/REF_CC_EX/Pre2026:title">Outputs published between Jan 21 to Dec 25</epp:phrase>
 
+<epp:phrase id="exportfields:eprints_core">EPrint Fields</epp:phrase>
+<epp:phrase id="exportfields:ref2029">REF2029 Compliance Fields</epp:phrase>
 
 </epp:phrases>

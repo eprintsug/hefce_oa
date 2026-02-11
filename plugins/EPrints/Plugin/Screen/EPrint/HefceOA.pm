@@ -709,10 +709,24 @@ sub _render_2029_access_tab
     my $title = "ACC";
     my $tests = [qw( ACC_TIMING ACC_LIC ACC_EMBARGO )];
 
+    # title icon
+    my $title_result = "hoa_compliant";
+    if( !$ref2029_cc->run_flag_check( $title ) )
+    {
+        if( $ref2029_cc->run_flag_check( "ACC_POTENTIAL" ) )
+        {
+            $title_result = "hoa_future_compliant";
+        }
+        else
+        {
+            $title_result = "hoa_non_compliant";
+        }
+    }
+
     # title    
     my $tab_title = $self->html_phrase( "render_tab_title",
         title => $repo->html_phrase( "hefce_oa:test_title:$title" ),
-        class => $repo->xml->create_text_node( $ref2029_cc->run_flag_check( $title ) ? "hoa_compliant" : "hoa_non_compliant" )
+        class => $repo->xml->create_text_node( $title_result )
     );
 
     # description
@@ -724,10 +738,34 @@ sub _render_2029_access_tab
     my $sub = $repo->xml->create_document_fragment;
     for( @$tests )
     {
+        my $result = "hoa_compliant";
+        if( $_ eq "ACC_TIMING" || $_ eq "ACC_LIC" )
+        {
+            # if we fail, run a potential check
+            if( !$ref2029_cc->run_flag_check( $_ ) )
+            {
+                if( $ref2029_cc->run_flag_check( $_."_POTENTIAL" ) )
+                {
+                    $result = "hoa_future_compliant";
+                }
+                else
+                {
+                    $result = "hoa_non_compliant";
+                }
+            }
+        }
+        else
+        {
+            if( !$ref2029_cc->run_flag_check( $_ ) )
+            {
+                $result = "hoa_non_compliant";
+            }
+        }                                
+
         $sub->appendChild( $self->html_phrase( "render_test",
             title => $repo->html_phrase( "hefce_oa:2029:test_title:$_" ),
             description => $repo->html_phrase( "hefce_oa:2029:test_description:$_" ),
-            class => $repo->xml->create_text_node( $ref2029_cc->run_flag_check( $_ ) ? "hoa_compliant" : "hoa_non_compliant" )
+            class => $repo->xml->create_text_node( $result )
         ) );
     }
     $tab->appendChild( $self->html_phrase( "render_tests", tests => $sub ) );

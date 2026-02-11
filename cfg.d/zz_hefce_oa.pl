@@ -28,10 +28,15 @@ $c->{plugins}{"Screen::Report::REF_CC_EX::2025"}{params}{disable} = 1;
 $c->{plugins}{"Screen::Report::REF_CC_EX::2026"}{params}{disable} = 1;
 $c->{plugins}{"Screen::Report::REF_CC_EX::2027"}{params}{disable} = 1;
 $c->{plugins}{"Export::Report::CSV::REF_CC"}{params}{disable} = 0;
+$c->{plugins}{"Screen::Report::REF_CC"}{params}{searchdatasetid} = "eprint";
+$c->{plugins}{"Screen::Report::REF_CC_EX"}{params}{searchdatasetid} = "eprint";
+
 
 #set which can have a custom search, allowing their filter function to be overwridden
 $c->{plugins}{"Screen::Report::REF_CC"}{params}{custom} = 1;
 $c->{plugins}{"Screen::Report::REF_CC_EX"}{params}{custom} = 1;
+
+$c->{search}->{hefce_report} = $c->{search}->{advanced};
 
 push @{ $c->{user_roles}->{editor} }, qw{ +eprint/hefce_oa };
 push @{ $c->{user_roles}->{admin} }, qw{ +eprint/hefce_oa };
@@ -43,7 +48,6 @@ $c->{hefce_oa}->{hide_tab} = 0;
 # set REF scopes
 $c->{hefce_oa}->{ref2029_in_scope} = 1; # Items published between 01-01-2021 and 21-12-2028
 $c->{hefce_oa}->{ref2021_in_scope} = 0; # Items accepted before 01-04-2021
-
 
 #set if embargoed records should appear in report as compliant
 $c->{hefce_oa}->{embargo_as_compliant} = 0;

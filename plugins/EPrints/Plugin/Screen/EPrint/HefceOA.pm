@@ -82,14 +82,97 @@ sub render
     }
 
     # REF2029
-    if( $eprint->is_set( "ref2029_cc" ) && $eprint->value( "ref2029_cc" )->value( "scope" ) eq "26-28" )
+    # First calculate if we are in REF2029 scope. This can be checked if we have either...
+    # a) A ref2029_cc record with a correct scope value set, or...
+    # b) A hoa_date_pub value from Jan 21 onwards (this suggests a recommit has not taken place to create REF2029_CC records
+    my $ref2029_scope = 0;
+    if( $eprint->is_set( "ref2029_cc" ) &&
+        $eprint->value( "ref2029_cc" )->is_set( "scope" ) &&
+        ( $eprint->value( "ref2029_cc" )->value( "scope" ) eq "26-28" || $eprint->value( "ref2029_cc" )->value( "scope" ) eq "21-25" )
+    )
+    {
+        $ref2029_scope = 1;
+    };
+         
+    # check by date
+    if( !$ref2029_scope && $eprint->is_set( "hoa_date_pub" ) )
+    {
+        my $pub;
+        if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
+        {
+            $pub = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_pub" ) );
+        }
+        if( !defined( $pub ) ) #above call can return undef - fallback to default
+        {
+            $pub = Time::Piece->strptime( $eprint->value( "hoa_date_pub" ), "%Y-%m-%d" );
+        }
+
+        my $JAN21 = Time::Piece->strptime( "2021-01-01", "%Y-%m-%d" );
+        my $DEC28 = Time::Piece->strptime( "2028-12-31", "%Y-%m-%d" );
+        if( $pub >= $JAN21 && $pub <= $DEC28 )
+        {
+            $ref2029_scope = 1;
+        }
+    }
+   
+    if( $ref2029_scope )
     {
         $page->appendChild( $self->render_ref2029( $repo, $eprint, $eprint->value( "ref2029_cc" ) ) );
         return $page;
     }
-    elsif( $flag & HefceOA::Const::COMPLIANT )
+
+    $page->appendChild( $self->render_headline_result( $repo, $eprint, $flag ) );
+
+    $self->_render_incomplete_dates( $repo, $eprint, $page );       
+
+    $page->appendChild( $self->html_phrase( "render_test_description",
+        description => $repo->html_phrase( "hefce_oa:test_description:COMPLIANT" )
+    ) );
+
+    # tabs for individual requirements and exceptions
+    my @labels;
+    my @tabs;
+    for(
+        [ "DEP", [qw( DEP_COMPLIANT DEP_TIMING )] ],
+        [ "DIS", [qw( DIS_DISCOVERABLE )] ],
+        [ "ACC", [qw( ACC_TIMING ACC_EMBARGO )] ],
+        [ "EX", [qw( EX_DEP EX_ACC EX_TEC EX_FUR )] ],
+        [ "AUDIT", [qw( AUD_UP_OA AUD_UP_URL )] ],
+    )
     {
-        $page->appendChild( $repo->render_message( "message", $self->html_phrase( "compliant" ) ) );
+        my( $label, $tab ) = $self->render_tab( @$_ );
+        push @labels, $label;
+        push @tabs, $tab;
+    }
+    $page->appendChild( $repo->xhtml->tabs(
+        \@labels,
+        \@tabs,
+        basename => "hoa_tabs",
+    ) );
+
+    $page->appendChild( $repo->xml->create_element( "br" ) );
+
+    # data used to check compliance
+    my $box = $repo->make_element( "div", style=>"text-align: left" );
+    $box->appendChild( EPrints::Box::render(
+        id => "hoa_data",
+        title => $self->html_phrase( "data:title" ),
+        content => $self->render_data,
+        collapsed => 1,
+        session => $repo,
+    ) );
+    $page->appendChild( $box );
+
+    return $page;
+}
+
+sub render_headline_result
+{
+    my( $self, $repo, $eprint, $flag ) = @_;
+
+    if( $flag & HefceOA::Const::COMPLIANT )
+    {
+        return $repo->render_message( "message", $self->html_phrase( "compliant" ) );
     }
     elsif( $flag & HefceOA::Const::DEP && 
         $flag & HefceOA::Const::DIS &&
@@ -137,54 +220,12 @@ sub render
         $content_div->appendChild( $table );
         $div->appendChild( $content_div );
 
-        $page->appendChild( $div );
+        return $div;
     }
     else
     {
-        $page->appendChild( $repo->render_message( "warning", $self->html_phrase( "non_compliant" ) ) );
+        return $repo->render_message( "warning", $self->html_phrase( "non_compliant" ) );
     }
-
-    $self->_render_incomplete_dates( $repo, $eprint, $page );       
-
-    $page->appendChild( $self->html_phrase( "render_test_description",
-        description => $repo->html_phrase( "hefce_oa:test_description:COMPLIANT" )
-    ) );
-
-    # tabs for individual requirements and exceptions
-    my @labels;
-    my @tabs;
-    for(
-        [ "DEP", [qw( DEP_COMPLIANT DEP_TIMING )] ],
-        [ "DIS", [qw( DIS_DISCOVERABLE )] ],
-        [ "ACC", [qw( ACC_TIMING ACC_EMBARGO )] ],
-        [ "EX", [qw( EX_DEP EX_ACC EX_TEC EX_FUR )] ],
-        [ "AUDIT", [qw( AUD_UP_OA AUD_UP_URL )] ],
-    )
-    {
-        my( $label, $tab ) = $self->render_tab( @$_ );
-        push @labels, $label;
-        push @tabs, $tab;
-    }
-    $page->appendChild( $repo->xhtml->tabs(
-        \@labels,
-        \@tabs,
-        basename => "hoa_tabs",
-    ) );
-
-    $page->appendChild( $repo->xml->create_element( "br" ) );
-
-    # data used to check compliance
-    my $box = $repo->make_element( "div", style=>"text-align: left" );
-    $box->appendChild( EPrints::Box::render(
-        id => "hoa_data",
-        title => $self->html_phrase( "data:title" ),
-        content => $self->render_data,
-        collapsed => 1,
-        session => $repo,
-    ) );
-    $page->appendChild( $box );
-
-    return $page;
 }
 
 sub render_data
@@ -399,11 +440,11 @@ sub render_data
 
 sub render_tab
 {
-	my( $self, $title, $tests ) = @_;
+	my( $self, $title, $tests, $ref2029 ) = @_;
 
-	return $self->render_exceptions_tab( $title, $tests ) if $title eq "EX";
-	return $self->render_access_tab( $title, $tests ) if $title eq "ACC";
-    return $self->render_audit_tab( $title, $tests ) if $title eq "AUDIT";
+	return $self->render_exceptions_tab( $title, $tests, $ref2029 ) if $title eq "EX";
+	return $self->render_access_tab( $title, $tests, $ref2029 ) if $title eq "ACC";
+    return $self->render_audit_tab( $title, $tests, $ref2029 ) if $title eq "AUDIT";
 
 	my $repo = $self->{repository};
 	my $tab = $repo->xml->create_document_fragment;
@@ -417,15 +458,15 @@ sub render_tab
 	);
 	
 	$tab->appendChild( $self->html_phrase( "render_test_description",
-		description => $repo->html_phrase( "hefce_oa:test_description:$title" )
+		description => $repo->html_phrase( "hefce_oa:test_description:$title$ref2029" )
 	) );
 
 	my $sub = $repo->xml->create_document_fragment;
 	for( @$tests )
 	{
 		$sub->appendChild( $self->html_phrase( "render_test",
-			title => $repo->html_phrase( "hefce_oa:test_title:$_" ),
-			description => $repo->html_phrase( "hefce_oa:test_description:$_" ),
+			title => $repo->html_phrase( "hefce_oa:test_title:$_$ref2029" ),
+			description => $repo->html_phrase( "hefce_oa:test_description:$_$ref2029" ),
 			class => $repo->xml->create_text_node( $flag & HefceOA::Const->$_ ? "hoa_compliant" : "hoa_non_compliant" )
 		) );
 	}
@@ -477,7 +518,7 @@ sub render_exceptions_tab
 
 sub render_access_tab
 {
-	my( $self, $title, $tests ) = @_;
+	my( $self, $title, $tests, $ref2029 ) = @_;
 
 	my $repo = $self->{repository};
 	my $tab = $repo->xml->create_document_fragment;
@@ -502,7 +543,7 @@ sub render_access_tab
 	);
 
 	$tab->appendChild( $self->html_phrase( "render_test_description",
-		description => $repo->html_phrase( "hefce_oa:test_description:$title" )
+		description => $repo->html_phrase( "hefce_oa:test_description:$title$ref2029" )
 	) );
 
 	my $sub = $repo->xml->create_document_fragment;
@@ -513,8 +554,8 @@ sub render_access_tab
 			$test_class= "hoa_future_compliant";
 		}
 		$sub->appendChild( $self->html_phrase( "render_test",
-			title => $repo->html_phrase( "hefce_oa:test_title:$_" ),
-			description => $repo->html_phrase( "hefce_oa:test_description:$_" ),
+			title => $repo->html_phrase( "hefce_oa:test_title:$_$ref2029" ),
+			description => $repo->html_phrase( "hefce_oa:test_description:$_$ref2029" ),
 			class => $repo->xml->create_text_node( $test_class )
 		) );
 	}
@@ -561,71 +602,117 @@ sub render_ref2029
     my( $self, $repo, $eprint, $ref2029_cc ) = @_;
 
     my $div = $repo->xml->create_element( "div", class => "hoa_ref2029" );
-
-    ## Headlines
-    # Result
-    my $flag = $ref2029_cc->value( "compliant" ) || 0;
-    my( $result, $reason ) = $ref2029_cc->test_COMPLIANT( $repo, $flag );
-    if( $result )
-    {
-        $div->appendChild( $repo->render_message( "message", $self->html_phrase( "compliant:2029", 
-            reason => $repo->html_phrase( "compliant:2029:reason:$reason" ),
-        ) ) );
-    }
-    else
-    {
-        $div->appendChild( $repo->render_message( "warning", $self->html_phrase( "non_compliant" ) ) );
-    }
-
+ 
     # Warnings
     $self->_render_incomplete_dates( $repo, $eprint, $div );
+    $self->_render_missing_ref2029_record( $repo, $eprint, $div );   
 
-    ## Description
-    $div->appendChild( $self->html_phrase( "render_test_description",
-        description => $repo->html_phrase( "hefce_oa:2029:test_description:COMPLIANT" )
-    ) );
-
-    ## Details
+    ## Description and Details
     # Note: Lots of repetition, here could be refactored like the older version, but does
     # keep some scope for customising, e.g. access tab needs to show (will become compliant)
     my @labels;
     my @tabs;
 
-    my( $label, $tab ) = $self->_render_2029_deposit_tab( $repo, $eprint, $ref2029_cc );
-    push @labels, $label;
-    push @tabs, $tab;    
+    if( $ref2029_cc->value( "scope" ) eq "26-28" )
+    {   
+        ## Headlines
+        # Result
+        my $flag = $ref2029_cc->value( "compliant" ) || 0;
+        my( $result, $reason ) = $ref2029_cc->test_COMPLIANT( $repo, $flag );
+        if( $result )
+        {
+            $div->appendChild( $repo->render_message( "message", $self->html_phrase( "compliant:2029", 
+                reason => $repo->html_phrase( "compliant:2029:reason:$reason" ),
+            ) ) );
+        }
+        else
+        {
+            $div->appendChild( $repo->render_message( "warning", $self->html_phrase( "non_compliant" ) ) );
+        }
 
-    ( $label, $tab ) = $self->_render_2029_discovery_tab( $repo, $eprint, $ref2029_cc );
-    push @labels, $label;
-    push @tabs, $tab;    
 
-    ( $label, $tab ) = $self->_render_2029_access_tab( $repo, $eprint, $ref2029_cc );
-    push @labels, $label;
-    push @tabs, $tab;    
+        ## Description
+        $div->appendChild( $self->html_phrase( "render_test_description",
+            description => $repo->html_phrase( "hefce_oa:2029-post26:test_description:COMPLIANT" )
+        ) );
 
-    ( $label, $tab ) = $self->_render_2029_exceptions_tab( $repo, $eprint, $ref2029_cc );
-    push @labels, $label;
-    push @tabs, $tab;    
+        my( $label, $tab ) = $self->_render_2029_deposit_tab( $repo, $eprint, $ref2029_cc );
+        push @labels, $label;
+        push @tabs, $tab;    
 
+        ( $label, $tab ) = $self->_render_2029_discovery_tab( $repo, $eprint, $ref2029_cc );
+        push @labels, $label;
+        push @tabs, $tab;    
 
-    $div->appendChild( $repo->xhtml->tabs(
-        \@labels,
-        \@tabs,
-        basename => "hoa_2029_tabs",
-    ) );
+        ( $label, $tab ) = $self->_render_2029_access_tab( $repo, $eprint, $ref2029_cc );
+        push @labels, $label;
+        push @tabs, $tab;    
+
+        ( $label, $tab ) = $self->_render_2029_exceptions_tab( $repo, $eprint, $ref2029_cc );
+        push @labels, $label;
+        push @tabs, $tab;    
+ 
+       $div->appendChild( $repo->xhtml->tabs(
+            \@labels,
+            \@tabs,
+            basename => "hoa_2029_tabs",
+        ) );
    
+        ## Data
+        my $box = $repo->make_element( "div", style=>"text-align: left" );
+        $box->appendChild( EPrints::Box::render(
+            id => "hoa_data",
+            title => $self->html_phrase( "data:title" ),
+            content => $self->render_data( $ref2029_cc ),
+            collapsed => 1,
+            session => $repo,
+        ) );
+        $div->appendChild( $box );
+    }
+    elsif( $ref2029_cc->value( "scope" ) eq "21-25" )
+    {
+        # do what the old render function does, but with updated phrases
+        my $flag = $eprint->value( "hoa_compliant" ) || 0;
+        $div->appendChild( $self->render_headline_result( $repo, $eprint, $flag ) );
 
-    ## Data
-    my $box = $repo->make_element( "div", style=>"text-align: left" );
-    $box->appendChild( EPrints::Box::render(
-        id => "hoa_data",
-        title => $self->html_phrase( "data:title" ),
-        content => $self->render_data( $ref2029_cc ),
-        collapsed => 1,
-        session => $repo,
-    ) );
-    $div->appendChild( $box );
+        # Description
+        $div->appendChild( $self->html_phrase( "render_test_description",
+            description => $repo->html_phrase( "hefce_oa:2029-pre26:test_description:COMPLIANT" )
+        ) );
 
+        # tabs for individual requirements and exceptions
+        my @labels;
+        my @tabs;
+        for(
+            [ "DEP", [qw( DEP_COMPLIANT DEP_TIMING )] ],
+            [ "DIS", [qw( DIS_DISCOVERABLE )] ],
+            [ "ACC", [qw( ACC_TIMING ACC_EMBARGO )] ],
+            [ "EX", [qw( EX_DEP EX_ACC EX_TEC EX_FUR )] ],
+        )
+        {
+            my( $label, $tab ) = $self->render_tab( @$_, "_ref2029" );
+            push @labels, $label;
+            push @tabs, $tab;
+        }
+        $div->appendChild( $repo->xhtml->tabs(
+            \@labels,
+            \@tabs,
+            basename => "hoa_tabs",
+        ) );
+
+        $div->appendChild( $repo->xml->create_element( "br" ) );
+
+        # data used to check compliance
+        my $box = $repo->make_element( "div", style=>"text-align: left" );
+        $box->appendChild( EPrints::Box::render(
+            id => "hoa_data",
+            title => $self->html_phrase( "data:title" ),
+            content => $self->render_data,
+            collapsed => 1,
+            session => $repo,
+        ) );
+        $div->appendChild( $box );
+    }
 
     return $div;
 }
@@ -848,6 +935,17 @@ sub _render_incomplete_dates
     }
 }
 
+sub _render_missing_ref2029_record
+{
+    my( $self, $repo, $eprint, $page ) = @_;
+
+    # a record is in the ref2029 period but doesn't have a corresponding ref2029 record
+    # this eprint likely needs recommitting
+    if( !$eprint->is_set( "ref2029_cc" ) )
+    {
+        $page->appendChild( $repo->render_message( "warning", $self->html_phrase( "render_missing_ref2029" ) ) );
+    }
+}
 
 
 1;

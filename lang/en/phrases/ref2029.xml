@@ -5,30 +5,49 @@
 <epp:phrase id="Plugin/InputForm/Component/REF2029:title">REF2029 OA Compliance</epp:phrase>
 
 <epp:phrase id="ref2029_cc_fieldname_ref2029_ex_dep">Deposit Exceptions</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_ex_dep">8.1.1. The following exceptions apply where the output is unable to meet the deposit requirements. In these cases, the output will not be required to meet any of the open access criteria (deposit, discovery, access or licensing).</epp:phrase>
 <epp:phrase id="ref2029_cc_fieldopt_ref2029_ex_dep_a">It would be unlawful to deposit, or request the deposit of, the output or to otherwise make this available.</epp:phrase>
 <epp:phrase id="ref2029_cc_fieldopt_ref2029_ex_dep_b">The publication actively disallows open access deposit in a repository and was the most appropriate publication for the output.</epp:phrase>
 <epp:phrase id="ref2029_cc_fieldopt_ref2029_ex_dep_c">Subject to delay in securing the final peer-reviewed text for deposit – for instance, where a paper has multiple authors.</epp:phrase>
 <epp:phrase id="ref2029_cc_fieldname_ref2029_ex_dep_txt">Deposit Exceptions Reason</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_ex_dep_txt">Please provide supporting information for the exception:</epp:phrase>
 
 <epp:phrase id="ref2029_cc_fieldname_ref2029_ex_acc">Access Exceptions</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_ex_acc">8.2.1. The following exceptions apply where deposit of the output is possible, but there are issues to do with meeting one or more of accessibility, embargo and/or licensing requirements. Outputs will be exempt from the relevant requirements, but still be required to meet all other open access policy requirements.</epp:phrase>
 <epp:phrase id="ref2029_cc_fieldopt_ref2029_ex_acc_a">The publication requires an embargo period that exceeds the stated maxima and was the most appropriate publication for the output. Outputs will not need to meet the embargo requirements in this case.</epp:phrase>
 <epp:phrase id="ref2029_cc_fieldopt_ref2029_ex_acc_b">Third-party content was included for which licences could not be obtained at a reasonable cost. The output will not need to meet access and/or licensing requirements (as relevant) in this case.</epp:phrase>
 <epp:phrase id="ref2029_cc_fieldname_ref2029_ex_acc_txt">Access Exceptions Reason</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_ex_acc_txt">Please provide supporting information for the exception:</epp:phrase>
 
 <epp:phrase id="ref2029_cc_fieldname_ref2029_ex_tec">Technical Exceptions</epp:phrase>
 <epp:phrase id="ref2029_cc_fieldopt_ref2029_ex_tec_a">Output has a demonstrable and substantive connection to the submitting institution but was published following the end of the author’s period of employment, and it has not been possible to determine compliance with the criteria.</epp:phrase>
 <epp:phrase id="ref2029_cc_fieldopt_ref2029_ex_tec_b">Outputs were authored in whole by one or more staff who are or were ineligible to be included in the volume measure for REF 2029. The funding bodies have agreed this exception across the publication period for REF 2029 in order to support submission of a wide range of eligible outputs.</epp:phrase>
 <epp:phrase id="ref2029_cc_fieldname_ref2029_ex_tec_txt">Technical Exceptions Reason</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_ex_tec_txt">Please provide supporting information for the exception:</epp:phrase>
 
-<epp:phrase id="ref2029_cc_fieldname_ref2029_ex_fur">Further Exception</epp:phrase>
-<epp:phrase id="ref2029_cc_fieldname_ref2029_ex_fur_txt">Further Exceptions Reason</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldname_ref2029_ex_fur">Further (‘Other’) Exception</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_ex_fur">8.4.1. “Other” exception should be used where criteria beyond the control of the higher education institution (HEI) (including but not limited to: personal circumstances of the author, industrial action, closure days and software issues) prevent compliance. If ‘other’ exception is selected, the output will not need to meet the open access criteria (deposit, discovery, access or licensing requirements).</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldname_ref2029_ex_fur_txt">Further (‘Other’) Exception Reason</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_ex_fur_txt">Please provide supporting information for the exception:</epp:phrase>
 
 <epp:phrase id="ref2029_cc_fieldname_ref2029_pub_agreement">License exception due to publication agreement</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_pub_agreement">7.5.4. In-scope outputs shared by deposit (7.2.3.) do not need to meet the licensing standards set out in 7.5.2. if the deposited output (AAM) is subject to terms of a publication agreement which limits sharing and/or use of downloaded materials. These outputs will still be required to meet all other conditions for deposit, discovery and access. Application of an exception will not be required.</epp:phrase>
+
 <epp:phrase id="ref2029_cc_fieldname_ref2029_gold_oa">Gold/Diamond/Platinum OA</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_gold_oa">7.2.1. Published open access: Where an output is made fully open access on publication (commonly termed ’Gold‘ open access, also ’Diamond‘ or ’Platinum‘), conditional to it also fully meeting discovery, access and licensing criteria there is no further action required.</epp:phrase>
+
+
+<epp:phrase id="ref2029_cc_fieldname_ref2029_pre_compliant">Compliant elsewhere</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_pre_compliant">This record meets OA compliance criteria in another repository.</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldname_ref2029_pre_compliant_txt">Compliant elsewhere evidence</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_pre_compliant_txt">Please provide a link or description that evidences where this record is otherwise OA compliant.</epp:phrase>
+
 <epp:phrase id="ref2029_cc_fieldname_ref2029_override">Override Compliance Checks</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_override">Prevent REF OA compliance checls from being applied, exempting this record.</epp:phrase>
 
 <epp:phrase id="ref2029_cc_fieldname_licensed_foa">Date of first compliant Open Access (with valid license)</epp:phrase>
 <epp:phrase id="ref2029_cc_fieldname_embargo">Earliest embargo date</epp:phrase>
+
 
 <!-- EPrint Page -->
 
@@ -39,9 +58,12 @@
 <epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_missing_ref2029">Missing REF2029 record. All eligible Eprints in the REF2029 scope should have a corresponding REF2029 record to track OA compliance data.</epp:phrase>
 
 <epp:phrase id="compliant:2029:reason:override">Manual override</epp:phrase>
+<epp:phrase id="compliant:2029:reason:pre_compliant">Flagged as compliant in another platform</epp:phrase>
 <epp:phrase id="compliant:2029:reason:gold_oa">Open Access with 'Gold', 'Diamond' or 'Platinum' routes (see 7.2.1)</epp:phrase>
 <epp:phrase id="compliant:2029:reason:ex_dep">Deposit exception applied (see 8.1)</epp:phrase>
 <epp:phrase id="compliant:2029:reason:ex_acc_emb">Meets compliance rules with embargo exception (see 8.2.2)</epp:phrase>
+<epp:phrase id="compliant:2029:reason:acc_potential">The output will be compliant if it is made open access within the allowed timeframe (when the embargo releases or within three months of publication date).</epp:phrase>
+<epp:phrase id="compliant:2029:reason:acc_potential_emb">The output will be compliant if it is made open access within the allowed timeframe (when the embargo releases or within three months of publication date). An embargo exception has been applied (see 8.2.2).</epp:phrase>
 <epp:phrase id="compliant:2029:reason:ex_acc_lic">Meets compliance rules with license exception (see 8.2.3)</epp:phrase>
 <epp:phrase id="compliant:2029:reason:ex_tec">Technical exception technical (see 8.3)</epp:phrase>
 <epp:phrase id="compliant:2029:reason:ex_fur">Further exception applied (see 8.4)</epp:phrase>

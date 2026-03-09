@@ -605,7 +605,15 @@ sub render_ref2029
  
     # Warnings
     $self->_render_incomplete_dates( $repo, $eprint, $div );
-    $self->_render_missing_ref2029_record( $repo, $eprint, $div );   
+    
+    # a record is in the ref2029 period but doesn't have a corresponding ref2029 record
+    # this eprint likely needs recommitting
+    if( !$eprint->is_set( "ref2029_cc" ) )
+    {
+        $div->appendChild( $repo->render_message( "warning", $self->html_phrase( "render_missing_ref2029" ) ) );
+        return $div;
+    }
+
 
     ## Description and Details
     # Note: Lots of repetition, here could be refactored like the older version, but does
@@ -934,18 +942,5 @@ sub _render_incomplete_dates
         $page->appendChild( $repo->render_message( "warning", $self->html_phrase( "render_incomplete_dates", dates => $dates ) ) );
     }
 }
-
-sub _render_missing_ref2029_record
-{
-    my( $self, $repo, $eprint, $page ) = @_;
-
-    # a record is in the ref2029 period but doesn't have a corresponding ref2029 record
-    # this eprint likely needs recommitting
-    if( !$eprint->is_set( "ref2029_cc" ) )
-    {
-        $page->appendChild( $repo->render_message( "warning", $self->html_phrase( "render_missing_ref2029" ) ) );
-    }
-}
-
 
 1;

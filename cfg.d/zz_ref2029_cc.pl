@@ -165,7 +165,7 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
         );
 
         # and calculate which OA scope it is in
-        $ref_cc->calculate_scope;
+        $ref_cc->calculate_scope if defined $ref_cc;
     }                                  
 
 }, priority => 300 );

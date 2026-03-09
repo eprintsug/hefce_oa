@@ -233,9 +233,9 @@
           <datasetid>document</datasetid>
           <filename>lang/en/phrases/ref2029.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>c7034be7d444d7caf0d758f9b0b79b60</hash>
+          <hash>48be847922cae6d4b60cf0b591e8c978</hash>
           <hash_type>MD5</hash_type>
-          <filesize>17043</filesize>
+          <filesize>19724</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -273,9 +273,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/EPrint/HefceOA.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>b3025e9a0783778dc33fbe287d3c5179</hash>
+          <hash>43f60631bfa55ac0f3e8af415418804e</hash>
           <hash_type>MD5</hash_type>
-          <filesize>29700</filesize>
+          <filesize>33389</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>

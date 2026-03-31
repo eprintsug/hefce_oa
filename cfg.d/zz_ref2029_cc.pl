@@ -196,6 +196,8 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
                 {
                     $ref_cc->set_value( "ref2029_override", $eprint->value( "hoa_override" ) );
                 }
+
+                $ref_cc->commit;
             }
         }
     }                                  

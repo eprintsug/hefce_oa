@@ -164,8 +164,40 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
             }
         );
 
-        # and calculate which OA scope it is in
-        $ref_cc->calculate_scope;
+        if( defined $ref_cc )
+        {
+            # first calculate the scope
+            $ref_cc->calculate_scope;
+    
+            if( $ref_cc->value( "scope" ) eq "26-28" )
+            {
+                if( $eprint->is_set( "hoa_date_foa" ) )
+                {
+                    # only copy a FOA value if we have a doc with the correct license
+                    my $valid_license = 0;
+                    for( $eprint->get_all_documents )
+                    {
+                        # does it have a correct license
+                        next unless $_->is_set( "license" );
+                        my $license = $_->value( "license" );
+                        next unless grep( /^$license$/, @{$repo->config( "ref2029", "licenses" )} );
+
+                        $valid_license = 1;
+                    }
+                    $ref_cc->set_value( "licensed_foa", $eprint->value( "hoa_date_foa" ) ) if $valid_license;
+                }
+
+                if( $eprint->is_set( "hoa_gold" ) )
+                {
+                    $ref_cc->set_value( "ref2029_gold_oa", $eprint->value( "hoa_gold" ) );
+                }
+
+                if( $eprint->is_set( "hoa_override" ) )
+                {
+                    $ref_cc->set_value( "ref2029_override", $eprint->value( "hoa_override" ) );
+                }
+            }
+        }
     }                                  
 
 }, priority => 300 );

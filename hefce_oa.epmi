@@ -241,9 +241,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/DataObj/REF2029_CC.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>4957bf2cd108a1863a4f24c05a4ddae0</hash>
+          <hash>bf25ac1d31326bb19886c0fa20450dec</hash>
           <hash_type>MD5</hash_type>
-          <filesize>20529</filesize>
+          <filesize>20916</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -273,9 +273,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/EPrint/HefceOA.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>43f60631bfa55ac0f3e8af415418804e</hash>
+          <hash>3c2e9b973d4c8184d9c3792b49647636</hash>
           <hash_type>MD5</hash_type>
-          <filesize>33389</filesize>
+          <filesize>33376</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>

@@ -251,7 +251,7 @@ sub render_data
     if( defined $ref2029_cc && $ref2029_cc->value( "scope" ) eq "26-28" )
     {
         $fields = {
-            eprint => [qw ( hoa_date_acc hoa_date_pub hoa_date_fcd eprint_status hoa_date_foa hoa_emb_len hoa_ref_pan )],
+            eprint => [qw ( hoa_date_acc hoa_date_pub hoa_date_fcd eprint_status hoa_emb_len hoa_ref_pan )],
             ref2029_cc => [qw( licensed_foa embargo ref2029_pub_agreement ref2029_gold_oa ref2029_override )],
         };
     }

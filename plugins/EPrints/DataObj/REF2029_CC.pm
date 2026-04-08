@@ -220,16 +220,26 @@ sub update_data
             my $content = $_->value( "content" );                         
             next unless grep( /^$content$/, @{$repo->config( "hefce_oa", "document_content" )} );
 
-            # does it have a correct license
-            next unless $_->is_set( "license" );
-            my $license = $_->value( "license" );                         
-            next unless grep( /^$license$/, @{$repo->config( "ref2029", "licenses" )} );
-
             # and is it open
             next unless $_->is_public;
-            
-            # NB $changed has the *old* values in.
-            $self->set_value( "licensed_foa", EPrints::Time::get_iso_date() );
+
+            # we don't need to worry about the licence for this eprint (OA policy: 7.5.4)
+            if( $self->is_set( "ref2029_pub_agreement" ) && $self->value( "ref2029_pub_agreement" ) eq "TRUE" )
+            {
+                $self->set_value( "licensed_foa", EPrints::Time::get_iso_date() );
+                last;
+            }
+            else # we do care about a licence
+            {
+                # does it have a correct license
+                next unless $_->is_set( "license" );
+                my $license = $_->value( "license" );                         
+                next unless grep( /^$license$/, @{$repo->config( "ref2029", "licenses" )} );
+
+                # we have seen the correct license on an open document
+                $self->set_value( "licensed_foa", EPrints::Time::get_iso_date() );
+                last;
+            }
         }
     }
 
@@ -549,11 +559,9 @@ sub test_ACC_TIMING
 {
     my( $self, $repo, $eprint, $flag ) = @_;
 
-    return 0 unless $eprint->is_set( "hoa_date_foa" );
+    return 0 unless $self->is_set( "licensed_foa" );
 
-    # TODO: Use licensed_foa if set and pub agreement isn't true??
-
-    my $foa = Time::Piece->strptime( $eprint->value( "hoa_date_foa" ), "%Y-%m-%d" );
+    my $foa = Time::Piece->strptime( $self->value( "licensed_foa" ), "%Y-%m-%d" );
 
     if( $self->is_set( "embargo" ) )
     {

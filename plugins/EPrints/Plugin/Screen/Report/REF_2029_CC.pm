@@ -187,5 +187,21 @@ sub bullet_points
     return @bullets;
 }
 
+# applies any mandatory filters to a search object - used to enforce certain search criteria, even with a custom report
+sub apply_filters
+{
+	my( $self ) = @_;
+
+	my $ds = $self->repository->dataset( 'eprint' );
+
+    # this report should only include items published after the rule change in Jan 26
+    my $pub_field = $ds->field( "hoa_date_pub" );
+	$self->{processor}->{search}->add_field( fields => $pub_field,
+		value => '2026-01-01-',
+		match => 'IN',
+	);
+
+}
+
 
 1;

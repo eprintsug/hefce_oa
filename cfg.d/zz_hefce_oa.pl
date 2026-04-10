@@ -1,6 +1,6 @@
 $c->{plugins}{"Screen::EPrint::HefceOA"}{params}{disable} = 0;
-$c->{plugins}{"Screen::Report::REF_CC"}{params}{disable} = 1;
-$c->{plugins}{"Screen::Report::REF_CC_EX"}{params}{disable} = 1;
+$c->{plugins}{"Screen::Report::REF_CC"}{params}{disable} = 0;
+$c->{plugins}{"Screen::Report::REF_CC_EX"}{params}{disable} = 0;
 $c->{plugins}{"Screen::Report::REF_CC::2015"}{params}{disable} = 1;
 $c->{plugins}{"Screen::Report::REF_CC::2016"}{params}{disable} = 1;
 $c->{plugins}{"Screen::Report::REF_CC::2017"}{params}{disable} = 1;

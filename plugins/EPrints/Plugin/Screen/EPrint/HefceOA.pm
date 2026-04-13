@@ -86,7 +86,7 @@ sub render
     # a) A ref2029_cc record with a correct scope value set, or...
     # b) A hoa_date_pub value from Jan 21 onwards (this suggests a recommit has not taken place to create REF2029_CC records
     my $ref2029_scope = 0;
-    if( $eprint->is_set( "ref2029_cc" ) &&
+    if( $eprint->exists_and_set( "ref2029_cc" ) &&
         $eprint->value( "ref2029_cc" )->is_set( "scope" ) &&
         ( $eprint->value( "ref2029_cc" )->value( "scope" ) eq "26-28" || $eprint->value( "ref2029_cc" )->value( "scope" ) eq "21-25" )
     )
@@ -95,7 +95,7 @@ sub render
     };
          
     # check by date
-    if( !$ref2029_scope && $eprint->is_set( "hoa_date_pub" ) )
+    if( !$ref2029_scope && $eprint->dataset->has_field( "ref2029_cc" ) && $eprint->is_set( "hoa_date_pub" ) )
     {
         my $pub;
         if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )

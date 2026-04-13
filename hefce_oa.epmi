@@ -273,9 +273,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/EPrint/HefceOA.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>3c2e9b973d4c8184d9c3792b49647636</hash>
+          <hash>91de4e15f06377bd9dd047f37c7eddf0</hash>
           <hash_type>MD5</hash_type>
-          <filesize>33376</filesize>
+          <filesize>33431</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>

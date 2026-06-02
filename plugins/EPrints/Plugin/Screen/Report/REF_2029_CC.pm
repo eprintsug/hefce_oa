@@ -95,7 +95,7 @@ sub get_state
     return undef unless $ref2029_cc;
 
     my $flag = $ref2029_cc->value( "compliant" ) || 0;
-    my( $result, $reason ) = $ref2029_cc->test_COMPLIANT( $repo, $flag );
+    my( $result, $reason ) = $ref2029_cc->test_COMPLIANT( $repo, $eprint, $flag );
 
     if( $reason eq "acc_potential_emb" || $reason eq "acc_potential" )
     {
@@ -121,7 +121,7 @@ sub validate_dataobj
     }
 
     my $flag = $ref2029_cc->value( "compliant" ) || 0;
-	unless ( $ref2029_cc->test_COMPLIANT( $repo, $flag ) )
+	unless ( $ref2029_cc->test_COMPLIANT( $repo, $eprint, $flag ) )
 	{
 		push @problems, $repo->phrase( "ref2029_cc:non_compliant" ); 
 		foreach my $test ( qw(

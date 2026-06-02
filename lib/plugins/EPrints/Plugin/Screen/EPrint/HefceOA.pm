@@ -626,7 +626,7 @@ sub render_ref2029
         ## Headlines
         # Result
         my $flag = $ref2029_cc->value( "compliant" ) || 0;
-        my( $result, $reason ) = $ref2029_cc->test_COMPLIANT( $repo, $flag );
+        my( $result, $reason ) = $ref2029_cc->test_COMPLIANT( $repo, $eprint, $flag );
         if( $result )
         {
             $div->appendChild( $repo->render_message( "message", $self->html_phrase( "compliant:2029", 

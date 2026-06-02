@@ -300,7 +300,7 @@ sub test_compliance
 # the reasoning can be used by the screen to display a useful message
 sub test_COMPLIANT
 {
-    my( $self, $repo, $flag ) = @_;
+    my( $self, $repo, $eprint, $flag ) = @_;
 
     # compliant if overridden
     return (1, "override") if( $self->is_set( "ref2029_override" ) && $self->get_value( "ref2029_override" ) eq "TRUE" );
@@ -473,10 +473,14 @@ sub test_ACC_LIC_POTENTIAL
         my $content = $_->value( "content" );                         
         next unless grep( /^$content$/, @{$repo->config( "hefce_oa", "document_content" )} );
 
-        # does it have a correct license
-        next unless $_->is_set( "license" );
-        my $license = $_->value( "license" );                         
-        next unless grep( /^$license$/, @{$repo->config( "ref2029", "licenses" )} );
+        # check to see if we need to check the license for this record
+        unless( $self->is_set( "ref2029_pub_agreement" ) && $self->value( "ref2029_pub_agreement" ) eq "TRUE" )
+        {    
+            # does it have a correct license
+            next unless $_->is_set( "license" );
+            my $license = $_->value( "license" );                         
+            next unless grep( /^$license$/, @{$repo->config( "ref2029", "licenses" )} );
+        }
 
         next if $_->is_public; # this is already public, we don't care about potential stuff...
        

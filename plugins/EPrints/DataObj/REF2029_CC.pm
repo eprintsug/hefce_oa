@@ -592,8 +592,6 @@ sub test_ACC_TIMING
 
 	return 0 unless defined $foa;
 
-    my $foa = Time::Piece->strptime( $self->value( "licensed_foa" ), "%Y-%m-%d" );
-
     if( $self->is_set( "embargo" ) )
     {
         # we have an embargo, open access must be available as soon as embargo expires

@@ -10,7 +10,7 @@ Please see the ref2029 and ref2029_epm branches for ingredient and Bazaar EPM up
 * Tidying up of old reports which are condensed down to "REF Compliance (pre Jan 26)" and "REF Compliance - Exceptions (pre Jan 26)".
 
 **Installation:**
-If updating from the old plugin, you will need to run `epadming recommit <repoid> eprint` to ensure all EPrints are updated with a new REF CC Dataobj where appropriate.
+If updating from the old plugin, you will need to run `epadmin recommit <repoid> eprint` to ensure all EPrints are updated with a new REF CC Dataobj where appropriate.
 
 The EPrints deposit workflow hefce_oa stage will also need updating as follows:
 ```

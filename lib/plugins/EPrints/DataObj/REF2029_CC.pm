@@ -242,6 +242,19 @@ sub update_data
             }
         }
     }
+    else
+    {
+        # licensed_foa is set, but is it set to the right value
+        if( $eprint->is_set( "hoa_date_foa" ) &&
+            $eprint->value( "hoa_date_foa" ) ne $self->value( "licensed_foa" ) &&
+            $self->is_set( "ref2029_pub_agreement" ) &&
+            $self->value( "ref2029_pub_agreement" ) eq "TRUE" )
+        {
+            # we have conditions which match the old REF rules
+            $self->set_value( "licensed_foa", $eprint->value( "hoa_date_foa" ) );
+        }
+
+    }
 
     $self->commit;
 }
@@ -563,9 +576,21 @@ sub test_ACC_TIMING
 {
     my( $self, $repo, $eprint, $flag ) = @_;
 
-    return 0 unless $self->is_set( "licensed_foa" );
+	my $foa;
 
-    my $foa = Time::Piece->strptime( $self->value( "licensed_foa" ), "%Y-%m-%d" );
+	if( $eprint->is_set( "hoa_date_foa" ) &&
+        $self->is_set( "ref2029_pub_agreement" ) &&
+        $self->value( "ref2029_pub_agreement" ) eq "TRUE" )	
+    {
+		# old foa date will do...
+		$foa = Time::Piece->strptime( $self->value( "licensed_foa" ), "%Y-%m-%d" );
+	}
+	elsif( $self->is_set( "licensed_foa" ) )
+	{
+		$foa = Time::Piece->strptime( $self->value( "licensed_foa" ), "%Y-%m-%d" );
+	}
+
+	return 0 unless defined $foa;
 
     if( $self->is_set( "embargo" ) )
     {

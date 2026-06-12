@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <epm xmlns='http://eprints.org/ep2/data/2.0' id='http://localhost:8081/id/epm/hefce_oa'>
   <epmid>hefce_oa</epmid>
-  <uri>http://localhost:8080/id/epm/hefce_oa</uri>
+  <uri>http://localhost:8081/id/epm/hefce_oa</uri>
   <documents>
     <document>
       <files>
@@ -97,9 +97,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_ref2029_cc.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>4803caa6079a34defac66c9a387e73e8</hash>
+          <hash>239a6a578165308f276b4dc41f8b2fc7</hash>
           <hash_type>MD5</hash_type>
-          <filesize>8055</filesize>
+          <filesize>8463</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -241,9 +241,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/DataObj/REF2029_CC.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>c30d8fdbc00677f3507404cbc95fd6f5</hash>
+          <hash>1c6ffa0001340cadc9fa9ff20d3204ae</hash>
           <hash_type>MD5</hash_type>
-          <filesize>21148</filesize>
+          <filesize>21952</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -651,7 +651,7 @@
       <content>coverimage</content>
     </document>
   </documents>
-  <version>3.0.1</version>
+  <version>3.0.2</version>
   <controller>EPMC::HefceOA</controller>
   <creators>
     <item>

@@ -173,10 +173,18 @@ $c->add_dataset_trigger( 'eprint', EPrints::Const::EP_TRIGGER_BEFORE_COMMIT, sub
             {
                 if( $eprint->is_set( "hoa_date_foa" ) )
                 {
-                    # only copy a FOA value if we have a doc with the correct license
+                    # only copy a FOA value if we have a doc with the correct license of the correct type and is open
                     my $valid_license = 0;
                     for( $eprint->get_all_documents )
                     {
+                        # is it the correct type
+                        next unless $_->is_set( "content" );
+                        my $content = $_->value( "content" );
+                        next unless grep( /^$content$/, @{$repo->config( "hefce_oa", "document_content" )} );
+
+                        # and is it open
+                        next unless $_->is_public;
+
                         # does it have a correct license
                         next unless $_->is_set( "license" );
                         my $license = $_->value( "license" );

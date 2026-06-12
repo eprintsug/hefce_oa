@@ -11,55 +11,59 @@
 </flow>
 
 <stage name="hefce_oa">
-    <!--
-    <component type="Field::Multi">
-        <title>Dates</title>
-        <field ref="hoa_date_acc"/>
-        <field ref="hoa_date_pub"/>
-    </component>
-    -->
-    <component type="Field::Multi">
-	<title>Pre-Compliance</title>
-	<field ref="hoa_override"/>
-	<field ref="hoa_override_txt"/>
-    </component>
-    <component><field ref="hoa_exclude"/></component>
-    <component><field ref="hoa_pre_pub"/></component>
-    <component><field ref="hoa_gold"/></component>
-    <component><field ref="hoa_emb_len"/></component>
-    <component><field ref="hoa_ref_pan"/></component>
-    <component type="Field::Multi">
+  <epc:choose>
+    <epc:when test="ref2029_cc.property('scope') = '26-28'">
+      <component><field ref="hoa_emb_len"/></component>      
+      <component type="REF2029">
+        <field ref="ref2029_gold_oa"/>
+        <field ref="ref2029_pub_agreement"/>
+        <field ref="ref2029_pre_compliant"/>
+        <field ref="ref2029_pre_compliant_txt"/>
+        <field ref="ref2029_override"/>
+        <field ref="ref2029_ex_dep"/>
+        <field ref="ref2029_ex_dep_txt"/>
+        <field ref="ref2029_ex_acc"/>
+        <field ref="ref2029_ex_acc_txt"/>
+        <field ref="ref2029_ex_tec"/>
+        <field ref="ref2029_ex_tec_txt"/>
+        <field ref="ref2029_ex_fur"/>
+        <field ref="ref2029_ex_fur_txt"/>
+      </component>
+      <component><field ref="hoa_ref_pan"/></component>
+    </epc:when>
+    <epc:otherwise>
+      <component type="Field::Multi">
+	    <title>Pre-Compliance</title>
+	    <field ref="hoa_override"/>
+	    <field ref="hoa_override_txt"/>
+      </component>
+      <component><field ref="hoa_exclude"/></component>
+      <component><field ref="hoa_pre_pub"/></component>
+      <component><field ref="hoa_gold"/></component>
+      <component><field ref="hoa_emb_len"/></component>
+      <component><field ref="hoa_ref_pan"/></component>
+      <component type="Field::Multi">
         <title>Deposit Exceptions</title>
         <field ref="hoa_ex_dep"/>
         <field ref="hoa_ex_dep_txt"/>
-    </component>
-    <component type="Field::Multi">
+      </component>
+      <component type="Field::Multi">
         <title>Access Exceptions</title>
         <field ref="hoa_ex_acc"/>
         <field ref="hoa_ex_acc_txt"/>
-    </component>
-    <component type="Field::Multi">
+      </component>
+      <component type="Field::Multi">
         <title>Technical Exceptions</title>
         <field ref="hoa_ex_tec"/>
         <field ref="hoa_ex_tec_txt"/>
-    </component>
-    <component type="Field::Multi">
+      </component>
+      <component type="Field::Multi">
         <title>Further Exceptions</title>
         <field ref="hoa_ex_fur"/>
         <field ref="hoa_ex_fur_txt"/>
-    </component>
-    <!--<component type="Field::Multi">
-        <title>Other Exceptions</title>
-        <field ref="hoa_ex_oth"/>
-        <epc:choose>
-            <epc:when test="hoa_ex_oth and hoa_ex_oth = 'TRUE'">
-                <field ref="hoa_ex_oth_txt" required="yes"/>
-            </epc:when>
-            <epc:otherwise>
-                <field ref="hoa_ex_oth_txt"/>
-            </epc:otherwise>
-        </epc:choose>
-    </component>-->
+      </component>
+    </epc:otherwise>
+  </epc:choose>
 </stage>
 
 </workflow>

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<epm xmlns='http://eprints.org/ep2/data/2.0' id='http://localhost:8080/id/epm/hefce_oa'>
+<epm xmlns='http://eprints.org/ep2/data/2.0' id='http://localhost:8081/id/epm/hefce_oa'>
   <epmid>hefce_oa</epmid>
-  <uri>http://localhost:8080/id/epm/hefce_oa</uri>
+  <uri>http://localhost:8081/id/epm/hefce_oa</uri>
   <documents>
     <document>
       <files>
@@ -25,9 +25,9 @@
           <datasetid>document</datasetid>
           <filename>cfg.d/hefce_oa_tests.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>9a1cbe37c737f108616d73afa938659f</hash>
+          <hash>eca23563dcfb3b5cc8ce90dc206e29e8</hash>
           <hash_type>MD5</hash_type>
-          <filesize>13741</filesize>
+          <filesize>13747</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -73,9 +73,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>a0fff16cd8f129492d62b3e145b5691b</hash>
+          <hash>ccfbab79c7789f9f843c499018833d60</hash>
           <hash_type>MD5</hash_type>
-          <filesize>10714</filesize>
+          <filesize>11020</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -89,9 +89,17 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa_fields.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>051578d9588e7e08f0291448c6cc643b</hash>
+          <hash>19da91c4f3a57c15cb84364c690d3b59</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4338</filesize>
+          <filesize>4778</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/cfg/cfg.d/zz_ref2029_cc.pl</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>239a6a578165308f276b4dc41f8b2fc7</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>8463</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -201,9 +209,9 @@
           <datasetid>document</datasetid>
           <filename>lang/en/phrases/hefce_oa.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>c7697d267bb112e50bb8df1032f09836</hash>
+          <hash>9e438c98f56a35c3c06248d98b362721</hash>
           <hash_type>MD5</hash_type>
-          <filesize>25505</filesize>
+          <filesize>25517</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -223,11 +231,35 @@
         </file>
         <file>
           <datasetid>document</datasetid>
+          <filename>lang/en/phrases/ref2029.xml</filename>
+          <mime_type>application/xml</mime_type>
+          <hash>68efc36921a3262f216413874089e914</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>24038</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/EPrints/DataObj/REF2029_CC.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>1c6ffa0001340cadc9fa9ff20d3204ae</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>21952</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Export/Report/CSV/REF_CC.pm</filename>
           <mime_type>text/plain</mime_type>
           <hash>0b7758578764487119c7538e511c7c32</hash>
           <hash_type>MD5</hash_type>
           <filesize>1938</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/InputForm/Component/REF2029.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>12cb84ee0f49be553e7125d0a2525cbc</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>4235</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -241,9 +273,25 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/EPrint/HefceOA.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>265be8ad960b2ed82cb880e575644662</hash>
+          <hash>27a520a308d2ee31d784979d0434e7d4</hash>
           <hash_type>MD5</hash_type>
-          <filesize>20354</filesize>
+          <filesize>33440</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_2029_CC.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>3d3578c91047224e4409c79fa8a072da</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>4943</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_2029_CC/Post2026.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>eb27bbac15238e383cf08baefd6f8a03</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>625</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -265,9 +313,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>8c0bc5cf6f975f847ca4cc7bd8d87f7a</hash>
+          <hash>472bd50de71ec140a76644ec5cc5e2eb</hash>
           <hash_type>MD5</hash_type>
-          <filesize>6024</filesize>
+          <filesize>6275</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -375,11 +423,19 @@
         </file>
         <file>
           <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC/Pre2026.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>233ddb80fed83e16e16d343ad995a1f5</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>603</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>07d09e85d3bc64ba593f4f66171bec1a</hash>
+          <hash>90c68179252ed34142d8ad7cf021b3e5</hash>
           <hash_type>MD5</hash_type>
-          <filesize>1367</filesize>
+          <filesize>1830</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -487,6 +543,14 @@
         </file>
         <file>
           <datasetid>document</datasetid>
+          <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX/Pre2026.pm</filename>
+          <mime_type>text/plain</mime_type>
+          <hash>89afc9f95ef88e3066dbcf0ff4962d2a</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>615</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
           <filename>plugins/HefceOA/Const.pm</filename>
           <mime_type>text/plain</mime_type>
           <hash>27e94dcaece99dcabcf9cb5edad5e791</hash>
@@ -561,9 +625,9 @@
           <datasetid>document</datasetid>
           <filename>workflows/eprint/hefce_oa.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>7214d9e74e23d541b3c1961c4c31f3a7</hash>
+          <hash>757cf463518fed7ffb1da4db390ccec7</hash>
           <hash_type>MD5</hash_type>
-          <filesize>2132</filesize>
+          <filesize>2430</filesize>
         </file>
       </files>
       <mime_type>application/xml</mime_type>
@@ -587,7 +651,7 @@
       <content>coverimage</content>
     </document>
   </documents>
-  <version>2.0</version>
+  <version>3.0.2</version>
   <controller>EPMC::HefceOA</controller>
   <creators>
     <item>
@@ -621,7 +685,7 @@
   </creators>
   <datestamp>2021-02-03 15:51:17</datestamp>
   <title>REF Compliance Checker for EPrints</title>
-  <description>This plugin helps your institution comply with the Open Access policy of the UK HE Funding Bodies.</description>
+  <description>This plugin helps your institution comply with the Open Access policy of the UK HE Funding Bodies - now for REF2029!</description>
   <home_page>http://github.com/eprints/hefce_oa</home_page>
   <icon>images/epm/icon_ref_cc.png</icon>
 </epm>

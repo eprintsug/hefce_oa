@@ -172,7 +172,20 @@ sub render_headline_result
 
     if( $flag & HefceOA::Const::COMPLIANT )
     {
-        return $repo->render_message( "message", $self->html_phrase( "compliant" ) );
+        print STDERR "flag: $flag\n";
+
+        if( $eprint->is_set( "hoa_gold" ) && $eprint->get_value( "hoa_gold" ) eq "TRUE" )
+        {
+            return $repo->render_message( "message", $self->html_phrase( "compliant:gold" ) );
+        }
+        elsif( $eprint->is_set( "hoa_override" ) && $eprint->get_value( "hoa_override" ) eq "TRUE" )
+        {
+            return $repo->render_message( "message", $self->html_phrase( "compliant:override" ) );
+        }
+        else
+        {
+            return $repo->render_message( "message", $self->html_phrase( "compliant" ) );
+        }
     }
     elsif( $flag & HefceOA::Const::DEP && 
         $flag & HefceOA::Const::DIS &&

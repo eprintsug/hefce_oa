@@ -113,9 +113,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/cfg/cfg.d/zzz_hefce_oa_search_reports.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>3392a9606922e5fd3f6bf32dea5fddf0</hash>
+          <hash>92dbaf208028576f776ab2e66ccf857c</hash>
           <hash_type>MD5</hash_type>
-          <filesize>803</filesize>
+          <filesize>770</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -281,9 +281,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_2029_CC.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>661a7edaa4960415709a16763e872a0d</hash>
+          <hash>0fcc269ebf94f02b675344dad8fcbabf</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4942</filesize>
+          <filesize>5239</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -313,9 +313,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>5d05d42b035399b8c38bf6b6aaee65c9</hash>
+          <hash>f0728beca0331acfce58733f61f6de5b</hash>
           <hash_type>MD5</hash_type>
-          <filesize>6290</filesize>
+          <filesize>6587</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -433,9 +433,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC_EX.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>90c68179252ed34142d8ad7cf021b3e5</hash>
+          <hash>b960400428540a32643812af50a1a81b</hash>
           <hash_type>MD5</hash_type>
-          <filesize>1830</filesize>
+          <filesize>2287</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>

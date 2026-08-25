@@ -201,6 +201,14 @@ sub apply_filters
 		match => 'IN',
 	);
 
+    # and only REF CC compatible items
+    my $session = $self->{session};
+    my $types = join( ' ', @{$session->config( "hefce_oa", "item_types" )} );
+    $self->{processor}->{search}->add_field( fields => "type",
+        value => $types, 
+        match => 'EQ', 
+        merge => 'ANY',
+    );
 }
 
 

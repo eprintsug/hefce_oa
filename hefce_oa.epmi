@@ -9,9 +9,9 @@
           <datasetid>document</datasetid>
           <filename>cfg.d/hefce_oa_audit.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>1aa71ff57d512b387da2a5fde6504242</hash>
+          <hash>d261c5164836f4894fcce017d1e34ac3</hash>
           <hash_type>MD5</hash_type>
-          <filesize>7329</filesize>
+          <filesize>6881</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -65,9 +65,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/bin/unpaywall</filename>
           <mime_type>text/x-perl</mime_type>
-          <hash>81781266cda9e5a37e6f3a6951f67aeb</hash>
+          <hash>205464fcef56eb60cae1d4e5ed061a15</hash>
           <hash_type>MD5</hash_type>
-          <filesize>6713</filesize>
+          <filesize>7012</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -659,14 +659,13 @@
         <family>Miles-Board</family>
         <given>Tim</given>
       </name>
-      <id>drtjmb@gmail.com</id>
     </item>
     <item>
       <name>
         <family>Fyson</family>
         <given>Will</given>
       </name>
-      <id>rwf1v07@ecs.soton.ac.uk</id>
+      <id>will.fyson@cosector.com</id>
     </item>
     <item>
       <name>
@@ -681,6 +680,12 @@
         <given>Rory</given>
       </name>
       <id>Rory.McNicholl@london.ac.uk</id>
+    </item>
+    <item>
+      <name>
+        <family>Robertson</family>
+        <given>Will</given>
+      </name>
     </item>
   </creators>
   <datestamp>2021-02-03 15:51:17</datestamp>

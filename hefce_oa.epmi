@@ -73,9 +73,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>ccfbab79c7789f9f843c499018833d60</hash>
+          <hash>819ceca0bf41cd7291bdc9430aae3478</hash>
           <hash_type>MD5</hash_type>
-          <filesize>11020</filesize>
+          <filesize>10804</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -113,9 +113,9 @@
           <datasetid>document</datasetid>
           <filename>epm/hefce_oa/cfg/cfg.d/zzz_hefce_oa_search_reports.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>0c8ec4f4ef3e701455f9fe5c80f9dc58</hash>
+          <hash>3392a9606922e5fd3f6bf32dea5fddf0</hash>
           <hash_type>MD5</hash_type>
-          <filesize>740</filesize>
+          <filesize>803</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -281,9 +281,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_2029_CC.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>3d3578c91047224e4409c79fa8a072da</hash>
+          <hash>661a7edaa4960415709a16763e872a0d</hash>
           <hash_type>MD5</hash_type>
-          <filesize>4943</filesize>
+          <filesize>4942</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -313,9 +313,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/Report/REF_CC.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>472bd50de71ec140a76644ec5cc5e2eb</hash>
+          <hash>5d05d42b035399b8c38bf6b6aaee65c9</hash>
           <hash_type>MD5</hash_type>
-          <filesize>6275</filesize>
+          <filesize>6290</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -651,7 +651,7 @@
       <content>coverimage</content>
     </document>
   </documents>
-  <version>3.0.3</version>
+  <version>3.0.4</version>
   <controller>EPMC::HefceOA</controller>
   <creators>
     <item>

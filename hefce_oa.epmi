@@ -25,9 +25,9 @@
           <datasetid>document</datasetid>
           <filename>cfg.d/hefce_oa_tests.pl</filename>
           <mime_type>text/plain</mime_type>
-          <hash>eca23563dcfb3b5cc8ce90dc206e29e8</hash>
+          <hash>bf35d1a6fea8a6440b919ae4bc87165e</hash>
           <hash_type>MD5</hash_type>
-          <filesize>13747</filesize>
+          <filesize>12877</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -209,9 +209,9 @@
           <datasetid>document</datasetid>
           <filename>lang/en/phrases/hefce_oa.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>9e438c98f56a35c3c06248d98b362721</hash>
+          <hash>29fc61ea20c156574601ecd6edc16aa5</hash>
           <hash_type>MD5</hash_type>
-          <filesize>25517</filesize>
+          <filesize>26004</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -233,17 +233,17 @@
           <datasetid>document</datasetid>
           <filename>lang/en/phrases/ref2029.xml</filename>
           <mime_type>application/xml</mime_type>
-          <hash>68efc36921a3262f216413874089e914</hash>
+          <hash>c7bb7502af373cb95cd1764c5ed7182b</hash>
           <hash_type>MD5</hash_type>
-          <filesize>24038</filesize>
+          <filesize>24342</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/DataObj/REF2029_CC.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>1c6ffa0001340cadc9fa9ff20d3204ae</hash>
+          <hash>6e61711484158ba5882d1f610766b119</hash>
           <hash_type>MD5</hash_type>
-          <filesize>21952</filesize>
+          <filesize>22323</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -273,9 +273,9 @@
           <datasetid>document</datasetid>
           <filename>plugins/EPrints/Plugin/Screen/EPrint/HefceOA.pm</filename>
           <mime_type>text/plain</mime_type>
-          <hash>27a520a308d2ee31d784979d0434e7d4</hash>
+          <hash>fb90ef4463e0b9f9df1e6effbf114f2b</hash>
           <hash_type>MD5</hash_type>
-          <filesize>33440</filesize>
+          <filesize>33941</filesize>
         </file>
         <file>
           <datasetid>document</datasetid>
@@ -651,7 +651,7 @@
       <content>coverimage</content>
     </document>
   </documents>
-  <version>3.0.4</version>
+  <version>3.1</version>
   <controller>EPMC::HefceOA</controller>
   <creators>
     <item>

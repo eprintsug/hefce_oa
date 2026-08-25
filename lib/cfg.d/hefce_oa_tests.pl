@@ -319,30 +319,7 @@ $c->{hefce_oa}->{OUT_OF_SCOPE_reason} = sub {
     my( $repo, $eprint ) = @_;
 
     my $APR16 = Time::Piece->strptime( "2016-04-01", "%Y-%m-%d" );
-    my $APR21 = Time::Piece->strptime( "2021-04-01", "%Y-%m-%d" );
-
-    # checks based on date of acceptance (if set)
-    if( $eprint->is_set( "hoa_date_acc" ) )
-    {
-        my $acc;
-        if( $repo->can_call( "hefce_oa", "handle_possibly_incomplete_date" ) )
-        {
-            $acc = $repo->call( [ "hefce_oa", "handle_possibly_incomplete_date" ], $eprint->value( "hoa_date_acc" ) );
-        }
-        if( !defined( $acc ) ) #above call can return undef - fallback to default
-        {
-            $acc = Time::Piece->strptime( $eprint->value( "hoa_date_acc" ), "%Y-%m-%d" );
-        }
-        
-        # Acceptance is before 1st Apr 2016, compliant as out of OA policy scope
-        return "2014_acc" if $acc < $APR16;
-
-        if( !$repo->config( "hefce_oa", "ref2021_scope" ) )
-        {
-            # Acceptance is before 1st Apr 2021, out of scope of 2028
-            return "2021_acc" if $acc < $APR21;
-        }
-    }
+    my $JAN21 = Time::Piece->strptime( "2021-01-01", "%Y-%m-%d" );
 
     if( $eprint->is_set( "hoa_date_pub" ) )
     {
@@ -359,10 +336,10 @@ $c->{hefce_oa}->{OUT_OF_SCOPE_reason} = sub {
         # Published before 1st Apr 2016, compliant as out of OA policy scope
         return "2014_pub" if $pub < $APR16;
 
-        if( !$repo->config( "hefce_oa", "ref2021_scope" ) )
+        if( !$repo->config( "hefce_oa", "ref2021_in_scope" ) )
         {
-            # Published is before 1st Apr 2021, out of scope of 2028
-            return "2021_pub" if $pub < $APR21;
+            # Published is before 1st Jan 2021, out of scope of 2029
+            return "2021_pub" if $pub < $JAN21;
         }
     }
 

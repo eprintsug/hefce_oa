@@ -13,7 +13,7 @@ sub new
 	my $self = $class->SUPER::new( %params );
 
 	$self->{datasetid} = 'eprint';
-	$self->{searchdatasetid} = 'archive';
+	$self->{searchdatasetid} = 'eprint';
 	$self->{custom_order} = '-title/creators_name';
 	$self->{appears} = [];
 	$self->{report} = 'ref_cc';
@@ -204,7 +204,7 @@ sub validate_dataobj
 	return @problems;
 }
 
-#applies any mandatory filters to a search object - used to enforce certain search criteria, even with a custom report
+# applies any mandatory filters to a search object - used to enforce certain search criteria, even with a custom report
 sub apply_filters
 {
 	my( $self ) = @_;
@@ -216,6 +216,14 @@ sub apply_filters
 		value => 'FALSE',
 		match => 'EX',
 	);
+
+    # this report should only include items published before the rule change in Jan 26
+    my $pub_field = $ds->field( "hoa_date_pub" );
+	$self->{processor}->{search}->add_field( fields => $pub_field,
+        value => '2021-01-01-2025-12-31',
+		match => 'IN',
+	);
+
 }
 
 1;

@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE phrases SYSTEM "entities.dtd">
+<epp:phrases xmlns="http://www.w3.org/1999/xhtml" xmlns:epp="http://eprints.org/ep3/phrase" xmlns:epc="http://eprints.org/ep3/control">
+
+<epp:phrase id="Plugin/InputForm/Component/REF2029:title">REF2029 OA Compliance</epp:phrase>
+
+<epp:phrase id="ref2029_cc_fieldname_ref2029_ex_dep">Deposit Exceptions</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_ex_dep">8.1.1. The following exceptions apply where the output is unable to meet the deposit requirements. In these cases, the output will not be required to meet any of the open access criteria (deposit, discovery, access or licensing).</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldopt_ref2029_ex_dep_a">It would be unlawful to deposit, or request the deposit of, the output or to otherwise make this available.</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldopt_ref2029_ex_dep_b">The publication actively disallows open access deposit in a repository and was the most appropriate publication for the output.</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldopt_ref2029_ex_dep_c">Subject to delay in securing the final peer-reviewed text for deposit – for instance, where a paper has multiple authors.</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldname_ref2029_ex_dep_txt">Deposit Exceptions Reason</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_ex_dep_txt">Please provide supporting information for the exception:</epp:phrase>
+
+<epp:phrase id="ref2029_cc_fieldname_ref2029_ex_acc">Access Exceptions</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_ex_acc">8.2.1. The following exceptions apply where deposit of the output is possible, but there are issues to do with meeting one or more of accessibility, embargo and/or licensing requirements. Outputs will be exempt from the relevant requirements, but still be required to meet all other open access policy requirements.</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldopt_ref2029_ex_acc_a">The publication requires an embargo period that exceeds the stated maxima and was the most appropriate publication for the output. Outputs will not need to meet the embargo requirements in this case.</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldopt_ref2029_ex_acc_b">Third-party content was included for which licences could not be obtained at a reasonable cost. The output will not need to meet access and/or licensing requirements (as relevant) in this case.</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldname_ref2029_ex_acc_txt">Access Exceptions Reason</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_ex_acc_txt">Please provide supporting information for the exception:</epp:phrase>
+
+<epp:phrase id="ref2029_cc_fieldname_ref2029_ex_tec">Technical Exceptions</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_ex_tec">8.3.1 The following exceptions deal with cases where an output is unable to meet the criteria due to a technical issue. In the following cases, the output will not be required to meet the open access criteria (deposit, discovery, access or licensing).</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldopt_ref2029_ex_tec_a">Output has a demonstrable and substantive connection to the submitting institution but was published following the end of the author’s period of employment, and it has not been possible to determine compliance with the criteria.</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldopt_ref2029_ex_tec_b">Outputs were authored in whole by one or more staff who are or were ineligible to be included in the volume measure for REF 2029. The funding bodies have agreed this exception across the publication period for REF 2029 in order to support submission of a wide range of eligible outputs.</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldname_ref2029_ex_tec_txt">Technical Exceptions Reason</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_ex_tec_txt">Please provide supporting information for the exception:</epp:phrase>
+
+<epp:phrase id="ref2029_cc_fieldname_ref2029_ex_fur">Further (‘Other’) Exception</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_ex_fur">8.4.1. “Other” exception should be used where criteria beyond the control of the higher education institution (HEI) (including but not limited to: personal circumstances of the author, industrial action, closure days and software issues) prevent compliance. If ‘other’ exception is selected, the output will not need to meet the open access criteria (deposit, discovery, access or licensing requirements).</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldname_ref2029_ex_fur_txt">Further (‘Other’) Exception Reason</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_ex_fur_txt">Please provide supporting information for the exception:</epp:phrase>
+
+<epp:phrase id="ref2029_cc_fieldname_ref2029_pub_agreement">License exception due to publication agreement</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_pub_agreement">7.5.4. In-scope outputs shared by deposit (7.2.3.) do not need to meet the licensing standards set out in 7.5.2. if the deposited output (AAM) is subject to terms of a publication agreement which limits sharing and/or use of downloaded materials. These outputs will still be required to meet all other conditions for deposit, discovery and access. Application of an exception will not be required.</epp:phrase>
+
+<epp:phrase id="ref2029_cc_fieldname_ref2029_gold_oa">Gold/Diamond/Platinum OA</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_gold_oa">7.2.1. Published open access: Where an output is made fully open access on publication (commonly termed ’Gold‘ open access, also ’Diamond‘ or ’Platinum‘), conditional to it also fully meeting discovery, access and licensing criteria there is no further action required.</epp:phrase>
+
+
+<epp:phrase id="ref2029_cc_fieldname_ref2029_pre_compliant">Compliant elsewhere</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_pre_compliant">This record meets OA compliance criteria in another repository.</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldname_ref2029_pre_compliant_txt">Compliant elsewhere evidence</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_pre_compliant_txt">Please provide a link or description that evidences where this record is otherwise OA compliant.</epp:phrase>
+
+<epp:phrase id="ref2029_cc_fieldname_ref2029_override">Override Compliance Checks</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldhelp_ref2029_override">Prevent REF OA compliance checls from being applied, exempting this record.</epp:phrase>
+
+<epp:phrase id="ref2029_cc_fieldname_licensed_foa">Date of first compliant Open Access (with valid license)</epp:phrase>
+<epp:phrase id="ref2029_cc_fieldname_embargo">Earliest embargo date</epp:phrase>
+
+
+<!-- EPrint Page -->
+
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:compliant:2029"><span id="hoa_status" data-status="compliant"><p>This item is compliant with the <epc:phrase ref="hefce"/> Open Access policy</p></span>
+<p>Reason: <epc:pin name="reason"/></p>
+</epp:phrase>"
+
+<epp:phrase id="Plugin/Screen/EPrint/HefceOA:render_missing_ref2029">Missing REF2029 record. All eligible Eprints in the REF2029 scope should have a corresponding REF2029 record to track OA compliance data.</epp:phrase>
+
+<epp:phrase id="compliant:2029:reason:override">Manual override</epp:phrase>
+<epp:phrase id="compliant:2029:reason:pre_compliant">Flagged as compliant in another platform</epp:phrase>
+<epp:phrase id="compliant:2029:reason:gold_oa">Open Access with 'Gold', 'Diamond' or 'Platinum' routes (see 7.2.1)</epp:phrase>
+<epp:phrase id="compliant:2029:reason:ex_dep">Deposit exception applied (see 8.1)</epp:phrase>
+<epp:phrase id="compliant:2029:reason:ex_acc_emb">Meets compliance rules with embargo exception (see 8.2.2)</epp:phrase>
+<epp:phrase id="compliant:2029:reason:acc_potential">The output will be compliant if it is made open access within the allowed timeframe (when the embargo releases or within three months of publication date).</epp:phrase>
+<epp:phrase id="compliant:2029:reason:acc_potential_emb">The output will be compliant if it is made open access within the allowed timeframe (when the embargo releases or within three months of publication date). An embargo exception has been applied (see 8.2.2).</epp:phrase>
+<epp:phrase id="compliant:2029:reason:ex_acc_lic">Meets compliance rules with license exception (see 8.2.3)</epp:phrase>
+<epp:phrase id="compliant:2029:reason:ex_tec">Technical exception technical (see 8.3)</epp:phrase>
+<epp:phrase id="compliant:2029:reason:ex_fur">Further exception applied (see 8.4)</epp:phrase>
+<epp:phrase id="compliant:2029:reason:compliant">All compliance rules met!</epp:phrase>
+
+<!-- Jan 21-Dec25 Testing -->
+<epp:phrase id="hefce_oa:2029-pre26:test_description:COMPLIANT">
+<p>For more information about OA compliance, please see the <a href="https://2029.ref.ac.uk/guidance/ref-2029-open-access-policy/" target="_blank">REF 2029 Open Access Policy</a>.</p> 
+
+<p>To be compliant, an item must meet at least one of the following conditions:</p>
+<ul>
+    <li>The <strong>deposit</strong>, <strong>discovery</strong> and <strong>access</strong> requirements are met.</li>
+    <li>There is a <strong>deposit exception</strong>.</li>
+    <li>There is an <strong>access exception</strong> and the <strong>deposit</strong> and <strong>discovery</strong> requirements are met.</li>
+    <li>There is a <strong>technical exception</strong>.</li>
+    <li>There is a <strong>further</strong> or <strong>'other' exception</strong>.</li>
+</ul>
+</epp:phrase>
+
+
+<epp:phrase id="hefce_oa:test_description:DEP_ref2029">To be deposit compliant, all of the following conditions must be met.</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_title:DEP_COMPLIANT_ref2029">The output must have been deposited as the author’s accepted and final peer reviewed text.</epp:phrase>
+<epp:phrase id="hefce_oa:test_description:DEP_COMPLIANT_ref2029">
+    <p><em><epc:phrase ref="hefce_oa:pre26:test_description:DEP_COMPLIANT:eprints"/></em></p>
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:pre26:test_description:DEP_COMPLIANT:eprints">The <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong> must be set (ie. the item is a compliant deposit).</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_title:DEP_TIMING_ref2029">The output must have been deposited as soon after the point of acceptance as possible.</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_description:DEP_TIMING_ref2029">
+    <blockquote><epc:phrase ref="hefce_oa:pre26:test_description:DEP_TIMING:policy"/></blockquote>
+    <p><em><epc:phrase ref="hefce_oa:pre26:test_description:DEP_TIMING:eprints"/></em></p>
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:pre26:test_description:DEP_TIMING:policy">
+5.2.2. The output must be deposited as soon after the date of acceptance as possible and no later than three months after this date.
+</epp:phrase>
+<epp:phrase id="hefce_oa:pre26:test_description:DEP_TIMING:eprints">
+The <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong> must be no later than three months after the <strong><epc:phrase ref="eprint_fieldname_hoa_date_acc"/></strong>.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_description:DIS_ref2029">To be discovery compliant, all of the following conditions must be met:</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_title:DIS_DISCOVERABLE_ref2029">The output must be presented in a way that allows it to be discovered by readers.</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_description:DIS_DISCOVERABLE_ref2029">
+    <blockquote><epc:phrase ref="hefce_oa:pre26:test_description:DIS_DISCOVERABLE:policy"/></blockquote>
+    <p><em><epc:phrase ref="hefce_oa:pre26:test_description:DIS_DISCOVERABLE:eprints"/></em></p>
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:pre26:test_description:DIS_DISCOVERABLE:policy">
+5.3.2. Discovery requirements are typically fulfilled through storage and open presentation of a bibliographic or metadata record on a publisher/publication site, repository or other suitable platform.
+</epp:phrase>
+<epp:phrase id="hefce_oa:pre26:test_description:DIS_DISCOVERABLE:eprints">
+The item must be in the Live Archive.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_description:ACC_ref2029">To be access compliant, all of the following conditions must be met.</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_title:ACC_TIMING_ref2029">The output must meet the access requirements as soon as possible.</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_description:ACC_TIMING_ref2029">
+    <blockquote><epc:phrase ref="hefce_oa:pre26:test_description:ACC_TIMING:policy"/></blockquote>
+    <p><em><epc:phrase ref="hefce_oa:pre26:test_description:ACC_TIMING:eprints"/></em></p>
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:pre26:test_description:ACC_TIMING:policy">
+5.5.4. The routes to determine the timing of compliance with the access requirements are set out below:
+<p><strong>Route 1: for outputs deposited with no or ‘zero’ embargo.</strong> Where the output has no or a ‘zero’ embargo period it must meet the access requirements as soon as possible and no later than one month after deposit or within one month following publication where sharing pre-publication is not permitted.</p>
+<p><strong>Route 2: for outputs deposited under embargo.</strong> Where the output is deposited under embargo, it must meet the access requirements as soon as possible and no later than one month after the end of the embargo period. The embargo period typically begins at the point of first publication (including ‘early online’ publication).</p>
+</epp:phrase>
+<epp:phrase id="hefce_oa:pre26:test_description:ACC_TIMING:eprints">
+If no embargo applies, the <strong><epc:phrase ref="eprint_fieldname_hoa_date_foa"/></strong> must be less than one month after the <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong>. Otherwise, the <strong><epc:phrase ref="eprint_fieldname_hoa_date_foa"/></strong> must be less than one month after the embargo expiry date (<strong><epc:phrase ref="eprint_fieldname_hoa_date_pub"/></strong> + <strong><epc:phrase ref="eprint_fieldname_hoa_emb_len"/>)</strong>.
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_title:ACC_EMBARGO_ref2029">Embargo periods should not exceed the following maxima</epp:phrase>
+
+<epp:phrase id="hefce_oa:test_description:ACC_EMBARGO_ref2029">
+    <blockquote><epc:phrase ref="hefce_oa:pre26:test_description:ACC_EMBARGO:policy"/></blockquote>
+    <p><em><epc:phrase ref="hefce_oa:pre26:test_description:ACC_EMBARGO:eprints"/></em></p>
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:pre26:test_description:ACC_EMBARGO:policy">
+5.5.1. The policy allows authors to respect embargo periods set by publishers of: up to 12 months for Main Panels A and B; or 24 months for Main Panels C and D. Outputs that are under embargo at the submission deadline are compliant with the policy requirements (provided that the embargo lengths are within the policy requirements).
+</epp:phrase>
+<epp:phrase id="hefce_oa:pre26:test_description:ACC_EMBARGO:eprints">
+The <strong><epc:phrase ref="eprint_fieldname_hoa_emb_len"/></strong> must not exceed the stated maxima for the target <strong><epc:phrase ref="eprint_fieldname_hoa_ref_pan"/></strong>.
+</epp:phrase>
+
+<!-- Jan 26-Dec28 Testing -->
+<epp:phrase id="hefce_oa:2029-post26:test_description:COMPLIANT">
+<p>For more information about OA compliance, please see the <a href="https://2029.ref.ac.uk/guidance/ref-2029-open-access-policy/" target="_blank">REF 2029 Open Access Policy</a>.</p> 
+
+<p>To be compliant, an item must meet at least one of the following conditions:</p>
+<ul>
+    <li>The <strong>deposit</strong>, <strong>discovery</strong> and <strong>access</strong> requirements are met.</li>
+    <li>There is a <strong>deposit exception</strong>.</li>
+    <li>There is an <strong>access exception</strong> and the <strong>deposit</strong> and <strong>discovery</strong> requirements are met.</li>
+    <li>There is a <strong>technical exception</strong>.</li>
+    <li>There is a <strong>'further' exception</strong>.</li>
+</ul>
+</epp:phrase>
+
+<!-- Deposit Testing -->
+<epp:phrase id="hefce_oa:2029_test_description:DEP">To be deposit compliant, all of the following conditions must be met.</epp:phrase>
+
+<!-- DEP COMPLIANT -->
+<epp:phrase id="hefce_oa:2029:test_title:DEP_COMPLIANT">The output must have been deposited as the author’s accepted and final peer reviewed text.</epp:phrase>
+<epp:phrase id="hefce_oa:2029:test_description:DEP_COMPLIANT">
+    <blockquote><epc:phrase ref="hefce_oa:2029:test_description:DEP_COMPLIANT:policy"/></blockquote>
+    <p><em><epc:phrase ref="hefce_oa:2029:test_description:DEP_COMPLIANT:eprints"/></em></p>
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:2029:test_description:DEP_COMPLIANT:policy">
+7.2.5. The deposited output should be either the Author Accepted Manuscript (AAM) or where permitted under publication agreement, the final Version of Record (VOR).
+</epp:phrase>
+<epp:phrase id="hefce_oa:2029:test_description:DEP_COMPLIANT:eprints">The Date of first compliant deposit must be set (ie. the item is a compliant deposit).</epp:phrase>
+
+<!-- DEP TIMING -->
+<epp:phrase id="hefce_oa:2029:test_title:DEP_TIMING">The output must have been deposited as soon after the date of publication as possible. </epp:phrase>
+<epp:phrase id="hefce_oa:2029:test_description:DEP_TIMING">
+    <blockquote><epc:phrase ref="hefce_oa:2029:test_description:DEP_TIMING:policy"/></blockquote>
+    <p><em><epc:phrase ref="hefce_oa:2029:test_description:DEP_TIMING:eprints"/></em></p>
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:2029:test_description:DEP_TIMING:policy">7.2.3. Outputs shared by deposit: Where an output will be compliant via deposit in a suitable repository or other appropriate platform, a copy of such output should be deposited within three months of publication.</epp:phrase>
+<epp:phrase id="hefce_oa:2029:test_description:DEP_TIMING:eprints">The <strong><epc:phrase ref="eprint_fieldname_hoa_date_fcd"/></strong> must be no later than three months after the <strong><epc:phrase ref="eprint_fieldname_hoa_date_pub"/></strong>.</epp:phrase>
+
+<!-- Discovery Testing -->
+<epp:phrase id="hefce_oa:2029_test_description:DIS">To be discovery compliant, all of the following conditions must be met.</epp:phrase>
+
+<!-- DIS_DISCOVERABLE -->
+<epp:phrase id="hefce_oa:2029:test_title:DIS_DISCOVERABLE">The output must be discoverable by readers and automated tools such as search engines.</epp:phrase>
+<epp:phrase id="hefce_oa:2029:test_description:DIS_DISCOVERABLE">
+    <blockquote><epc:phrase ref="hefce_oa:2029:test_description:DIS_DISCOVERABLE:policy"/></blockquote>
+    <p><em><epc:phrase ref="hefce_oa:2029:test_description:DIS_DISCOVERABLE:eprints"/></em></p>
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:2029:test_description:DIS_DISCOVERABLE:policy">
+7.3.2. Discovery requirements are typically fulfilled through storage and open presentation of a bibliographic or metadata record on a publisher/publication site, repository or other suitable platform.
+</epp:phrase>
+<epp:phrase id="hefce_oa:2029:test_description:DIS_DISCOVERABLE:eprints">The item must be in the <epc:phrase ref="eprint_fieldopt_eprint_status_archive"/></epp:phrase>
+
+
+<!-- Access Testing -->
+<epp:phrase id="hefce_oa:2029_test_description:ACC">To be access compliant, all of the following conditions must be met.</epp:phrase>
+
+<!-- ACC_TIMING -->
+<epp:phrase id="hefce_oa:2029:test_title:ACC_TIMING">The output must meet the access requirements as soon as possible.</epp:phrase>
+<epp:phrase id="hefce_oa:2029:test_description:ACC_TIMING">
+    <blockquote><epc:phrase ref="hefce_oa:2029:test_description:ACC_TIMING:policy"/></blockquote>
+    <p><em><epc:phrase ref="hefce_oa:2029:test_description:ACC_TIMING:eprints"/></em></p>
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:2029:test_description:ACC_TIMING:policy">
+7.4.2. The output must be made fully accessible on deposit, subject to the expiry of any required embargo period.
+</epp:phrase>
+<epp:phrase id="hefce_oa:2029:test_description:ACC_TIMING:eprints">The output must be open, unless an embargo applies in which case it must be made open as soon as the embargo expires.</epp:phrase>
+
+<!-- ACC_LIC -->
+<epp:phrase id="hefce_oa:2029:test_title:ACC_LIC">The output must be made accessible using an open licence.</epp:phrase>
+<epp:phrase id="hefce_oa:2029:test_description:ACC_LIC">
+    <blockquote><epc:phrase ref="hefce_oa:2029:test_description:ACC_LIC:policy"/></blockquote>
+    <p><em><epc:phrase ref="hefce_oa:2029:test_description:ACC_LIC:eprints"/></em></p>
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:2029:test_description:ACC_LIC:policy">
+7.5.2. Outputs should be shared as openly as possible; the funding bodies’ strong preference is for licensing as CC-BY or other licence formats meeting this standard of openness. However, licensing outputs at CC-BY-NC or CC-BY-ND (including CC-BY-NC-ND) or licences meeting an equivalent standard of openness are also permitted.
+</epp:phrase>
+<epp:phrase id="hefce_oa:2029:test_description:ACC_LIC:eprints">The licence attached to the AAM or VoR must be one of CC-BY, CC-BY-NC or CC-BY-ND.</epp:phrase>
+
+<!-- ACC_EMBARGO -->
+<epp:phrase id="hefce_oa:2029:test_title:ACC_EMBARGO">Embargo periods should not exceed the following maxima.</epp:phrase>
+<epp:phrase id="hefce_oa:2029:test_description:ACC_EMBARGO">
+    <blockquote><epc:phrase ref="hefce_oa:2029:test_description:ACC_EMBARGO:policy"/></blockquote>
+    <p><em><epc:phrase ref="hefce_oa:2029:test_description:ACC_EMBARGO:eprints"/></em></p>
+</epp:phrase>
+
+<epp:phrase id="hefce_oa:2029:test_description:ACC_EMBARGO:policy">
+        <p>7.6.4. Embargo periods should not exceed the following maxima:</p>
+        <ul>
+                <li>6 months for Main Panel A and Main Panel B.</li>
+                <li>12 months for Main Panel C and Main Panel D.</li>
+        </ul>
+</epp:phrase>
+<epp:phrase id="hefce_oa:2029:test_description:ACC_EMBARGO:eprints">The <strong><epc:phrase ref="eprint_fieldname_hoa_emb_len"/></strong> must not exceed the stated maxima for the target <strong><epc:phrase ref="eprint_fieldname_hoa_ref_pan"/></strong>.</epp:phrase>
+
+<!-- Reports -->
+<epp:phrase id="Plugin/Screen/Report/REF_CC:title">REF Compliance (pre Jan 26)</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC_EX:title">REF Compliance - Exceptions (pre Jan 26)</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_2029_CC:title">REF 2029 Compliance (Jan 26 or later)</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_2029_CC/Post2026:title">Outputs published between Jan 26 to Dec 28</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC/Pre2026:title">Outputs published between Jan 21 to Dec 25</epp:phrase>
+<epp:phrase id="Plugin/Screen/Report/REF_CC_EX/Pre2026:title">Outputs published between Jan 21 to Dec 25</epp:phrase>
+
+<epp:phrase id="exportfields:eprints_core">EPrint Fields</epp:phrase>
+<epp:phrase id="exportfields:ref2029">REF2029 Compliance Fields</epp:phrase>
+
+<epp:phrase id="ref2029_cc:missing_ref2029_record">Missing REF2029 Compliance data record</epp:phrase>
+
+<epp:phrase id="ref2029_cc:non_compliant">Output is not compliant with the REF Open Access policy</epp:phrase>
+
+
+<epp:phrase id="ref2029_cc:problem:DEP_COMPLIANT">The output must have been deposited as the author’s accepted and final peer reviewed text.</epp:phrase>
+<epp:phrase id="ref2029_cc:problem:DEP_TIMING">The output must have been deposited as soon after the date of publication as possible.</epp:phrase>
+<epp:phrase id="ref2029_cc:problem:DIS_DISCOVERABLE">The output must be discoverable by readers and automated tools such as search engines.</epp:phrase>
+<epp:phrase id="ref2029_cc:problem:ACC_TIMING">The output must meet the access requirements as soon as possible.</epp:phrase>
+<epp:phrase id="ref2029_cc:problem:ACC_LIC">The output must be made accessible using an open licence.</epp:phrase>
+<epp:phrase id="ref2029_cc:problem:ACC_EMBARGO">Embargo periods should not exceed the maximum allowed length for the panel.</epp:phrase>
+
+</epp:phrases>

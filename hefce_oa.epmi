@@ -71,6 +71,14 @@
         </file>
         <file>
           <datasetid>document</datasetid>
+          <filename>epm/hefce_oa/bin/upgrade_exceptions_2029</filename>
+          <mime_type>text/x-perl</mime_type>
+          <hash>c8ed03cda9e1f4fdd25ad1b0dd557955</hash>
+          <hash_type>MD5</hash_type>
+          <filesize>4412</filesize>
+        </file>
+        <file>
+          <datasetid>document</datasetid>
           <filename>epm/hefce_oa/cfg/cfg.d/zz_hefce_oa.pl</filename>
           <mime_type>text/plain</mime_type>
           <hash>819ceca0bf41cd7291bdc9430aae3478</hash>

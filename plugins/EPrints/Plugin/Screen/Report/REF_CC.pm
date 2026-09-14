@@ -204,7 +204,7 @@ sub validate_dataobj
 	return @problems;
 }
 
-#applies any mandatory filters to a search object - used to enforce certain search criteria, even with a custom report
+# applies any mandatory filters to a search object - used to enforce certain search criteria, even with a custom report
 sub apply_filters
 {
 	my( $self ) = @_;
@@ -216,6 +216,23 @@ sub apply_filters
 		value => 'FALSE',
 		match => 'EX',
 	);
+
+    # this report should only include items published before the rule change in Jan 26
+    my $pub_field = $ds->field( "hoa_date_pub" );
+	$self->{processor}->{search}->add_field( fields => $pub_field,
+        value => '2021-01-01-2025-12-31',
+		match => 'IN',
+	);
+
+    # and only REF CC compatible items
+    my $session = $self->{session};
+    my $types = join( ' ', @{$session->config( "hefce_oa", "item_types" )} );
+    my $type_field = $ds->field( "type" );
+    $self->{processor}->{search}->add_field( fields => $type_field,
+        value => $types, 
+        match => 'EQ', 
+        merge => 'ANY',
+    );
 }
 
 1;

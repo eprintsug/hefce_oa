@@ -161,6 +161,7 @@ sub bullet_points
 		ref2029_gold_oa
 		ref2029_override
         ref2029_pre_compliant
+        ref2029_ex_dep
         ref2029_ex_acc
         ref2029_ex_tec
         ref2029_ex_fur
@@ -171,7 +172,8 @@ sub bullet_points
             my $value = $ref2029_cc->value( $field );
             if( $value ne "" && $value ne "FALSE" )
             {   
-                if( $field eq "ref2029_ex_acc" ||
+                if( $field eq "ref2029_ex_dep"
+                    $field eq "ref2029_ex_acc" ||
                     $field eq "ref2029_ex_tec" || 
                     $field eq "ref2029_ex_fur" )
                 {
